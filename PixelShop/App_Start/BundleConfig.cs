@@ -13,10 +13,14 @@ namespace PixelShop
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                         "~/Scripts/jquery-1.11.1.min.js",
                         "~/Scripts/jquery.flexisel.js",
-                        "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/easyResponsiveTabs.js",
+                        "~/Scripts/minicart.js",
+                        "~/Scripts/jquery.wmuSlider.js",
+                        "~/Scripts/forIndex.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                        "~/Content/bootstrap.css",
                         "~/Content/style.css",
                         "~/Content/font-awesome.min.css"));
         }
