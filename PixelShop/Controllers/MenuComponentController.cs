@@ -6,11 +6,12 @@ using System.Web.Mvc;
 
 namespace PixelShop.Controllers
 {
-    public class HomeController : Controller
+    public class MenuComponentController : Controller
     {
-        public ActionResult Index()
+        [ChildActionOnly]
+        public PartialViewResult Menu()
         {
-            return View();
+            return PartialView();
         }
     }
 }
