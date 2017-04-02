@@ -9,12 +9,12 @@
             Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
       @Styles.Render("~/Content/css")
 </head>
 <body>
     <div class="header-top-w3layouts">
             <div class="row">
+
                 <div class="col-md-6 phone-w3l pull-left">
                     <div class="phone-shop">+0901328995</div>
                 </div>
@@ -39,6 +39,10 @@
         @{Html.RenderAction("Menu", "MenuComponent");}
     </div>
     @RenderBody()
+    <div class="row">
+        @{Html.RenderAction("Footer", "FooterComponent");}
+    </div>
+
 
     @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required: false)

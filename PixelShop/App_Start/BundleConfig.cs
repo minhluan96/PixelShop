@@ -20,6 +20,7 @@ namespace PixelShop
                         "~/Scripts/jquery.wmuSlider.js",
                         "~/Scripts/forIndex.js",
                         "~/Scripts/forInfo.js",
+                        "~/Scripts/about.js",
                         "~/Scripts/imagezoom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
