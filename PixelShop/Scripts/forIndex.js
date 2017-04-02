@@ -40,7 +40,6 @@
                 );
             });
 
-
     $(document).ready(function () {
         $('#horizontalTab').easyResponsiveTabs({
             type: 'default', //Types: default, vertical, accordion
@@ -68,3 +67,5 @@ w3ls1.cart.on('w3sb1_checkout', function (evt) {
 
 
     $('.example1').wmuSlider();
+
+    

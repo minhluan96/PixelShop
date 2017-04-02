@@ -15,14 +15,19 @@ namespace PixelShop
                         "~/Scripts/jquery.flexisel.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/easyResponsiveTabs.js",
+                        "~/Scripts/jquery.flexslider.js",
                         "~/Scripts/minicart.js",
                         "~/Scripts/jquery.wmuSlider.js",
-                        "~/Scripts/forIndex.js"));
+                        "~/Scripts/forIndex.js",
+                        "~/Scripts/forInfo.js",
+                        "~/Scripts/imagezoom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/style.css",
-                        "~/Content/font-awesome.min.css"));
+                        "~/Content/font-awesome.min.css",
+                        "~/Content/flexslider.css"));
+
         }
     }
 }

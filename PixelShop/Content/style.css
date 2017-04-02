@@ -139,8 +139,12 @@ img {
     color: #fff;
     background-color:#1E1E1E;
 }
+.navbar-nav li a{
+    padding-left: 25px;
+    padding-right: 25px;
+}
 .search-agileinfo input[type="search"] {
-    width: 87%;
+    width: 70%;
     padding:10px;
     font-size: 1em;
     color: #999;
@@ -151,6 +155,7 @@ img {
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
+    float: right;
 }
 .navbar {
     margin-bottom:0;
@@ -283,28 +288,57 @@ button.w3view-cart:focus{
 .banner-agile a:hover{
 	background:#1E1E1E;
 }
+.top-brands h2{
+    font-weight: bold;
+    font-size: 1.7vw;
+}
 /*--//banner--*/
-
 /*--banner bottom--*/
 .banner-bootom-w3-agileits,.top-products,.fandt,.top-brands,.newsletter,.footer,.content,.contact,.about,.team,.main-grid-border,.faq,.products,.collpse.tabs,.login,.check-out,.payment{
 	padding:50px 0;
 }
 .top-products h3,.features h3,.top-brands h3,.contact h3,.about h3,.team h3,h3.agileits-icons-title,.faq h3,.products h3,.login h3,.check-out h3,.payment h3{
-	font-size:40px;
+	font-size:1vw;
 	color:#000;
 	margin-bottom:40px;
+}
+.top-products h3{
+    margin-bottom:0px;
+    color:#acb1b4;
+}
+.top-products h4{
+    color:#000;
+    font-weight: bold;
+}
+.intro{
+    background-color:#F7F8F9;
+}
+.intro h2{
+    font-size: 1.7vw; 
+    font-weight: bold;
+}
+.intro h1{
+   font-size: 1vw; 
+}
+.back-big{
+    margin-top: 40px;
 }
  .bb-grids span{
      text-align: center;
      color:#1e1e1e;
-     font-size: 0.8vw;
- }
-  .bb-grids span h1{
      font-size: 1vw;
+ }
+ .bb-grids span p{
+     font-weight: bold;
+     font-size: 0.9vw;
+ }
+ .bb-grids span h1{
+     font-size: 0.9vw;
      color: #acb1b4;
  }
 .bb-grids img{
 	width:100%;
+    height: auto;
     margin-bottom: 10px;
 }
 .bb-left-agileits-w3layouts-inner{
@@ -514,10 +548,16 @@ ul.resp-tabs-list li:nth-child(3):after{
 	position:relative;
 	padding:10px;
 }
+.img-intro2{
+    width: 80%;
+}
+.product-img img{
+    width: 70%;
+}
 .product-img .p-mask, .row .product .vm-product-media-container .p-mask {
     opacity: 0;
     visibility: hidden;
-    background:rgba(0, 229, 139, 0.52);
+    background-color: #1E1E1E;
     bottom: 0%;
 	left:0;
     position: absolute;
@@ -541,7 +581,17 @@ ul.resp-tabs-list li:nth-child(3):after{
     font-size: 1em;
 }
 .product-img:hover .p-mask, .row .product:hover .p-mask {
-    opacity: 1;
+    opacity: 0.7;
+    visibility: visible;
+    -webkit-transform: translate3d( 0px, 0px, 0px );
+    -moz-transform: translate3d( 0px, 0px, 0px );
+    -ms-transform: translate3d( 0px, 0px, 0px );
+    -o-transform: translate3d( 0px, 0px, 0px );
+    transform: translate3d( 0px, 0px, 0px );
+	left:0;
+}
+.product-img:hover img, .row .product:hover img{
+    opacity: 0.5;
     visibility: visible;
     -webkit-transform: translate3d( 0px, 0px, 0px );
     -moz-transform: translate3d( 0px, 0px, 0px );
@@ -598,9 +648,11 @@ button.w3ls-cart.pw3ls-cart .fa{
 /*--features and testimonials--*/
 .features h3{
 	text-align:left;
+    font-size: 1.5vw;
+    font-weight: bold;
 }
 .features .fa {
-    font-size: 28px;
+    font-size: 1vw;
     border: 1px solid #000;
     width: 60px;
     height: 60px;
@@ -662,11 +714,11 @@ button.w3ls-cart.pw3ls-cart .fa{
 
 .features  h4,.testimonials h4{
 	text-align:left;
-	font-size:18px;
+	font-size:1vw;
 	font-weight:700;
 }
 .features p,.testimonials p,.about-info .pince-right p,.about-info p,.but_list p,.products p,.payment p{
-	font-size:14px;
+	font-size:1vw;
 	color:#999;
 	line-height:28px;
 }
@@ -674,7 +726,7 @@ button.w3ls-cart.pw3ls-cart .fa{
 	margin:30px 0;
 }
 .testimonials {
-    background: rgba(232, 232, 232, 0.46);
+    background: #F7F8FA;
     padding: 30px;
 }
 .test-inner{
@@ -687,21 +739,21 @@ button.w3ls-cart.pw3ls-cart .fa{
 	overflow: hidden;
 }
 .wmuSlider .wmuSliderWrapper article img {
-
 }
 /* Default Skin */
 .wmuSliderPagination {
 	z-index: 2;
     position: absolute;
     left: 44%;
-    bottom: 6%;
+    bottom: 5%;
 }
 ul.wmuSliderPagination {
 	padding:0;
+    margin-left: -12px;
 }
 .wmuSliderPagination li {
 	float: left;
-	margin: 0 8px 0 0;
+	margin: 0 5px 0 0;
 	list-style-type: none;
 }
 .wmuSliderPagination a {
@@ -729,7 +781,7 @@ ul.wmuSliderPagination {
 }
 /*-- //wmuslider --*/
 .wmuSlider .wmuSliderWrapper article img {
-    width: 25%;
+    width: 50%;
 	margin:0 auto;
 }
 .testimonials h4,.testimonials p{
@@ -1276,22 +1328,22 @@ p.sbmincart-empty-text {
 	margin:1em 0 0 0; 
 }
 .nbs-flexisel-nav-left, .nbs-flexisel-nav-right {
-    width: 25px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     position: absolute;
     cursor: pointer;
     z-index: 100;
     margin-top: 0em;
 }
 .nbs-flexisel-nav-left {
-    left: 0;
-    background: url(../images/img-sprite.png) no-repeat 5px center;
-    background-color:#1E1E1E;
+    right: 0;
+    background: url(../images/Forward_32px.png) no-repeat 5px center;
+    background-color: white;
 }
 .nbs-flexisel-nav-right { 
-	right: 0%;
-    background: url(../images/img-sprite.png) no-repeat -20px center;
-    background-color: #1E1E1E;
+	left: 0;
+    background: url(../images/Back_32px.png) no-repeat 5px center;
+    background-color: white;
 }
 /*-- //about --*/
 /*-- products --*/
@@ -1978,7 +2030,10 @@ p.w3-agile{
 .payq2{
 	margin:30px 0;
 }
-
+.footer-grids p{
+   font-size: 1.2vw;
+   font-weight: bold;
+}
 /*-- //payment--*/
 
 
@@ -2398,7 +2453,7 @@ p.w3-agile{
 		padding: 40px 0;
 	}
 	.top-products h3, .features h3, .top-brands h3, .newsletter h3, .newsletter h2,.contact h3, .about h3, .team h3, h3.agileits-icons-title, .faq h3, .products h3, .login h3, .check-out h3, .payment h3 {
-		font-size: 35px;
+		font-size: 1.3vw;
 	}
 	ul.resp-tabs-list li:nth-child(2):before {
 		width: 5.9%;
@@ -3032,7 +3087,7 @@ p.w3-agile{
 		width: 80%;
 	}
 	.top-products h3, .features h3, .top-brands h3, .newsletter h3, .newsletter h2,.contact h3, .about h3, .team h3, h3.agileits-icons-title, .faq h3, .products h3, .login h3, .check-out h3, .payment h3 {
-		font-size: 28px;
+		font-size: 1.3vw;
 	}
 	#PPsbmincart {
 		left: 5%;

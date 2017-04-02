@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuComponentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,13 +224,26 @@
     <Content Include="images\back2.jpg" />
     <Content Include="images\back3.jpg" />
     <Content Include="images\back4.jpg" />
+    <Content Include="images\back5.jpg" />
+    <Content Include="images\back6.jpg" />
+    <Content Include="images\back7.PNG" />
+    <Content Include="images\Back_32px.png" />
+    <Content Include="images\Forward_32px.png" />
     <Content Include="images\product1.jpg" />
     <Content Include="images\product2.jpg" />
     <Content Include="images\product3.jpg" />
     <Content Include="images\product4.jpg" />
+    <Content Include="images\s1.jpg" />
+    <Content Include="images\s2.jpg" />
+    <Content Include="images\s3.jpg" />
+    <Content Include="images\size1.jpg" />
+    <Content Include="images\size2.jpg" />
+    <Content Include="images\size3.jpg" />
+    <Content Include="images\size4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
     <Content Include="Scripts\forIndex.js" />
+    <Content Include="Scripts\forInfo.js" />
     <Content Include="Scripts\imagezoom.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery.flexisel.js" />
@@ -285,6 +299,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\MenuComponent\Menu.cshtml" />
+    <Content Include="Views\Info\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
