@@ -66,7 +66,7 @@ img {
 }
 
 .logo-w3{
-	width:50%;
+	width:15%;
 	float:left;
 }
 .user-login, .user-cart, .user-numproduct, .phone-shop{
@@ -86,18 +86,19 @@ img {
 }
 .logo-w3 a h1,.footer a h3{
 	text-align:left;
+    padding-left: 15px;
 	color:#000;
 	font-size:40px;
 	position:relative;
 }
 .logo-w3 img,.footer img {
-    width: 7%;
+    width: 28%;
     position: absolute;
     top: 0;
     left: -28px;
 }
 .footer img {
-	width:13%;
+	width:16%;
 	top: 2px;
     left: -22px;
 }
@@ -111,7 +112,7 @@ img {
     letter-spacing: 0;
     position: absolute;
     top: 15px;
-    left: 147px;
+    left: 110px;
 }
 .phone-w3l {
     text-align: right;
@@ -268,7 +269,7 @@ button.w3view-cart:focus{
 	font-weight:700;
 }
 .banner-agile h3 span{
-	color:#1E1E1E;
+	color:#ffffff;
 }
 .banner-agile p{
 	width:49%;
@@ -565,7 +566,7 @@ ul.resp-tabs-list li:nth-child(3):after{
 .product-img .p-mask, .row .product .vm-product-media-container .p-mask {
     opacity: 0;
     visibility: hidden;
-    background-color: #1E1E1E;
+    background-color: #67d5ff;
     bottom: 0%;
 	left:0;
     position: absolute;
