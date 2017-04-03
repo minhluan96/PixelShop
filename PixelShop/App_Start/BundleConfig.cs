@@ -20,12 +20,15 @@ namespace PixelShop
                         "~/Scripts/jquery.wmuSlider.js",
                         "~/Scripts/forIndex.js",
                         "~/Scripts/forInfo.js",
+                        "~/Scripts/checkout.js",
                         "~/Scripts/about.js",
                         "~/Scripts/imagezoom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
+                        "~/Content/bootstrapCheckout.css",
                         "~/Content/style.css",
+                        "~/Content/checkout.css",
                         "~/Content/font-awesome.min.css",
                         "~/Content/flexslider.css"));
 

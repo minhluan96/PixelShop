@@ -259,7 +259,7 @@ button.w3view-cart:focus{
 	font-size:35px;
 	text-align:left;
 	margin-top:18%;
-	color: #1E1E1E;
+	color: #ffffff;
 }
 .banner-agile h3{
 	font-size:50px;
@@ -300,6 +300,7 @@ button.w3view-cart:focus{
 .top-brands h2{
     font-weight: bold;
     font-size: 1.7vw;
+    text-transform: uppercase;
 }
 /*--//banner--*/
 /*--banner bottom--*/
