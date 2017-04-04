@@ -307,7 +307,7 @@ button.w3view-cart:focus{
 .banner-bootom-w3-agileits,.top-products,.fandt,.top-brands,.newsletter,.footer,.content,.contact,.about,.team,.main-grid-border,.faq,.products,.collpse.tabs,.login,.check-out,.payment{
 	padding:50px 0;
 }
-.top-products h3,.features h3,.top-brands h3,h3.agileits-icons-title,.faq h3,.products h3{
+.top-products h3,.features h3,.top-brands h3,h3.agileits-icons-title,.faq h3{
 	font-size:1vw;
 	color:#000;
 	margin-bottom:40px;
@@ -525,31 +525,14 @@ ul.resp-tabs-list{
 	position:relative;
 }
 ul.resp-tabs-list li:nth-child(2):before {
-    content: '';
-    background: #999;
-    width: 3.7%;
-    height: 1px;
-    position: absolute;
-    top: 24%;
-    left: 33.8%;
+ 
+   
 }
 ul.resp-tabs-list li:nth-child(2):after{
-    content: '';
-    background: #999;
-    width: 3.7%;
-    height: 1px;
-    position: absolute;
-    top: 24%;
-    left: 45.5%;
+   
 }
 ul.resp-tabs-list li:nth-child(3):after{
-    content: '';
-    background: #999;
-    width: 3.7%;
-    height: 1px;
-    position: absolute;
-    top: 24%;
-    left: 59.1%;
+   
 }
 .product-size{
     background-color: #F7F8F9;
