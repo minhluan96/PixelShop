@@ -237,6 +237,9 @@
     <Content Include="images\back7.PNG" />
     <Content Include="images\Back_32px.png" />
     <Content Include="images\Forward_32px.png" />
+    <Content Include="images\mobile1.jpg" />
+    <Content Include="images\mobile2.jpg" />
+    <Content Include="images\mobile3.jpg" />
     <Content Include="images\product1.jpg" />
     <Content Include="images\product2.jpg" />
     <Content Include="images\product3.jpg" />
@@ -316,6 +319,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Admin\Header.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
