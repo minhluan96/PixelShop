@@ -47,7 +47,30 @@ namespace PixelShop
                           "~/Scripts/jquery.min.js"
                        ));
 
+            bundles.Add(new StyleBundle("~/Content/css-login").Include(
+                       "~/assets/global/plugins/font-awesome/css/font-awesome.min.css",
+                        "~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css",
+                        "~/assets/global/plugins/bootstrap/css/bootstrap.min.css",
+                        "~/assets/global/plugins/uniform/css/uniform.default.css",
+                        "~/assets/admin/pages/css/login.css",
+                        "~/assets/global/css/components-rounded.css",
+                        "~/assets/global/css/plugins.css",
+                        "~/assets/admin/layout4/css/layout.css",
+                        "~/assets/admin/layout4/css/themes/default.css",
+                        "~/assets/admin/layout4/css/custom.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/scripts-login").Include(
+                        "~/assets/global/plugins/jquery.min.js",
+                        "~/assets/global/plugins/jquery-migrate.min.js",
+                        "~/assets/global/plugins/bootstrap/js/bootstrap.min.js",
+                        "~/assets/global/plugins/jquery.blockui.min.js",
+                        "~/assets/global/plugins/uniform/jquery.uniform.min.js",
+                        "~/assets/global/plugins/jquery.cokie.min.js",
+                        "~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js",
+                        "~/assets/global/scripts/metronic.js",
+                        "~/assets/admin/layout4/scripts/layout.js",
+                        "~/assets/admin/layout4/scripts/demo.js",
+                        "~/assets/admin/pages/scripts/login.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsAdminIndex").Include(
                        "~/assets/global/plugins/jquery.min.js",
