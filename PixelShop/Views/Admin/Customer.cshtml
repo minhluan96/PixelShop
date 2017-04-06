@@ -67,9 +67,11 @@
                                 <i class="fa fa-plus"></i>
                                 Create new
                             </a>
+                            <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom">
+                            </div>
                             @*Add New Frame *@
-                            <div class="dropdown-menu theme-panel pull-left dropdown-custom hold-on-click">
-                                <div class="row">
+                            <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom hold-on-click">
+                                <div class="row hold-on-click dropdown-menu div-iframeAdmin-content">
                                     <div class="col-md-12">
                                         <form class="form-horizontal form-row-seperated" action="#">
                                             <div class="portlet light">
@@ -255,74 +257,77 @@
                                                     <i class="fa fa-pencil"></i>
                                                     Edit
                                                 </a>
-                                                @*Add New Frame *@
-                                                <div class="dropdown-menu theme-panel pull-left dropdown-custom hold-on-click">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form class="form-horizontal form-row-seperated" action="#">
-                                                                <div class="portlet light">
-                                                                    <div class="portlet-title">
-                                                                        <div class="caption">
-                                                                            <i class="icon-basket font-green-sharp"></i>
-                                                                            <span class="caption-subject font-green-sharp bold uppercase">
-                                                                                Edit Product
-                                                                            </span>
-                                                                            <span class="caption-helper">Man Tops</span>
-                                                                        </div>
-                                                                        <div class="actions btn-set">
-                                                                            <button type="button" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</button>
-                                                                            <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Reset</button>
-                                                                            <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
-                                                                            <button class="btn green-haze btn-circle"><i class="fa fa-check-circle"></i> Save & Continue Edit</button>
-                                                                            <div class="btn-group">
-                                                                                <a class="btn yellow btn-circle" href="javascript:;" data-toggle="dropdown">
-                                                                                    <i class="fa fa-share"></i> More <i class="fa fa-angle-down"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu pull-right">
-                                                                                    <li>
-                                                                                        <a href="javascript:;">
-                                                                                            Duplicate
-                                                                                        </a>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <a href="javascript:;">
-                                                                                            Delete
-                                                                                        </a>
-                                                                                    </li>
-                                                                                    <li class="divider">
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <a href="javascript:;">
-                                                                                            Print
-                                                                                        </a>
-                                                                                    </li>
-                                                                                </ul>
+                                                    <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom">
+                                                    </div>
+                                                    @*Add New Frame *@
+                                                    <div class="dropdown-menu div-iframeAdmin1 theme-panel dropdown-custom" style="opacity: 1;">
+                                                        <div class="row hold-on-click dropdown-menu div-iframeAdmin-content">
+                                                            <div class="col-md-12">
+                                                                <form class="form-horizontal form-row-seperated" action="#">
+                                                                    <div class="portlet light">
+                                                                        <div class="portlet-title">
+                                                                            <div class="caption">
+                                                                                <i class="icon-basket font-green-sharp"></i>
+                                                                                <span class="caption-subject font-green-sharp bold uppercase">
+                                                                                    Edit Product
+                                                                                </span>
+                                                                                <span class="caption-helper">Man Tops</span>
+                                                                            </div>
+                                                                            <div class="actions btn-set">
+                                                                                <button type="button" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</button>
+                                                                                <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Reset</button>
+                                                                                <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
+                                                                                <button class="btn green-haze btn-circle"><i class="fa fa-check-circle"></i> Save & Continue Edit</button>
+                                                                                <div class="btn-group">
+                                                                                    <a class="btn yellow btn-circle" href="javascript:;" data-toggle="dropdown">
+                                                                                        <i class="fa fa-share"></i> More <i class="fa fa-angle-down"></i>
+                                                                                    </a>
+                                                                                    <ul class="dropdown-menu pull-right">
+                                                                                        <li>
+                                                                                            <a href="javascript:;">
+                                                                                                Duplicate
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="javascript:;">
+                                                                                                Delete
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li class="divider">
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="javascript:;">
+                                                                                                Print
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="portlet-body">
-                                                                        <div class="tabbable">
-                                                                            <div class="tab-content no-space">
-                                                                                <div class="tab-pane active" id="tab_general">
-                                                                                    <div class="form-body">
-                                                                                        <div class="form-group">
-                                                                                            <label class="col-md-2 control-label">
-                                                                                                Name: <span class="required">
-                                                                                                    *
-                                                                                                </span>
-                                                                                            </label>
-                                                                                            <div class="col-md-10">
-                                                                                                <input type="text" class="form-control" name="product[name]" placeholder="">
+                                                                        <div class="portlet-body">
+                                                                            <div class="tabbable">
+                                                                                <div class="tab-content no-space">
+                                                                                    <div class="tab-pane active" id="tab_general">
+                                                                                        <div class="form-body">
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-md-2 control-label">
+                                                                                                    Name: <span class="required">
+                                                                                                        *
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                                <div class="col-md-10">
+                                                                                                    <input type="text" class="form-control" name="product[name]" placeholder="">
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="col-md-2 control-label">
-                                                                                                Description: <span class="required">
-                                                                                                    *
-                                                                                                </span>
-                                                                                            </label>
-                                                                                            <div class="col-md-10">
-                                                                                                <textarea class="form-control" name="product[description]"></textarea>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-md-2 control-label">
+                                                                                                    Description: <span class="required">
+                                                                                                        *
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                                <div class="col-md-10">
+                                                                                                    <textarea class="form-control" name="product[description]"></textarea>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -330,17 +335,16 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
+                                                                </form>
+                                                            </div>
                                                         </div>
+                                                        <!-- END PAGE CONTENT-->
                                                     </div>
-                                                    <!-- END PAGE CONTENT-->
-                                                </div>
-                                                <a href="javascript:;" class="btn btn-sm btn-circle btn-danger">
-                                                    <i class="fa fa-trash-o"></i>
-                                                    Delete
-                                                </a>
-                                            </td>
+                                                    <a href="javascript:;" class="btn btn-sm btn-circle btn-danger">
+                                                        <i class="fa fa-trash-o"></i>
+                                                        Delete
+                                                    </a>
+</td>
                                         </tr>
                                     }
                                 </tbody>

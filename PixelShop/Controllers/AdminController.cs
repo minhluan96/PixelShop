@@ -17,6 +17,14 @@ namespace PixelShop.Controllers
         {
             return View(@"~/Views/Admin/Order.cshtml");
         }
+        public ActionResult ViewOrder()
+        {
+            return View(@"~/Views/Admin/ViewOrder.cshtml");
+        }
+        public ActionResult EditProduct()
+        {
+            return View(@"~/Views/Admin/EditProduct.cshtml");
+        }
         public ActionResult Customer()
         {
             return View(@"~/Views/Admin/Customer.cshtml");

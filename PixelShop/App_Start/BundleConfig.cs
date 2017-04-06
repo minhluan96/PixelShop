@@ -98,7 +98,8 @@ namespace PixelShop
                         "~/assets/global/css/plugins.css",
                         "~/assets/admin/layout4/css/layout.css",
                         "~/assets/admin/layout4/css/themes/light.css",
-                        "~/assets/admin/layout4/css/custom.css"));
+                        "~/assets/admin/layout4/css/custom.css",
+                        "~/Content/div-iframeAdmin.css"));
 
         }
     }

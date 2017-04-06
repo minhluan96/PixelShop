@@ -1397,6 +1397,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrapCheckout.css" />
     <Content Include="Content\checkout.css" />
+    <Content Include="Content\div-iframeAdmin.css" />
     <Content Include="Content\flexslider.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\style.css" />
@@ -1604,6 +1605,8 @@
     <Content Include="Views\Admin\Order.cshtml" />
     <Content Include="Views\Admin\Manufacturer.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\ViewOrder.cshtml" />
+    <Content Include="Views\Admin\EditProduct.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
