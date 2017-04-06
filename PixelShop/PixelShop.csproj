@@ -1208,6 +1208,7 @@
     <Content Include="assets\global\plugins\font-awesome\css\font-awesome.min.css" />
     <Content Include="assets\global\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\global\plugins\forAdmin.js" />
+    <Content Include="assets\global\plugins\forLogin.js" />
     <Content Include="assets\global\plugins\holder.js" />
     <Content Include="assets\global\plugins\jquery-migrate.min.js" />
     <Content Include="assets\global\plugins\jquery-slimscroll\jquery.slimscroll.js" />

@@ -1,5 +1,7 @@
 ﻿@Styles.Render("~/Content/cssForAdmin")
 @Scripts.Render("~/bundles/scriptsForAdmin")
+<script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content">
@@ -30,7 +32,7 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Products <small>product listing</small></h1>
+                <h1>Sản phẩm <small>danh sách sản phẩm</small></h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
@@ -38,15 +40,8 @@
         <!-- BEGIN PAGE BREADCRUMB -->
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Home</a>
+                <a href="index.html">Sản phẩm</a>
                 <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <a href="#">eCommerce</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <a href="#">Products</a>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
@@ -59,8 +54,8 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-gift font-green-sharp"></i>
-                            <span class="caption-subject font-green-sharp bold uppercase">Products</span>
-                            <span class="caption-helper">manage products...</span>
+                            <span class="caption-subject font-green-sharp bold uppercase">Sản phẩm</span>
+                            <span class="caption-helper">quản lý sản phẩm...</span>
 
                         </div>
                         <div class="actions">

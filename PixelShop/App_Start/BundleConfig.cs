@@ -61,21 +61,16 @@ namespace PixelShop
 
             bundles.Add(new ScriptBundle("~/bundles/scripts-login").Include(
                         "~/assets/global/plugins/jquery.min.js",
-                        "~/assets/global/plugins/jquery-migrate.min.js",
                         "~/assets/global/plugins/bootstrap/js/bootstrap.min.js",
                         "~/assets/global/plugins/jquery.blockui.min.js",
                         "~/assets/global/plugins/uniform/jquery.uniform.min.js",
                         "~/assets/global/plugins/jquery.cokie.min.js",
-                        "~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js",
                         "~/assets/global/scripts/metronic.js",
                         "~/assets/admin/layout4/scripts/layout.js",
-                        "~/assets/admin/layout4/scripts/demo.js",
-                        "~/assets/admin/pages/scripts/login.js"));
+                        "~/assets/admin/layout4/scripts/demo.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsAdminIndex").Include(
                        "~/assets/global/plugins/jquery.min.js",
-                        "~/assets/global/plugins/jquery-migrate.min.js",
-                        "~/assets/global/plugins/jquery-ui/jquery-ui.min.js",
                         "~/assets/global/plugins/bootstrap/js/bootstrap.min.js",
                         "~/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
                         "~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
@@ -106,8 +101,6 @@ namespace PixelShop
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsForAdmin").Include(
                         "~/assets/global/plugins/jquery.min.js",
-                        "~/assets/global/plugins/jquery-migrate.min.js",
-                        "~/assets/global/plugins/jquery-ui/jquery-ui.min.js",
                         "~/assets/global/plugins/bootstrap/js/bootstrap.min.js",
                         "~/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
                         "~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
