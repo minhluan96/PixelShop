@@ -30,7 +30,24 @@ namespace PixelShop
                         "~/Content/style.css",
                         "~/Content/checkout.css",
                         "~/Content/font-awesome.min.css",
+                        "~/Content/creditly.css",
+                        "~/Content/creditly.css",
+                        "~/Content/creditly.css",
                         "~/Content/flexslider.css"));
+
+
+            bundles.Add(new StyleBundle("~/Content/css-payment").Include(
+                        "~/Content/creditly.css",
+                        "~/Content/easy-responsive-tabs.css",
+                        "~/Content/Payment-style.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/scripts-payment").Include(
+                        "~/Scripts/creditly.js",
+                         "~/Scripts/easy-responsive-tabs.js",
+                          "~/Scripts/jquery.min.js"
+                       ));
+
+
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsAdminIndex").Include(
                        "~/assets/global/plugins/jquery.min.js",
