@@ -11,7 +11,6 @@ namespace PixelShop
             
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
-                        "~/Scripts/jquery-1.11.1.min.js",
                         "~/Scripts/jquery.flexisel.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/easyResponsiveTabs.js",
@@ -60,7 +59,6 @@ namespace PixelShop
                         "~/assets/admin/layout4/css/custom.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts-login").Include(
-                        "~/assets/global/plugins/jquery.min.js",
                         "~/assets/global/plugins/bootstrap/js/bootstrap.min.js",
                         "~/assets/global/plugins/jquery.blockui.min.js",
                         "~/assets/global/plugins/uniform/jquery.uniform.min.js",

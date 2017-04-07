@@ -60,9 +60,9 @@
                         </div>
                         <div class="actions">
 
-                            <a href="@Url.Action("EditProduct","Admin")" class="btn btn-sm btn-circle btn-success">
+                            <a href="@Url.Action("AddProduct","Admin")" class="btn btn-sm btn-circle btn-success">
                                 <i class="fa fa-plus"></i>
-                                Create new
+                               Tạo mới
                             </a>
 
                             <div class="btn-group">
@@ -116,28 +116,28 @@
                                             <input type="checkbox" class="group-checkable">
                                         </th>
                                         <th width="5%">
-                                            ID
+                                            Sản phẩm #
                                         </th>
                                         <th width="17%">
-                                            Product&nbsp;Name
+                                            Tên sản phẩm
                                         </th>
                                         <th width="15%">
-                                            Category
+                                            Danh mục
                                         </th>
                                         <th width="10%">
-                                            Price
+                                            Giá
                                         </th>
                                         <th width="10%">
-                                            Quantity
+                                            Số lượng
                                         </th>
                                         <th width="15%">
-                                            Date&nbsp;Created
+                                            Ngày tạo
                                         </th>
                                         <th width="10%">
-                                            Status
+                                            Trạng thái
                                         </th>
                                         <th width="25%">
-                                            Actions
+                                            Hoạt động
                                         </th>
                                     </tr>
                                     <tr role="row" class="filter">
@@ -150,7 +150,7 @@
                                         </td>
                                         <td>
                                             <select name="product_category" class="form-control form-filter input-sm">
-                                                <option value="">Select...</option>
+                                                <option value="">Chọn...</option>
                                                 <option value="1">Mens</option>
                                                 <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Footwear</option>
                                                 <option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing</option>
@@ -171,25 +171,25 @@
                                         </td>
                                         <td>
                                             <div class="margin-bottom-5">
-                                                <input type="text" class="form-control form-filter input-sm" name="product_price_from" placeholder="From" />
+                                                <input type="text" class="form-control form-filter input-sm" name="product_price_from" placeholder="Từ" />
                                             </div>
-                                            <input type="text" class="form-control form-filter input-sm" name="product_price_to" placeholder="To" />
+                                            <input type="text" class="form-control form-filter input-sm" name="product_price_to" placeholder="Đến" />
                                         </td>
                                         <td>
                                             <div class="margin-bottom-5">
-                                                <input type="text" class="form-control form-filter input-sm" name="product_quantity_from" placeholder="From" />
-                                            </div>
-                                            <input type="text" class="form-control form-filter input-sm" name="product_quantity_to" placeholder="To" />
+                                                <input type="text" class="form-control form-filter input-sm" name="product_quantity_from" placeholder="Từ" />
+                                            </div> 
+                                            <input type="text" class="form-control form-filter input-sm" name="product_quantity_to" placeholder="Đến" />
                                         </td>
                                         <td>
                                             <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
-                                                <input type="text" class="form-control form-filter input-sm" readonly name="product_created_from" placeholder="From">
+                                                <input type="text" class="form-control form-filter input-sm" readonly name="product_created_from" placeholder="Từ">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
                                                 </span>
                                             </div>
                                             <div class="input-group date date-picker" data-date-format="dd/mm/yyyy">
-                                                <input type="text" class="form-control form-filter input-sm" readonly name="product_created_to " placeholder="To">
+                                                <input type="text" class="form-control form-filter input-sm" readonly name="product_created_to " placeholder="Đến">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
                                                 </span>
@@ -197,7 +197,7 @@
                                         </td>
                                         <td>
                                             <select name="product_status" class="form-control form-filter input-sm">
-                                                <option value="">Select...</option>
+                                                <option value="">Chọn...</option>
                                                 <option value="published">Published</option>
                                                 <option value="notpublished">Not Published</option>
                                                 <option value="deleted">Deleted</option>
@@ -205,9 +205,9 @@
                                         </td>
                                         <td>
                                             <div class="margin-bottom-5">
-                                                <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
+                                                <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i>Tìm kiếm</button>
                                             </div>
-                                            <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> Reset</button>
+                                            <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>Khởi tạo</button>
                                         </td>
                                     </tr>
 
@@ -222,10 +222,10 @@
                                             </label>
                                         </td>
                                         <td class="sorting_1">
-                                            1
+                                            @i
                                         </td>
                                         <td>
-                                            Test Product
+                                            Sản phẩm 1
                                         </td>
                                         <td>
                                             Mens/FootWear
@@ -240,17 +240,17 @@
                                             05/01/2011
                                         </td>
                                         <td>
-                                            <span class="label label-sm label-default">Not Published</span>
+                                            <span class="label label-sm label-primary">Đang bán</span>
                                         </td>
                                         <td>
                                             <a href="@Url.Action("EditProduct","Admin")" class="btn btn-sm btn-circle btn-default">
                                                 <i class="fa fa-pencil"></i>
-                                                Edit
+                                                Cập nhật
                                             </a>
                                            
                                             <a href="javascript:;" class="btn btn-sm btn-circle btn-danger">
                                                 <i class="fa fa-trash-o"></i>
-                                                Delete
+                                                Xóa
                                             </a>
                                         </td>
                                     </tr>

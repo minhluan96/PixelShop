@@ -9,31 +9,31 @@
     <div class="content">
         <!-- BEGIN LOGIN FORM -->
         <form class="login-form" action="index.html" method="post">
-            <h3 class="form-title">Sign In</h3>
+            <h3 class="form-title">Đăng nhập</h3>
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
                 <span>
-                    Enter any username and password.
+                    Nhập tài khoản và mật khẩu của bạn
                 </span>
             </div>
             <div class="form-group">
                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">Username</label>
+                <label class="control-label visible-ie8 visible-ie9">Tài khoản</label>
                 <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" />
             </div>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <label class="control-label visible-ie8 visible-ie9">Mật khẩu</label>
                 <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" />
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn btn-success uppercase">Login</button>
-                <label class="rememberme check">
-                    <input type="checkbox" name="remember" value="1" />Remember
+                <button type="submit" class="btn btn-success uppercase">Đăng nhập</button>
+                <label class="rememberme check" style="width: 50%;">
+                    <input type="checkbox" name="remember" value="1" />Lưu tài khoản
                 </label>
-                <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+                <a href="javascript:;" id="forget-password" class="forget-password">Quên mật khẩu?</a>
             </div>
             <div class="login-options">
-                <h4>Or login with</h4>
+                <h4>Đăng nhập bằng</h4>
                 <ul class="social-icons">
                     <li>
                         <a class="social-icon-color facebook" data-original-title="facebook" href="javascript:;"></a>
@@ -51,35 +51,35 @@
             </div>
             <div class="create-account">
                 <p>
-                    <a href="javascript:;" id="register-btn" class="uppercase">Create an account</a>
+                    <a href="javascript:;" id="register-btn" class="uppercase">Tạo tài khoản</a>
                 </p>
             </div>
         </form>
         <!-- END LOGIN FORM -->
         <!-- BEGIN FORGOT PASSWORD FORM -->
         <form class="forget-form" action="index.html" method="post">
-            <h3>Forget Password ?</h3>
+            <h3>Quên mật khẩu ?</h3>
             <p>
-                Enter your e-mail address below to reset your password.
+                Nhập email để đổi mật khẩu
             </p>
             <div class="form-group">
                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" />
             </div>
             <div class="form-actions">
-                <button type="button" id="back-btn" class="btn btn-default">Back</button>
-                <button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
+                <button type="button" id="back-btn" class="btn btn-default">Quay lại</button>
+                <button type="submit" class="btn btn-success uppercase pull-right">Đồng ý</button>
             </div>
         </form>
         <!-- END FORGOT PASSWORD FORM -->
         <!-- BEGIN REGISTRATION FORM -->
         <form class="register-form" action="index.html" method="post">
-            <h3>Sign Up</h3>
+            <h3>Đăng kí</h3>
             <p class="hint">
-                Enter your personal details below:
+               Điền thông tin khách hàng
             </p>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Full Name</label>
-                <input class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="fullname" />
+                <label class="control-label visible-ie8 visible-ie9">Họ tên</label>
+                <input class="form-control placeholder-no-fix" type="text" placeholder="Họ tên" name="fullname" />
             </div>
             <div class="form-group">
                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -87,17 +87,17 @@
                 <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />
             </div>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Address</label>
-                <input class="form-control placeholder-no-fix" type="text" placeholder="Address" name="address" />
+                <label class="control-label visible-ie8 visible-ie9">Địa chỉ</label>
+                <input class="form-control placeholder-no-fix" type="text" placeholder="Địa chỉ" name="address" />
             </div>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">City/Town</label>
-                <input class="form-control placeholder-no-fix" type="text" placeholder="City/Town" name="city" />
+                <label class="control-label visible-ie8 visible-ie9">Thành phố</label>
+                <input class="form-control placeholder-no-fix" type="text" placeholder="Thành phố" name="city" />
             </div>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Country</label>
+                <label class="control-label visible-ie8 visible-ie9">Quốc gia</label>
                 <select name="country" class="form-control">
-                    <option value="">Country</option>
+                    <option value="">Quốc gia</option>
                     <option value="AF">Afghanistan</option>
                     <option value="AL">Albania</option>
                     <option value="DZ">Algeria</option>
@@ -335,35 +335,31 @@
                 </select>
             </div>
             <p class="hint">
-                Enter your account details below:
+                Điền thông tin tài khoản
             </p>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Username</label>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" />
+                <label class="control-label visible-ie8 visible-ie9">Tài khoản</label>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Tài khoản" name="username" />
             </div>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Password</label>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password" />
+                <label class="control-label visible-ie8 visible-ie9">Mật khẩu</label>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Mật khẩu" name="password" />
             </div>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" />
+                <label class="control-label visible-ie8 visible-ie9">Nhập lại mật khẩu</label>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Nhập lại mật khẩu" name="rpassword" />
             </div>
             <div class="form-group margin-top-20 margin-bottom-20">
-                <label class="check">
-                    <input type="checkbox" name="tnc" /> I agree to the <a href="javascript:;">
-                        Terms of Service
-                    </a>
-                    & <a href="javascript:;">
-                        Privacy Policy
-                    </a>
+                <label class="check" style="width: 100%;">
+                    <input type="checkbox" name="tnc" /> Tôi đồng ý với<a href="javascript:;">
+                        Điều khoản</a>
                 </label>
                 <div id="register_tnc_error">
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" id="register-back-btn" class="btn btn-default">Back</button>
-                <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+                <button type="button" id="register-back-btn" class="btn btn-default">Quay lại</button>
+                <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Đồng ý</button>
             </div>
         </form>
         <!-- END REGISTRATION FORM -->

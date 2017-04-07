@@ -29,6 +29,10 @@ namespace PixelShop.Controllers
         {
             return View(@"~/Views/Admin/Customer.cshtml");
         }
+        public ActionResult AddProduct()
+        {
+            return View(@"~/Views/Admin/AddProduct.cshtml");
+        }
         public ActionResult Product()
         {
             return View(@"~/Views/Admin/Product.cshtml");
