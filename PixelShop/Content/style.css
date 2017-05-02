@@ -10,7 +10,7 @@ body {
 	padding: 0;
 	margin: 0;
 	background: #FFF;
-	font-family: 'open Sans', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 body a {
 	transition: 0.5s all;
@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	letter-spacing:1px;
 }
 p {
@@ -1000,9 +1000,6 @@ p.copy-right{
 	-ms-animation: zoomIn .3s ease;
 	animation: zoomIn .3s ease;
 }
-.img-responsive{
-    height: 320px;
-}
 #PPsbmincart form.sbmincart-empty {    font-size: 16px;    font-weight: bold;}
 #PPsbmincart ul {    clear: both;    float: left;    width: 100%;    margin: 5px 0 20px;    padding: 1em;    list-style-type: none;    background: #fff;    border: 1px solid #ccc;    border-radius: 4px;    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);}
 #PPsbmincart .sbmincart-empty ul {    display: none;}
@@ -1106,17 +1103,18 @@ p.sbmincart-empty-text {
 /*-- women --*/ 
 
 .w3ls_dresses_grid_left_grid h3 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #212121;
     padding-left: 2em;
     position: relative;
     margin: 1em;
 	text-align:left;
+    font-weight: bold;
 }
 .w3ls_dresses_grid_left_grid h3:before {
     content: '';
     background: #1E1E1E;
-    width: 10%;
+    width: 6%;
     height: 2px;
     position: absolute;
     top: 50%;
@@ -1126,7 +1124,7 @@ p.sbmincart-empty-text {
     border: 1px solid #E1E1E1;
     width: 70%;
     margin: 0 auto;
-    padding: 2em 1.5em 1em;
+    padding: 1em 1.5em 1em;
 }
 .ecommerce_color ul li a,.ecommerce_dres-type ul li a{
     font-size: .95em;
@@ -1167,11 +1165,18 @@ p.sbmincart-empty-text {
 .dresses_img_hover_pos {
     position: absolute;
     top: 26%;
-    left: 24px;
+    right: 24px;
 }
+.image-main{
+    height: auto;
+    width: auto;
+}
+
 .dresses_img_hover_pos h4 {
-    color: #fff;
+    color: #000;
     font-size: 25px;
+    text-align: right;
+    font-weight: bold;
 }
 .dresses_img_hover_pos h4 span {
     display: block;
@@ -1201,7 +1206,7 @@ p.sbmincart-empty-text {
 	line-height:30px;
 	color:#6B6B6B;
 	font-size:14px;
-	font-family:'open sans';
+	font-family:'Montserrat', sans-serif;
 	letter-spacing:0px;
 }
 .email h5  a{
@@ -1281,7 +1286,7 @@ p.sbmincart-empty-text {
     -moz-transition: .5s all;
     -o-transition: .5s all;
     -ms-transition: .5s all;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
 }
 .about-info .pince-right p{

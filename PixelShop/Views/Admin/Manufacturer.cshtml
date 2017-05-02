@@ -1,5 +1,7 @@
 ﻿@Styles.Render("~/Content/cssForAdmin")
 @Scripts.Render("~/bundles/scriptsForAdmin")
+<script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content">
@@ -30,7 +32,7 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Products <small>product listing</small></h1>
+                <h1>Nhà sản xuất <small>danh sách nhà sản xuất</small></h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
@@ -38,15 +40,8 @@
         <!-- BEGIN PAGE BREADCRUMB -->
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="index.html">Home</a>
+                <a href="index.html">Nhà sản xuất</a>
                 <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <a href="#">eCommerce</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <a href="#">Products</a>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
@@ -59,17 +54,19 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-gift font-green-sharp"></i>
-                            <span class="caption-subject font-green-sharp bold uppercase">Products</span>
-                            <span class="caption-helper">manage products...</span>
+                            <span class="caption-subject font-green-sharp bold uppercase">Nhà sản xuất</span>
+                            <span class="caption-helper">quản lý nhà sản xuất...</span>
                         </div>
                         <div class="actions">
                             <a href="javascript:;" class="btn btn-sm btn-circle btn-success" data-toggle="dropdown">
                                 <i class="fa fa-plus"></i>
-                                Create new
+                                Tạo mới
                             </a>
                             @*Add New Frame *@
-                            <div class="dropdown-menu theme-panel pull-left dropdown-custom hold-on-click">
-                                <div class="row">
+                            <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom">
+                            </div>
+                            <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom hold-on-click">
+                                <div class="row hold-on-click dropdown-menu div-iframeAdmin-content">
                                     <div class="col-md-12">
                                         <form class="form-horizontal form-row-seperated" action="#">
                                             <div class="portlet light">
@@ -77,39 +74,11 @@
                                                     <div class="caption">
                                                         <i class="icon-basket font-green-sharp"></i>
                                                         <span class="caption-subject font-green-sharp bold uppercase">
-                                                            Edit Product
+                                                            Tạo mới nhà sản xuất
                                                         </span>
-                                                        <span class="caption-helper">Man Tops</span>
                                                     </div>
                                                     <div class="actions btn-set">
-                                                        <button type="button" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</button>
-                                                        <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Reset</button>
-                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
-                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check-circle"></i> Save & Continue Edit</button>
-                                                        <div class="btn-group">
-                                                            <a class="btn yellow btn-circle" href="javascript:;" data-toggle="dropdown">
-                                                                <i class="fa fa-share"></i> More <i class="fa fa-angle-down"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        Duplicate
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
-                                                                <li class="divider">
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        Print
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Tạo mới</button>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
@@ -118,22 +87,22 @@
                                                             <div class="tab-pane active" id="tab_general">
                                                                 <div class="form-body">
                                                                     <div class="form-group">
-                                                                        <label class="col-md-2 control-label">
-                                                                            Name: <span class="required">
+                                                                        <label class="col-md-4 control-label">
+                                                                            Tên nhà sản xuất: <span class="required">
                                                                                 *
                                                                             </span>
                                                                         </label>
-                                                                        <div class="col-md-10">
+                                                                        <div class="col-md-8">
                                                                             <input type="text" class="form-control" name="product[name]" placeholder="">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label class="col-md-2 control-label">
-                                                                            Description: <span class="required">
+                                                                        <label class="col-md-4 control-label">
+                                                                            Mô tả: <span class="required">
                                                                                 *
                                                                             </span>
                                                                         </label>
-                                                                        <div class="col-md-10">
+                                                                        <div class="col-md-8">
                                                                             <textarea class="form-control" name="product[description]"></textarea>
                                                                         </div>
                                                                     </div>
@@ -200,16 +169,19 @@
                                             <input type="checkbox" class="group-checkable">
                                         </th>
                                         <th width="10%">
-                                            ID
+                                            Mã nhà sản xuất
                                         </th>
                                         <th width="15%">
-                                            Name
+                                            Tên nhà sản xuất
+                                        </th>
+                                        <th width="12%">
+                                            Mô tả
                                         </th>
                                         <th width="10%">
-                                            Status
+                                            Trạng thái
                                         </th>
-                                        <th width="10%">
-                                            Action
+                                        <th width="15%">
+                                            Hoạt động
                                         </th>
                                     </tr>
 
@@ -225,22 +197,27 @@
                                             </label>
                                         </td>
                                         <td class="sorting_1">
-                                            1
+                                            @i
                                         </td>
                                         <td>
-                                            Test Product
+                                            Nhà sản xuất @i
                                         </td>
                                         <td>
-                                            <span class="label label-sm label-warning">Active</span>
+                                            Mô tả
+                                        </td>
+                                        <td>
+                                            <span class="label label-sm label-warning">Sử dụng</span>
                                         </td>
                                         <td>
                                             <a href="javascript:;" class="btn btn-sm btn-circle btn-default" data-toggle="dropdown">
                                                 <i class="fa fa-pencil"></i>
-                                                Edit
+                                                Cập nhật
                                             </a>
+                                            <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom">
+                                            </div>
                                             @*Add New Frame *@
-                                            <div class="dropdown-menu theme-panel pull-left dropdown-custom hold-on-click">
-                                                <div class="row">
+                                            <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom hold-on-click">
+                                                <div class="row hold-on-click dropdown-menu div-iframeAdmin-content">
                                                     <div class="col-md-12">
                                                         <form class="form-horizontal form-row-seperated" action="#">
                                                             <div class="portlet light">
@@ -248,39 +225,12 @@
                                                                     <div class="caption">
                                                                         <i class="icon-basket font-green-sharp"></i>
                                                                         <span class="caption-subject font-green-sharp bold uppercase">
-                                                                            Edit Product
+                                                                            Cập nhật nhà sản xuất
                                                                         </span>
-                                                                        <span class="caption-helper">Man Tops</span>
+                                                                        <span class="caption-helper"> #1</span>
                                                                     </div>
                                                                     <div class="actions btn-set">
-                                                                        <button type="button" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</button>
-                                                                        <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Reset</button>
-                                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
-                                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check-circle"></i> Save & Continue Edit</button>
-                                                                        <div class="btn-group">
-                                                                            <a class="btn yellow btn-circle" href="javascript:;" data-toggle="dropdown">
-                                                                                <i class="fa fa-share"></i> More <i class="fa fa-angle-down"></i>
-                                                                            </a>
-                                                                            <ul class="dropdown-menu pull-right">
-                                                                                <li>
-                                                                                    <a href="javascript:;">
-                                                                                        Duplicate
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="javascript:;">
-                                                                                        Delete
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li class="divider">
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="javascript:;">
-                                                                                        Print
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
+                                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Cập nhật</button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="portlet-body">
@@ -289,23 +239,23 @@
                                                                             <div class="tab-pane active" id="tab_general">
                                                                                 <div class="form-body">
                                                                                     <div class="form-group">
-                                                                                        <label class="col-md-2 control-label">
-                                                                                            Name: <span class="required">
+                                                                                        <label class="col-md-4 control-label">
+                                                                                            Tên nhà sản xuất: <span class="required">
                                                                                                 *
                                                                                             </span>
                                                                                         </label>
-                                                                                        <div class="col-md-10">
-                                                                                            <input type="text" class="form-control" name="product[name]" placeholder="">
+                                                                                        <div class="col-md-8">
+                                                                                            <input type="text" class="form-control" name="product[name]" placeholder="" value="Nixon">
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label class="col-md-2 control-label">
-                                                                                            Description: <span class="required">
+                                                                                        <label class="col-md-4 control-label">
+                                                                                            Mô tả: <span class="required">
                                                                                                 *
                                                                                             </span>
                                                                                         </label>
-                                                                                        <div class="col-md-10">
-                                                                                            <textarea class="form-control" name="product[description]"></textarea>
+                                                                                        <div class="col-md-8">
+                                                                                            <textarea class="form-control" name="product[description]">Nhà sản xuất đồng hồ hàng đầu</textarea>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -321,7 +271,7 @@
                                             </div>
                                             <a href="javascript:;" class="btn btn-sm btn-circle btn-danger">
                                                 <i class="fa fa-trash-o"></i>
-                                                Delete
+                                                Xóa
                                             </a>
                                         </td>
                                     </tr>

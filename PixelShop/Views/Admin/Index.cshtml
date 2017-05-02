@@ -1,7 +1,8 @@
 ﻿
 @Styles.Render("~/Content/cssAdminIndex")
 @Scripts.Render("~/bundles/scriptsAdminIndex")
-
+<script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -32,7 +33,7 @@
                 <div class="page-head">
                     <!-- BEGIN PAGE TITLE -->
                     <div class="page-title">
-                        <h1>Dashboard <small>dashboard & statistics</small></h1>
+                        <h1>Trang chủ</h1>
                     </div>
                     <!-- END PAGE TITLE -->
                 </div>
@@ -40,15 +41,8 @@
                 <!-- BEGIN PAGE BREADCRUMB -->
                 <ul class="page-breadcrumb breadcrumb">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.html">Trang chủ</a>
                         <i class="fa fa-circle"></i>
-                    </li>
-                    <li>
-                        <a href="#">eCommerce</a>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                    <li>
-                        <a href="#">Dashboard</a>
                     </li>
                 </ul>
                 <!-- END PAGE BREADCRUMB -->
@@ -59,8 +53,8 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-green-sharp">168,492<small class="font-green-sharp">$</small></h3>
-                                    <small>TOTAL PROFIT</small>
+                                    <h3 class="font-green-sharp">168,492<small class="font-green-sharp"> Triệu</small></h3>
+                                    <small>Tổng doanh thu</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-pie-chart"></i>
@@ -88,7 +82,7 @@
                             <div class="display">
                                 <div class="number">
                                     <h3 class="font-red-haze">12127</h3>
-                                    <small>TOTAL ORDERS</small>
+                                    <small>Đặt Hàng</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-like"></i>
@@ -116,7 +110,7 @@
                             <div class="display">
                                 <div class="number">
                                     <h3 class="font-blue-sharp">670.54<small class="font-blue-sharp">$</small></h3>
-                                    <small>AVERAGE ORDER</small>
+                                    <small>Trung bình đơn hàng</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-basket"></i>
@@ -147,8 +141,8 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">Overview</span>
-                                    <span class="caption-helper">weekly stats...</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">Thống kê</span>
+                                    <span class="caption-helper">hàng tuần...</span>
                                 </div>
                                 <div class="tools">
                                     <a href="javascript:;" class="collapse">
@@ -168,22 +162,22 @@
                                     <ul class="nav nav-tabs">
                                         <li class="active">
                                             <a href="#overview_1" data-toggle="tab">
-                                                Top Selling
+                                                Bán nhiều
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#overview_2" data-toggle="tab">
-                                                Most Viewed
+                                                Xem nhiều
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#overview_3" data-toggle="tab">
-                                                Customers
+                                                Khách hàng
                                             </a>
                                         </li>
                                         <li class="dropdown">
                                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                                                Orders <i class="fa fa-angle-down"></i>
+                                                Đặt hàng <i class="fa fa-angle-down"></i>
                                             </a>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
@@ -216,13 +210,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                Product Name
+                                                                Sản phẩm
                                                             </th>
                                                             <th>
-                                                                Price
+                                                                Giá
                                                             </th>
                                                             <th>
-                                                                Sold
+                                                                Đã bán
                                                             </th>
                                                             <th>
                                                             </th>
@@ -243,7 +237,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -261,7 +255,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -279,7 +273,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -297,7 +291,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -315,7 +309,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -333,7 +327,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -351,7 +345,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -365,13 +359,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                Product Name
+                                                                Sản phẩm
                                                             </th>
                                                             <th>
-                                                                Price
+                                                                Giá
                                                             </th>
                                                             <th>
-                                                                Views
+                                                                Lượt xem
                                                             </th>
                                                             <th>
                                                             </th>
@@ -392,7 +386,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -410,7 +404,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -428,7 +422,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -446,7 +440,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -464,7 +458,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -482,7 +476,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -500,7 +494,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -514,13 +508,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                Customer Name
+                                                                Khách hàng
                                                             </th>
                                                             <th>
-                                                                Total Orders
+                                                                Tổng đặt hàng
                                                             </th>
                                                             <th>
-                                                                Total Amount
+                                                                Tổng hóa đơn
                                                             </th>
                                                             <th>
                                                             </th>
@@ -541,7 +535,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -559,7 +553,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -577,7 +571,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -595,14 +589,14 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <a href="javascript:;">
-                                                                    Paul Strong
+                                                                    Jane Hilson
                                                                 </a>
                                                             </td>
                                                             <td>
@@ -613,7 +607,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -631,7 +625,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -649,7 +643,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -663,16 +657,16 @@
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                Customer Name
+                                                                Khách hàng
                                                             </th>
                                                             <th>
-                                                                Date
+                                                                Ngày đặt
                                                             </th>
                                                             <th>
-                                                                Amount
+                                                                Hóa đơn
                                                             </th>
                                                             <th>
-                                                                Status
+                                                                Trạng thái
                                                             </th>
                                                             <th>
                                                             </th>
@@ -693,12 +687,12 @@
                                                             </td>
                                                             <td>
                                                                 <span class="label label-sm label-warning">
-                                                                    Pending
+                                                                    Đang xử lý
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -716,12 +710,12 @@
                                                             </td>
                                                             <td>
                                                                 <span class="label label-sm label-warning">
-                                                                    Pending
+                                                                    Đang xử lý
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -739,12 +733,12 @@
                                                             </td>
                                                             <td>
                                                                 <span class="label label-sm label-success">
-                                                                    Success
+                                                                    Đã giao
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -761,13 +755,13 @@
                                                                 $12,125.70
                                                             </td>
                                                             <td>
-                                                                <span class="label label-sm label-info">
-                                                                    In Process
+                                                                <span class="label label-sm label-danger">
+                                                                   Hủy
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -785,12 +779,12 @@
                                                             </td>
                                                             <td>
                                                                 <span class="label label-sm label-success">
-                                                                    Success
+                                                                    Đã giao
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -808,12 +802,12 @@
                                                             </td>
                                                             <td>
                                                                 <span class="label label-sm label-danger">
-                                                                    Canceled
+                                                                    Đã hủy
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -831,12 +825,12 @@
                                                             </td>
                                                             <td>
                                                                 <span class="label label-sm label-success">
-                                                                    Success
+                                                                    Đã giao
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    View
+                                                                    Chi tiết
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -856,18 +850,18 @@
                             <div class="portlet-title tabbable-line">
                                 <div class="caption">
                                     <i class="icon-share font-red-sunglo"></i>
-                                    <span class="caption-subject font-red-sunglo bold uppercase">Revenue</span>
-                                    <span class="caption-helper">weekly stats...</span>
+                                    <span class="caption-subject font-red-sunglo bold uppercase">Doanh thu</span>
+                                    <span class="caption-helper">hàng tuần...</span>
                                 </div>
                                 <ul class="nav nav-tabs">
                                     <li>
                                         <a href="#portlet_tab2" data-toggle="tab" id="statistics_amounts_tab">
-                                            Amounts
+                                            Tổng tiền
                                         </a>
                                     </li>
                                     <li class="active">
                                         <a href="#portlet_tab1" data-toggle="tab">
-                                            Orders
+                                            Đặt hàng
                                         </a>
                                     </li>
                                 </ul>
@@ -885,27 +879,27 @@
                                 </div>
                                 <div class="well margin-top-10 no-margin no-border">
                                     <div class="row">
-                                        <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <div class="col-md-2 col-sm-3 col-xs-6 text-stat">
                                             <span class="label label-success">
-                                                Revenue:
+                                                Tiến lãi:
                                             </span>
                                             <h3>$111K</h3>
                                         </div>
-                                        <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <div class="col-md-2 col-sm-3 col-xs-6 text-stat">
                                             <span class="label label-info">
-                                                Tax:
+                                                Thuế:
                                             </span>
                                             <h3>$14K</h3>
                                         </div>
-                                        <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                        <div class="col-md-5 col-sm-3 col-xs-6 text-stat">
                                             <span class="label label-danger">
-                                                Shipment:
+                                                Phí vận chuyển:
                                             </span>
                                             <h3>$10K</h3>
                                         </div>
                                         <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
                                             <span class="label label-warning">
-                                                Orders:
+                                                Đơn hàng:
                                             </span>
                                             <h3>2350</h3>
                                         </div>
