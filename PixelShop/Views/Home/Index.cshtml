@@ -1,4 +1,6 @@
-﻿
+﻿@using PixelShop.Models
+
+
 <div class="banner-agile">
     <div class="container">
         <h2>Chào mừng đến với</h2>
@@ -9,40 +11,19 @@
 </div>
 <div class="top-brands">
     <div class="container">
-        <h2>Sản phẩm bán chạy </h2><br /><br />
+        <h2>Sản phẩm xem nhiều nhất </h2><br /><br />
         <div class="sliderfig">
             <ul id="flexiselDemo1">
+                @foreach(var sp in ViewData["xemNhieu"] as List<SANPHAM>) {
                 <li>
-                    <img src="~/images/product1.jpg" alt=" " class="img-responsive" />
-                    <h4>KENSINGTION, 37<span>MM</span></h4>
+                    <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " class="img-responsive" />
+                    <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
 
-                    <h5>17.500.000 VNĐ | 3 Colos</h5>
+                    <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
                     
                 </li>
-                <li>
-                    <img src="~/images/product2.jpg" alt=" " class="img-responsive" />
-                    <h4>KENSINGTION, 37<span>MM</span></h4>
+                }
 
-                    <h5>17.500.000 VNĐ | 3 Colos</h5>
-                </li>
-                <li>
-                    <img src="~/images/product3.jpg" alt=" " class="img-responsive" />
-                    <h4>KENSINGTION, 37<span>MM</span></h4>
-
-                    <h5>17.500.000 VNĐ | 3 Colos</h5>
-                </li>
-                <li>
-                    <img src="~/images/product4.jpg" alt=" " class="img-responsive" />
-                    <h4>KENSINGTION, 37<span>MM</span></h4>
-
-                    <h5>17.500.000 VNĐ | 3 Colos</h5>
-                </li>
-                <li>
-                    <img src="~/images/product1.jpg" alt=" " class="img-responsive" />
-                    <h4>KENSINGTION, 37<span>MM</span></h4>
-
-                    <h5>17.500.000 VNĐ | 3 Colos</h5>
-                </li>
             </ul>
         </div>
     </div>
@@ -84,7 +65,7 @@
 </div>
 <div class="top-products">
     <div class="container">
-        <h4>CÁC SẢN PHẨM ĐÁNG CHÚ Ý</h4>
+        <h4>CÁC SẢN PHẨM BÁN CHẠY</h4>
         <br />
         <h3>Chúng tôi tập trung hoàn thiện đến những chi tiết nhỏ nhất để có thể tạo nên những sản phẩm mà phản ánh được </h3>
         <h3>sự độc đáo trong cách thể hiện, những giá trị di sản, phong cách và chúng tôi sẽ không dừng lại cho đến khi có thể hoàn thành</h3>
@@ -100,28 +81,14 @@
                 <div class="clearfix"> </div>
                 <div class="resp-tabs-container">
                     <div class="tab-1 resp-tab-content">
-                        <div class="col-md-3 top-product-grids tp1 animated wow slideInUp" data-wow-delay=".5s">
+                        @{var lst = ViewData["banChay"] as List<SANPHAM>;}
+                        @for (int i = 0; i < lst.Count() / 2; i++)
+                        {
+                        
+                        <div class="col-md-3 top-product-grids tp4">
                             <a href="single.html">
                                 <div class="product-img">
-                                    <img src="~/images/product1.jpg" alt="" />
-                                    <div class="p-mask">
-                                        <form action="#" method="post">
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="w3ls1_item" value="Formal shoes" />
-                                            <input type="hidden" name="amount" value="220.00" />
-                                            <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </a>
-                            <h4>MISSON, 48<span>MM</span></h4>
-                            <h5>20.200.000 VNĐ | 3 Colors</h5>
-                        </div>
-                        <div class="col-md-3 top-product-grids tp2">
-                            <a href="single.html">
-                                <div class="product-img">
-                                    <img src="~/images/product2.jpg" alt="" />
+                                    <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
                                     <div class="p-mask">
                                         <form action="#" method="post">
                                             <input type="hidden" name="cmd" value="_cart" />
@@ -133,123 +100,37 @@
                                     </div>
                                 </div>
                             </a>
-                            <h4>ULTRATIDE, 45<span>MM</span></h4>
-                            <h5>33.000.000 VNĐ | 10 Colors</h5>
+                            <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
+                            <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
                         </div>
-                        <div class="col-md-3 top-product-grids tp3">
-                            <a href="single.html">
-                                <div class="product-img">
-                                    <img src="~/images/product3.jpg" alt="" />
-                                    <div class="p-mask">
-                                        <form action="#" method="post">
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="w3ls1_item" value="Blazer" />
-                                            <input type="hidden" name="amount" value="160.00" />
-                                            <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </a>
-                            <h4>TIME LETTER ACETATE, 40<span>MM</span></h4>
-                            <h5>1.500.000 VNĐ | 22 Colors</h5>
-                        </div>
-                        <div class="col-md-3 top-product-grids tp4">
-                            <a href="single.html">
-                                <div class="product-img">
-                                    <img src="~/images/product4.jpg" alt="" />
-                                    <div class="p-mask">
-                                        <form action="#" method="post">
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="w3ls1_item" value="Casual shoes" />
-                                            <input type="hidden" name="amount" value="250.00" />
-                                            <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </a>
-                            <h4>KENSINGTION, 37<span>MM</span></h4>
-
-                            <h5>1.705.000 VNĐ | 3 Colos</h5>
-
-                        </div>
+                        
+                        }
                         <div class="clearfix"></div>
                         <div class="top-products-set2">
-                            <div class="col-md-3 top-product-grids tp5">
-                                <a href="single.html">
-                                    <div class="product-img">
-                                        <img src="~/images/product4.jpg" alt="" />
-                                        <div class="p-mask">
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="w3ls1_item" value="Inner wear" />
-                                                <input type="hidden" name="amount" value="50.00" />
-                                                <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </a>
-                                <h4>KENSINGTION, 37<span>MM</span></h4>
+                            @for (int i = 4; i < lst.Count(); i++)
+                            {
 
-                                <h5>17.500.000 VNĐ | 3 Colos</h5>
+                                <div class="col-md-3 top-product-grids tp5">
+                                    <a href="single.html">
+                                        <div class="product-img">
+                                            <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
+                                            <div class="p-mask">
+                                                <form action="#" method="post">
+                                                    <input type="hidden" name="cmd" value="_cart" />
+                                                    <input type="hidden" name="add" value="1" />
+                                                    <input type="hidden" name="w3ls1_item" value="Formal shirt" />
+                                                    <input type="hidden" name="amount" value="190.00" />
+                                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
+                                    <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
+                                </div>
 
-                            </div>
-                            <div class="col-md-3 top-product-grids tp6">
-                                <a href="single.html">
-                                    <div class="product-img">
-                                        <img src="~/images/product3.jpg" alt="" />
-                                        <div class="p-mask">
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="w3ls1_item" value="Shoes" />
-                                                <input type="hidden" name="amount" value="150.00" />
-                                                <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </a>
-                                <h4>TIME LETTER ACETATE, 40<span>MM</span></h4>
-                                <h5>1.500.000 VNĐ | 22 Colors</h5>
-                            </div>
-                            <div class="col-md-3 top-product-grids tp7">
-                                <a href="single.html">
-                                    <div class="product-img">
-                                        <img src="~/images/product2.jpg" alt="" />
-                                        <div class="p-mask">
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="w3ls1_item" value="Formal shirt" />
-                                                <input type="hidden" name="amount" value="100.00" />
-                                                <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </a>
-                                <h4>MISSON, 48<span>MM</span></h4>
-                                <h5>22.200.000 VNĐ | 3 Colors</h5>
-                            </div>
-                            <div class="col-md-3 top-product-grids tp4">
-                                <a href="single.html">
-                                    <div class="product-img">
-                                        <img src="~/images/product1.jpg" alt="" />
-                                        <div class="p-mask">
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="w3ls1_item" value="Watch" />
-                                                <input type="hidden" name="amount" value="200.00" />
-                                                <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </a>
-                                <h4>MISSON, 48<span>MM</span></h4>
-                                <h5>2.200.000 VNĐ | 3 Colors</h5>
-                            </div>
+                            }
+                            
                             <div class="clearfix"></div>
                         </div>
                     </div>

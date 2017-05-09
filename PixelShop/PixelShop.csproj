@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -202,7 +204,7 @@
     <Compile Include="Controllers\FooterComponentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
-    <Compile Include="Controllers\ListProductController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuComponentController.cs" />
@@ -211,8 +213,47 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CHITIETDONHANG.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DANHMUC.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DONHANG.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HINHANH.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NHASANXUAT.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PixelShop.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PixelShop.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PixelShop.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PixelShop.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PixelShop.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SANPHAM.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAIKHOAN.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TINHTRANGDONHANG.cs">
+      <DependentUpon>PixelShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1553,6 +1594,16 @@
     <Content Include="images\size2.jpg" />
     <Content Include="images\size3.jpg" />
     <Content Include="images\size4.jpg" />
+    <Content Include="Models\PixelShop.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PixelShop.edmx</DependentUpon>
+      <LastGenOutput>PixelShop.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PixelShop.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PixelShop.edmx</DependentUpon>
+      <LastGenOutput>PixelShop.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\about.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\checkout.js" />
@@ -1600,6 +1651,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SanPham\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1710,12 +1762,19 @@
     <Content Include="assets\global\plugins\uniform\css\uniform.default.scss" />
     <Content Include="assets\global\plugins\uniform\README.md" />
     <Content Include="assets\global\plugins\jquery-validation\README.md" />
+    <EntityDeploy Include="Models\PixelShop.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PixelShop.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PixelShop.edmx.diagram">
+      <DependentUpon>PixelShop.edmx</DependentUpon>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Views\MenuComponent\Menu.cshtml" />
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\FooterComponent\Footer.cshtml" />
-    <Content Include="Views\ListProduct\Index.cshtml" />
+    <Content Include="Views\TimKiem\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Admin\Header.cshtml" />
@@ -1732,6 +1791,11 @@
     <Content Include="Views\Admin\EditProduct.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
+    <Content Include="Views\TimKiem\NhaSanXuat.cshtml" />
+    <Content Include="Views\TimKiem\DanhMuc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
