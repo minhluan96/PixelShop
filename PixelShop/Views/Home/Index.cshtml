@@ -81,11 +81,13 @@
                 <div class="clearfix"> </div>
                 <div class="resp-tabs-container">
                     <div class="tab-1 resp-tab-content">
+
                         @{var lst = ViewData["banChay"] as List<SANPHAM>;}
                         @for (int i = 0; i < lst.Count() / 2; i++)
                         {
                         
                         <div class="col-md-3 top-product-grids tp4">
+
                             <a href="single.html">
                                 <div class="product-img">
                                     <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
@@ -95,18 +97,22 @@
                                             <input type="hidden" name="add" value="1" />
                                             <input type="hidden" name="w3ls1_item" value="Formal shirt" />
                                             <input type="hidden" name="amount" value="190.00" />
-                                            <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
+                                            <input type="hidden" name="image" value="~/images/product1.jpg" />
+                                            <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
                                         </form>
                                     </div>
                                 </div>
                             </a>
+
                             <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
                             <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
+
                         </div>
                         
                         }
                         <div class="clearfix"></div>
                         <div class="top-products-set2">
+
                             @for (int i = 4; i < lst.Count(); i++)
                             {
 
@@ -131,6 +137,7 @@
 
                             }
                             
+
                             <div class="clearfix"></div>
                         </div>
                     </div>

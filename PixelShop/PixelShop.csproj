@@ -1594,6 +1594,7 @@
     <Content Include="images\size2.jpg" />
     <Content Include="images\size3.jpg" />
     <Content Include="images\size4.jpg" />
+
     <Content Include="Models\PixelShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PixelShop.edmx</DependentUpon>
@@ -1604,6 +1605,9 @@
       <DependentUpon>PixelShop.edmx</DependentUpon>
       <LastGenOutput>PixelShop.cs</LastGenOutput>
     </Content>
+
+    <Content Include="images\updown.PNG" />
+
     <Content Include="Scripts\about.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\checkout.js" />
@@ -1616,6 +1620,7 @@
     <Content Include="Scripts\jquery.flexslider.js" />
     <Content Include="Scripts\jquery.wmuSlider.js" />
     <Content Include="Scripts\minicart.js" />
+    <Content Include="Scripts\quantity.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
