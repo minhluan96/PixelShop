@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
 using System.Web.Mvc;
 
 namespace PixelShop.Controllers
@@ -17,15 +18,25 @@ namespace PixelShop.Controllers
             return View();
         }
 
-        public ActionResult NhaSanXuat(string id)
+        public ActionResult NhaSanXuat(string id, int? page)
         {
+            if (String.IsNullOrEmpty(id))
+            {
+                
+                ViewBag.ID = "";
+            }
+            
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+
             List<SANPHAM> dsSanPham = db.SANPHAMs.Where(sp => sp.BiXoa == 0).Select(sp => sp).ToList<SANPHAM>();
             if (!String.IsNullOrEmpty(id))
             {
+                ViewBag.ID = id;
                 dsSanPham = db.SANPHAMs.Where(sp => sp.NhaSanXuat.Equals(id) && sp.BiXoa == 0).Select(sp => sp).ToList<SANPHAM>();
-                return View(dsSanPham);
+                //return View(dsSanPham.ToPagedList(pageNumber, pageSize));
             }
-            return View(dsSanPham);
+            return View(dsSanPham.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult DanhMuc(string id)

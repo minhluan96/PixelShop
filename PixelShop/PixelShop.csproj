@@ -77,6 +77,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -201,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\FooterComponentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
@@ -1560,6 +1569,7 @@
     <Content Include="Content\flexslider.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Payment-style.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -1594,7 +1604,6 @@
     <Content Include="images\size2.jpg" />
     <Content Include="images\size3.jpg" />
     <Content Include="images\size4.jpg" />
-
     <Content Include="Models\PixelShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PixelShop.edmx</DependentUpon>
@@ -1605,9 +1614,7 @@
       <DependentUpon>PixelShop.edmx</DependentUpon>
       <LastGenOutput>PixelShop.cs</LastGenOutput>
     </Content>
-
     <Content Include="images\updown.PNG" />
-
     <Content Include="Scripts\about.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\checkout.js" />

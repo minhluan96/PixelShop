@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PixelShop.Models.SANPHAM>
+﻿@model PagedList.IPagedList<PixelShop.Models.SANPHAM>
+@using PagedList.Mvc;
 
 <div class="sub-banner my-banner3">
 </div>
@@ -177,6 +178,9 @@
 
 
                 </div>
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("NhaSanXuat", new { id = ViewBag.ID, page }))
+
 
 
         </div>
