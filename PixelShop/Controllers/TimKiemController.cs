@@ -18,6 +18,9 @@ namespace PixelShop.Controllers
             return View();
         }
 
+        
+
+
         public ActionResult NhaSanXuat(string id, int? page)
         {
             if (String.IsNullOrEmpty(id))
