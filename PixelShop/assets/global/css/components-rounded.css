@@ -6,12 +6,12 @@ General reset
 ***/
 /* Set default body */
 body {
-  color: #333333;
+  /*color: #333333;
   font-family: "Open Sans", sans-serif;
   padding: 0px !important;
   margin: 0px !important;
   font-size: 13px;
-  direction: ltr;
+  direction: ltr;*/
 }
 
 /*
@@ -914,7 +914,7 @@ body {
 General typography
 ***/
 /* Headings */
-h1,
+/*h1,
 h2,
 h3,
 h4,
@@ -922,7 +922,7 @@ h5,
 h6 {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
-}
+}*/
 
 h1 {
   font-size: 33px;

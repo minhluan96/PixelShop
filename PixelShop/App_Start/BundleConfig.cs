@@ -49,7 +49,6 @@ namespace PixelShop
             bundles.Add(new StyleBundle("~/Content/css-login").Include(
                        "~/assets/global/plugins/font-awesome/css/font-awesome.min.css",
                         "~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css",
-                        "~/assets/global/plugins/bootstrap/css/bootstrap.min.css",
                         "~/assets/global/plugins/uniform/css/uniform.default.css",
                         "~/assets/admin/pages/css/login.css",
                         "~/assets/global/css/components-rounded.css",
