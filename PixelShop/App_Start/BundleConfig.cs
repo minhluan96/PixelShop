@@ -15,7 +15,6 @@ namespace PixelShop
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/easyResponsiveTabs.js",
                         "~/Scripts/jquery.flexslider.js",
-                        "~/Scripts/minicart.js",
                         "~/Scripts/jquery.wmuSlider.js",
                         "~/Scripts/forIndex.js",
                         "~/Scripts/forInfo.js",

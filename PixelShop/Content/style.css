@@ -575,9 +575,9 @@ ul.flexiselDemo1 li img{
     visibility: hidden;
     background-color: #1E1E1E;
     bottom: 35%;
-    margin-left:37%;
+    margin-left:0%;
     position: absolute;
-    width: 23%;
+    width: 100%;
     text-align: center;
 }
 .product-img .p-mask .p-desc{
