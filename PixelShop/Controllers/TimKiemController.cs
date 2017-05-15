@@ -13,45 +13,16 @@ namespace PixelShop.Controllers
 
         PixelShopEntities db = new PixelShopEntities();
         // GET: ListProduct
-        public ActionResult Index()
+        public ActionResult Index(ProductSearchModel searchModel, int? page)
         {
-            return View();
-        }
-
-        
-
-
-        public ActionResult NhaSanXuat(string id, int? page)
-        {
-            if (String.IsNullOrEmpty(id))
-            {
-                
-                ViewBag.ID = "";
-            }
-            
+            List<NHASANXUAT> lstNSX = db.NHASANXUATs.Where(nsx => nsx.BiXoa == 0).Select(nsx => nsx).ToList<NHASANXUAT>();
+            List<DANHMUC> lstDM = db.DANHMUCs.Where(dm => dm.BiXoa == 0).Select(dm => dm).ToList<DANHMUC>();
+            ViewData["nhasanxuat"] = lstNSX;
+            ViewData["danhmuc"] = lstDM;
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-
-            List<SANPHAM> dsSanPham = db.SANPHAMs.Where(sp => sp.BiXoa == 0).Select(sp => sp).ToList<SANPHAM>();
-            if (!String.IsNullOrEmpty(id))
-            {
-                ViewBag.ID = id;
-                dsSanPham = db.SANPHAMs.Where(sp => sp.NhaSanXuat.Equals(id) && sp.BiXoa == 0).Select(sp => sp).ToList<SANPHAM>();
-                //return View(dsSanPham.ToPagedList(pageNumber, pageSize));
-            }
-            return View(dsSanPham.ToPagedList(pageNumber, pageSize));
-        }
-
-        public ActionResult DanhMuc(string id)
-        {
-            List<SANPHAM> lstSPDanhMuc = db.SANPHAMs.Where(sp => sp.BiXoa == 0).Select(sp => sp).ToList<SANPHAM>();
-            if (!String.IsNullOrEmpty(id))
-            {
-                lstSPDanhMuc = db.SANPHAMs.Where(sp => sp.DanhMuc.Equals(id) && sp.BiXoa == 0).Select(sp => sp).ToList<SANPHAM>();
-                return View(lstSPDanhMuc);
-            }
-            return View(lstSPDanhMuc);
-        }
-        
+            var business = new ProductBusinessLogic();
+            return View(business.GetProducts(searchModel).ToList<SANPHAM>().ToPagedList(pageNumber, pageSize));
+        }        
     }
 }

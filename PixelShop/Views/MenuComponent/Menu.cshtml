@@ -27,19 +27,10 @@
                                     <ul class="multi-column-dropdown">
                                         @for (int i = 0; i < lstDM.Count(); i++)
                                         {
-                                            <li><a href="@Url.Action("DanhMuc", "TimKiem", new { id = lstDM.ElementAt(i).MaDanhMuc})">@Html.DisplayFor(item => lstDM.ElementAt(i).TenDanhMuc)</a></li>
+                                            <li><a href="@Url.Action("Index", "TimKiem", new { DanhMuc = lstDM.ElementAt(i).MaDanhMuc})">@Html.DisplayFor(item => lstDM.ElementAt(i).TenDanhMuc)</a></li>
                                         }
                                     </ul>
 
-                                </div>
-                                <div class="col-sm-4">
-                                    <ul class="multi-column-dropdown">
-                                        <li><a href="casuals.html">Đồng hồ thể thao</a></li>
-                                        <li><a href="night.html">Đồng hồ hiện đại</a></li>
-                                        <li><a href="formals.html">Đồng hồ điện tử</a></li>
-                                        <li><a href="inner.html">Đồng hồ thông minh</a></li>
-
-                                    </ul>
                                 </div>
                                 <div class="col-sm-4 w3l">
                                     <a href="women.html"><img src="~/images/back5.jpg" class="img-responsive" alt=""></a>
@@ -57,7 +48,7 @@
                                     <ul class="multi-column-dropdown">
                                         @for (int i = 0; i < lstNSX.Count() / 2; i++)
                                         {
-                                            <li><a href="@Url.Action("NhaSanXuat", "TimKiem", new { id = lstNSX.ElementAt(i).MaNSX})">@Html.DisplayFor(item => lstNSX.ElementAt(i).TenNSX)</a></li>
+                                            <li><a href="@Url.Action("Index", "TimKiem", new { NhaSanXuat = lstNSX.ElementAt(i).MaNSX })">@Html.DisplayFor(item => lstNSX.ElementAt(i).TenNSX)</a></li>
                                         }
                                     </ul>
 
@@ -67,7 +58,9 @@
                                     <ul class="multi-column-dropdown">
                                         @for (int i = lstNSX.Count() / 2; i < lstNSX.Count(); i++)
                                         {
-                                            <li><a href="@Url.Action("NhaSanXuat", "TimKiem", new { id = lstNSX.ElementAt(i).MaNSX})">@Html.DisplayFor(item => lstNSX.ElementAt(i).TenNSX)</a></li>
+                                            ProductSearchModel psm = new ProductSearchModel();
+                                            psm.NhaSanXuat = lstNSX.ElementAt(i).MaNSX;
+                                             <li><a href="@Url.Action("Index", "TimKiem", new { NhaSanXuat = lstNSX.ElementAt(i).MaNSX })">@Html.DisplayFor(item => lstNSX.ElementAt(i).TenNSX)</a></li>
                                         }
 
                                     </ul>
@@ -90,7 +83,7 @@
        
             @using (Html.BeginForm("Index", "TimKiem"))
             {
-            <input type="search" name="Search" placeholder="Tìm kiếm" required=""/>
+            <input type="search" name="Ten" placeholder="Tìm kiếm" required=""/>
             <button type="submit" class="btn btn-default search" aria-label="Left Align">
                 <i class="fa fa-search" aria-hidden="true"> </i>
             </button>

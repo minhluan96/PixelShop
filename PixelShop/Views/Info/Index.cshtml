@@ -1,24 +1,26 @@
-﻿<div class="products">
+﻿@using PixelShop.Models
+@model PixelShop.Models.SANPHAM
+<div class="products">
     <div class="container">
         <div class="single-page">
             <div class="single-page-row" id="detail-21">
                 <div class="col-md-6 single-top-left">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li data-thumb="../../images/s2.jpg">
-                                <div class="thumb-image detail_images"> <img src="../../images/s2.jpg" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
-                            </li>
-                            <li data-thumb="../../images/s2.jpg">
-                                <div class="thumb-image"> <img src="../../images/s2.jpg" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
-                            </li>
-                            <li data-thumb="../../images/s2.jpg">
-                                <div class="thumb-image"> <img src="../../images/s2.jpg" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
-                            </li>
+                            @foreach (var ha in ViewData["hinhanh"] as List<HINHANH>)
+                            {
+                                <li data-thumb="@Html.DisplayFor(a => ha.PathHinhAnh)">
+                                    <div class="thumb-image detail_images"> <img src="@Html.DisplayFor(a => ha.PathHinhAnh)" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
+                                </li>
+                            }
+                            
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 single-top-right">
-                    <h3 class="item_name"> Đồng hồ điện tử đen</h3>
+                    <h3 class="item_name">@Model.TenSP</h3>
+                    <p>Mã sản phẩm: @Model.MaSP</p>
+                    <br />
                     <p>Tình trạng: Còn hàng</p>
                     <div class="single-rating">
                         <ul>
@@ -33,10 +35,8 @@
                     </div>
                     <div class="single-price">
                         <ul>
-                            <li>5.400.000 VND</li>
+                            <li>@Model.giaStr</li>
                             <li><del>6.000.000 VND</del></li>
-                            <li><span class="w3off">10% OFF</span></li>
-                            <li>Kết thúc giảm giá: 15/10</li>
                             <li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i> Coupon</a></li>
                         </ul>
                     </div>
@@ -68,22 +68,13 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                        <h4 class="panel-title">
-                            <a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <i class="fa fa-info-circle fa-icon" aria-hidden="true"></i> Thông số kỹ thuật <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
+                            @{
+                                String[] mota = Model.MoTa.Split(new string[] { "\n" }, StringSplitOptions.None); 
+                            }
+                            @for(int i = 0;i<mota.Length;i++){
+                               <p>@mota[i].Replace(@"\n","")</p>
+                            }
+                          </div>
                     </div>
                 </div>
                 <div class="panel panel-default">

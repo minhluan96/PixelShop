@@ -14,3 +14,13 @@ $(document).ready(function (c) {
         });
     });
 });
+$(document).ready(function () {
+    $(".qtycart").change(function () {
+        $.ajax({
+            type: "GET",
+            url: "ShoppingCart/Update",
+            data: { quantity: $(".qtycart").val(), id: $(".idProduct").text() },
+            dataType: "html"
+        });
+    });
+});

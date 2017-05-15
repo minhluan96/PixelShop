@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PixelShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,12 @@ namespace PixelShop.Controllers
     public class InfoController : Controller
     {
         // GET: Info
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            return View();
+            PixelShopEntities db = new PixelShopEntities();
+            SANPHAM sp = (SANPHAM)db.SANPHAMs.Single(x => x.MaSP == id);
+            ViewData["hinhanh"] = db.HINHANHs.Where(x => x.MaSP == id).ToList<HINHANH>();
+            return View(sp);
         }
     }
 }

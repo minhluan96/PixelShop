@@ -1,33 +1,34 @@
-﻿<div class="sub-banner my-banner3">
+﻿@using PixelShop.Models
+@model PagedList.IPagedList<PixelShop.Models.SANPHAM>
+<div class="sub-banner my-banner3">
 </div>
 <div class="content">
     <div class="container">
+         @using (Html.BeginForm("Index", "TimKiem"))
+         {
         <div class="col-md-4 w3ls_dresses_grid_left">
-            <div class="w3ls_dresses_grid_left_grid">
+            <div class="w3ls_dresses_grid_left_grid search-agileinfo pull-right" style="width:80%;">
+          
+                    <input type="search" name="Ten" placeholder="Nhập tên sản phẩm">
+                    <button type="submit" class="btn btn-default search" aria-label="Left Align">
+                        <i class="fa fa-search" aria-hidden="true"> </i>
+                    </button>
+            </div>
+            <div class="w3ls_dresses_grid_left_grid" style="margin-top:70px;">
                 <h3>LOẠI</h3>
                 <div class="w3ls_dresses_grid_left_grid_sub">
                     <div class="ecommerce_dres-type">
                         <ul>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optLSP"><a href="men.html">Đồng hồ thông minh</a></label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optLSP"><a href="men.html">Đồng hồ thể thao</a></label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optLSP"><a href="men.html">Đồng hồ trẻ em</a></label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optLSP"><a href="men.html">Đồng hồ cổ</a></label>
-                                </div>
-                            </li>
+                            @{ List<DANHMUC> lstDM = ViewData["danhmuc"] as List<DANHMUC>; }
+                            @for (int i = 0; i < lstDM.Count(); i++)
+                            {
+                                <li>
+                                    <div class="radio">
+                                        <input type="radio" id="radio+@lstDM.ElementAt(i).MaDanhMuc" value="@lstDM.ElementAt(i).MaDanhMuc" name="DanhMuc" />
+                                        <label for="radio+@lstDM.ElementAt(i).MaDanhMuc"><span></span>@lstDM.ElementAt(i).TenDanhMuc</label>
+                                    </div>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -37,26 +38,16 @@
                 <div class="w3ls_dresses_grid_left_grid_sub">
                     <div class="ecommerce_color">
                         <ul>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optNSX"><a href="men.html">Apple</a></label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optNSX"><a href="men.html">Samsung</a></label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optNSX"><a href="men.html">Garmin</a></label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <label><input type="radio" name="optNSX"><a href="men.html">Pebble</a></label>
-                                </div>
-                            </li>
+                            @{ List<NHASANXUAT> lstNSX = ViewData["nhasanxuat"] as List<NHASANXUAT>; }
+                            @for (int i = 0; i < lstNSX.Count(); i++)
+                            {
+                                <li>
+                                    <div class="radio">
+                                        <input type="radio" id="radio+@lstNSX.ElementAt(i).MaNSX" value="@lstNSX.ElementAt(i).MaNSX" name="NhaSanXuat" />
+                                        <label for="radio+@lstNSX.ElementAt(i).MaNSX"><span></span>@lstNSX.ElementAt(i).TenNSX</label>
+                                    </div>
+                                </li>
+                            }   
                         </ul>
                     </div>
                 </div>
@@ -68,22 +59,26 @@
                         <ul>
                             <li>
                                 <div class="radio">
-                                    <label><input type="radio" name="optGia"><a href="men.html">Dưới 3 triệu</a></label>
+                                    <input type="radio" id="radioGia01" value="0-3000000" name="Gia" />
+                                    <label for="radioGia01"><span></span>Dưới 3 triệu</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="radio">
-                                    <label><input type="radio" name="optGia"><a href="men.html">Từ 3 đến 5 triệu</a></label>
+                                    <input type="radio" id="radioGia02" value="3000001-5000000" name="Gia" />
+                                    <label for="radioGia02"><span></span>Từ 3 đến 5 triệu</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="radio">
-                                    <label><input type="radio" name="optGia"><a href="men.html">Từ 5 đến 10 triệu</a></label>
+                                    <input type="radio" id="radioGia03" value="5000001-10000000" name="Gia" />
+                                    <label for="radioGia03"><span></span>Từ 5 đến 10 triệu</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="radio">
-                                    <label><input type="radio" name="optGia"><a href="men.html">Trên 10 triệu</a></label>
+                                    <input type="radio" id="radioGia04" value="10000001-99999999" name="Gia" />
+                                    <label for="radioGia04"><span></span>Trên 10 triệu</label>
                                 </div>
                             </li>
                         </ul>
@@ -99,223 +94,39 @@
                 </div>
             </div>
         </div>
+        }
         <div class="col-md-8 col-sm-8 women-dresses">
-            <div class="women-set1">
-                <div class="col-md-4 women-grids wp1 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product1.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="50.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
+                    
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                           if (i % 3 == 0) { @Html.Raw("<div class=\"women-set1\">")            }
+
+                        <a href="@Url.Action("Index", "Info", new { id = Model.ElementAt(i).MaSP })">
+                            <div class="col-md-4 women-grids wp1 animated wow slideInUp" data-wow-delay=".5s">
+                                <div class="product-img">
+                                    <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" alt="" />
+                                    <div class="p-mask">
+                                        <a href="@Url.Action("OrderNow", "ShoppingCart", new {id= Model.ElementAt(i).MaSP },null)"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
+                                    </div>
+                                </div>
+                                <i class="fa fa-star yellow-star" aria-hidden="true"></i>
+                                <i class="fa fa-star yellow-star" aria-hidden="true"></i>
+                                <i class="fa fa-star yellow-star" aria-hidden="true"></i>
+                                <i class="fa fa-star yellow-star" aria-hidden="true"></i>
+                                <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                                <h4>@Html.DisplayFor(sp => Model.ElementAt(i).TenSP)</h4>
+                                <h5>@Html.DisplayFor(sp => Model.ElementAt(i).giaStr)</h5>
                             </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                    <h4>Apple watch Gen 1</h4>
-                    <h5>50.000.000 VNĐ</h5>
-                </div>
-                <div class="col-md-4 women-grids wp2 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product2.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="70.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
+                            </a>
+                            if (i % 3 == 2)
+                            {
+                            @Html.Raw("<div class=\"clearfix\"></div> </div>")
+                            }
+                            }
+                            <div class="women-set1">
+                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                             </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                    <h4>Apple watch Gen 2</h4>
-                    <h5>70.000.000 VNĐ</h5>
-                </div>
-                <div class="col-md-4 women-grids wp3 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product3.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="90.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
-                            </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                    <h4>Samsung Gear S2</h4>
-                    <h5>9.000.000 VNĐ</h5>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="women-set2">
-                <div class="col-md-4 women-grids wp4 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product4.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="100.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
-                            </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                    <h4>Samsung Gear S</h4>
-                    <h5>5.000.000 VNĐ</h5>
-                </div>
-                <div class="col-md-4 women-grids wp5 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product4.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="120.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
-                            </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <h4>Samsung Gear S3 Frontiner</h4>
-                    <h5>12.000.000 VNĐ</h5>
-                </div>
-                <div class="col-md-4 women-grids wp6 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product3.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="160.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
-                            </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <h4>Garmin Fenix 3 Sapphire</h4>
-                    <h5>16.000.000 VNĐ</h5>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="women-set3">
-                <div class="col-md-4 women-grids mp7 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product2.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="110.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
-                            </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <h4>Garmin Fenix Chronos</h4>
-                    <h5>30.000.000 VNĐ</h5>
-                </div>
-                <div class="col-md-4 women-grids wp8 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product1.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="180.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
-                            </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <h4>Garmin Forerunner 735XT</h4>
-                    <h5>11.000.000 VNĐ</h5>
-                </div>
-                <div class="col-md-4 women-grids wp9 animated wow slideInUp" data-wow-delay=".5s">
-                    <a href="single.html">
-                        <div class="product-img">
-                            <img src="~/images/product1.jpg" alt="" />
-                            <div class="p-mask">
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                    <input type="hidden" name="amount" value="130.00" />
-                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                </form>
-                            </div>
-                        </div>
-                    </a>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow-star" aria-hidden="true"></i>
-                    <h4>Garmin Forerunner 235</h4>
-                    <h5>8.000.000VNĐ</h5>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
+</div>
     </div>
 </div>

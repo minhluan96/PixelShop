@@ -213,8 +213,8 @@
     <Compile Include="Controllers\FooterComponentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuComponentController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -235,6 +235,7 @@
       <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NHASANXUAT.cs">
       <DependentUpon>PixelShop.tt</DependentUpon>
@@ -254,6 +255,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PixelShop.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductBusinessLogic.cs" />
+    <Compile Include="Models\ProductSearchModel.cs" />
     <Compile Include="Models\SANPHAM.cs">
       <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
@@ -1803,8 +1806,11 @@
     <Content Include="Views\Admin\EditProduct.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
-    <Content Include="Views\TimKiem\NhaSanXuat.cshtml" />
-    <Content Include="Views\TimKiem\DanhMuc.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

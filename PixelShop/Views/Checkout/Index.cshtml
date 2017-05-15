@@ -1,56 +1,42 @@
-﻿<div class="account-in">
+﻿@using PixelShop.Models
+<div class="account-in">
     <div class="container">
         <div class="check_box">
             <div class="col-md-9 cart-items">
-                <h1 class="label-shopping-bag">GIỎ HÀNG (2)</h1>
-              
-                <div class="cart-header">
-                    <div class="close-checkout-1"> </div>
-                    <div class="cart-sec simpleCart_shelfItem">
-                        <div class="cart-item cyc">
-                            <img src="~/images/product2.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <div class="cart-item-info">
-                            <h3><a href="#">Apple Watch(Gen 1)</a><span>Model No: 3578</span></h3>
-                            <ul class="qty">
-                                <li><p>Kích cỡ : 5</p></li>
-                            </ul>
-                            <form>
-                                <input type="number" name="quantity" min="1" max="20" value="1">
-                            </form>
-                            <div class="delivery">
-                                <p>Giá: 50.000.000 VNĐ</p>
-                                <span>Không có khuyến mãi</span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <hr />
-                <div class="cart-header2">
-                    <div class="close-checkout-2"> </div>
-                    <div class="cart-sec simpleCart_shelfItem">
-                        <div class="cart-item cyc">
-                            <img src="~/images/product1.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <div class="cart-item-info">
-                            <h3><a href="#">Apple Watch (Gen 2)</a><span>Model No: 3578</span></h3>
-                            <ul class="qty">
-                                <li><p>Kích cỡ : 5</p></li>
-                            </ul>
-                            <form>
-                                <input type="number" name="quantity" min="1" max="20" value="1">
-                            </form>
-                            <div class="delivery">
-                                <p>Giá : 30.000.000 VNĐ</p>
-                                <span>Tặng kèm hộp</span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+                <h1 class="label-shopping-bag">GIỎ HÀNG</h1>
+                @if(Session["cart"]==null || ((List<Item>)Session["cart"]).Count==0)
+                {
+                    <p>Giỏ hàng đang trống</p>
+                }
+                @if (Session["cart"] != null)
+                {
+                    
+                    foreach (Item item in (List<Item>)Session["cart"])
+                    {
+                        <div class="cart-header">
+                            <a href="@Url.Action("Delete", "ShoppingCart", new {id= item.Sanpham.MaSP },null)">
+                                <div class="close-checkout-1"> </div>
+                            </a>
+                                <div class="cart-sec simpleCart_shelfItem">
+                                    <div class="cart-item cyc">
+                                        <img src="@item.Sanpham.HinhHienThi" class="img-responsive" alt="" />
+                                    </div>
+                                    <div class="cart-item-info">
+                                        <h3>@item.Sanpham.TenSP</h3>
+                                        <span>Mã sản phẩm: <span  class="idProduct">@item.Sanpham.MaSP</span></span>
+                                        <br />                                     
+                                        <input type="number" class="qtycart" min="1" max="20" value="@item.Soluong">
+                                        <div class="delivery">
+                                            <p>Tổng tiền: @(item.Sanpham.GiaBan * item.Soluong)</p>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                </div>
+                        <hr />
+                    }
+                }
             </div>
             <div class="col-md-4 cart-total">
                 <a class="continue" href="#">Tiếp tục mua sắm</a>
