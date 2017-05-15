@@ -9,8 +9,7 @@ namespace PixelShop.Models
     {
         public string DanhMuc { get; set; }
         public string NhaSanXuat { get; set; }
-        public int? GiaTu { get; set; }
-        public int? GiaDen { get; set; }
+        public string Gia { get; set; }
         public string Ten { get; set; }
     }
 }

@@ -4,44 +4,31 @@
 </div>
 <div class="content">
     <div class="container">
+         @using (Html.BeginForm("Index", "TimKiem"))
+         {
         <div class="col-md-4 w3ls_dresses_grid_left">
             <div class="w3ls_dresses_grid_left_grid search-agileinfo pull-right" style="width:80%;">
-                <form action="#" method="post">
-                    <input type="search" name="Search" placeholder="Nhập tên sản phẩm" required="">
+          
+                    <input type="search" name="Ten" placeholder="Nhập tên sản phẩm">
                     <button type="submit" class="btn btn-default search" aria-label="Left Align">
                         <i class="fa fa-search" aria-hidden="true"> </i>
                     </button>
-                </form>
             </div>
             <div class="w3ls_dresses_grid_left_grid" style="margin-top:70px;">
                 <h3>LOẠI</h3>
                 <div class="w3ls_dresses_grid_left_grid_sub">
                     <div class="ecommerce_dres-type">
                         <ul>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radio01" name="radio" />
-                                    <label for="radio01"><span></span>Đồng hồ thông minh</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radio02" name="radio" />
-                                    <label for="radio02"><span></span>Đồng hồ thể thao</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radio03" name="radio" />
-                                    <label for="radio03"><span></span>Đồng hồ trẻ em</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radio04" name="radio" />
-                                    <label for="radio04"><span></span>Đồng hồ cổ</label>
-                                </div>
-                            </li>
+                            @{ List<DANHMUC> lstDM = ViewData["danhmuc"] as List<DANHMUC>; }
+                            @for (int i = 0; i < lstDM.Count(); i++)
+                            {
+                                <li>
+                                    <div class="radio">
+                                        <input type="radio" id="radio+@lstDM.ElementAt(i).MaDanhMuc" value="@lstDM.ElementAt(i).MaDanhMuc" name="DanhMuc" />
+                                        <label for="radio+@lstDM.ElementAt(i).MaDanhMuc"><span></span>@lstDM.ElementAt(i).TenDanhMuc</label>
+                                    </div>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -51,30 +38,16 @@
                 <div class="w3ls_dresses_grid_left_grid_sub">
                     <div class="ecommerce_color">
                         <ul>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radioNSX01" name="optNSX" />
-                                    <label for="radioNSX01"><span></span>Apple</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radioNSX02" name="optNSX" />
-                                    <label for="radioNSX02"><span></span>Samsung</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radioNSX03" name="optNSX" />
-                                    <label for="radioNSX04"><span></span>Garmin</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="radio">
-                                    <input type="radio" id="radioNSX04" name="optNSX" />
-                                    <label for="radioNSX04"><span></span>Pebble</label>
-                                </div>
-                            </li>
+                            @{ List<NHASANXUAT> lstNSX = ViewData["nhasanxuat"] as List<NHASANXUAT>; }
+                            @for (int i = 0; i < lstNSX.Count(); i++)
+                            {
+                                <li>
+                                    <div class="radio">
+                                        <input type="radio" id="radio+@lstNSX.ElementAt(i).MaNSX" value="@lstNSX.ElementAt(i).MaNSX" name="NhaSanXuat" />
+                                        <label for="radio+@lstNSX.ElementAt(i).MaNSX"><span></span>@lstNSX.ElementAt(i).TenNSX</label>
+                                    </div>
+                                </li>
+                            }   
                         </ul>
                     </div>
                 </div>
@@ -86,25 +59,25 @@
                         <ul>
                             <li>
                                 <div class="radio">
-                                    <input type="radio" id="radioGia01" name="optGia" />
-                                    <label for="radioGia02"><span></span>Dưới 3 triệu</label>
+                                    <input type="radio" id="radioGia01" value="0-3000000" name="Gia" />
+                                    <label for="radioGia01"><span></span>Dưới 3 triệu</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="radio">
-                                    <input type="radio" id="radioGia02" name="optGia" />
+                                    <input type="radio" id="radioGia02" value="3000001-5000000" name="Gia" />
                                     <label for="radioGia02"><span></span>Từ 3 đến 5 triệu</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="radio">
-                                    <input type="radio" id="radioGia03" name="optGia" />
+                                    <input type="radio" id="radioGia03" value="5000001-10000000" name="Gia" />
                                     <label for="radioGia03"><span></span>Từ 5 đến 10 triệu</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="radio">
-                                    <input type="radio" id="radioGia04" name="optGia" />
+                                    <input type="radio" id="radioGia04" value="10000001-99999999" name="Gia" />
                                     <label for="radioGia04"><span></span>Trên 10 triệu</label>
                                 </div>
                             </li>
@@ -121,27 +94,21 @@
                 </div>
             </div>
         </div>
+        }
         <div class="col-md-8 col-sm-8 women-dresses">
                     
                     @for (int i = 0; i < Model.Count(); i++)
                     {
-                           if (i % 3 == 0) { @Html.Raw("<div class=\"women-set1\">")}
-                           
+                           if (i % 3 == 0) { @Html.Raw("<div class=\"women-set1\">")            }
+
+                        <a href="@Url.Action("Index", "Info", new { id = Model.ElementAt(i).MaSP })">
                             <div class="col-md-4 women-grids wp1 animated wow slideInUp" data-wow-delay=".5s">
-                                <a href="single.html">
-                                    <div class="product-img">
-                                        <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" alt="" />
-                                        <div class="p-mask">
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="w3ls1_item" value="Casual shirt" />
-                                                <input type="hidden" name="amount" value="50.00" />
-                                                <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                            </form>
-                                        </div>
+                                <div class="product-img">
+                                    <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" alt="" />
+                                    <div class="p-mask">
+                                        <a href="@Url.Action("OrderNow", "ShoppingCart", new {id= Model.ElementAt(i).MaSP },null)"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
                                     </div>
-                                </a>
+                                </div>
                                 <i class="fa fa-star yellow-star" aria-hidden="true"></i>
                                 <i class="fa fa-star yellow-star" aria-hidden="true"></i>
                                 <i class="fa fa-star yellow-star" aria-hidden="true"></i>
@@ -150,15 +117,16 @@
                                 <h4>@Html.DisplayFor(sp => Model.ElementAt(i).TenSP)</h4>
                                 <h5>@Html.DisplayFor(sp => Model.ElementAt(i).giaStr)</h5>
                             </div>
+                            </a>
                             if (i % 3 == 2)
                             {
-                                @Html.Raw("<div class=\"clearfix\"></div> </div>")    
+                            @Html.Raw("<div class=\"clearfix\"></div> </div>")
                             }
-                        }
-            <div class="women-set1">
-                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-            </div>
-        </div>
+                            }
+                            <div class="women-set1">
+                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                            </div>
+</div>
     </div>
 </div>

@@ -15,6 +15,10 @@ namespace PixelShop.Controllers
         // GET: ListProduct
         public ActionResult Index(ProductSearchModel searchModel, int? page)
         {
+            List<NHASANXUAT> lstNSX = db.NHASANXUATs.Where(nsx => nsx.BiXoa == 0).Select(nsx => nsx).ToList<NHASANXUAT>();
+            List<DANHMUC> lstDM = db.DANHMUCs.Where(dm => dm.BiXoa == 0).Select(dm => dm).ToList<DANHMUC>();
+            ViewData["nhasanxuat"] = lstNSX;
+            ViewData["danhmuc"] = lstDM;
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             var business = new ProductBusinessLogic();

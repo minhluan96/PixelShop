@@ -16,11 +16,12 @@
             <ul id="flexiselDemo1">
                 @foreach(var sp in ViewData["xemNhieu"] as List<SANPHAM>) {
                 <li>
-                    <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " class="img-responsive" />
-                    <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
+                    <a href="@Url.Action("Index", "Info", new { id = sp.MaSP })">
+                        <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " class="img-responsive" />
+                        <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
 
-                    <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
-                    
+                        <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
+                    </a>
                 </li>
                 }
 
@@ -72,12 +73,6 @@
         <br />
         <div class="sap_tabs">
             <div id="horizontalTab">
-                <ul class="resp-tabs-list">
-                    <li class="resp-tab-item"><span>Đồng hồ cổ</span></li>
-                    <li class="resp-tab-item"><span>Đồng hồ thông minh</span></li>
-                    <li class="resp-tab-item"><span>Đồng hồ thể thao</span></li>
-                    <li class="resp-tab-item"><span>Đồng hồ điện tử</span></li>
-                </ul>
                 <div class="clearfix"> </div>
                 <div class="resp-tabs-container">
                     <div class="tab-1 resp-tab-content">
@@ -87,27 +82,21 @@
                         {
                         
                         <div class="col-md-3 top-product-grids tp4">
-
-                            <a href="single.html">
+                            <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
                                 <div class="product-img">
                                     <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
                                     <div class="p-mask">
-                                        <form action="#" method="post">
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="w3ls1_item" value="Formal shirt" />
-                                            <input type="hidden" name="amount" value="190.00" />
-                                            <input type="hidden" name="image" value="~/images/product1.jpg" />
-                                            <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                        </form>
+
+                                        <a href="@Url.Action("OrderNow", "ShoppingCart", new {id= lst.ElementAt(i).MaSP },null)"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
                                     </div>
                                 </div>
-                            </a>
+                             </a>
 
-                            <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
-                            <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
 
-                        </div>
+                                <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
+                                <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
+
+</div>
                         
                         }
                         <div class="clearfix"></div>
@@ -117,23 +106,17 @@
                             {
 
                                 <div class="col-md-3 top-product-grids tp5">
-                                    <a href="single.html">
+                                    <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
                                         <div class="product-img">
                                             <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
                                             <div class="p-mask">
-                                                <form action="#" method="post">
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="w3ls1_item" value="Formal shirt" />
-                                                    <input type="hidden" name="amount" value="190.00" />
-                                                    <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
-                                                </form>
+                                                <a href="@Url.Action("OrderNow", "ShoppingCart", new {id= lst.ElementAt(i).MaSP },null)"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
                                             </div>
                                         </div>
+                                        <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
+                                        <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
                                     </a>
-                                    <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
-                                    <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
-                                </div>
+</div>
 
                             }
                             
@@ -142,6 +125,9 @@
                         </div>
                     </div>
                 </div>
+                <ul class="resp-tabs-list">
+                    <li class="resp-tab-item"><span>Xem nhiều hơn</span></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -158,42 +144,34 @@
                 <div class="resp-tabs-container">
                     <div class="tab-1 resp-tab-content">
                         <div class="col-md-3 top-product-grids tp1 animated wow slideInUp" data-wow-delay=".5s">
-                            <a href="single.html">
                                 <div class="product-img">
                                     <img src="~/images/size1.jpg" alt="" />
                                     
                                 </div>
-                            </a>
                             <h4>0 MM - 31 MM</h4>
                             <h5># X-LARGE</h5>
                         </div>
                         <div class="col-md-3 top-product-grids tp2">
-                            <a href="single.html">
                                 <div class="product-img">
                                     <img src="~/images/size2.jpg" alt="" />
                                     
                                 </div>
-                            </a>
                             <h4>32 MM - 41 MM</h4>
                             <h5># X-LARGE</h5>
                         </div>
                         <div class="col-md-3 top-product-grids tp3">
-                            <a href="single.html">
                                 <div class="product-img">
                                     <img src="~/images/size3.jpg" alt="" />
                                    
                                 </div>
-                            </a>
                             <h4>42 MM - 47 MM</h4>
                             <h5># LARGE</h5>
                         </div>
                         <div class="col-md-3 top-product-grids tp4">
-                            <a href="single.html">
                                 <div class="product-img">
                                     <img src="~/images/size4.jpg" alt="" />
                                    
                                 </div>
-                            </a>
                             <h4>48 MM - 52 MM</h4>
                             <h5># X-LARGE</h5>
                         </div>

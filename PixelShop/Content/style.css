@@ -539,7 +539,7 @@ ul.resp-tabs-list li:nth-child(2):after{
 ul.resp-tabs-list li:nth-child(3):after{
    
 }
-ul.flexiselDemo1 li img{
+#flexiselDemo1 li a img{
     margin-bottom:15px;
 }
 .product-size{

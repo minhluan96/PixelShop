@@ -16,6 +16,7 @@ namespace PixelShop.Models
         public IQueryable<SANPHAM> GetProducts(ProductSearchModel searchModel)
         {
             var result = Context.SANPHAMs.AsQueryable();
+            result = result.Where(x => x.BiXoa == 0 && x.SoLuongTon > 0);
             if (searchModel != null)
             {
                 if (!string.IsNullOrEmpty(searchModel.Ten))
@@ -24,10 +25,13 @@ namespace PixelShop.Models
                     result = result.Where(x => x.DanhMuc==searchModel.DanhMuc);
                 if (!string.IsNullOrEmpty(searchModel.NhaSanXuat))
                     result = result.Where(x => x.NhaSanXuat==searchModel.NhaSanXuat);
-                if (searchModel.GiaTu.HasValue)
-                    result = result.Where(x => x.GiaBan >= searchModel.GiaTu);
-                if (searchModel.GiaDen.HasValue)
-                    result = result.Where(x => x.GiaBan <= searchModel.GiaDen);
+                if (!string.IsNullOrEmpty(searchModel.Gia))
+                {
+                    string[] giaSearch = searchModel.Gia.Split('-');
+                    int GiaTu = int.Parse(giaSearch[0]);
+                    int GiaDen = int.Parse(giaSearch[1]);
+                    result = result.Where(x => x.GiaBan >= GiaTu && x.GiaBan <= GiaDen);
+                }
             }
             return result;
         }
