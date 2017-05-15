@@ -1,17 +1,17 @@
 ﻿@using PixelShop.Models
 @model PagedList.IPagedList<PixelShop.Models.SANPHAM>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="sub-banner my-banner3">
 </div>
 <div class="content">
     <div class="container">
-         @using (Html.BeginForm("Index", "TimKiem"))
+         @using (Html.BeginForm("Index", "TimKiem", new { }, FormMethod.Get))
          {
         <div class="col-md-4 w3ls_dresses_grid_left">
-            <div class="w3ls_dresses_grid_left_grid search-agileinfo pull-right" style="width:80%;">
+            <div class="w3ls_dresses_grid_left_grid search-agileinfo pull-right">
           
-                    <input type="search" name="Ten" placeholder="Nhập tên sản phẩm">
-                    <button type="submit" class="btn btn-default search" aria-label="Left Align">
-                        <i class="fa fa-search" aria-hidden="true"> </i>
+                    <button type="submit" class="btn btn-default search" aria-label="Left Align" style="width:40%;">
+                        <p style="color:white;"><i class="fa fa-search" aria-hidden="true"></i>        Tìm kiếm</p>
                     </button>
             </div>
             <div class="w3ls_dresses_grid_left_grid" style="margin-top:70px;">
@@ -19,13 +19,36 @@
                 <div class="w3ls_dresses_grid_left_grid_sub">
                     <div class="ecommerce_dres-type">
                         <ul>
-                            @{ List<DANHMUC> lstDM = ViewData["danhmuc"] as List<DANHMUC>; }
-                            @for (int i = 0; i < lstDM.Count(); i++)
+                            @{ List<DANHMUC> lstDMNu = ViewData["danhmucnu"] as List<DANHMUC>; }
+                            @{ List<DANHMUC> lstDMNam = ViewData["danhmucnam"] as List<DANHMUC>; }
+                            @{ List<DANHMUC> lstDMPhuKien = ViewData["danhmucphukien"] as List<DANHMUC>; }
+                            <li>Đồng hồ nữ</li>
+                            @for (int i = 0; i < lstDMNu.Count(); i++)
                             {
                                 <li>
                                     <div class="radio">
-                                        <input type="radio" id="radio+@lstDM.ElementAt(i).MaDanhMuc" value="@lstDM.ElementAt(i).MaDanhMuc" name="DanhMuc" />
-                                        <label for="radio+@lstDM.ElementAt(i).MaDanhMuc"><span></span>@lstDM.ElementAt(i).TenDanhMuc</label>
+                                        <input type="radio" id="radio+@lstDMNu.ElementAt(i).MaDanhMuc" value="@lstDMNu.ElementAt(i).MaDanhMuc" name="DanhMuc" />
+                                        <label for="radio+@lstDMNu.ElementAt(i).MaDanhMuc"><span></span>@lstDMNu.ElementAt(i).TenDanhMuc</label>
+                                    </div>
+                                </li>
+                            }
+                            <li>Đồng hồ nam</li>
+                            @for (int i = 0; i < lstDMNam.Count(); i++)
+                            {
+                                <li>
+                                    <div class="radio">
+                                        <input type="radio" id="radio+@lstDMNam.ElementAt(i).MaDanhMuc" value="@lstDMNam.ElementAt(i).MaDanhMuc" name="DanhMuc" />
+                                        <label for="radio+@lstDMNam.ElementAt(i).MaDanhMuc"><span></span>@lstDMNam.ElementAt(i).TenDanhMuc</label>
+                                    </div>
+                                </li>
+                            }
+                            <li>Phụ kiện</li>
+                            @for (int i = 0; i < lstDMPhuKien.Count(); i++)
+                            {
+                                <li>
+                                    <div class="radio">
+                                        <input type="radio" id="radio+@lstDMPhuKien.ElementAt(i).MaDanhMuc" value="@lstDMPhuKien.ElementAt(i).MaDanhMuc" name="DanhMuc" />
+                                        <label for="radio+@lstDMPhuKien.ElementAt(i).MaDanhMuc"><span></span>@lstDMPhuKien.ElementAt(i).TenDanhMuc</label>
                                     </div>
                                 </li>
                             }
@@ -97,6 +120,10 @@
         }
         <div class="col-md-8 col-sm-8 women-dresses">
                     
+                    @if(Model.Count()==0)
+                    {
+                        <h3>Không tìm thấy sản phẩm phù hợp<br /></h3>
+                    }
                     @for (int i = 0; i < Model.Count(); i++)
                     {
                            if (i % 3 == 0) { @Html.Raw("<div class=\"women-set1\">")            }
@@ -106,7 +133,7 @@
                                 <div class="product-img">
                                     <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" alt="" />
                                     <div class="p-mask">
-                                        <a href="@Url.Action("OrderNow", "ShoppingCart", new {id= Model.ElementAt(i).MaSP },null)"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
+                                        <a href="#" class="btnaddcart @Model.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
                                     </div>
                                 </div>
                                 <i class="fa fa-star yellow-star" aria-hidden="true"></i>
@@ -124,8 +151,11 @@
                             }
                             }
                             <div class="women-set1">
-                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
-                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                                @if (Model.Count() > 0)
+                                {
+                                    <p>Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount</p>
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                                }
                             </div>
 </div>
     </div>

@@ -87,7 +87,7 @@
                                     <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
                                     <div class="p-mask">
 
-                                        <a href="@Url.Action("OrderNow", "ShoppingCart", new {id= lst.ElementAt(i).MaSP },null)"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
+                                        <a href="#" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
                                     </div>
                                 </div>
                              </a>
@@ -96,7 +96,7 @@
                                 <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
                                 <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
 
-</div>
+            </div>
                         
                         }
                         <div class="clearfix"></div>
@@ -110,7 +110,7 @@
                                         <div class="product-img">
                                             <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
                                             <div class="p-mask">
-                                                <a href="@Url.Action("OrderNow", "ShoppingCart", new {id= lst.ElementAt(i).MaSP },null)"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
+                                                <a href="#" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
                                             </div>
                                         </div>
                                         <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>

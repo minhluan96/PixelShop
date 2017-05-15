@@ -17,30 +17,53 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav ">
-                    <li class="active"><a href="/Home" class="hyper"><span>Trang chủ</span></a></li>
+                    <li class="active"><a href="/Home" class="hyper"><span>TRANG CHỦ</span></a></li>
                     <li class="dropdown ">
-                        <a href="@Url.Action("DanhMuc", "TimKiem")" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Đồng hồ<b class="caret"></b></span></a>
-                        <ul class="dropdown-menu multi">
-                            <div class="row">
-                                @{ List<DANHMUC> lstDM = ViewData["danhmuc"] as List<DANHMUC>; }
+                        <a href="@Url.Action("DanhMuc", "TimKiem")" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>DANH MỤC<b class="caret"></b></span></a>
+                        <ul class="dropdown-menu multi" style="width: 900px;">
+                            <div class="row"> 
+                                @{ List<DANHMUC> lstDMNu = ViewData["danhmucnu"] as List<DANHMUC>; }
                                 <div class="col-sm-4">
+                                    <p>ĐỒNG HỒ NỮ</p>
+                                    <hr />
                                     <ul class="multi-column-dropdown">
-                                        @for (int i = 0; i < lstDM.Count(); i++)
+                                        @for (int i = 0; i < lstDMNu.Count(); i++)
                                         {
-                                            <li><a href="@Url.Action("Index", "TimKiem", new { DanhMuc = lstDM.ElementAt(i).MaDanhMuc})">@Html.DisplayFor(item => lstDM.ElementAt(i).TenDanhMuc)</a></li>
+                                            <li><a href="@Url.Action("Index", "TimKiem", new { DanhMuc = lstDMNu.ElementAt(i).MaDanhMuc})">@Html.DisplayFor(item => lstDMNu.ElementAt(i).TenDanhMuc)</a></li>
+                                        }
+                                    </ul>
+
+                                </div> 
+                                @{ List<DANHMUC> lstDMNam = ViewData["danhmucnam"] as List<DANHMUC>; }
+                                <div class="col-sm-4">
+                                    <p>ĐỒNG HỒ NAM</p>
+                                    <hr />
+                                    <ul class="multi-column-dropdown">
+                                        @for (int i = 0; i < lstDMNam.Count(); i++)
+                                        {
+                                            <li><a href="@Url.Action("Index", "TimKiem", new { DanhMuc = lstDMNam.ElementAt(i).MaDanhMuc})">@Html.DisplayFor(item => lstDMNam.ElementAt(i).TenDanhMuc)</a></li>
                                         }
                                     </ul>
 
                                 </div>
-                                <div class="col-sm-4 w3l">
-                                    <a href="women.html"><img src="~/images/back5.jpg" class="img-responsive" alt=""></a>
+                                @{ List<DANHMUC> lstDMPhuKien = ViewData["danhmucphukien"] as List<DANHMUC>; }
+                                <div class="col-sm-4">
+                                    <p>PHỤ KIỆN</p>
+                                    <hr />
+                                    <ul class="multi-column-dropdown">
+                                        @for (int i = 0; i < lstDMPhuKien.Count(); i++)
+                                        {
+                                            <li><a href="@Url.Action("Index", "TimKiem", new { DanhMuc = lstDMPhuKien.ElementAt(i).MaDanhMuc})">@Html.DisplayFor(item => lstDMPhuKien.ElementAt(i).TenDanhMuc)</a></li>
+                                        }
+                                    </ul>
+
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="@Url.Action("NhaSanXuat", "TimKiem")" class="dropdown-toggle hyper" data-toggle="dropdown"><span> Hãng sản xuất <b class="caret"></b></span></a>
+                        <a href="@Url.Action("NhaSanXuat", "TimKiem")" class="dropdown-toggle hyper" data-toggle="dropdown"><span> HÃNG SẢN XUẤT <b class="caret"></b></span></a>
                         <ul class="dropdown-menu multi">
                             <div class="row">
                                 @{ List<NHASANXUAT> lstNSX = ViewData["nhasanxuat"] as List<NHASANXUAT>; }
@@ -73,8 +96,8 @@
                             </div>
                         </ul>
                     </li>
-                    <li><a href="/About" class="hyper"><span>Giới thiệu</span></a></li>
-                    <li><a href="contact.html" class="hyper"><span>Liên hệ</span></a></li>
+                    <li><a href="/About" class="hyper"><span>GIỚI THIỆU</span></a></li>
+                    <li><a href="contact.html" class="hyper"><span>LIÊN HỆ</span></a></li>
                 </ul>
             </div>
         </nav>
