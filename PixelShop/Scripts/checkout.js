@@ -16,10 +16,24 @@ $(document).ready(function (c) {
 });
 $(document).ready(function () {
     $(".qtycart").change(function () {
+        var qty = $(this).val();
+        var productId = $(this).attr('class').replace('qtycart ', '');
         $.ajax({
             type: "GET",
             url: "ShoppingCart/Update",
-            data: { quantity: $(".qtycart").val(), id: $(".idProduct").text() },
+            data: { quantity: qty, id: productId },
+            dataType: "html"
+        });
+    });
+});
+
+$(document).ready(function () {
+    $(".btnaddcart").click(function () {
+        var productId = $(this).attr('class').replace('btnaddcart ', '');
+        $.ajax({
+            type: "GET",
+            url: "ShoppingCart/OrderNow",
+            data: { id: productId },
             dataType: "html"
         });
     });

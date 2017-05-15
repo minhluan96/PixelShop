@@ -20,7 +20,7 @@ namespace PixelShop.Controllers
             List<Item> cart = (List<Item>)Session["cart"];
             for(int i =0;i<cart.Count;i++)
             {
-                if (cart[i].Sanpham.MaSP == id)
+                if (cart[i].Sanpham.MaSP.Equals(id))
                 {
                     return i;
                 }
@@ -34,15 +34,14 @@ namespace PixelShop.Controllers
             cart.RemoveAt(index);
             return RedirectToAction("Index", "Checkout");
         }   
-        public ActionResult Update(string id,int quantity)
+        public void Update(string id,int quantity)
         {
             int index = isExisting(id);
             List<Item> cart = (List<Item>)Session["cart"];
             Item i = cart[index];
             i.Soluong = quantity; 
-            return RedirectToAction("Index", "Checkout");
         }
-        public ActionResult OrderNow(string id) {
+        public void OrderNow(string id) {
             if (Session["cart"] == null)
             {
                 List<Item> cart = new List<Item>();
@@ -59,7 +58,6 @@ namespace PixelShop.Controllers
                     cart[index].Soluong++;
                 Session["cart"] = cart;
             }
-            return RedirectToAction("Index", "Checkout");
         }
     }
 }

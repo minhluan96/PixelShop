@@ -14,10 +14,13 @@ namespace PixelShop.Controllers
         public PartialViewResult Menu()
         {
             List<NHASANXUAT> lstNSX = db.NHASANXUATs.Where(nsx => nsx.BiXoa == 0).Select(nsx => nsx).ToList<NHASANXUAT>();
-            List<DANHMUC> lstDM = db.DANHMUCs.Where(dm => dm.BiXoa == 0).Select(dm => dm).ToList<DANHMUC>();
+            List<DANHMUC> lstDMNam = db.DANHMUCs.Where(dm => dm.BiXoa == 0 && dm.NhomDanhMuc== 1).Select(dm => dm).ToList<DANHMUC>();
+            List<DANHMUC> lstDMNu = db.DANHMUCs.Where(dm => dm.BiXoa == 0 && dm.NhomDanhMuc == 2).Select(dm => dm).ToList<DANHMUC>();
+            List<DANHMUC> lstDMPhuKien = db.DANHMUCs.Where(dm => dm.BiXoa == 0 && dm.NhomDanhMuc == 3).Select(dm => dm).ToList<DANHMUC>();
             ViewData["nhasanxuat"] = lstNSX;
-            ViewData["danhmuc"] = lstDM;
-
+            ViewData["danhmucnam"] = lstDMNam;
+            ViewData["danhmucnu"] = lstDMNu;
+            ViewData["danhmucphukien"] = lstDMPhuKien;
             return PartialView();
         }
     }
