@@ -1,13 +1,19 @@
-﻿using System;
+﻿using PixelShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace PixelShop.Controllers
 {
     public class AdminController : Controller
     {
+
+        PixelShopEntities db = new PixelShopEntities();
+
+
         // GET: Admin
         public ActionResult Index()
         {
@@ -15,6 +21,8 @@ namespace PixelShop.Controllers
         }
         public ActionResult Order()
         {
+            
+
             return View(@"~/Views/Admin/Order.cshtml");
         }
         public ActionResult ViewOrder()
@@ -37,14 +45,145 @@ namespace PixelShop.Controllers
         {
             return View(@"~/Views/Admin/Product.cshtml");
         }
-        public ActionResult Category()
+        public ActionResult Category(int? page)
         {
-            return View(@"~/Views/Admin/Category.cshtml");
+            List<DANHMUC> lstDM = db.DANHMUCs.OrderBy(c => c.BiXoa).Select(c => c).ToList<DANHMUC>();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            return View(@"~/Views/Admin/Category.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult Manufacturer()
+        public ActionResult Manufacturer(int ?page)
         {
-            return View(@"~/Views/Admin/Manufacturer.cshtml");
+
+            List<NHASANXUAT> lstNSX = db.NHASANXUATs.OrderBy(n => n.BiXoa).Select(n => n).ToList<NHASANXUAT>();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+
+            return View(@"~/Views/Admin/Manufacturer.cshtml", lstNSX.ToPagedList(pageNumber, pageSize));
         }
+
+        [HttpPost]
+        public ActionResult ManufacturerUpdate(string tennsx, string mansx)
+        {
+
+            if(!string.IsNullOrEmpty(tennsx))
+            {
+                NHASANXUAT nsx = db.NHASANXUATs.Where(n => n.MaNSX.Equals(mansx)).Single();
+                if(nsx != null)
+                {
+                    nsx.TenNSX = tennsx;
+                    //update mo ta - db dang thieu
+
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Manufacturer", "Admin");
+        }
+
+        [HttpPost]
+        public ActionResult CategoryUpdate(string madm, string tendm, int cbbMaNdm)
+        {
+            if (!string.IsNullOrEmpty(tendm))
+            {
+                DANHMUC dm = db.DANHMUCs.Where(n => n.MaDanhMuc.Equals(madm) && n.BiXoa == 0).Single();
+                if (dm != null)
+                {
+                    dm.TenDanhMuc = tendm;
+                    dm.NhomDanhMuc = cbbMaNdm;
+                    //update mo ta - db dang thieu
+
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Category", "Admin");
+        }
+
+        public ActionResult CategoryCreate(string tendm, int cbbMaNdm)
+        {
+            if (!string.IsNullOrEmpty(tendm))
+            {
+                int solg = db.DANHMUCs.Count() + 1;
+                string madm = "DM";
+                if(solg < 10)
+                {
+                    madm += "0" + solg;
+
+                }
+                else
+                {
+                    madm += solg;
+                }
+                int n = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm)).Count();
+                DANHMUC dm = new DANHMUC { MaDanhMuc = madm, TenDanhMuc = tendm, BiXoa = 0, NhomDanhMuc = cbbMaNdm };
+                if(n  <= 0)
+                {
+                    db.DANHMUCs.Add(dm);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Category", "Admin");
+        }
+        
+
+        [HttpPost]
+        public ActionResult ManufacturerCreate(string tennsx, string mota)
+        {
+            if (!string.IsNullOrEmpty(tennsx))
+            {
+                int solg = db.NHASANXUATs.Count() + 1;
+                string mansx = "NSX";
+                if(solg < 10)
+                {
+                    mansx += "0" + solg;
+                }
+                else
+                {
+                    mansx += solg;
+                }
+                int n = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx)).Count();
+                NHASANXUAT nsx = new NHASANXUAT { MaNSX = mansx, TenNSX = tennsx, BiXoa = 0 };
+                if(n <= 0)
+                {
+                    db.NHASANXUATs.Add(nsx);
+                    db.SaveChanges();
+                }
+
+            }
+
+            return RedirectToAction("Manufacturer", "Admin");
+        }
+
+        [HttpPost]
+        public ActionResult CategoryDelete(string madm)
+        {
+            int n = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).Count();
+            if(n > 0)
+            {
+                DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).Single();
+                dm.BiXoa = 1;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Category", "Admin");
+        }
+
+        [HttpPost]
+        public ActionResult ManufacturerDelete(string mansx)
+        {
+            int n = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).Count();
+            if(n > 0)
+            {
+                NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).Single();
+                nsx.BiXoa = 1;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Manufacturer", "Admin");
+        }
+
+
         public PartialViewResult Header()
         {
             return PartialView(@"~/Views/Admin/Header.cshtml");

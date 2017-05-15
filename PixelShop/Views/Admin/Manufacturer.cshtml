@@ -1,4 +1,7 @@
-﻿@Styles.Render("~/Content/cssForAdmin")
+﻿@using PixelShop.Models
+@model PagedList.IPagedList<PixelShop.Models.NHASANXUAT>
+
+@Styles.Render("~/Content/cssForAdmin")
 @Scripts.Render("~/bundles/scriptsForAdmin")
 <script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
@@ -32,7 +35,7 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Nhà sản xuất <small>danh sách nhà sản xuất</small></h1>
+                <h1>Nhà sản xuất <small></small></h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
@@ -55,7 +58,7 @@
                         <div class="caption">
                             <i class="fa fa-gift font-green-sharp"></i>
                             <span class="caption-subject font-green-sharp bold uppercase">Nhà sản xuất</span>
-                            <span class="caption-helper">quản lý nhà sản xuất...</span>
+                            <span class="caption-helper"></span>
                         </div>
                         <div class="actions">
                             <a href="javascript:;" class="btn btn-sm btn-circle btn-success" data-toggle="dropdown">
@@ -68,42 +71,45 @@
                             <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom hold-on-click">
                                 <div class="row hold-on-click dropdown-menu div-iframeAdmin-content">
                                     <div class="col-md-12">
-                                        <form class="form-horizontal form-row-seperated" action="#">
-                                            <div class="portlet light">
-                                                <div class="portlet-title">
-                                                    <div class="caption">
-                                                        <i class="icon-basket font-green-sharp"></i>
-                                                        <span class="caption-subject font-green-sharp bold uppercase">
-                                                            Tạo mới nhà sản xuất
-                                                        </span>
+                                        <div class="form-horizontal form-row-seperated">
+                                            @using (Html.BeginForm("ManufacturerCreate", "Admin", FormMethod.Post))
+                                            {
+                                                <div class="portlet light">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <i class="icon-basket font-green-sharp"></i>
+                                                            <span class="caption-subject font-green-sharp bold uppercase">
+                                                                Tạo mới nhà sản xuất
+                                                            </span>
+                                                        </div>
+                                                        <div class="actions btn-set">
+                                                            <button type="submit" class="btn green-haze btn-circle"><i class="fa fa-check"></i> Tạo mới</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="actions btn-set">
-                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Tạo mới</button>
-                                                    </div>
-                                                </div>
-                                                <div class="portlet-body">
-                                                    <div class="tabbable">
-                                                        <div class="tab-content no-space">
-                                                            <div class="tab-pane active" id="tab_general">
-                                                                <div class="form-body">
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-4 control-label">
-                                                                            Tên nhà sản xuất: <span class="required">
-                                                                                *
-                                                                            </span>
-                                                                        </label>
-                                                                        <div class="col-md-8">
-                                                                            <input type="text" class="form-control" name="product[name]" placeholder="">
+                                                    <div class="portlet-body">
+                                                        <div class="tabbable">
+                                                            <div class="tab-content no-space">
+                                                                <div class="tab-pane active" id="tab_general">
+                                                                    <div class="form-body">
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-4 control-label">
+                                                                                Tên nhà sản xuất: <span class="required">
+                                                                                    *
+                                                                                </span>
+                                                                            </label>
+                                                                            <div class="col-md-8">
+                                                                                <input type="text" class="form-control" name="tennsx" placeholder="">
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-4 control-label">
-                                                                            Mô tả: <span class="required">
-                                                                                *
-                                                                            </span>
-                                                                        </label>
-                                                                        <div class="col-md-8">
-                                                                            <textarea class="form-control" name="product[description]"></textarea>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-4 control-label">
+                                                                                Mô tả: <span class="required">
+                                                                                    *
+                                                                                </span>
+                                                                            </label>
+                                                                            <div class="col-md-8">
+                                                                                <textarea class="form-control" name="mota"></textarea>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -111,9 +117,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            }
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
                                 </div>
                                 <!-- END PAGE CONTENT-->
                             </div>
@@ -166,7 +172,7 @@
                                 <thead>
                                     <tr role="row" class="heading">
                                         <th width="1%">
-                                            <input type="checkbox" class="group-checkable">
+                                            STT
                                         </th>
                                         <th width="10%">
                                             Mã nhà sản xuất
@@ -188,25 +194,33 @@
                                 </thead>
                                 <tbody>
 
-                                    @for (int i = 0; i < 10; i++)
+                                    @for (int i = 0; i < Model.Count(); i++)
                                     {
                                     <tr role="row">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" name="id" value="1" class="checkboxes">
+                                        <td style="text-align:center">
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline" >
+                                                @{ int pos = Model.ElementAt(i).MaNSX.IndexOf("NSX"); }
+                                                @Model.ElementAt(i).MaNSX.Substring(pos + 3)
                                             </label>
                                         </td>
                                         <td class="sorting_1">
-                                            @i
+                                            @Model.ElementAt(i).MaNSX
                                         </td>
                                         <td>
-                                            Nhà sản xuất @i
+                                            @Model.ElementAt(i).TenNSX
                                         </td>
                                         <td>
                                             Mô tả
                                         </td>
                                         <td>
-                                            <span class="label label-sm label-warning">Sử dụng</span>
+                                            @if (Model.ElementAt(i).BiXoa == 0)
+                                            {
+                                                <span class="label label-sm label-warning">Hoạt động</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-sm label-warning">Không hoạt động</span>
+                                            }
                                         </td>
                                         <td>
                                             <a href="javascript:;" class="btn btn-sm btn-circle btn-default" data-toggle="dropdown">
@@ -219,7 +233,8 @@
                                             <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom hold-on-click">
                                                 <div class="row hold-on-click dropdown-menu div-iframeAdmin-content">
                                                     <div class="col-md-12">
-                                                        <form class="form-horizontal form-row-seperated" action="#">
+                                                        <div class="form-horizontal form-row-seperated">
+                                                            @using(Html.BeginForm("ManufacturerUpdate", "Admin", FormMethod.Post)){
                                                             <div class="portlet light">
                                                                 <div class="portlet-title">
                                                                     <div class="caption">
@@ -227,10 +242,10 @@
                                                                         <span class="caption-subject font-green-sharp bold uppercase">
                                                                             Cập nhật nhà sản xuất
                                                                         </span>
-                                                                        <span class="caption-helper"> #1</span>
+                                                                        <span class="caption-helper"> </span>
                                                                     </div>
                                                                     <div class="actions btn-set">
-                                                                        <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Cập nhật</button>
+                                                                        <button type="submit" class="btn green-haze btn-circle btn-capnhat"><i class="fa fa-check"></i>Cập nhật</button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="portlet-body">
@@ -245,7 +260,8 @@
                                                                                             </span>
                                                                                         </label>
                                                                                         <div class="col-md-8">
-                                                                                            <input type="text" class="form-control" name="product[name]" placeholder="" value="Nixon">
+                                                                                            <input type="text" class="form-control txt-tensx" name="tennsx" placeholder="" value="@Model.ElementAt(i).TenNSX">
+                                                                                            <input type="text" class="form-control txt-mansx" name="mansx" placeholder="" value="@Model.ElementAt(i).MaNSX" style="display:none">
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group">
@@ -255,7 +271,7 @@
                                                                                             </span>
                                                                                         </label>
                                                                                         <div class="col-md-8">
-                                                                                            <textarea class="form-control" name="product[description]">Nhà sản xuất đồng hồ hàng đầu</textarea>
+                                                                                            <textarea class="form-control txt-mota" name="mota">Nhà sản xuất đồng hồ hàng đầu</textarea>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -264,20 +280,37 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                            }
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- END PAGE CONTENT-->
                                             </div>
-                                            <a href="javascript:;" class="btn btn-sm btn-circle btn-danger">
-                                                <i class="fa fa-trash-o"></i>
-                                                Xóa
-                                            </a>
+                                            <div style="display:inline-block">
+                                                @using (Html.BeginForm("ManufacturerDelete", "Admin", FormMethod.Post))
+                                                {
+                                                    <input type="text" class="txt-mansx" name="mansx" placeholder="" value="@Model.ElementAt(i).MaNSX" style="display:none">
+                                                    <button type="submit" href="javascript:;" class="btn btn-sm btn-circle btn-danger">
+                                                        <i class="fa fa-trash-o"></i>
+                                                        Xóa
+                                                    </button>
+                                                }
+                                            </div>
                                         </td>
                                     </tr>
                                     }
+
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="col-lg-12" style="text-align:center">
+                                                @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount*@
+                                                @Html.PagedListPager(Model, page => Url.Action("Manufacturer", new { page }))
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
+                            
                         </div>
                     </div>
                 </div>

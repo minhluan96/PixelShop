@@ -302,3 +302,14 @@ var Datatable = function() {
     };
 
 };
+
+//$(document).ready(function (c) {
+//    $('.btn-capnhat').on('click', function (c) {
+//        $.ajax({
+//            type: "GET",
+//            url: "ManufacturerUpdate",
+//            data: { tennsx: $(".txt-tensx").val(), mansx: $(".txt-mansx").val() },
+//            dataType: "html"
+//        });
+//    });
+//});
