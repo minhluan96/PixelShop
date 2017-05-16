@@ -27,12 +27,11 @@ namespace PixelShop.Controllers
             }
             return -1;
         }
-        public ActionResult Delete(string id)
+        public void Delete(string id)
         {
             int index = isExisting(id);
             List<Item> cart = (List<Item>)Session["cart"];
             cart.RemoveAt(index);
-            return RedirectToAction("Index", "Checkout");
         }   
         public void Update(string id,int quantity)
         {

@@ -36,7 +36,7 @@
 .cart-header2 {
   position: relative;
 }
-.close-checkout-1, .close-checkout-2 {
+.close-checkout {
   background: url('../images/close_1.png') no-repeat 0px 0px;
   cursor: pointer;
   width: 28px;
