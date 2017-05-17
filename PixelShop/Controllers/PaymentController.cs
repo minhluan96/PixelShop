@@ -13,5 +13,15 @@ namespace PixelShop.Controllers
         {
             return View();
         }
+
+        public ActionResult GhiNhanDonHang(FormCollection form)
+        {
+            return RedirectToAction("");
+        }
+
+        public ActionResult ThanhToanThanhCong()
+        {
+            return View();
+        }
     }
 }

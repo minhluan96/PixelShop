@@ -1,32 +1,55 @@
-﻿
+﻿@using PixelShop.Models
+
 @Styles.Render("~/Content/css-payment")
 <div class="main">
     <h1>Thanh toán</h1>
     <div class="w3_agile_main_grids">
         <div class="w3layouts_main_grid_left">
             <div class="agileinfo_main_grid_left_grid">
-                <h3>Payment Summary</h3>
-                <ul>
-                    <li>Electronics<span>2017 February 10, at 10:30 PM</span></li>
-                    <li>CAF</li>
-                </ul>
-                <ul>
-                    <li>Food<span>2017 February 25, at 1:30 PM</span></li>
-                    <li>JFK</li>
-                </ul>
-                <ul>
-                    <li>Grocery<span>2017 March 17, at 08:30 PM</span><span>2017 March 19, at 08:30 PM</span></li>
-                    <li>LHR</li>
-                </ul>
-                <ul>
-                    <li>Accessories<span>2017 April 09, at 10:00 AM</span></li>
-                    <li>JFK</li>
-                </ul>
+                <h3>Tóm tắt giỏ hàng</h3>
+                
+                @if (Session["cart"] != null && ((List<Item>)Session["cart"]).Count() > 0)
+                {
+                    for (int i = 0; i < ((List<Item>)Session["cart"]).Count(); i++)
+                    {
+                        if(i == 4)
+                        {
+                            break;
+                        }
+
+                        Item item = ((List<Item>)Session["cart"]).ElementAt(i);
+                        long giaSP = (long)(item.Sanpham.GiaBan * item.Soluong);
+                        string giaFormat = String.Format("{0:0,0}", giaSP) + " VNĐ";
+                        <ul>
+                            <li>@item.Sanpham.TenSP<span>Giá: @giaFormat</span></li>
+                            <li>@item.Soluong</li>
+                        </ul>
+                      }
+                }
+
+                @if(((List<Item>)Session["cart"]).Count() >= 4)
+                {
+                    int solgCon = ((List<Item>)Session["cart"]).Count() - 4;
+
+                    <a href="@Url.Action("Index", "Checkout")"><h3>Còn @solgCon trong giỏ hàng</h3></a>
+                }
+
+
             </div>
             <div class="agile_amount">
-                <h3>Total Price</h3>
-                <h4>523.63 GBP</h4>
-                <p>Price includes all taxes</p>
+                <h3>Tổng cộng</h3>
+                @{ long tongtien = 0;
+                    foreach(Item item in (List<Item>)Session["cart"])
+                    {
+                        tongtien += (long)(item.Sanpham.GiaBan * item.Soluong);
+                    }
+
+                    string giaTongCong = String.Format("{0:0,0}", tongtien) + "VNĐ";
+                }
+
+
+                <h4>@giaTongCong</h4>
+                <p>Giá đã bao gồm các loại thuế</p>
             </div>
         </div>
         <div class="agileits_main_grid_right">
@@ -43,14 +66,14 @@
                                         <div class="first-row form-group">
                                             <div class="controls">
                                                 <label class="control-label">Thông tin người nhận</label>
-                                                <input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith">
+                                                <input class="billing-address-name form-control" type="text" name="tenngnhan" placeholder="John Smith">
                                             </div>
                                             <div class="w3_agileits_card_number_grids">
                                                 <div class="w3_agileits_card_number_grid_left">
                                                     <div class="controls">
                                                         <label class="control-label">Số điện thoại người nhận</label>
-                                                        <input class="number credit-card-number form-control" type="text" name="number"
-                                                               inputmode="numeric" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number" >
+                                                        <input class="number credit-card-number form-control" type="text" name="sodt" placeholder="Số điện thoại"
+                                                               inputmode="numeric">
                                                     </div>
                                                 </div>
                                                
@@ -58,7 +81,7 @@
                                             </div>
                                             <div class="controls">
                                                 <label class="control-label">Địa chỉ giao hàng</label>
-                                                <input class="expiration-month-and-year form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">
+                                                <input class="expiration-month-and-year form-control" type="text" name="diaChi" placeholder="Địa chỉ nhà">
                                             </div>
                                         </div>
                                         <input type="submit" value="Xác nhận">

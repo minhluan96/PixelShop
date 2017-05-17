@@ -129,12 +129,14 @@
                                                                 <li>
                                                                     <label>Nam</label>
                                                                     <ul class="list-unstyled">
+                                                                        @{ int i = 0;}
                                                                         @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
                                                                         {
                                                                         <li>
                                                                             @if (dm.NhomDanhMuc == 1) {
-                                                                            <label><input type="checkbox" name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
-                                                                                }
+                                                                            <label><input type="radio" @(i == 0 ? "checked" : "") name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
+                                                                                i++;
+                                                                            }
                                                                         </li>
 
 
@@ -145,15 +147,17 @@
                                                                 <li>
                                                                     <label>Nữ</label>
                                                                     <ul class="list-unstyled">
+                                                                        
                                                                         @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
                                                                         {
                                                                             <li>
                                                                                 @if (dm.NhomDanhMuc == 2)
                                                                                 {
-                                                                                    <label><input type="checkbox" name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
+                                                                                    <label><input type="radio" name="tendm"  value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
+                                                                                    
                                                                                 }
                                                                             </li>
-
+                                                                            
 
                                                                         }
                                                                     </ul>
@@ -167,7 +171,7 @@
                                                                             <li>
                                                                                 @if (dm.NhomDanhMuc == 3)
                                                                                 {
-                                                                                    <label><input type="checkbox" name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
+                                                                                    <label><input type="radio" name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
                                                                                 }
                                                                             </li>
 
@@ -185,6 +189,23 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">
+                                                    Nhà sản xuất: <span class="required">
+                                                        *
+                                                    </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <select class="table-group-action-input form-control input-medium" name="maNSX">
+                                                        @foreach (NHASANXUAT nsx in ViewData["dsNhaSanXuat"] as List<NHASANXUAT>)
+                                                        {
+                                                            <option value="@nsx.MaNSX">@nsx.TenNSX</option>
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">
                                                     Số lượng: <span class="required">
@@ -205,19 +226,7 @@
                                                     <input type="text" class="form-control" name="giaban" placeholder="">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">
-                                                    Trạng thái: <span class="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <div class="col-md-10">
-                                                    <select class="table-group-action-input form-control input-medium" name="cbbXoa">
-                                                        <option value="1">Kinh doanh</option>
-                                                        <option value="0">Không kinh doanh</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab_images">
@@ -279,9 +288,9 @@
                                                         </label>
                                                     </td>
                                                     <td>
-                                                        <a href="javascript:;" class="btn default btn-sm">
+                                                        <button href="javascript:;" class="btn default btn-sm">
                                                             <i class="fa fa-times"></i> Xóa
-                                                        </a>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <tr>

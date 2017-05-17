@@ -197,16 +197,16 @@ input[type="submit"],.agileits_copyright p a,a{
 	display: inline-block;
     color: #fff;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1.2em;
     vertical-align: top;
 }
 .agileinfo_main_grid_left_grid ul li span{
 	display:block;
-	font-size:.5em;
+	font-size:.8em;
 	color:#999;
 }
 .agileinfo_main_grid_left_grid ul li:first-child{
-	width: 70%;
+	width: 80%;
 	border-right:1px solid #999;
 }
 .agileinfo_main_grid_left_grid ul li:last-child{

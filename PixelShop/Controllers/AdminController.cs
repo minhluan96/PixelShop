@@ -64,6 +64,8 @@ namespace PixelShop.Controllers
 
             return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
         }
+
+        
         public ActionResult Category(int? page)
         {
             List<DANHMUC> lstDM = db.DANHMUCs.OrderBy(c => c.BiXoa).Select(c => c).ToList<DANHMUC>();
@@ -100,6 +102,8 @@ namespace PixelShop.Controllers
             }
             return RedirectToAction("Manufacturer", "Admin");
         }
+
+        
 
         public ActionResult ProductUpdate(string masp, string tensp, string motasp, string tendm, int slg, int giaban, 
                                     string[] imgSP, string imgKey, string maNSX, HttpPostedFileBase image)
@@ -187,9 +191,52 @@ namespace PixelShop.Controllers
             return RedirectToAction("Category", "Admin");
         }
 
-        public ActionResult ProductCreate(string tensp, string motasp, string tendm, int slg, int giaban,
-                                    string[] imgSP, string imgKey, string maNSX)
+        public ActionResult ProductCreate(FormCollection frm)
         {
+            //string tensp, string motasp, string tendm, int slg, int giaban,
+            //                        string[] imgSP, string imgKey, string maNSX
+
+            string tensp = Convert.ToString(frm["tensp"]);
+            string mota = Convert.ToString(frm["motasp"]);
+            string tendm = Convert.ToString(frm["tendm"]);
+            int slg = Convert.ToInt32(frm["slg"]);
+            int giaban = Convert.ToInt32(frm["giaban"]);
+            string maNSX = Convert.ToString(frm["maNSX"]);
+
+            if(tensp != null && slg >= 0 && giaban >= 0 && tendm != null) {
+                int solgSP = db.SANPHAMs.Count() + 1;
+                string maSP = "SP";
+                if(solgSP < 10)
+                {
+                    maSP += "00" + solgSP;
+                }
+                else
+                {
+                    maSP += "0" + solgSP;
+                }
+                int n = db.SANPHAMs.Where(c => c.MaSP.Equals(maSP)).Count();
+                SANPHAM sp = new SANPHAM
+                {
+                    MaSP = maSP,
+                    TenSP = tensp,
+                    GiaBan = giaban,
+                    HinhHienThi = null,
+                    SoLuongTon = solgSP,
+                    MoTa = mota,
+                    DanhMuc = tendm,
+                    NhaSanXuat = maNSX,
+                    SoLuongBan = 0,
+                    SoLuotXem = 0,
+                    BiXoa = 0
+                };
+                if(n <= 0)
+                {
+                    db.SANPHAMs.Add(sp);
+                    db.SaveChanges();
+                }
+
+            }
+
             return RedirectToAction("Product", "Admin");
         }
 
@@ -246,6 +293,18 @@ namespace PixelShop.Controllers
             }
 
             return RedirectToAction("Manufacturer", "Admin");
+        }
+
+        public ActionResult ProductDelete(string masp)
+        {
+            int n = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Count();
+            if(n  > 0)
+            {
+                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
+                sp.BiXoa = 1;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Product", "Admin");
         }
 
         [HttpPost]
