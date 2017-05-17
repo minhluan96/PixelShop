@@ -1,4 +1,7 @@
-﻿@Styles.Render("~/Content/cssForAdmin")
+﻿@using PixelShop.Models
+@model PixelShop.Models.SANPHAM
+
+@Styles.Render("~/Content/cssForAdmin")
 @Scripts.Render("~/bundles/scriptsForAdmin")
 <script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
@@ -52,7 +55,10 @@
         <!-- BEGIN PAGE CONTENT-->
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal form-row-seperated" action="#">
+                <div class="form-horizontal form-row-seperated" action="#">
+                   
+                    @using (Html.BeginForm("ProductUpdate", "Admin", FormMethod.Post, new { enctype = "multipart/form-data"}))
+                    {
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
@@ -64,7 +70,7 @@
                             </div>
                             <div class="actions btn-set">
                                 <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Khởi tạo</button>
-                                <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Cập nhật</button>
+                                <button class="btn green-haze btn-circle" type="submit"><i class="fa fa-check"></i> Cập nhật</button>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -98,7 +104,8 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="product[name]" placeholder="" value="Apple Swatch">
+                                                    <input type="hidden" class="form-control" name="masp" placeholder="" value="@Model.MaSP">
+                                                    <input type="text" class="form-control" name="tensp" placeholder="" value="@Model.TenSP">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -108,7 +115,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <textarea class="form-control" name="product[description]">Đồng hồ do Apple sản xuất</textarea>
+                                                    <textarea class="form-control" style="height:150px" name="motasp">@Model.MoTa</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -120,56 +127,49 @@
                                                 <div class="col-md-10">
                                                     <div class="form-control height-auto">
                                                         <div class="scroller" style="height:275px;" data-always-visible="1">
+
                                                             <ul class="list-unstyled">
                                                                 <li>
-                                                                    <label><input type="checkbox" name="product[categories][]" value="1">Mens</label>
+                                                                    <label>Nam</label>
                                                                     <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1" checked>Footwear</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Clothing</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Accessories</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Fashion Outlet</label>
-                                                                        </li>
+                                                                        @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                                        {
+                                                                            if (dm.NhomDanhMuc == 1)
+                                                                            {
+                                                                            <li>
+                                                                                <label><input  type="radio" name="tendm" value="@dm.MaDanhMuc" @(Model.DANHMUC1.MaDanhMuc.Equals(@dm.MaDanhMuc) ? "checked" : "")>@dm.TenDanhMuc</label>
+                                                                            </li>
+                                                                            }
+                                                                        }
                                                                     </ul>
                                                                 </li>
                                                                 <li>
-                                                                    <label><input type="checkbox" name="product[categories][]" value="1">Football Shirts</label>
+                                                                    <label>Nữ</label>
                                                                     <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Premier League</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Football League</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Serie A</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Bundesliga</label>
-                                                                        </li>
+                                                                        
+                                                                        @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                                        {
+                                                                            if (dm.NhomDanhMuc == 2)
+                                                                            {
+                                                                                <li>
+                                                                                    <label><input type="radio" name="tendm" value="@dm.MaDanhMuc"  @(Model.DANHMUC1.MaDanhMuc.Equals(@dm.MaDanhMuc) ? "checked" : "")>@dm.TenDanhMuc</label>
+                                                                                </li>
+                                                                            }
+                                                                        }
                                                                     </ul>
                                                                 </li>
                                                                 <li>
-                                                                    <label><input type="checkbox" name="product[categories][]" value="1">Brands</label>
+                                                                    <label>Phụ kiện</label>
                                                                     <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Adidas</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Nike</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Airwalk</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Kangol</label>
-                                                                        </li>
+                                                                        @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                                        {
+                                                                            if (dm.NhomDanhMuc == 3)
+                                                                            {
+                                                                                <li>
+                                                                                    <label><input  type="radio" name="tendm" value="@dm.MaDanhMuc" @(Model.DANHMUC1.MaDanhMuc.Equals(@dm.MaDanhMuc) ? "checked" : "")>@dm.TenDanhMuc</label>
+                                                                                </li>
+                                                                            }
+                                                                        }
                                                                     </ul>
                                                                 </li>
                                                             </ul>
@@ -182,12 +182,28 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">
+                                                    Nhà sản xuất: <span class="required">
+                                                        *
+                                                    </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <select class="table-group-action-input form-control input-medium" name="maNSX">
+                                                        @foreach (NHASANXUAT nsx in ViewData["dsNhaSanXuat"] as List<NHASANXUAT>) { 
+                                                            <option value="@nsx.MaNSX" @(Model.NhaSanXuat.Equals(nsx.MaNSX) ? "selected" : "")>@nsx.TenNSX</option>
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">
                                                     Số lượng: <span class="required">
                                                         *
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="product[sku]" placeholder="" value="200">
+                                                    <input type="text" class="form-control" name="slg" placeholder="" value="@Model.SoLuongTon">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -197,23 +213,10 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="product[price]" placeholder="" value="100">
+                                                    <input type="text" class="form-control" name="giaban" placeholder="" value="@Model.GiaBan">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">
-                                                    Trạng thái: <span class="required">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <div class="col-md-10">
-                                                    <select class="table-group-action-input form-control input-medium" name="product[status]">
-                                                        <option value="">Chọn...</option>
-                                                        <option value="1" selected>Kinh doanh</option>
-                                                        <option value="0">Không kinh doanh</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab_images">
@@ -222,13 +225,15 @@
                                             <i class="fa fa-warning fa-lg"></i> Hình ảnh sản phẩm.
                                         </div>
                                         <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
-                                            <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn yellow">
-                                                <i class="fa fa-plus"></i> Chọn lại ảnh
-                                            </a>
-                                            <a id="tab_images_uploader_uploadfiles" href="javascript:;" class="btn green">
-                                                <i class="fa fa-share"></i> Thêm ảnh
-                                            </a>
+
+                                                <input type="file" class="btn green" style="display:inline-block;" name="image"  />
+                                                <button type="button" id="tab_images_uploader_uploadfiles submitnew_img" href="javascript:;" class="btn green">
+                                                    <i class="fa fa-share"></i> Thêm ảnh
+                                                </button>
+
+
                                         </div>
+                                        
                                         <div class="row">
                                             <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12">
                                             </div>
@@ -240,100 +245,48 @@
                                                         Hình ảnh
                                                     </th>
                                                     <th width="10%">
-                                                        Ảnh chính
+                                                        Thông tin
                                                     </th>
                                                     <th width="10%">
-                                                        Ảnh nhỏ
-                                                    </th>
-                                                    <th width="10%">
-                                                        Thumbnail
+                                                        Đường dẫn
                                                     </th>
                                                     <th width="10%">
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @for (int i = 0; i < Model.HINHANHs.Count(); i++)
+                                                {
                                                 <tr>
                                                     <td>
-                                                        <a href="~/images/product2.jpg" class="fancybox-button" data-rel="fancybox-button">
-                                                            <img class="img-responsive" src="~/images/product2.jpg" alt="">
+                                                        <a href="" class="fancybox-button" data-rel="fancybox-button">
+                                                            <input type="hidden" name="imgSP" value="@Model.HINHANHs.ElementAt(i).PathHinhAnh"/>
+                                                            <img type="image"  class="img-responsive" src="@Model.HINHANHs.ElementAt(i).PathHinhAnh"  alt="">
                                                         </a>
                                                     </td>
                                                     <td>
                                                         <label>
-                                                            <input type="radio" name="product[images][1][image_type]" value="1">
+                                                            <input type="radio" name="imgKey" value="@Model.HINHANHs.ElementAt(i).PathHinhAnh" @(Model.HinhHienThi.Equals(Model.HINHANHs.ElementAt(i).PathHinhAnh) ? "checked" : "")>
+                                                            Ảnh bìa
                                                         </label>
                                                     </td>
                                                     <td>
                                                         <label>
-                                                            <input type="radio" name="product[images][1][image_type]" value="2">
+                                                            @Model.HINHANHs.ElementAt(i).PathHinhAnh
                                                         </label>
                                                     </td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="radio" name="product[images][1][image_type]" value="3" checked>
-                                                        </label>
-                                                    </td>
+                                                    
                                                     <td>
                                                         <a href="javascript:;" class="btn default btn-sm">
                                                             <i class="fa fa-times"></i> Xóa
                                                         </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="~/images/product1.jpg" class="fancybox-button" data-rel="fancybox-button">
-                                                            <img class="img-responsive" src="~/images/product1.jpg" alt="">
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="radio" name="product[images][2][image_type]" value="1">
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="radio" name="product[images][2][image_type]" value="2" checked>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="radio" name="product[images][2][image_type]" value="3">
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:;" class="btn default btn-sm">
-                                                            <i class="fa fa-times"></i> Xóa
+
+                                                        <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn yellow">
+                                                            <i class="fa fa-plus"></i> Chọn lại ảnh
                                                         </a>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="~/images/product3.jpg" class="fancybox-button" data-rel="fancybox-button">
-                                                            <img class="img-responsive" src="~/images/product3.jpg" alt="">
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="radio" name="product[images][3][image_type]" value="1" checked>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="radio" name="product[images][3][image_type]" value="2">
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="radio" name="product[images][3][image_type]" value="3">
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:;" class="btn default btn-sm">
-                                                            <i class="fa fa-times"></i> Xóa
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                                    }
                                             </tbody>
                                         </table>
                                     </div>
@@ -409,7 +362,10 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                    }
+                </div>
+
+                    
             </div>
         </div>
         <!-- END PAGE CONTENT-->

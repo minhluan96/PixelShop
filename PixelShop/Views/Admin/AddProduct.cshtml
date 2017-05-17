@@ -1,4 +1,7 @@
-﻿@Styles.Render("~/Content/cssForAdmin")
+﻿@using PixelShop.Models
+@model PixelShop.Models.SANPHAM
+
+@Styles.Render("~/Content/cssForAdmin")
 @Scripts.Render("~/bundles/scriptsForAdmin")
 <script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
@@ -52,7 +55,9 @@
         <!-- BEGIN PAGE CONTENT-->
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal form-row-seperated" action="#">
+                <div class="form-horizontal form-row-seperated" action="#">
+                    @using (Html.BeginForm("ProductCreate", "Admin", FormMethod.Post))
+                    {
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
@@ -98,7 +103,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="product[name]" placeholder="">
+                                                    <input type="text" class="form-control" name="tensp" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -108,7 +113,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <textarea class="form-control" name="product[description]"></textarea>
+                                                    <textarea class="form-control" name="motasp"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -122,56 +127,56 @@
                                                         <div class="scroller" style="height:275px;" data-always-visible="1">
                                                             <ul class="list-unstyled">
                                                                 <li>
-                                                                    <label><input type="checkbox" name="product[categories][]" value="1">Mens</label>
+                                                                    <label>Nam</label>
                                                                     <ul class="list-unstyled">
+                                                                        @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                                        {
                                                                         <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Footwear</label>
+                                                                            @if (dm.NhomDanhMuc == 1) {
+                                                                            <label><input type="checkbox" name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
+                                                                                }
                                                                         </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Clothing</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Accessories</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Fashion Outlet</label>
-                                                                        </li>
+
+
+                                                                        }
                                                                     </ul>
                                                                 </li>
+
                                                                 <li>
-                                                                    <label><input type="checkbox" name="product[categories][]" value="1">Football Shirts</label>
+                                                                    <label>Nữ</label>
                                                                     <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Premier League</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Football League</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Serie A</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Bundesliga</label>
-                                                                        </li>
+                                                                        @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                                        {
+                                                                            <li>
+                                                                                @if (dm.NhomDanhMuc == 2)
+                                                                                {
+                                                                                    <label><input type="checkbox" name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
+                                                                                }
+                                                                            </li>
+
+
+                                                                        }
                                                                     </ul>
                                                                 </li>
+
                                                                 <li>
-                                                                    <label><input type="checkbox" name="product[categories][]" value="1">Brands</label>
+                                                                    <label>Phụ kiện</label>
                                                                     <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Adidas</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Nike</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Airwalk</label>
-                                                                        </li>
-                                                                        <li>
-                                                                            <label><input type="checkbox" name="product[categories][]" value="1">Kangol</label>
-                                                                        </li>
+                                                                        @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                                        {
+                                                                            <li>
+                                                                                @if (dm.NhomDanhMuc == 3)
+                                                                                {
+                                                                                    <label><input type="checkbox" name="tendm" value="@dm.MaDanhMuc">@dm.TenDanhMuc</label>
+                                                                                }
+                                                                            </li>
+
+
+                                                                        }
                                                                     </ul>
                                                                 </li>
+
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -187,7 +192,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="product[sku]" placeholder="">
+                                                    <input type="text" class="form-control" name="slg" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -197,7 +202,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="product[price]" placeholder="">
+                                                    <input type="text" class="form-control" name="giaban" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -207,8 +212,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <select class="table-group-action-input form-control input-medium" name="product[status]">
-                                                        <option value="">Chọn...</option>
+                                                    <select class="table-group-action-input form-control input-medium" name="cbbXoa">
                                                         <option value="1">Kinh doanh</option>
                                                         <option value="0">Không kinh doanh</option>
                                                     </select>
@@ -409,7 +413,8 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                    }
+                </div>
             </div>
         </div>
         <!-- END PAGE CONTENT-->
