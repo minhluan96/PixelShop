@@ -1607,6 +1607,9 @@
     <Content Include="images\size2.jpg" />
     <Content Include="images\size3.jpg" />
     <Content Include="images\size4.jpg" />
+    <Content Include="ImgProduct\product1.jpg" />
+    <Content Include="ImgProduct\product2.jpg" />
+    <Content Include="ImgProduct\product3.jpg" />
     <Content Include="Models\PixelShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PixelShop.edmx</DependentUpon>
@@ -1666,7 +1669,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ImgProduct\" />
     <Folder Include="Views\SanPham\" />
   </ItemGroup>
   <ItemGroup>

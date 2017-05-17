@@ -10,15 +10,13 @@
                 {
                     <p>Giỏ hàng đang trống</p>
                 }
-                @if (Session["cart"] != null)
+                @if (Session["cart"] != null && ((List<Item>)Session["cart"]).Count > 0)
                 {
                     
                     foreach (Item item in (List<Item>)Session["cart"])
                     {
                         <div class="cart-header">
-                            <a href="@Url.Action("Delete", "ShoppingCart", new {id= item.Sanpham.MaSP },null)">
-                                <div class="close-checkout-1"> </div>
-                            </a>
+                            <a href="/Checkout"><div class="close-checkout @item.Sanpham.MaSP"> </div></a>
                                 <div class="cart-sec simpleCart_shelfItem">
                                     <div class="cart-item cyc">
                                         <img src="@item.Sanpham.HinhHienThi" class="img-responsive" alt="" />
@@ -26,17 +24,18 @@
                                     <div class="cart-item-info">
                                         <h3>@item.Sanpham.TenSP</h3>
                                         <span>Mã sản phẩm: <span  class="idProduct">@item.Sanpham.MaSP</span></span>
-                                        <br />                                     
+                                        <br />       
+                                        <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>                              
                                         <input type="number" class="qtycart @item.Sanpham.MaSP" min="1" max="20" value="@item.Soluong">
                                         <div class="delivery">
-                                            <p>Tổng tiền: @(item.Sanpham.GiaBan * item.Soluong)</p>
+                                            <p id="total">Tổng tiền: @(item.Sanpham.GiaBan * item.Soluong)</p>
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                </div>
-                        <hr />
+                                <hr />
+                           </div>
                     }
                 }
             </div>

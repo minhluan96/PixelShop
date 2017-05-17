@@ -996,8 +996,9 @@ p.copy-right{
     background-color: #D54D4D;
     padding: 10px;
     margin:10px;
-    margin-top:40px;
     color: white;
+    text-align: center;
+    margin-top: 20px;
 }
 .sbmincart-showing #PPsbmincart {
     display: block;
@@ -3321,4 +3322,16 @@ input[type=number]:hover::-webkit-inner-spin-button {
     padding: 5px;
     position: relative;
     right: 0px;
+}
+
+.minicart{
+    position: absolute;
+    right: 0px;
+    top: 38px; 
+    width:30%; 
+    padding: 30px 20px 30px 20px; 
+    background-color:white; 
+    font-size:11px;
+    z-index:10;
+    display: none;
 }

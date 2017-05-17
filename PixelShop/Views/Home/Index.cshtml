@@ -10,250 +10,251 @@
     </div>
 </div>
 <div class="top-brands">
-    <div class="container">
-        <h2>Sản phẩm xem nhiều nhất </h2><br /><br />
-        <div class="sliderfig">
-            <ul id="flexiselDemo1">
-                @foreach(var sp in ViewData["xemNhieu"] as List<SANPHAM>) {
-                <li>
-                    <a href="@Url.Action("Index", "Info", new { id = sp.MaSP })">
-                        <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " class="img-responsive" />
-                        <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
+        <div class="container">
+            <h2>Sản phẩm xem nhiều nhất </h2><br /><br />
+            <div class="sliderfig">
+                <ul id="flexiselDemo1">
+                    @foreach (var sp in ViewData["xemNhieu"] as List<SANPHAM>)
+                    {
+                        <li>
+                            <a href="@Url.Action("Index", "Info", new { id = sp.MaSP })">
+                                <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " class="img-responsive" />
+                                <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
 
-                        <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
-                    </a>
-                </li>
-                }
+                                <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
+                            </a>
+                        </li>
+                    }
 
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- //top-brands -->
-<div class="banner-bootom-w3-agileits w3-centered intro">
-    <h2>TIN TỨC MỚI</h2><br />
-    <h1>Tổng hợp các tin mới nhất trong ngày</h1><br />
-    <div class="container">
-        <div class="col-md-4 bb-grids bb-left-agileits-w3layouts">
-            <a href="#">
-                <img src="~/images/back2.jpg">
-                <span>
-                    <p>CÁC TÍNH NĂNG MỚI VÀ NỔI BẬT</p>
-                    <p>TRÊN ANDROID WEAR 2.0</p>
-                </span>
-            </a>
-        </div>
-        <div class="col-md-4 bb-grids bb-left-agileits-w3layouts">
-            <a href="#">
-                <img src="~/images/back3.jpg">
-                <span>
-                    <p>BỘ SƯU TẬP SPEEDSTER II, CÁC TÍNH NĂNG</p>
-                    <p>TRÊN SENTRY CHRONO</p>
-                </span>
-            </a>
-        </div>
-        <div class="col-md-4 bb-grids bb-left-agileits-w3layouts">
-            <a href="#">
-                <img src="~/images/back4.jpg">
-                <span>
-                    <p>KIỂU MẪU MAVEN CHO NHỮNG AI YÊU THÍCH </p>
-                    <p>SỰ MỚI LẠ</p>
-                </span>
-            </a>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
-<div class="top-products">
-    <div class="container">
-        <h4>CÁC SẢN PHẨM BÁN CHẠY</h4>
-        <br />
-        <h3>Chúng tôi tập trung hoàn thiện đến những chi tiết nhỏ nhất để có thể tạo nên những sản phẩm mà phản ánh được </h3>
-        <h3>sự độc đáo trong cách thể hiện, những giá trị di sản, phong cách và chúng tôi sẽ không dừng lại cho đến khi có thể hoàn thành</h3>
-        <br />
-        <div class="sap_tabs">
-            <div id="horizontalTab">
-                <div class="clearfix"> </div>
-                <div class="resp-tabs-container">
-                    <div class="tab-1 resp-tab-content">
-
-                        @{var lst = ViewData["banChay"] as List<SANPHAM>;}
-                        @for (int i = 0; i < lst.Count() / 2; i++)
-                        {
-                        
-                        <div class="col-md-3 top-product-grids tp4">
-                            <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
-                                <div class="product-img">
-                                    <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
-                                    <div class="p-mask">
-
-                                        <a href="#" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
-                                    </div>
-                                </div>
-                             </a>
-
-
-                                <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
-                                <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
-
-            </div>
-                        
-                        }
-                        <div class="clearfix"></div>
-                        <div class="top-products-set2">
-
-                            @for (int i = 4; i < lst.Count(); i++)
-                            {
-
-                                <div class="col-md-3 top-product-grids tp5">
-                                    <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
-                                        <div class="product-img">
-                                            <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
-                                            <div class="p-mask">
-                                                <a href="#" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
-                                            </div>
-                                        </div>
-                                        <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
-                                        <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
-                                    </a>
-</div>
-
-                            }
-                            
-
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <ul class="resp-tabs-list">
-                    <li class="resp-tab-item"><span>Xem nhiều hơn</span></li>
                 </ul>
             </div>
         </div>
     </div>
-</div>
-<div class="product-size">
-    <div class="container">
-        <h3>SHOP BY CASE</h3>
-        <br />
-        <h4>One size does not fit all. Find the right case size for your personalized fit. </h4>
-        <br />
-        <div class="sap_tabs">
-            <div id="horizontalTab">
-                <div class="clearfix"> </div>
-                <div class="resp-tabs-container">
-                    <div class="tab-1 resp-tab-content">
-                        <div class="col-md-3 top-product-grids tp1 animated wow slideInUp" data-wow-delay=".5s">
+    <!-- //top-brands -->
+    <div class="banner-bootom-w3-agileits w3-centered intro">
+        <h2>TIN TỨC MỚI</h2><br />
+        <h1>Tổng hợp các tin mới nhất trong ngày</h1><br />
+        <div class="container">
+            <div class="col-md-4 bb-grids bb-left-agileits-w3layouts">
+                <a href="#">
+                    <img src="~/images/back2.jpg">
+                    <span>
+                        <p>CÁC TÍNH NĂNG MỚI VÀ NỔI BẬT</p>
+                        <p>TRÊN ANDROID WEAR 2.0</p>
+                    </span>
+                </a>
+            </div>
+            <div class="col-md-4 bb-grids bb-left-agileits-w3layouts">
+                <a href="#">
+                    <img src="~/images/back3.jpg">
+                    <span>
+                        <p>BỘ SƯU TẬP SPEEDSTER II, CÁC TÍNH NĂNG</p>
+                        <p>TRÊN SENTRY CHRONO</p>
+                    </span>
+                </a>
+            </div>
+            <div class="col-md-4 bb-grids bb-left-agileits-w3layouts">
+                <a href="#">
+                    <img src="~/images/back4.jpg">
+                    <span>
+                        <p>KIỂU MẪU MAVEN CHO NHỮNG AI YÊU THÍCH </p>
+                        <p>SỰ MỚI LẠ</p>
+                    </span>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="top-products">
+        <div class="container">
+            <h4>CÁC SẢN PHẨM BÁN CHẠY</h4>
+            <br />
+            <h3>Chúng tôi tập trung hoàn thiện đến những chi tiết nhỏ nhất để có thể tạo nên những sản phẩm mà phản ánh được </h3>
+            <h3>sự độc đáo trong cách thể hiện, những giá trị di sản, phong cách và chúng tôi sẽ không dừng lại cho đến khi có thể hoàn thành</h3>
+            <br />
+            <div class="sap_tabs">
+                <div id="horizontalTab">
+                    <div class="clearfix"> </div>
+                    <div class="resp-tabs-container">
+                        <div class="tab-1 resp-tab-content">
+
+                            @{var lst = ViewData["banChay"] as List<SANPHAM>;}
+                            @for (int i = 0; i < lst.Count() / 2; i++)
+                            {
+
+                                <div class="col-md-3 top-product-grids tp4">
+                                    <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
+                                        <div class="product-img">
+                                            <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
+                                            <div class="p-mask">
+
+                                                <a href="" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
+                                            </div>
+                                        </div>
+                                    </a>
+
+
+                                    <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
+                                    <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
+
+                                </div>
+
+                            }
+                            <div class="clearfix"></div>
+                            <div class="top-products-set2">
+
+                                @for (int i = 4; i < lst.Count(); i++)
+                                {
+
+                                    <div class="col-md-3 top-product-grids tp5">
+                                        <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
+                                            <div class="product-img">
+                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
+                                                <div class="p-mask">
+                                                    <a href="" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
+                                                </div>
+                                            </div>
+                                            <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
+                                            <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
+                                        </a>
+                                    </div>
+
+                                }
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="resp-tabs-list">
+                        <li class="resp-tab-item"><span>Xem nhiều hơn</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-size">
+        <div class="container">
+            <h3>SHOP BY CASE</h3>
+            <br />
+            <h4>One size does not fit all. Find the right case size for your personalized fit. </h4>
+            <br />
+            <div class="sap_tabs">
+                <div id="horizontalTab">
+                    <div class="clearfix"> </div>
+                    <div class="resp-tabs-container">
+                        <div class="tab-1 resp-tab-content">
+                            <div class="col-md-3 top-product-grids tp1 animated wow slideInUp" data-wow-delay=".5s">
                                 <div class="product-img">
                                     <img src="~/images/size1.jpg" alt="" />
-                                    
+
                                 </div>
-                            <h4>0 MM - 31 MM</h4>
-                            <h5># X-LARGE</h5>
-                        </div>
-                        <div class="col-md-3 top-product-grids tp2">
+                                <h4>0 MM - 31 MM</h4>
+                                <h5># X-LARGE</h5>
+                            </div>
+                            <div class="col-md-3 top-product-grids tp2">
                                 <div class="product-img">
                                     <img src="~/images/size2.jpg" alt="" />
-                                    
+
                                 </div>
-                            <h4>32 MM - 41 MM</h4>
-                            <h5># X-LARGE</h5>
-                        </div>
-                        <div class="col-md-3 top-product-grids tp3">
+                                <h4>32 MM - 41 MM</h4>
+                                <h5># X-LARGE</h5>
+                            </div>
+                            <div class="col-md-3 top-product-grids tp3">
                                 <div class="product-img">
                                     <img src="~/images/size3.jpg" alt="" />
-                                   
+
                                 </div>
-                            <h4>42 MM - 47 MM</h4>
-                            <h5># LARGE</h5>
-                        </div>
-                        <div class="col-md-3 top-product-grids tp4">
+                                <h4>42 MM - 47 MM</h4>
+                                <h5># LARGE</h5>
+                            </div>
+                            <div class="col-md-3 top-product-grids tp4">
                                 <div class="product-img">
                                     <img src="~/images/size4.jpg" alt="" />
-                                   
+
                                 </div>
-                            <h4>48 MM - 52 MM</h4>
-                            <h5># X-LARGE</h5>
-                        </div>
-                        <div class="clearfix"></div>
+                                <h4>48 MM - 52 MM</h4>
+                                <h5># X-LARGE</h5>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        <hr />
+            <hr />
         </div>
     </div>
 
-<div class="fandt">
-    <div class="container">
-        <div class="col-md-6 features">
-            <h3>Dịch vụ của chúng tôi</h3>
-            <div class="support">
-                <div class="col-md-2 ficon hvr-rectangle-out">
-                    <i class="fa fa-user " aria-hidden="true"></i>
+    <div class="fandt">
+        <div class="container">
+            <div class="col-md-6 features">
+                <h3>Dịch vụ của chúng tôi</h3>
+                <div class="support">
+                    <div class="col-md-2 ficon hvr-rectangle-out">
+                        <i class="fa fa-user " aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-10 ftext">
+                        <h4>Hỗ trợ online 24/7</h4>
+                        <p>Đội ngũ nhân viên nhiệt tình sẵn sàng trả lời mọi thắc mắc</p>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="col-md-10 ftext">
-                    <h4>Hỗ trợ online 24/7</h4>
-                    <p>Đội ngũ nhân viên nhiệt tình sẵn sàng trả lời mọi thắc mắc</p>
+                <div class="shipping">
+                    <div class="col-md-2 ficon hvr-rectangle-out">
+                        <i class="fa fa-bus" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-10 ftext">
+                        <h4>Miễn phí giao hàng</h4>
+                        <p>Miễn phí giao hàng trên toàn quốc</p>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
+                <div class="money-back">
+                    <div class="col-md-2 ficon hvr-rectangle-out">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-10 ftext">
+                        <h4>Hoàn tiền 100%</h4>
+                        <p>Hoàn tiền 100% nếu khách hàng cảm thấy không hài lòng về sản phẩm</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
-            <div class="shipping">
-                <div class="col-md-2 ficon hvr-rectangle-out">
-                    <i class="fa fa-bus" aria-hidden="true"></i>
-                </div>
-                <div class="col-md-10 ftext">
-                    <h4>Miễn phí giao hàng</h4>
-                    <p>Miễn phí giao hàng trên toàn quốc</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="money-back">
-                <div class="col-md-2 ficon hvr-rectangle-out">
-                    <i class="fa fa-money" aria-hidden="true"></i>
-                </div>
-                <div class="col-md-10 ftext">
-                    <h4>Hoàn tiền 100%</h4>
-                    <p>Hoàn tiền 100% nếu khách hàng cảm thấy không hài lòng về sản phẩm</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <div class="col-md-5 testimonials">
-            <div class="test-inner">
-                <div class="wmuSlider example1 animated wow slideInUp" data-wow-delay=".3s">
-                    <div class="wmuSliderWrapper">
+            <div class="col-md-5 testimonials">
+                <div class="test-inner">
+                    <div class="wmuSlider example1 animated wow slideInUp" data-wow-delay=".3s">
+                        <div class="wmuSliderWrapper">
 
-                        <article style="position: absolute; width: 100%; opacity: 0;">
-                            <div class="banner-wrap">
-                                <img src="~/images/mobile1.jpg" alt=" " class="img-responsive" />
-                                <div class="carousel-caption">
-                                    <h3>Flowers</h3>
+                            <article style="position: absolute; width: 100%; opacity: 0;">
+                                <div class="banner-wrap">
+                                    <img src="~/images/mobile1.jpg" alt=" " class="img-responsive" />
+                                    <div class="carousel-caption">
+                                        <h3>Flowers</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                        <article style="position: absolute; width: 100%; opacity: 0;">
-                            <div class="banner-wrap">
-                                <img src="~/images/mobile2.jpg" alt=" " class="img-responsive" />
-                                <div class="carousel-caption">
-                                    <h3>Flowers</h3>
+                            </article>
+                            <article style="position: absolute; width: 100%; opacity: 0;">
+                                <div class="banner-wrap">
+                                    <img src="~/images/mobile2.jpg" alt=" " class="img-responsive" />
+                                    <div class="carousel-caption">
+                                        <h3>Flowers</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                        <article style="position: absolute; width: 100%; opacity: 0;">
-                            <div class="banner-wrap">
-                                <img src="~/images/mobile3.jpg" alt=" " class="img-responsive" />
-                                <div class="carousel-caption">
-                                    <h3>Flowers</h3>
+                            </article>
+                            <article style="position: absolute; width: 100%; opacity: 0;">
+                                <div class="banner-wrap">
+                                    <img src="~/images/mobile3.jpg" alt=" " class="img-responsive" />
+                                    <div class="carousel-caption">
+                                        <h3>Flowers</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
     </div>
-</div>
 
 
