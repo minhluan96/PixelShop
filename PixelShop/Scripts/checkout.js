@@ -47,16 +47,23 @@ $(document).ready(function () {
         $(this).parent().fadeOut('slow', function (c) {
             $(this).remove();
         });
-        if ($('.cart-header').length==1) {
+        var productId = $(this).attr('class').replace('close-checkout ', '');
+        $(document).find('.close-checkout.' + productId).each(function () {
+            $(this).parent().fadeOut('slow', function (c) {
+                $(this).remove();
+            });
+        });
+
+        if (($(document).find('.account-in').length == 1 && $(document).find('.cart-header').length == 2) || $(document).find('.cart-header').length == 1) {
             $('.sbmincart-footer').fadeOut('slow', function (c) {
                 $('.sbmincart-footer').remove();
             });
         }
-        var productId = $(this).attr('class').replace('close-checkout ', '');
+
         $.ajax({
             type: "GET",
             url: "ShoppingCart/Delete",
-            data: {id: productId },
+            data: { id: productId },
             dataType: "html"
         });
     });
@@ -69,6 +76,7 @@ $(document).ready(function () {
             url: "ShoppingCart/OrderNow",
             data: { id: productId },
             dataType: "html"
+
         });
     });
 });

@@ -20,15 +20,18 @@ namespace PixelShop.Controllers
         {
             return View();
         }
-        public ActionResult Order()
+        public ActionResult Order(int ?page)
         {
-            
+            List<DONHANG> lstDH = db.DONHANGs.OrderBy(c => c.TinhTrang).Select(c => c).ToList<DONHANG>();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
 
-            return View(@"~/Views/Admin/Order.cshtml");
+            return View(@"~/Views/Admin/Order.cshtml", lstDH.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult ViewOrder()
+        public ActionResult ViewOrder(string madh)
         {
-            return View(@"~/Views/Admin/ViewOrder.cshtml");
+            DONHANG dh = db.DONHANGs.Where(c => c.MaDH.Equals(madh)).Single();
+            return View(@"~/Views/Admin/ViewOrder.cshtml",dh);
         }
         public ActionResult EditProduct(string masp)
         {
@@ -41,9 +44,13 @@ namespace PixelShop.Controllers
             
             return View(@"~/Views/Admin/EditProduct.cshtml", sp);
         }
-        public ActionResult Customer()
+        public ActionResult Customer(int ?page)
         {
-            return View(@"~/Views/Admin/Customer.cshtml");
+            List<TAIKHOAN> lstDM = db.TAIKHOANs.OrderBy(c => c.BiXoa).Select(c => c).ToList<TAIKHOAN>();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            return View(@"~/Views/Admin/Customer.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult AddProduct()
         {
@@ -319,7 +326,17 @@ namespace PixelShop.Controllers
             }
             return RedirectToAction("Category", "Admin");
         }
-
+        public ActionResult CustomerDelete(string taikhoan)
+        {
+            int n = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).Count();
+            if (n > 0)
+            {
+                TAIKHOAN tk = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).Single();
+                tk.BiXoa = 1;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Customer", "Admin");
+        }
         [HttpPost]
         public ActionResult ManufacturerDelete(string mansx)
         {

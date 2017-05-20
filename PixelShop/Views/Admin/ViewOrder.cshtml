@@ -1,4 +1,6 @@
-﻿@Styles.Render("~/Content/cssForAdmin")
+﻿@using PixelShop.Models
+@model PixelShop.Models.DONHANG
+@Styles.Render("~/Content/cssForAdmin")
 @Scripts.Render("~/bundles/scriptsForAdmin")
 <script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
@@ -113,11 +115,7 @@
                                                     <div class="caption">
                                                         <i class="fa fa-cogs"></i>Chi tiết đơn hàng
                                                     </div>
-                                                    <div class="actions">
-                                                        <a href="javascript:;" class="btn btn-default btn-sm">
-                                                            <i class="fa fa-pencil"></i> Cập nhật
-                                                        </a>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div class="row static-info">
@@ -125,9 +123,7 @@
                                                             Order #:
                                                         </div>
                                                         <div class="col-md-7 value">
-                                                            1 <span class="label label-info label-sm">
-                                                                Email xác nhận đã được gửi
-                                                            </span>
+                                                            @Model.MaDH
                                                         </div>
                                                     </div>
                                                     <div class="row static-info">
@@ -135,7 +131,15 @@
                                                             Thời gian đặt hàng:
                                                         </div>
                                                         <div class="col-md-7 value">
-                                                            21/12/2016
+                                                            @Model.NgayDate
+                                                        </div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name">
+                                                            Thời gian giao:
+                                                        </div>
+                                                        <div class="col-md-7 value">
+                                                            @Model.NgayGiao
                                                         </div>
                                                     </div>
                                                     <div class="row static-info">
@@ -144,7 +148,7 @@
                                                         </div>
                                                         <div class="col-md-7 value">
                                                             <span class="label label-success">
-                                                                Đang giao
+                                                                @Model.TINHTRANGDONHANG.TenTinhTrang
                                                             </span>
                                                         </div>
                                                     </div>
@@ -152,8 +156,13 @@
                                                         <div class="col-md-5 name">
                                                             Tổng hóa đơn:
                                                         </div>
+                                                        @{int? sum = 0;}
                                                         <div class="col-md-7 value">
-                                                            $175.25
+                                                            @foreach(CHITIETDONHANG ct in Model.CHITIETDONHANGs)
+                                                            {
+                                                                sum += ct.SANPHAM.GiaBan * ct.SoLuongDat;
+                                                            }
+                                                            @sum
                                                         </div>
                                                     </div> 
                                                 </div>
@@ -165,11 +174,7 @@
                                                     <div class="caption">
                                                         <i class="fa fa-cogs"></i>Thông tin khách hàng
                                                     </div>
-                                                    <div class="actions">
-                                                        <a href="javascript:;" class="btn btn-default btn-sm">
-                                                            <i class="fa fa-pencil"></i> Cập nhật
-                                                        </a>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div class="row static-info">
@@ -177,7 +182,7 @@
                                                             Tên khách hàng:
                                                         </div>
                                                         <div class="col-md-7 value">
-                                                            Jhon Doe
+                                                            @Model.TAIKHOAN.HoTen
                                                         </div>
                                                     </div>
                                                     <div class="row static-info">
@@ -185,23 +190,7 @@
                                                             Email:
                                                         </div>
                                                         <div class="col-md-7 value">
-                                                            jhon@doe.com
-                                                        </div>
-                                                    </div>
-                                                    <div class="row static-info">
-                                                        <div class="col-md-5 name">
-                                                            Địa chỉ:
-                                                        </div>
-                                                        <div class="col-md-7 value">
-                                                            New York
-                                                        </div>
-                                                    </div>
-                                                    <div class="row static-info">
-                                                        <div class="col-md-5 name">
-                                                            Điện thoại:
-                                                        </div>
-                                                        <div class="col-md-7 value">
-                                                            12234389
+                                                            @Model.EmailDat
                                                         </div>
                                                     </div>
                                                 </div>
@@ -215,50 +204,36 @@
                                                     <div class="caption">
                                                         <i class="fa fa-cogs"></i>Địa chỉ giao hàng
                                                     </div>
-                                                    <div class="actions">
-                                                        <a href="javascript:;" class="btn btn-default btn-sm">
-                                                            <i class="fa fa-pencil"></i> Cập nhật
-                                                        </a>
-                                                    </div>
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div class="row static-info">
-                                                        <div class="col-md-12 value">
-                                                            Jhon Done<br>
-                                                            #24 Park Avenue Str<br>
-                                                            New York<br>
-                                                            Connecticut, 23456 New York<br>
-                                                            United States<br>
+                                                        <div class="col-md-5 name">
+                                                            Tên người nhận:
+                                                        </div>
+                                                        <div class="col-md-7 value">
+                                                            @Model.TenNguoiNhan
+                                                        </div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name">
+                                                            Địa chỉ giao:
+                                                        </div>
+                                                        <div class="col-md-7 value">
+                                                            @Model.DiaChiGiao
+                                                        </div>
+                                                    </div>
+                                                    <div class="row static-info">
+                                                        <div class="col-md-5 name">
+                                                            Điện thoại người nhận:
+                                                        </div>
+                                                        <div class="col-md-7 value">
+                                                            @Model.SDTNhan
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="portlet red-sunglo box">
-                                                <div class="portlet-title">
-                                                    <div class="caption">
-                                                        <i class="fa fa-cogs"></i>Địa chỉ cửa hàng giao
-                                                    </div>
-                                                    <div class="actions">
-                                                        <a href="javascript:;" class="btn btn-default btn-sm">
-                                                            <i class="fa fa-pencil"></i> Cập nhật
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="portlet-body">
-                                                    <div class="row static-info">
-                                                        <div class="col-md-12 value">
-                                                            Jhon Done<br>
-                                                            #24 Park Avenue Str<br>
-                                                            New York<br>
-                                                            Connecticut, 23456 New York<br>
-                                                            United States<br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12">
@@ -267,11 +242,7 @@
                                                     <div class="caption">
                                                         <i class="fa fa-cogs"></i>Giỏ hàng
                                                     </div>
-                                                    <div class="actions">
-                                                        <a href="javascript:;" class="btn btn-default btn-sm">
-                                                            <i class="fa fa-pencil"></i> Cập nhật
-                                                        </a>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div class="table-responsive">
@@ -281,20 +252,14 @@
                                                                     <th>
                                                                         Sản phẩm
                                                                     </th>
-                                                                    <th>
-                                                                        Trạng thái
+                                                                    <th width="20%">
+                                                                        Hình ảnh
                                                                     </th>
                                                                     <th>
-                                                                        Giá
+                                                                        Giá 1 sản phẩm
                                                                     </th>
                                                                     <th>
                                                                         Số lượng
-                                                                    </th>
-                                                                    <th>
-                                                                        Thuế
-                                                                    </th>
-                                                                    <th>
-                                                                        Giảm giá
                                                                     </th>
                                                                     <th>
                                                                         Tổng
@@ -302,31 +267,23 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @for(int i = 0; i < 4; i++) {
+                                                                @foreach (CHITIETDONHANG ct in Model.CHITIETDONHANGs) {
                                                                 <tr>
                                                                     <td>
-                                                                        <a href="javascript:;">
-                                                                            Product @i
-                                                                        </a>
+                                                                        @ct.SANPHAM.TenSP
                                                                     </td>
                                                                     <td>
-                                                                        <span class="label label-sm label-success">
-                                                                            Available
+                                                                        <img src="@ct.SANPHAM.HinhHienThi" style="width:50%;"/>
                                                                     </td>
                                                                     <td>
-                                                                        345.50$
+                                                                        @ct.SANPHAM.giaStr
                                                                     </td>
                                                                     <td>
-                                                                        2
+                                                                        @ct.SoLuongDat
                                                                     </td>
                                                                     <td>
-                                                                        2.00$
-                                                                    </td>
-                                                                    <td>
-                                                                        4%
-                                                                    </td>
-                                                                    <td>
-                                                                        691.00$
+                                                                        @{int? sumct = ct.SoLuongDat * ct.GiaBan;}
+                                                                        @sumct
                                                                     </td>
                                                                 </tr>
                                                                 }
@@ -342,44 +299,13 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="well">
-                                                <div class="row static-info align-reverse">
-                                                    <div class="col-md-8 name">
-                                                        Tiền hàng:
-                                                    </div>
-                                                    <div class="col-md-3 value">
-                                                        $1,124.50
-                                                    </div>
-                                                </div>
-                                                <div class="row static-info align-reverse">
-                                                    <div class="col-md-8 name">
-                                                        Vận chuyển:
-                                                    </div>
-                                                    <div class="col-md-3 value">
-                                                        $40.50
-                                                    </div>
-                                                </div>
+
                                                 <div class="row static-info align-reverse">
                                                     <div class="col-md-8 name">
                                                         Tổng tiền:
                                                     </div>
                                                     <div class="col-md-3 value">
-                                                        $1,260.00
-                                                    </div>
-                                                </div>
-                                                <div class="row static-info align-reverse">
-                                                    <div class="col-md-8 name">
-                                                        Tiền trả:
-                                                    </div>
-                                                    <div class="col-md-3 value">
-                                                        $1,260.00
-                                                    </div>
-                                                </div>
-                                                <div class="row static-info align-reverse">
-                                                    <div class="col-md-8 name">
-                                                        Tiền trả lại:
-                                                    </div>
-                                                    <div class="col-md-3 value">
-                                                        $0.00
+                                                        @sum
                                                     </div>
                                                 </div>
                                             </div>
