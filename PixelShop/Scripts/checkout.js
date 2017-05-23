@@ -71,12 +71,38 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".btnaddcart").click(function () {
         var productId = $(this).attr('class').replace('btnaddcart ', '');
-        $.ajax({
-            type: "GET",
-            url: "ShoppingCart/OrderNow",
-            data: { id: productId },
-            dataType: "html"
+        if($("minicart").find("."+productId)){
+            
+        }
+        //else {
+        //    var template = ;
 
-        });
+        //    <div class="cart-header">
+        //        <div class="close-checkout productId"> </div>
+        //        <div class="cart-sec simpleCart_shelfItem" style="margin-right:40px;">
+        //            <div class="cart-item cyc">
+        //                <img src="@item.Sanpham.HinhHienThi" class="sbmincart-img" alt="" />
+        //            </div>
+        //            <div class="cart-item-info">
+        //                <p class="sbmincart-name">@item.Sanpham.TenSP</p>
+        //                <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>
+        //                <p id="qty">Số lượng: 1/p>
+        //                <div class="delivery" style="margin-top:10px;">
+        //                    <p class="total">Tổng tiền: @(item.Sanpham.GiaBan * item.Soluong)</p>
+        //                    <div class="clearfix"></div>
+        //                </div>
+        //            </div>
+        //            <div class="clearfix"></div>
+        //        </div>
+        //        <hr />
+        //    </div>
+        //}
+        //$.ajax({
+        //    type: "GET",
+        //    url: "ShoppingCart/OrderNow",
+        //    data: { id: productId },
+        //    dataType: "html"
+
+        //});
     });
 });

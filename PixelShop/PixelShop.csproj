@@ -1607,6 +1607,7 @@
     <Content Include="images\size2.jpg" />
     <Content Include="images\size3.jpg" />
     <Content Include="images\size4.jpg" />
+    <Content Include="ImgProduct\a2.jpg" />
     <Content Include="ImgProduct\product1.jpg" />
     <Content Include="ImgProduct\product2.jpg" />
     <Content Include="ImgProduct\product3.jpg" />
@@ -1622,6 +1623,7 @@
     </Content>
     <Content Include="images\updown.PNG" />
     <Content Include="Scripts\about.js" />
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\checkout.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />

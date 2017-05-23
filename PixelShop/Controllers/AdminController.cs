@@ -109,76 +109,61 @@ namespace PixelShop.Controllers
             }
             return RedirectToAction("Manufacturer", "Admin");
         }
-
-        
-
-        public ActionResult ProductUpdate(string masp, string tensp, string motasp, string tendm, int slg, int giaban, 
-                                    string[] imgSP, string imgKey, string maNSX, HttpPostedFileBase image)
+        [HttpPost]
+        public void UpdateImageProduct(string masp)
         {
-            if (image != null)
+            if (Request.Files.Count > 0)
             {
-                if (image.ContentLength > 0)
+                try
                 {
-                    var fileName = image.FileName;
-                    var filePathOriginal = Server.MapPath("/images/");
-                    string savedFileName = Path.Combine(filePathOriginal, fileName);
+                    HttpFileCollectionBase files = Request.Files;
+
                     SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp)).Single();
-
-                    sp.HINHANHs.Add(new HINHANH() { MaSP = sp.MaSP, PathHinhAnh = savedFileName });
-
-                    if (!string.IsNullOrEmpty(tensp) && giaban >= 0 && slg >= 0)
+                    for (int i = 0; i < files.Count; i++)
                     {
-                        
-                        if (sp != null)
-                        {
-                            sp.TenSP = tensp;
-                            sp.MoTa = motasp;
-                            sp.GiaBan = giaban;
-                            sp.DanhMuc = tendm;
-                            sp.NhaSanXuat = maNSX;
-                            sp.HinhHienThi = imgKey;
-                            sp.SoLuongTon = slg;
-                        }
+                        int count = sp.HINHANHs.Count();
+                        var fileName = sp.MaSP + "_" + count + "." + files[i].FileName.Split('.')[1];
+                        files[i].SaveAs(Server.MapPath("~/ImgProduct/" + fileName));
+                        var filePathOriginal = "../ImgProduct/";
+                        string savedFileName = Path.Combine(filePathOriginal, fileName);
+
+                        sp.HINHANHs.Add(new HINHANH() { MaSP = sp.MaSP, PathHinhAnh = savedFileName });
                     }
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+        [HttpPost]
+        public ActionResult ProductUpdate(string masp, string tensp, string motasp, string tendm, int slg, int giaban, 
+                                    string[] imgSP, string[] statusimgSP, string imgKey, string maNSX)
+        {
+
+            if (!string.IsNullOrEmpty(tensp) && giaban >= 0 && slg >= 0)
+           {
+                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
+                if (sp != null)
+                {
+                    sp.TenSP = tensp;
+                    sp.MoTa = motasp;
+                    sp.GiaBan = giaban;
+                    sp.DanhMuc = tendm;
+                    sp.NhaSanXuat = maNSX;
+                    sp.HinhHienThi = imgKey;
+                    sp.SoLuongTon = slg;
 
                     db.SaveChanges();
-
                 }
-                return RedirectToAction("EditProduct", "Admin", masp);
             }
-            else
+            if (Request.Files.Count > 0)
             {
-                if (!string.IsNullOrEmpty(tensp) && giaban >= 0 && slg >= 0)
-                {
-                    updateInfoProduct(masp, tensp, motasp, tendm, slg, giaban, imgSP, imgKey, maNSX);
-                }
+                UpdateImageProduct(masp);
             }
             return RedirectToAction("Product", "Admin");
         }
-
-        private void updateInfoProduct(string masp, string tensp, string motasp, string tendm, int slg, int giaban,
-                                    string[] imgSP, string imgKey, string maNSX)
-        {
-            SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
-            if (sp != null)
-            {
-                sp.TenSP = tensp;
-                sp.MoTa = motasp;
-                sp.GiaBan = giaban;
-                sp.DanhMuc = tendm;
-                sp.NhaSanXuat = maNSX;
-                sp.HinhHienThi = imgKey;
-                sp.HINHANHs.Clear();
-                for (int i = 0; i < imgSP.Count(); i++)
-                {
-                    sp.HINHANHs.Add(new HINHANH() { MaSP = sp.MaSP, PathHinhAnh = imgSP[i] });
-                }
-                sp.SoLuongTon = slg;
-
-                db.SaveChanges();
-            }
-        }
-
+      
         [HttpPost]
         public ActionResult CategoryUpdate(string madm, string tendm, int cbbMaNdm)
         {
