@@ -112,6 +112,7 @@ namespace PixelShop
                         "~/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js",
                         "~/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js",
                         "~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js",
+                        "~/Scripts/admin.js",
                         "~/assets/global/plugins/forAdmin.js"));
 
             bundles.Add(new StyleBundle("~/Content/cssForAdmin").Include(

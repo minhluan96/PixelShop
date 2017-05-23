@@ -83,15 +83,16 @@
                             {
 
                                 <div class="col-md-3 top-product-grids tp4">
-                                    <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
+                                   
                                         <div class="product-img">
-                                            <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
+                                            <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
+                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
+                                            </a>
                                             <div class="p-mask">
 
-                                                <a href="" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
-                                            </div>
+                                                  <span class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
+                                             </div>
                                         </div>
-                                    </a>
 
 
                                     <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
@@ -106,17 +107,22 @@
                                 @for (int i = 4; i < lst.Count(); i++)
                                 {
 
-                                    <div class="col-md-3 top-product-grids tp5">
-                                        <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
-                                            <div class="product-img">
-                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
-                                                <div class="p-mask">
-                                                    <a href="" class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></a>
-                                                </div>
+                                    <div class="col-md-3 top-product-grids tp4">
+
+                                        <div class="product-img">
+                                            <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
+                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt=""/>
+                                            </a>
+                                            <div class="p-mask">
+
+                                                <span class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
                                             </div>
-                                            <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
-                                            <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
-                                        </a>
+                                        </div>
+
+
+                                        <h4>@Html.DisplayFor(sp => lst.ElementAt(i).TenSP)<span></span></h4>
+                                        <h5>@Html.DisplayFor(sp => lst.ElementAt(i).giaStr) </h5>
+
                                     </div>
 
                                 }
