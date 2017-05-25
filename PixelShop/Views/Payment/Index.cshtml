@@ -59,20 +59,20 @@
                     
           
                         <div class="agileits_w3layouts_tab2">
-                           @using (Html.BeginForm())
+                           @using (Html.BeginForm("GhiNhanDonHang", "Payment", FormMethod.Post))
                            {
                                 <section class="creditly-wrapper wthree, w3_agileits_wrapper">
                                     <div class="credit-card-wrapper">
                                         <div class="first-row form-group">
                                             <div class="controls">
                                                 <label class="control-label">Thông tin người nhận</label>
-                                                <input class="billing-address-name form-control" type="text" name="tenngnhan" placeholder="John Smith">
+                                                <input class="billing-address-name form-control" required type="text" name="tenngnhan" placeholder="John Smith">
                                             </div>
                                             <div class="w3_agileits_card_number_grids">
                                                 <div class="w3_agileits_card_number_grid_left">
                                                     <div class="controls">
                                                         <label class="control-label">Số điện thoại người nhận</label>
-                                                        <input class="number credit-card-number form-control" type="text" name="sodt" placeholder="Số điện thoại"
+                                                        <input class="input-medium bfh-phone form-control" required type="tel" name="sodt" maxlength="11" placeholder="Số điện thoại"
                                                                inputmode="numeric">
                                                     </div>
                                                 </div>
@@ -81,7 +81,7 @@
                                             </div>
                                             <div class="controls">
                                                 <label class="control-label">Địa chỉ giao hàng</label>
-                                                <input class="expiration-month-and-year form-control" type="text" name="diaChi" placeholder="Địa chỉ nhà">
+                                                <input class="expiration-month-and-year form-control" required type="text" name="diaChi" placeholder="Địa chỉ nhà">
                                             </div>
                                         </div>
                                         <input type="submit" value="Xác nhận">

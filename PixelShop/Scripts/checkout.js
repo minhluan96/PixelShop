@@ -71,9 +71,9 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".btnaddcart").click(function () {
         var productId = $(this).attr('class').replace('btnaddcart ', '');
-        if($("minicart").find("."+productId)){
+        //if($("minicart").find("."+productId)){
             
-        }
+        //}
         //else {
         //    var template = ;
 
@@ -97,12 +97,12 @@ $(document).ready(function () {
         //        <hr />
         //    </div>
         //}
-        //$.ajax({
-        //    type: "GET",
-        //    url: "ShoppingCart/OrderNow",
-        //    data: { id: productId },
-        //    dataType: "html"
+        $.ajax({
+            type: "GET",
+            url: "ShoppingCart/OrderNow",
+            data: { id: productId },
+            dataType: "html"
 
-        //});
+        });
     });
 });
