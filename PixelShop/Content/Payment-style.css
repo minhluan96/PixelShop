@@ -17,6 +17,273 @@ summary,time,mark,audio,video
     vertical-align:baseline;
 
 }
+
+/*lichsumuahang*/
+
+.lichsudonhangdamua{
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.portlet.box.yellow-crusta{
+    border: 1px solid #ffd327;
+    border-top: 0;
+}
+
+.portlet.box.yellow-crusta > .portlet-title {
+  background-color: #f3c200;
+}
+
+.portlet.box.yellow-crusta > .portlet-title > .caption {
+  color: #FFFFFF;
+}
+.portlet.box.yellow-crusta > .portlet-title > .caption > i {
+  color: #FFFFFF;
+}
+.portlet.box.yellow-crusta > .portlet-title > .actions .btn-default {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid #ffe064;
+  color: #ffe57e;
+}
+.portlet.box.yellow-crusta > .portlet-title > .actions .btn-default > i {
+  color: #ffe88d;
+}
+.portlet.box.yellow-crusta > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow-crusta > .portlet-title > .actions .btn-default:focus, .portlet.box.yellow-crusta > .portlet-title > .actions .btn-default:active, .portlet.box.yellow-crusta > .portlet-title > .actions .btn-default.active {
+  border: 1px solid #ffea97;
+  color: #ffefb1;
+}
+
+.portlet.light {
+  padding: 12px 20px 15px 20px;
+  background-color: #fff;
+}
+.portlet.light.bordered {
+  border: 1px solid #e1e1e1 !important;
+}
+.portlet.light.bordered > .portlet-title {
+  border-bottom: 1px solid #eee;
+}
+.portlet.light.bg-inverse {
+  background: #F7F7F7;
+}
+.portlet.light > .portlet-title {
+  padding: 0;
+  min-height: 48px;
+}
+.portlet.light > .portlet-title > .caption {
+  color: #666;
+  padding: 10px 0;
+}
+.portlet.light > .portlet-title > .caption > .caption-subject {
+  font-size: 16px;
+}
+.portlet.light > .portlet-title > .caption > i {
+  color: #777;
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 3px;
+}
+.portlet.light > .portlet-title > .caption.caption-md > .caption-subject {
+  font-size: 15px;
+}
+.portlet.light > .portlet-title > .caption.caption-md > i {
+  font-size: 14px;
+}
+.portlet.light > .portlet-title > .actions {
+  padding: 6px 0 14px 0;
+}
+.portlet.light > .portlet-title > .actions .btn-default {
+  color: #666;
+}
+.portlet.light > .portlet-title > .actions .btn-icon-only {
+  height: 27px;
+  width: 27px;
+}
+.portlet.light > .portlet-title > .actions .dropdown-menu li > a {
+  color: #555;
+}
+.portlet.light > .portlet-title > .inputs {
+  float: right;
+  display: inline-block;
+  padding: 4px 0;
+}
+.portlet.light > .portlet-title > .inputs > .portlet-input .input-icon > i {
+  font-size: 14px;
+  margin-top: 9px;
+}
+.portlet.light > .portlet-title > .inputs > .portlet-input .input-icon > .form-control {
+  height: 30px;
+  padding: 2px 26px 3px 10px;
+  font-size: 13px;
+}
+.portlet.light > .portlet-title > .inputs > .portlet-input > .form-control {
+  height: 30px;
+  padding: 3px 10px;
+  font-size: 13px;
+}
+.portlet.light > .portlet-title > .pagination {
+  padding: 2px 0 13px 0;
+}
+.portlet.light > .portlet-title > .tools {
+  padding: 10px 0 13px 0;
+  margin-top: 2px;
+}
+.portlet.light > .portlet-title > .nav-tabs > li {
+  margin: 0;
+  padding: 0;
+}
+.portlet.light > .portlet-title > .nav-tabs > li > a {
+  margin: 0;
+  padding: 12px 13px 13px 13px;
+  font-size: 13px;
+  color: #666;
+}
+.portlet.light > .portlet-title > .nav-tabs > li.active > a, .portlet.light > .portlet-title > .nav-tabs > li:hover > a {
+  margin: 0;
+  background: none;
+  color: #333;
+}
+.portlet.light.form-fit {
+  padding: 0;
+}
+.portlet.light.form-fit > .portlet-title {
+  padding: 17px 20px 10px 20px;
+  margin-bottom: 0;
+}
+.portlet.light .portlet-body {
+  padding-top: 8px;
+}
+.portlet.light.portlet-fullscreen > .portlet-body {
+  padding: 8px 0;
+}
+
+.tab-pane > p:last-child {
+  margin-bottom: 0px;
+}
+
+.static-info {
+  margin-bottom: 10px;
+}
+.static-info .name {
+  font-size: 14px;
+}
+.static-info .valueS {
+  font-size: 14px;
+  font-weight: 600;
+}
+.static-info.align-reverse .name, .static-info.align-reverse .valueS {
+  text-align: right;
+}
+
+.portlet.light .portlet-body {
+  padding-top: 8px;
+}
+
+.portlet.box > .portlet-body {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.portlet > .portlet-body {
+  clear: both;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  -o-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}
+
+.portlet {
+  margin-top: 0px;
+  margin-bottom: 25px;
+  padding: 0px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.portlet.box > .portlet-title > .caption {
+  padding: 11px 0 9px 0;
+}
+
+.portlet > .portlet-title > .caption {
+  float: left;
+  display: inline-block;
+  font-size: 18px;
+
+  padding: 10px 0;
+}
+
+.portlet.box > .portlet-title {
+  border-bottom: 0;
+  padding: 0 10px;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.portlet.box.yellow-crusta {
+  border: 1px solid #ffd327;
+  border-top: 0;
+}
+
+.portlet > .portlet-body.yellow-crusta,
+.portlet.yellow-crusta {
+  background-color: #f3c200;
+}
+
+.portlet.box.yellow-crusta > .portlet-title > .caption > i {
+  color: #FFFFFF;
+}
+
+.portlet > .portlet-title > .caption > i {
+  float: left;
+  margin-top: 4px;
+  display: inline-block;
+  font-size: 13px;
+  margin-right: 5px;
+  color: #666;
+}
+
+.static-info.col-md-5{
+    font-size: 14px;
+    width:auto;
+    position:relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.static-info.col-md-7{
+    font-size: 14px;
+    width:auto;
+    font-weight: 600;
+    position:relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+.headerinfo{
+    margin-bottom: 5%;
+    margin-top:5%;
+}
+
+.headerinfo h4{
+    margin-top:2%;
+}
+
+.headerinfo h2{
+    text-transform:uppercase;
+
+}
+
+/*end - lichsumuahang*/
+
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0px;padding:0px;}
 blockquote,q{quotes:none;}
