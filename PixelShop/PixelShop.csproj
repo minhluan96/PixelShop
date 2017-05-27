@@ -207,12 +207,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountPixelShopController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\FooterComponentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\LishSuMuaHangController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1607,6 +1609,7 @@
     <Content Include="images\size2.jpg" />
     <Content Include="images\size3.jpg" />
     <Content Include="images\size4.jpg" />
+    <Content Include="images\trucking.png" />
     <Content Include="ImgProduct\a2.jpg" />
     <Content Include="ImgProduct\product1.jpg" />
     <Content Include="ImgProduct\product2.jpg" />
@@ -1671,6 +1674,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AccountPixelShop\" />
     <Folder Include="Views\SanPham\" />
   </ItemGroup>
   <ItemGroup>
@@ -1817,6 +1821,7 @@
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Payment\ThanhToanThanhCong.cshtml" />
+    <Content Include="Views\LishSuMuaHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

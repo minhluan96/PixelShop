@@ -43,6 +43,18 @@ html, body{
     
 
 }
+
+.content-payment-success img{
+    width:50%;
+}
+
+.content-payment-success{
+    padding: 5%;
+    text-align:center;
+}
+.content-payment-success p, h3{
+    line-height: 30px;
+}
 h1,h2,h3,h4,h5,h6,input,p,a,select,button{
 
 	margin:0;
@@ -197,6 +209,7 @@ input[type="submit"],.agileits_copyright p a,a{
 	display: inline-block;
     color: #fff;
     font-weight: bold;
+    line-height:1.5em;
     font-size: 1.2em;
     vertical-align: top;
 }
@@ -223,6 +236,7 @@ input[type="submit"],.agileits_copyright p a,a{
 }
 .agile_amount h4{
 	font-size:2em;
+    line-height:2em;
 	color:#fff;
 	font-weight:bold;
 }
