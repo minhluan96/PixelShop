@@ -20,19 +20,31 @@ namespace PixelShop.Controllers
         {
             return View();
         }
-        public ActionResult Order(int ?page)
+        public ActionResult Order(int ?page, List<DONHANG> lstTimKiemDH)
         {
-            List<DONHANG> lstDH = db.DONHANGs.OrderBy(c => c.TinhTrang).Select(c => c).ToList<DONHANG>();
             int pageSize = 3;
             int pageNumber = (page ?? 1);
 
-            return View(@"~/Views/Admin/Order.cshtml", lstDH.ToPagedList(pageNumber, pageSize));
+            if (lstTimKiemDH == null)
+            {
+                List<DONHANG> lstDH = db.DONHANGs.OrderBy(c => c.TinhTrang).Select(c => c).ToList<DONHANG>();
+                return View(@"~/Views/Admin/Order.cshtml", lstDH.ToPagedList(pageNumber, pageSize));
+            }
+            
+            
+            return View(@"~/Views/Admin/Order.cshtml", lstTimKiemDH.ToPagedList(pageNumber, pageSize));
+            
+            
         }
         public ActionResult ViewOrder(string madh)
         {
             DONHANG dh = db.DONHANGs.Where(c => c.MaDH.Equals(madh)).Single();
             return View(@"~/Views/Admin/ViewOrder.cshtml",dh);
         }
+
+
+
+
         public ActionResult EditProduct(string masp)
         {
             List<DANHMUC> lstDM = db.DANHMUCs.Where(c => c.BiXoa == 0).Select(c => c).ToList<DANHMUC>();
@@ -93,6 +105,61 @@ namespace PixelShop.Controllers
         }
 
         [HttpPost]
+        public ActionResult TimKiemDH(FormCollection frmC)
+        {
+            IQueryable<DONHANG> q = db.DONHANGs;
+            if(frmC["madh"] != null)
+            {
+                String madh = frmC["madh"];
+
+                q = q.Where(d => d.MaDH.Contains(madh));
+            }
+            if (frmC["tenkh"] != null)
+            {
+                String tenkh = frmC["tenkh"];
+
+                q = q.Where(d => d.EmailDat.Contains(tenkh));
+            }
+            if(frmC["diachigiao"] != null)
+            {
+                String diachigiao = frmC["diachigiao"];
+
+                q = q.Where(d => d.DiaChiGiao.Contains(diachigiao));
+            }
+            if(frmC["ngaydat"] != null)
+            {
+                String ngayDat = frmC["ngaydat"];
+                DateTime ngayDatDate;
+                if(DateTime.TryParse(ngayDat, out ngayDatDate))
+                {
+                    ngayDat = ngayDatDate.ToShortDateString();
+                }
+                if (ngayDatDate != null)
+                {
+                    q = q.Where(d => d.NgayDate.ToString().Equals(ngayDat));
+                }
+            }
+            
+            if(frmC["sdt"] != null)
+            {
+                String sdt = frmC["sdt"];
+
+                q = q.Where(d => d.SDTNhan.Equals(sdt));
+            }
+            if(frmC["trangthai"] != null)
+            {
+                String trangthai = frmC["trangthai"];
+
+                q = q.Where(d => d.TINHTRANGDONHANG.TenTinhTrang.Equals(trangthai));
+            }
+
+            List<DONHANG> dsDH = q.ToList<DONHANG>();
+
+            
+            return RedirectToAction("Order", "Admin", new { lstTimKiemDH = dsDH });
+        }
+
+        [HttpPost]
         public ActionResult ManufacturerUpdate(string tennsx, string mansx)
         {
 
@@ -107,6 +174,7 @@ namespace PixelShop.Controllers
                     db.SaveChanges();
                 }
             }
+            
             return RedirectToAction("Manufacturer", "Admin");
         }
         [HttpPost]

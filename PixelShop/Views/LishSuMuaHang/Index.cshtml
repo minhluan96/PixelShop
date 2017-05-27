@@ -1,6 +1,182 @@
 ﻿@using PixelShop.Models
-@model PixelShop.Models.DONHANG
+@model PagedList.IPagedList<PixelShop.Models.DONHANG>
 
 @Styles.Render("~/Content/css-payment")
 
+<div class="lichsudonhangdamua">
+    <div class="col-lg-12 headerinfo">
+        <h2>Lịch sử giao dịch</h2>
+        <h4>Tên tài khoản: @Model.ElementAt(0).TAIKHOAN.HoTen</h4>
+    </div>
 
+    @for(int i = 0; i < Model.Count; i+=2)
+    {
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="portlet yellow-crusta box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Thông tin đơn hàng<span></span><small><a href="@Url.Action("ChiTietLichSuMuaHang", "LishSuMuaHang", new { maDH = Model.ElementAt(i).MaDH })">xem chi tiết</a></small>
+                    </div>
+
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Mã đơn hàng:
+                        </div>
+                        <div class="col-md-7 valueS">
+                           @Model.ElementAt(i).MaDH
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Thời gian đặt hàng:
+                        </div>
+                        <div class="col-md-7 valueS">
+                            @Model.ElementAt(i).NgayDate
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Tên người nhận:
+                        </div>
+                        <div class="col-md-7 valueS">
+                            @Model.ElementAt(i).TenNguoiNhan
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Số điện thoại:
+                        </div>
+                        <div class="col-md-7 valueS">
+                            @Model.ElementAt(i).SDTNhan
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Địa chỉ giao:
+                        </div>
+                        <div class="col-md-7 valueS">
+                            @Model.ElementAt(i).DiaChiGiao
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Trạng thái
+                        </div>
+                        <div class="col-md-7 valueS">
+                            <span class="label label-success">
+                              @Model.ElementAt(i).TINHTRANGDONHANG.TenTinhTrang
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Tổng giá tiền:
+                        </div>
+                       
+                        <div class="col-md-7 valueS">
+                            @{ double? sum = 0; }
+                           @foreach(CHITIETDONHANG ct in Model.ElementAt(i).CHITIETDONHANGs)
+                            {
+                               sum += (double?)ct.GiaBan * ct.SoLuongDat * 1.0;
+                            }
+                            @{string giatc = String.Format("{0:0,0}", @sum) +  " VNĐ"; }
+                            @giatc
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if ((i + 1) < Model.Count)
+        {
+            <div class="col-md-6 col-sm-12">
+                <div class="portlet yellow-crusta box">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs"></i>Thông tin đơn hàng<span></span><small><a href="@Url.Action("ChiTietLichSuMuaHang", "LishSuMuaHang", new { maDH = Model.ElementAt(i + 1).MaDH })">xem chi tiết</a></small>
+                        </div>
+
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row static-info">
+                            <div class="col-md-5 name">
+                                Mã đơn hàng:
+                            </div>
+                            <div class="col-md-7 valueS">
+                                @Model.ElementAt(i + 1).MaDH
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name">
+                                Thời gian đặt hàng:
+                            </div>
+                            <div class="col-md-7 valueS">
+                                @Model.ElementAt(i + 1).NgayDate
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name">
+                                Tên người nhận:
+                            </div>
+                            <div class="col-md-7 valueS">
+                                @Model.ElementAt(i +1 ).TenNguoiNhan
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name">
+                                Số điện thoại:
+                            </div>
+                            <div class="col-md-7 valueS">
+                                @Model.ElementAt(i + 1).SDTNhan
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name">
+                                Địa chỉ giao:
+                            </div>
+                            <div class="col-md-7 valueS">
+                                @Model.ElementAt(i + 1).DiaChiGiao
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name">
+                                Trạng thái
+                            </div>
+                            <div class="col-md-7 valueS">
+                                <span class="label label-success">
+                                    @Model.ElementAt(i + 1).TINHTRANGDONHANG.TenTinhTrang
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name">
+                                Tổng giá tiền:
+                            </div>
+
+                            <div class="col-md-7 valueS">
+                                @{sum = 0; }
+                                @foreach (CHITIETDONHANG ct in Model.ElementAt(i + 1).CHITIETDONHANGs)
+                                {
+                                    sum += (double?)ct.GiaBan * ct.SoLuongDat * 1.0;
+                                }
+                                @{giatc = String.Format("{0:0,0}", @sum) + " VNĐ"; }
+                                @giatc
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                    }
+
+
+
+    </div>
+    }
+
+    <div class="col-lg-12" style="text-align:center">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</div>
