@@ -21,5 +21,15 @@ namespace PixelShop.Controllers
 
             return View(dsDH.ToPagedList(pageNumber, pageSize));
         }
+
+        public ActionResult ChiTietLichSuMuaHang(string maDH, int? page)
+        {
+            List<CHITIETDONHANG> dsCT = db.CHITIETDONHANGs.Where(c => c.MaDH.Equals(maDH)).Select(c => c).ToList();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+
+            return View(dsCT.ToPagedList(pageNumber, pageSize));
+        }
     }
 }

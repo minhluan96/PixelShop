@@ -16,7 +16,7 @@
             <div class="portlet yellow-crusta box">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-cogs"></i>Thông tin đơn hàng
+                        <i class="fa fa-cogs"></i>Thông tin đơn hàng<span></span><small><a href="@Url.Action("ChiTietLichSuMuaHang", "LishSuMuaHang", new { maDH = Model.ElementAt(i).MaDH })">xem chi tiết</a></small>
                     </div>
 
                 </div>
@@ -82,7 +82,8 @@
                             {
                                sum += (double?)ct.GiaBan * ct.SoLuongDat * 1.0;
                             }
-                            @sum
+                            @{string giatc = String.Format("{0:0,0}", @sum) +  " VNĐ"; }
+                            @giatc
                         </div>
                     </div>
                 </div>
@@ -95,7 +96,7 @@
                 <div class="portlet yellow-crusta box">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-cogs"></i>Thông tin đơn hàng
+                            <i class="fa fa-cogs"></i>Thông tin đơn hàng<span></span><small><a href="@Url.Action("ChiTietLichSuMuaHang", "LishSuMuaHang", new { maDH = Model.ElementAt(i + 1).MaDH })">xem chi tiết</a></small>
                         </div>
 
                     </div>
@@ -161,7 +162,8 @@
                                 {
                                     sum += (double?)ct.GiaBan * ct.SoLuongDat * 1.0;
                                 }
-                                @sum
+                                @{giatc = String.Format("{0:0,0}", @sum) + " VNĐ"; }
+                                @giatc
                             </div>
                         </div>
                     </div>

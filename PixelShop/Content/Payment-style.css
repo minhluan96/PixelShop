@@ -26,13 +26,31 @@ summary,time,mark,audio,video
     margin-right: 10%;
 }
 
+.caption small{
+    font-size: 12px;
+    float:right;
+    text-transform:uppercase;
+    margin: 5px;
+}
+
+.caption a{
+    text-decoration:none;
+    color:white;
+    cursor:pointer;
+}
+
+.caption{
+    width: 100%;
+    text-transform:uppercase;
+}
+
 .portlet.box.yellow-crusta{
     border: 1px solid #ffd327;
     border-top: 0;
 }
 
 .portlet.box.yellow-crusta > .portlet-title {
-  background-color: #f3c200;
+  background-color: #1BBC9B;
 }
 
 .portlet.box.yellow-crusta > .portlet-title > .caption {
@@ -226,13 +244,13 @@ summary,time,mark,audio,video
 }
 
 .portlet.box.yellow-crusta {
-  border: 1px solid #ffd327;
+  border: 1px solid #1BBC9B;
   border-top: 0;
 }
 
 .portlet > .portlet-body.yellow-crusta,
 .portlet.yellow-crusta {
-  background-color: #f3c200;
+  background-color: #1BBC9B;
 }
 
 .portlet.box.yellow-crusta > .portlet-title > .caption > i {
@@ -283,6 +301,83 @@ summary,time,mark,audio,video
 }
 
 /*end - lichsumuahang*/
+
+
+/*chitietlichsu*/
+
+.chitietinfo{
+    margin-bottom: 5%;
+    margin-top:5%;
+}
+
+.chitietinfo h4{
+    margin-top:2%;
+}
+
+.chitietinfo h2{
+    text-transform:uppercase;
+
+}
+
+.portlet.box.grey-cascade {
+  border: 1px solid #b1bdbd;
+  border-top: 0;
+}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{
+    border: 1px solid #ddd;
+}
+
+.portlet.box.grey-cascade > .portlet-title > .caption {
+  color: #FFFFFF;
+}
+
+.portlet.box > .portlet-title > .caption {
+  padding: 11px 0 9px 0;
+}
+
+.portlet.box.grey-cascade > .portlet-title > .caption > i {
+  color: #FFFFFF;
+}
+
+.portlet.box > .portlet-body {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.portlet.box > .portlet-title {
+  border-bottom: 0;
+  padding: 0 10px;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.portlet.light .portlet-body {
+  padding-top: 8px;
+}
+
+.portlet > .portlet-body.grey-cascade,
+.portlet.grey-cascade {
+  background-color: #95A5A6;
+}
+
+
+.portlet.box {
+  padding: 0px !important;
+}
+
+.portlet.box.grey-cascade > .portlet-title {
+  background-color: #95A5A6;
+}
+
+.chitietlichsu{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+
+}
+
+/*end - chitietlichsu*/
 
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0px;padding:0px;}

@@ -13,6 +13,9 @@ namespace PixelShop.Models
         {
 
         }
+
+        
+        
         public Item(SANPHAM sanpham,int soluong)
         {
             this.Sanpham = sanpham;

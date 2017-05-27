@@ -141,8 +141,9 @@
                                         </th>
                                     </tr>
                                     <tr role="row" class="filter">
+                                       @using (Html.BeginForm("TimKiemDH", "Admin", FormMethod.Post)) { 
                                         <td>
-                                            <input type="text" class="form-control form-filter input-sm" name="order_id">
+                                            <input type="text" class="form-control form-filter input-sm" name="madh">
                                         </td>
                                         <td>
                                             <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
@@ -159,28 +160,28 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control form-filter input-sm" name="order_customer_name">
+                                            <input type="text" class="form-control form-filter input-sm" name="tenkh">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control form-filter input-sm" name="order_ship_to">
+                                            <input type="text" class="form-control form-filter input-sm" name="diachigiao">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control form-filter input-sm" name="order_ship_to">
-                                        </td>
-                                        <td>
-                                            <div class="margin-bottom-5">
-                                                <input type="text" class="form-control form-filter input-sm" name="order_base_price_from" placeholder="Từ" />
-                                            </div>
-                                            <input type="text" class="form-control form-filter input-sm" name="order_base_price_to" placeholder="Đến" />
+                                            <input type="text" class="form-control form-filter input-sm" name="tennguoinhan">
                                         </td>
                                         <td>
                                             <div class="margin-bottom-5">
-                                                <input type="text" class="form-control form-filter input-sm margin-bottom-5 clearfix" name="order_purchase_price_from" placeholder="Từ" />
+                                                <input type="text" class="form-control form-filter input-sm" name="ngaydat" placeholder="Ngày đặt" />
                                             </div>
-                                            <input type="text" class="form-control form-filter input-sm" name="order_purchase_price_to" placeholder="Đến" />
+                                           
                                         </td>
                                         <td>
-                                            <select name="order_status" class="form-control form-filter input-sm">
+                                            <div class="margin-bottom-5">
+                                                <input type="text" class="form-control form-filter input-sm margin-bottom-5 clearfix" name="sdt" placeholder="Số điện thoại" />
+                                            </div>
+                                            
+                                        </td>
+                                        <td>
+                                            <select name="trangthai" class="form-control form-filter input-sm">
                                                 <option value="">Select...</option>
                                                 <option value="pending">Pending</option>
                                                 <option value="closed">Closed</option>
@@ -190,10 +191,11 @@
                                         </td>
                                         <td>
                                             <div class="margin-bottom-5">
-                                                <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Tìm kiếm</button>
+                                                <button class="btn btn-sm yellow filter-submit margin-bottom" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
                                             </div>
-                                            <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> </button>
+                                            <button class="btn btn-sm red filter-cancel" type="reset"><i class="fa fa-times"></i> </button>
                                         </td>
+                                        }
                                     </tr>
                                 </thead>
                                 <tbody>
