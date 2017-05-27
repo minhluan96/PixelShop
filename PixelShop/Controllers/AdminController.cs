@@ -178,39 +178,39 @@ namespace PixelShop.Controllers
             return RedirectToAction("Manufacturer", "Admin");
         }
         [HttpPost]
-        public void UpdateImageProduct(string masp)
+        public JsonResult UpdateImageProduct(string masp)
         {
+            List<String> imgpaths = new List<string>();
             if (Request.Files.Count > 0)
             {
                 try
                 {
-                    HttpFileCollectionBase files = Request.Files;
-
                     SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp)).Single();
-                    for (int i = 0; i < files.Count; i++)
+                    for (int i = 0; i < Request.Files.Count; i++)
                     {
-                        int count = sp.HINHANHs.Count();
-                        var fileName = sp.MaSP + "_" + count + "." + files[i].FileName.Split('.')[1];
-                        files[i].SaveAs(Server.MapPath("~/ImgProduct/" + fileName));
-                        var filePathOriginal = "../ImgProduct/";
-                        string savedFileName = Path.Combine(filePathOriginal, fileName);
 
-                        sp.HINHANHs.Add(new HINHANH() { MaSP = sp.MaSP, PathHinhAnh = savedFileName });
+                        var file = Request.Files[i];
+                        var code = DateTime.Now.ToString("ddMMyyyyhhmmss");
+                        var fileName = sp.MaSP + "_" + code + "." + Request.Files[i].FileName.Split('.')[1];
+                        imgpaths.Add(fileName);
+                        var path = Path.Combine(Server.MapPath("~/ImgProduct/"), fileName);
+                        file.SaveAs(path);
                     }
-                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
+
                 }
             }
+            return Json(imgpaths,JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult ProductUpdate(string masp, string tensp, string motasp, string tendm, int slg, int giaban, 
-                                    string[] imgSP, string[] statusimgSP, string imgKey, string maNSX)
+        public ActionResult ProductUpdate(string masp, string tensp, string motasp, string tendm, int slg, int giaban,
+                                    string[] imgSP, string imgKey, string maNSX)
         {
 
             if (!string.IsNullOrEmpty(tensp) && giaban >= 0 && slg >= 0)
-           {
+            {
                 SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
                 if (sp != null)
                 {
@@ -221,17 +221,20 @@ namespace PixelShop.Controllers
                     sp.NhaSanXuat = maNSX;
                     sp.HinhHienThi = imgKey;
                     sp.SoLuongTon = slg;
-
-                    db.SaveChanges();
                 }
-            }
-            if (Request.Files.Count > 0)
-            {
-                UpdateImageProduct(masp);
+                if (imgSP.Count() > 0)
+                {
+                    for (int i = 0; i < imgSP.Count(); i++)
+                    {
+                        sp.HINHANHs.Add(new HINHANH() { MaSP = sp.MaSP, PathHinhAnh = imgSP[i] });
+                    }
+                }
+
+                db.SaveChanges();
             }
             return RedirectToAction("Product", "Admin");
         }
-      
+
         [HttpPost]
         public ActionResult CategoryUpdate(string madm, string tendm, int cbbMaNdm)
         {

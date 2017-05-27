@@ -66,8 +66,42 @@ $(document).on('click', ".close-checkout", function () {
             dataType: "html"
         });
     });
+function flyToElement(flyer, flyingTo) {
+    var $func = $(this);
+    var divider = 3;
+    var flyerClone = $(flyer).clone();
+    $(flyerClone).css({ position: 'absolute', top: $(flyer).offset().top + "px", left: $(flyer).offset().left + "px", opacity: 1, 'z-index': 1000 });
+    $('body').append($(flyerClone));
+    var gotoX = $(flyingTo).offset().left + ($(flyingTo).width() / 2) - ($(flyer).width() / divider) / 2;
+    var gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height() / divider) / 2;
+
+    $(flyerClone).animate({
+        opacity: 0.4,
+        left: gotoX,
+        top: gotoY,
+        width: $(flyer).width() / divider,
+        height: $(flyer).height() / divider
+    }, 1000,
+    function () {
+        $(flyingTo).fadeOut('fast', function () {
+            $(flyingTo).fadeIn('fast', function () {
+                $(flyerClone).fadeOut('fast', function () {
+                    $(flyerClone).remove();
+                });
+            });
+        });
+    });
+}
+
 $(document).ready(function () {
     $(".btnaddcart").click(function () {
+        $('html, body').animate({
+            'scrollTop': $(".user-cart").position().top
+        });
+        //Select item image and pass to the function
+        var itemImg = $(this).parent().parent().find('img').eq(0);
+        flyToElement($(itemImg), $('.user-cart'));
+
         var productId = $(this).attr('class').replace('btnaddcart ', '');
         if ($(".minicart").find("." + productId).length > 0) {
             var element = $(".minicart").find("." + productId).first();
@@ -86,12 +120,13 @@ $(document).ready(function () {
             $.ajax({
                 method: "POST",
                 url: "MenuComponent/GetProduct",
+                dataType: "json",
                 data: { id: productId },
                 success: function (data) {
-                    var item = data.split("%");
-                    name = item[0];
-                    img = item[1];
-                    gia = item[2];
+                    var item = data;
+                    name = data.TenSP;
+                    img = data.HinhHienThi;
+                    gia = data.GiaBan;
                     var template = '<div class="cart-header"><div class="close-checkout ' + productId + '"> </div><div class="cart-sec simpleCart_shelfItem" style="margin-right:40px;"><div class="cart-item cyc"><img src="' + img + '" class="sbmincart-img" alt="" /></div><div class="cart-item-info">                        <p class="sbmincart-name">' + name + '</p>                        <p id="price" style="display:none;">' + gia + '</p>                        <p id="qty">Số lượng: 1</p>                        <div class="delivery" style="margin-top:10px;">                            <p class="total">Tổng tiền:' + gia + '</p>                            <div class="clearfix"></div>                        </div>                    </div>                    <div class="clearfix"></div>                </div>                <hr />            </div>';
                     $(".minicart").prepend(template);
                 },
