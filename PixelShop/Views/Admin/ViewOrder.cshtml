@@ -146,12 +146,26 @@
                                                         <div class="col-md-5 name">
                                                             Trạng thái
                                                         </div>
+                                                        @using (Html.BeginForm("CapNhatDonHang", "Admin", FormMethod.Post))
+                                                        {
                                                         <div class="col-md-7 value">
-                                                            <span class="label label-success">
-                                                                @Model.TINHTRANGDONHANG.TenTinhTrang
+                                                            <span class="label label-success" style="padding: 10px;">
+                                                                <select name="tinhtrang" >
+                                                                    @foreach (TINHTRANGDONHANG tt in ViewData["lstTT"] as List<TINHTRANGDONHANG>)
+                                                                    {
+                                                                        <option value="@tt.MaTinhTrang"  @(tt.TenTinhTrang.Equals(Model.TINHTRANGDONHANG.TenTinhTrang) ? "selected" : "")>@tt.TenTinhTrang</option>
+                                                                    }
+                                                                </select>
                                                             </span>
+                                                            <input type="hidden" name="madh" value="@Model.MaDH"/>
+                                                            <button style="background-color:transparent; margin-left: 10px; color: #45B6AF;" type="submit" class="btn btn-success">
+                                                                <span class="glyphicon glyphicon glyphicon-check" style="font-size: 18px;"></span>
+                                                            </button>
+                                                            
                                                         </div>
+                                                        }
                                                     </div>
+                                                        
                                                     <div class="row static-info">
                                                         <div class="col-md-5 name">
                                                             Tổng hóa đơn:

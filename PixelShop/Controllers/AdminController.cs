@@ -20,12 +20,20 @@ namespace PixelShop.Controllers
         {
             return View();
         }
-        public ActionResult Order(int ?page, List<DONHANG> lstTimKiemDH)
+
+        [OutputCache(NoStore = true, Duration = 1)]
+        public ActionResult Order(int ?page)
         {
             int pageSize = 3;
             int pageNumber = (page ?? 1);
 
-            if (lstTimKiemDH == null)
+            List<TINHTRANGDONHANG> lstTT = db.TINHTRANGDONHANGs.ToList();
+            ViewData["lstTT"] = lstTT;
+            
+            List<DONHANG> lstTimKiemDH = TempData["dsdh"] as List<DONHANG>;
+            TempData.Remove("dsdh");
+            var temp = lstTimKiemDH;
+           if (lstTimKiemDH == null)
             {
                 List<DONHANG> lstDH = db.DONHANGs.OrderBy(c => c.TinhTrang).Select(c => c).ToList<DONHANG>();
                 return View(@"~/Views/Admin/Order.cshtml", lstDH.ToPagedList(pageNumber, pageSize));
@@ -36,8 +44,29 @@ namespace PixelShop.Controllers
             
             
         }
+
+
+        [HttpPost]
+        public ActionResult CapNhatDonHang(FormCollection frm)
+        {
+            if (!String.IsNullOrEmpty(frm["tinhtrang"]))
+            {
+                int matinhtrang = Int32.Parse(frm["tinhtrang"]);
+                string madh = frm["madh"];
+                DONHANG dh = db.DONHANGs.Where(d => d.MaDH.Equals(madh)).SingleOrDefault();
+                if(dh != null)
+                {
+                    dh.TinhTrang = matinhtrang;
+                    db.SaveChanges();
+                }
+            }            
+            return RedirectToAction("Order", "Admin");
+        }
         public ActionResult ViewOrder(string madh)
         {
+            List<TINHTRANGDONHANG> lstTT = db.TINHTRANGDONHANGs.ToList();
+            ViewData["lstTT"] = lstTT;
+
             DONHANG dh = db.DONHANGs.Where(c => c.MaDH.Equals(madh)).Single();
             return View(@"~/Views/Admin/ViewOrder.cshtml",dh);
         }
@@ -108,25 +137,25 @@ namespace PixelShop.Controllers
         public ActionResult TimKiemDH(FormCollection frmC)
         {
             IQueryable<DONHANG> q = db.DONHANGs;
-            if(frmC["madh"] != null)
+            if(!String.IsNullOrEmpty(frmC["madh"].ToString()))
             {
                 String madh = frmC["madh"];
 
-                q = q.Where(d => d.MaDH.Contains(madh));
+                q = q.Where(d => d.MaDH == madh);
             }
-            if (frmC["tenkh"] != null)
+            if (!String.IsNullOrEmpty(frmC["tenkh"].ToString()))
             {
                 String tenkh = frmC["tenkh"];
 
                 q = q.Where(d => d.EmailDat.Contains(tenkh));
             }
-            if(frmC["diachigiao"] != null)
+            if(!String.IsNullOrEmpty(frmC["diachigiao"].ToString()))
             {
                 String diachigiao = frmC["diachigiao"];
 
                 q = q.Where(d => d.DiaChiGiao.Contains(diachigiao));
             }
-            if(frmC["ngaydat"] != null)
+            if(!String.IsNullOrEmpty(frmC["ngaydat"].ToString()))
             {
                 String ngayDat = frmC["ngaydat"];
                 DateTime ngayDatDate;
@@ -140,13 +169,13 @@ namespace PixelShop.Controllers
                 }
             }
             
-            if(frmC["sdt"] != null)
+            if(!String.IsNullOrEmpty(frmC["sdt"].ToString()))
             {
                 String sdt = frmC["sdt"];
 
                 q = q.Where(d => d.SDTNhan.Equals(sdt));
             }
-            if(frmC["trangthai"] != null)
+            if(!String.IsNullOrEmpty(frmC["trangthai"].ToString()))
             {
                 String trangthai = frmC["trangthai"];
 
@@ -154,9 +183,9 @@ namespace PixelShop.Controllers
             }
 
             List<DONHANG> dsDH = q.ToList<DONHANG>();
+            TempData["dsdh"] = dsDH;
 
-            
-            return RedirectToAction("Order", "Admin", new { lstTimKiemDH = dsDH });
+            return RedirectToAction("Order", "Admin");
         }
 
         [HttpPost]
