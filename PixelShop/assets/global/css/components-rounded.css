@@ -3656,6 +3656,13 @@ h1 .label, h2 .label, h3 .label, h4 .label, h5 .label, h6 .label {
   background-color: #37918b;
 }
 
+.label-success select{
+    background-color: #45B6AF;
+    border: 1px solid #45B6AF;
+}
+
+
+
 .label-info {
   background-color: #89C4F4;
 }
