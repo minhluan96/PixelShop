@@ -6,13 +6,13 @@
         <div class="check_box">
             <div class="col-md-9 cart-items">
                 <h1 class="label-shopping-bag">GIỎ HÀNG</h1>
-                @if(Session["cart"]==null || ((List<Item>)Session["cart"]).Count==0)
+                @{ int? sum = 0; }
+                @if(Session["cart"]==null)
                 {
-                    <p>Giỏ hàng đang trống</p>
+                    <p id="null-cart" style="color: red;">Giỏ hàng đang trống</p>
                 }
-                @if (Session["cart"] != null && ((List<Item>)Session["cart"]).Count > 0)
+                @if (Session["cart"] != null)
                 {
-                    
                     foreach (Item item in (List<Item>)Session["cart"])
                     {
                         <div class="cart-header">
@@ -27,6 +27,9 @@
                                         <br />       
                                         <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>                              
                                         <input type="number" class="qtycart @item.Sanpham.MaSP" min="1" max="20" value="@item.Soluong">
+                                        @{
+                                            sum = item.Sanpham.GiaBan * item.Soluong;
+                                        }
                                         <div class="delivery">
                                             <p id="total">Tổng tiền: @(item.Sanpham.GiaBan * item.Soluong)</p>
                                             <div class="clearfix"></div>
@@ -44,7 +47,7 @@
                 <div class="price-details">
                     <h3>Chi tiết hóa đơn</h3>
                     <span>Tổng cộng</span>
-                    <span class="total1">350.000.000 VNĐ</span>
+                    <span class="total1">@sum</span>
                     <span>Discount</span>
                     <span class="total1">---</span>
                     <span>Phí dịch vụ giao hàng</span>
@@ -53,7 +56,7 @@
                 </div>
                 <ul class="total_price">
                     <li class="last_price"> <h4>Tổng cộng</h4></li>
-                    <li class="last_price"><span>80.000.000 VNĐ</span></li>
+                    <li class="last_price"><span>@sum</span></li>
                     <div class="clearfix"> </div>
                 </ul>
                 <div class="clearfix"></div>

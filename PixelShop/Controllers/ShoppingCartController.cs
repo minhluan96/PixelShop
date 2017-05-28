@@ -32,7 +32,9 @@ namespace PixelShop.Controllers
             int index = isExisting(id);
             List<Item> cart = (List<Item>)Session["cart"];
             cart.RemoveAt(index);
-        }   
+            if (cart.Count() == 0)
+                Session["cart"] = null;
+        }
         public void Update(string id,int quantity)
         {
             int index = isExisting(id);

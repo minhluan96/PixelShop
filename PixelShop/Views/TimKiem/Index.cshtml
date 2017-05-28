@@ -134,9 +134,12 @@
                                     <a href="@Url.Action("Index", "Info", new { id = Model.ElementAt(i).MaSP })">
                                         <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" alt="" />
                                     </a>
-                                    <div class="p-mask">
-                                        <span class="btnaddcart @Model.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
-                                     </div>
+                                    @if (Session["username"] != null)
+                                    {
+                                        <div class="p-mask">
+                                            <span class="btnaddcart @Model.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
+                                         </div>
+                                    }
                             </div>
                                 <i class="fa fa-star yellow-star" aria-hidden="true"></i>
                                 <i class="fa fa-star yellow-star" aria-hidden="true"></i>

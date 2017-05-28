@@ -28,6 +28,7 @@ namespace PixelShop.Controllers
         public JsonResult GetProduct(string id)
         {
             SANPHAM product = new SANPHAM();
+            db.Configuration.ProxyCreationEnabled = false;
             product = db.SANPHAMs.SingleOrDefault(x => x.MaSP == id);
             return Json(product, JsonRequestBehavior.AllowGet);
         }
