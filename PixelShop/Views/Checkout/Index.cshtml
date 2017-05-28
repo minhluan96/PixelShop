@@ -25,8 +25,19 @@
                                         <h3>@item.Sanpham.TenSP</h3>
                                         <span>Mã sản phẩm: <span  class="idProduct">@item.Sanpham.MaSP</span></span>
                                         <br />       
-                                        <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>                              
-                                        <input type="number" class="qtycart @item.Sanpham.MaSP" min="1" max="20" value="@item.Soluong">
+                                        <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>
+                                        @{ 
+                                            List<SANPHAM> lst = ViewData["sanpham"] as List<SANPHAM>;
+                                            int? max;
+                                            for (int i = 0; i< lst.Count(); i++)
+                                            {
+                                                if (item.Sanpham.MaSP.Equals(lst[i].MaSP))
+                                                {
+                                                    max = lst[i].SoLuongTon;
+                                                }
+                                            }
+                                        }                           
+                                        <input type="number" class="qtycart @item.Sanpham.MaSP" min="1" max="@max" value="@item.Soluong">
                                         @{
                                             sum = item.Sanpham.GiaBan * item.Soluong;
                                         }
