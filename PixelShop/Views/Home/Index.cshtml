@@ -88,10 +88,13 @@
                                             <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
                                                 <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
                                             </a>
-                                            <div class="p-mask">
+                                            @if (Session["username"] != null)
+                                            {
+                                                <div class="p-mask">
 
-                                                  <span class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
-                                             </div>
+                                                    <span class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
+                                                </div>
+                                            }
                                         </div>
 
 
@@ -113,10 +116,13 @@
                                             <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
                                                 <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt=""/>
                                             </a>
-                                            <div class="p-mask">
+                                            @if (Session["username"] != null)
+                                            {
+                                                <div class="p-mask">
 
-                                                <span class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
-                                            </div>
+                                                    <span class="btnaddcart @lst.ElementAt(i).MaSP"><button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button></span>
+                                                </div>
+                                            }
                                         </div>
 
 
@@ -227,37 +233,8 @@
                 </div>
             </div>
             <div class="col-md-5 testimonials">
-                <div class="test-inner">
-                    <div class="wmuSlider example1 animated wow slideInUp" data-wow-delay=".3s">
-                        <div class="wmuSliderWrapper">
-
-                            <article style="position: absolute; width: 100%; opacity: 0;">
-                                <div class="banner-wrap">
-                                    <img src="~/images/mobile1.jpg" alt=" " class="img-responsive" />
-                                    <div class="carousel-caption">
-                                        <h3>Flowers</h3>
-                                    </div>
-                                </div>
-                            </article>
-                            <article style="position: absolute; width: 100%; opacity: 0;">
-                                <div class="banner-wrap">
-                                    <img src="~/images/mobile2.jpg" alt=" " class="img-responsive" />
-                                    <div class="carousel-caption">
-                                        <h3>Flowers</h3>
-                                    </div>
-                                </div>
-                            </article>
-                            <article style="position: absolute; width: 100%; opacity: 0;">
-                                <div class="banner-wrap">
-                                    <img src="~/images/mobile3.jpg" alt=" " class="img-responsive" />
-                                    <div class="carousel-caption">
-                                        <h3>Flowers</h3>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
+                <img src="~/images/back7.PNG" alt="" class="img-responsive" />
+               
             </div>
             <div class="clearfix"></div>
         </div>

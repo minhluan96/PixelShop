@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PixelShop.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,15 +20,58 @@
                     <div class="phone-shop">+0901328995</div>
                 </div>
                 <div class="col-md-6 phone-w3l pull-right">
-                    <a href="@Url.Action("Index", "AccountPixelShop")">
-                        <div class="user-login">Đăng nhập</div>
-                    </a>
+                        @if (Session["username"] == null)
+                        {
+                            <a href="@Url.Action("Index", "AccountPixelShop")">
+                                <div class="user-login">Đăng nhập</div>
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="user-login dropdown dropdown-user dropdown-dark">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <span class="username username-hide-on-mobile" style="color: #ffffff;">
+                                        @Session["username"]
+                                    </span>
+                                    <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default" style="background-color: #1e1e1e;">
+                                    <li>
+                                        <a href="extra_profile.html" style="margin-top:10px; color:white; font-size: 12px;">
+                                            <i class="glyphicon glyphicon-pencil" style="margin-right: 5px;"></i> Đổi mật khẩu
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="login.html" style="margin-top:10px; color:white; font-size: 12px;">
+                                            <i class="glyphicon glyphicon-list-alt" style="margin-right: 5px;"></i> Lịch sử mua hàng
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="login.html" style="margin-top:10px; margin-bottom:10px; color:white; font-size: 12px;">
+                                            <i class="glyphicon glyphicon-log-out" style="margin-right: 5px;"></i> Đăng xuất
+                                        </a>
+                                    </li>
+
+                                </ul>
+                          </div>
+                        }
                         <div class="user-cart">
                             <div class="cart">
                                 <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>  Giỏ hàng
                             </div>
                         </div>
-                        <div class="user-numproduct">0</div>
+                         @{ 
+                             int count = 0;
+                             if (Session["cart"] != null)
+                             {
+                                 List<Item> lst = (List<Item>)Session["cart"];
+                                 for(int i = 0; i< lst.Count(); i++)
+                                 {
+                                     count += lst[i].Soluong;
+                                 }
+                             }
+                         }   
+                        <div class="user-numproduct">@count</div>
 </div>
             </div>
     

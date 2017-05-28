@@ -300,20 +300,22 @@ namespace PixelShop.Controllers
             return RedirectToAction("Manufacturer", "Admin");
         }
         [HttpPost]
-        public JsonResult UpdateImageProduct(string masp)
+        public JsonResult UpdateImageProduct()
         {
             List<String> imgpaths = new List<string>();
+            db.Configuration.ProxyCreationEnabled = false;
             if (Request.Files.Count > 0)
             {
                 try
                 {
-                    SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp)).Single();
                     for (int i = 0; i < Request.Files.Count; i++)
                     {
 
                         var file = Request.Files[i];
-                        var code = DateTime.Now.ToString("ddMMyyyyhhmmss");
-                        var fileName = sp.MaSP + "_" + code + "." + Request.Files[i].FileName.Split('.')[1];
+                        Random rand = new Random();
+                        int randNumb = rand.Next(10, 100);
+                        var code = DateTime.Now.ToString("ddMMyyyyhhmmss") + randNumb;
+                        var fileName = code + "." + Request.Files[i].FileName.Split('.')[1];
                         imgpaths.Add(fileName);
                         var path = Path.Combine(Server.MapPath("~/ImgProduct/"), fileName);
                         file.SaveAs(path);
@@ -327,24 +329,23 @@ namespace PixelShop.Controllers
             return Json(imgpaths,JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult ProductUpdate(string masp, string tensp, string motasp, string tendm, int slg, int giaban,
+        public ActionResult ProductUpdate(string masp, string tensp, string gioithieusp, string tinhnangsp, string tendm, int slg, int giaban,
                                     string[] imgSP, string imgKey, string maNSX)
         {
 
-            if (!string.IsNullOrEmpty(tensp) && giaban >= 0 && slg >= 0)
-            {
                 SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
                 if (sp != null)
                 {
                     sp.TenSP = tensp;
-                    sp.MoTa = motasp;
+                    sp.MoTa = gioithieusp + "&" + tinhnangsp;
                     sp.GiaBan = giaban;
                     sp.DanhMuc = tendm;
                     sp.NhaSanXuat = maNSX;
                     sp.HinhHienThi = imgKey;
                     sp.SoLuongTon = slg;
                 }
-                if (imgSP.Count() > 0)
+                sp.HINHANHs.Clear();
+                if (imgSP!=null)
                 {
                     for (int i = 0; i < imgSP.Count(); i++)
                     {
@@ -353,7 +354,6 @@ namespace PixelShop.Controllers
                 }
 
                 db.SaveChanges();
-            }
             return RedirectToAction("Product", "Admin");
         }
 
@@ -376,53 +376,35 @@ namespace PixelShop.Controllers
             return RedirectToAction("Category", "Admin");
         }
 
-        public ActionResult ProductCreate(FormCollection frm)
+        public ActionResult ProductCreate(string masp, string tensp, string gioithieusp, string tinhnangsp, string tendm, int slg, int giaban,
+                                    string[] imgSP, string imgKey, string maNSX)
         {
-            //string tensp, string motasp, string tendm, int slg, int giaban,
-            //                        string[] imgSP, string imgKey, string maNSX
-
-            string tensp = Convert.ToString(frm["tensp"]);
-            string mota = Convert.ToString(frm["motasp"]);
-            string tendm = Convert.ToString(frm["tendm"]);
-            int slg = Convert.ToInt32(frm["slg"]);
-            int giaban = Convert.ToInt32(frm["giaban"]);
-            string maNSX = Convert.ToString(frm["maNSX"]);
-
-            if(tensp != null && slg >= 0 && giaban >= 0 && tendm != null) {
-                int solgSP = db.SANPHAMs.Count() + 1;
-                string maSP = "SP";
-                if(solgSP < 10)
-                {
-                    maSP += "00" + solgSP;
-                }
-                else
-                {
-                    maSP += "0" + solgSP;
-                }
-                int n = db.SANPHAMs.Where(c => c.MaSP.Equals(maSP)).Count();
+                string maSP = "SP" + DateTime.Now.ToString("ddMMyyyyhhmmss");
                 SANPHAM sp = new SANPHAM
                 {
                     MaSP = maSP,
                     TenSP = tensp,
                     GiaBan = giaban,
-                    HinhHienThi = null,
-                    SoLuongTon = solgSP,
-                    MoTa = mota,
+                    HinhHienThi = imgKey,
+                    SoLuongTon = slg,
+                    MoTa = gioithieusp + "&" + tinhnangsp,
                     DanhMuc = tendm,
                     NhaSanXuat = maNSX,
                     SoLuongBan = 0,
                     SoLuotXem = 0,
                     BiXoa = 0
                 };
-                if(n <= 0)
+                db.SANPHAMs.Add(sp);
+                if (imgSP != null)
                 {
-                    db.SANPHAMs.Add(sp);
-                    db.SaveChanges();
+                    for (int i = 0; i < imgSP.Count(); i++)
+                    {
+                        sp.HINHANHs.Add(new HINHANH() { MaSP = sp.MaSP, PathHinhAnh = imgSP[i] });
+                    }
                 }
+                db.SaveChanges();
 
-            }
-
-            return RedirectToAction("Product", "Admin");
+                return RedirectToAction("Product", "Admin");
         }
 
         public ActionResult CategoryCreate(string tendm, int cbbMaNdm)

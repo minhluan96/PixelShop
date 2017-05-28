@@ -47,6 +47,11 @@ $(document).on('click', ".close-checkout", function () {
             $(this).remove();
         });
         var productId = $(this).attr('class').replace('close-checkout ', '');
+        var elementqty = $(this).parent().find("#qty").first();
+        var qty = parseInt(elementqty.text().replace("Số lượng: ", ""));
+        var count = parseInt($(".user-numproduct").text());
+        count = count - qty;
+        $(".user-numproduct").text(count);
         $(document).find('.close-checkout.' + productId).each(function () {
             $(this).parent().fadeOut('slow', function (c) {
                 $(this).remove();
@@ -64,7 +69,7 @@ $(document).on('click', ".close-checkout", function () {
             url: "ShoppingCart/Delete",
             data: { id: productId },
             dataType: "html"
-        });
+        });      
     });
 function flyToElement(flyer, flyingTo) {
     var $func = $(this);
@@ -100,8 +105,10 @@ $(document).ready(function () {
         });
         //Select item image and pass to the function
         var itemImg = $(this).parent().parent().find('img').eq(0);
+        var count = parseInt($(".user-numproduct").text());
+        count = count + 1;
+        $(".user-numproduct").text(count);
         flyToElement($(itemImg), $('.user-cart'));
-
         var productId = $(this).attr('class').replace('btnaddcart ', '');
         if ($(".minicart").find("." + productId).length > 0) {
             var element = $(".minicart").find("." + productId).first();
@@ -144,5 +151,10 @@ $(document).ready(function () {
             dataType: "html"
 
         });
+        var cartcheck = '<%= Session["cart"] %>';
+        if (cartcheck != null) {
+            $("#null-cart").hide();
+            $("#totalcart").show();
+        }
     });
 });

@@ -10,7 +10,7 @@
                             @foreach (var ha in ViewData["hinhanh"] as List<HINHANH>)
                             {
                                 <li data-thumb="@Html.DisplayFor(a => ha.PathHinhAnh)">
-                                    <div class="thumb-image detail_images"> <img src="@Html.DisplayFor(a => ha.PathHinhAnh)" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
+                                    <div class="thumb-image detail_images"> <img src="@("../" + Html.DisplayFor(a => ha.PathHinhAnh))" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
                                 </li>
                             }
                             
@@ -41,10 +41,13 @@
                         </ul>
                     </div>
                     <br />
+                    @if (Session["username"] != null)
+                    {
                     <span class="btnaddcart @Model.MaSP">
                         <button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> &ensp; Đặt hàng</button>
                     </span>
                         <button class="w3ls-cart w3ls-cart-like"><i class="fa fa-heart-o" aria-hidden="true"></i> &ensp; Yêu thích</button>
+                    }
                     </div>
                 <div class="clearfix"> </div>
             </div>
@@ -64,12 +67,35 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            @{
-                                String[] mota = Model.MoTa.Split(new string[] { "\n" }, StringSplitOptions.None); 
-                            }
-                            @for(int i = 0;i<mota.Length;i++){
-                               <p>@mota[i].Replace(@"\n","")</p>
-                            }
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @{
+                                        String[] mota = Model.MoTa.Split(new string[] { "&" }, StringSplitOptions.None);
+                                    }
+                                    <h4 style="text-align: left; font-weight:bold;">Giới thiệu</h4>
+                                    @{
+                                        string[] gioithieu = mota[0].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
+                                        for (int i = 0; i < gioithieu.Count(); i++)
+                                        {
+                                            <p>@gioithieu[0].Replace(@"%", "")</p>
+                                            <hr />
+                                        }
+                                    }
+
+                                    <h4 style="text-align: left; font-weight:bold;">Tính năng</h4>
+                                    @{
+                                        string[] tinhnang = mota[1].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
+                                        for (int i = 0; i < tinhnang.Count(); i++)
+                                        {
+                                            <p>@tinhnang[0].Replace(@"%", "")</p>
+                                            <hr />
+                                        }
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="@( "../" + Model.HinhHienThi)" class="img-responsive image-main" alt="">
+                                </div>
+                            </div> 
                           </div>
                     </div>
                 </div>
@@ -113,9 +139,8 @@
                 {
                     <li>
                         <a href="@Url.Action("Index", "Info", new { id = sp.MaSP })">
-                            <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " class="img-responsive" />
+                            <img src="@("../" + Html.DisplayFor(a => sp.HinhHienThi))" alt="" class="img-responsive" />
                             <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
-
                             <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
                         </a>
                     </li>

@@ -116,13 +116,14 @@
     <div class="clearfix"></div>
 </div>
 <div class="minicart">
-    @if (Session["cart"] == null || ((List<Item>)Session["cart"]).Count == 0)
+
+    @{        int? total = 0; }
+    @if (Session["cart"] == null)
     {
-        <p style="color: red;">Giỏ hàng đang trống</p>
+        <p style="color: red;" id="null-cart">Giỏ hàng đang trống</p>
     }
-    @if (Session["cart"] != null && ((List<Item>)Session["cart"]).Count > 0)
+    @if (Session["cart"] != null)
     {
-        int? total = 0;
         foreach (Item item in (List<Item>)Session["cart"])
         {
             <div class="cart-header">
@@ -145,14 +146,14 @@
                 </div>
                 <hr />
             </div>
-        }
-        <div class="sbmincart-footer"> 
-            <p style="font-size: 15px;" id="totalorder">Tổng tiền hóa đơn: @total</p>
-            <a href="/Checkout">
-                <div class="viewcart">
-                    <p style="color: white;">Chi tiết giỏ hàng</p>
-                </div>
-            </a>
-        </div>
+        }    
     }
+    <div class="sbmincart-footer" id="totalcart">
+        <p style="font-size: 15px;" id="totalorder">Tổng tiền hóa đơn: @total</p>
+        <a href="/Checkout">
+            <div class="viewcart">
+                <p style="color: white;">Chi tiết giỏ hàng</p>
+            </div>
+        </a>
+    </div>
 </div>

@@ -111,12 +111,22 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">
-                                                    Mô tả: <span class="required">
+                                                    Giới thiệu: <span class="required">
                                                         *
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <textarea class="form-control" style="height:150px" name="motasp">@Model.MoTa</textarea>
+                                                    <textarea class="form-control" name="gioithieusp"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">
+                                                    Đặc điểm tính năng: <span class="required">
+                                                        *
+                                                    </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <textarea class="form-control" name="tinhnangsp"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -259,19 +269,29 @@
                                                     <td>
                                                         <a href="" class="fancybox-button" data-rel="fancybox-button">
                                                             <input type="hidden" name="imgSP" value="@Model.HINHANHs.ElementAt(i).PathHinhAnh"/>
-                                                            <img type="image"  class="img-responsive" src="@Model.HINHANHs.ElementAt(i).PathHinhAnh"  alt="">
+                                                            <img type="image"  class="img-responsive" src="@Model.HINHANHs.ElementAt(i).PathHinhAnh"  alt=""> 
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <label>
-                                                            <input type="radio" name="imgKey" value="@Model.HINHANHs.ElementAt(i).PathHinhAnh" @(Model.HinhHienThi.Equals(Model.HINHANHs.ElementAt(i).PathHinhAnh) ? "checked" : "")>
-                                                            Ảnh bìa
-                                                        </label>
+                                                        @if (Model.HinhHienThi == null)
+                                                        {
+                                                            <label>
+                                                                <input type="radio" name="imgKey" value="@Model.HINHANHs.ElementAt(i).PathHinhAnh">
+                                                                Ảnh bìa
+                                                            </label>
+                                                        }
+                                                        else {
+                                                            <label>
+                                                                <input type="radio" name="imgKey" value="@Model.HINHANHs.ElementAt(i).PathHinhAnh" @(Model.HinhHienThi.Equals(Model.HINHANHs.ElementAt(i).PathHinhAnh) ? "checked" : "")>
+                                                                Ảnh bìa
+                                                            </label>
+                                                        }
                                                     </td>
-                                                  
-                                                    
+
+
+
                                                     <td>
-                                                        <a href="javascript:;" class="btn default btn-sm">
+                                                        <a href="javascript:;" class="btn default btn-sm btnXoa">
                                                             <i class="fa fa-times"></i> Xóa
                                                         </a>
                                                     </td>
