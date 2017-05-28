@@ -23,12 +23,13 @@ namespace PixelShop.Controllers
             ViewData["danhmucphukien"] = lstDMPhuKien;
             return PartialView();
         }
+
+        [HttpPost]
         public JsonResult GetProduct(string id)
         {
             SANPHAM product = new SANPHAM();
             product = db.SANPHAMs.SingleOrDefault(x => x.MaSP == id);
-            string data = product.TenSP + "%" + product.HinhHienThi + "%" + product.GiaBan;
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(product, JsonRequestBehavior.AllowGet);
         }
     }
 }
