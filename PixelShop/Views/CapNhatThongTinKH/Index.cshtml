@@ -1,0 +1,62 @@
+﻿@using PixelShop.Models
+@model PixelShop.Models.TAIKHOAN
+
+@Styles.Render("~/Content/css-payment")
+
+<div class="doimatkhau">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                
+                    @using (Html.BeginForm("capNhatThongTin", "CapNhatThongTinKH", FormMethod.Post))
+                    {
+                    <h2 style="text-align:center; text-transform:uppercase;">Cập nhật thông tin</h2>
+                    <hr class="colorgraph">
+                        int isUpdate = Int32.Parse(ViewData["capnhat"].ToString());
+                        if (isUpdate != 0)
+                        {
+                            <p style="text-align:center; color:#66cc66; margin-bottom: 15px; margin-top: 5px;">Cập nhật thành công</p>
+                        }
+                        else
+                        {
+                            <p style="text-align:center; color:#ff6666; margin-bottom: 15px; margin-top: 5px;">Vui lòng nhập đầy đủ thông tin</p>
+                        }
+
+
+                    <div class="form-group">
+                        <input type="text" name="hoten" id="display_name" value="@Model.HoTen" onkeyup="checkPass(); return false;" class="form-control input-lg" placeholder="Họ tên" tabindex="3">
+                        <span id="tenmess" class="confirmMessage"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" value="@Model.Email" readonly class="form-control input-lg" placeholder="Địa chỉ Email" tabindex="4">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="hidden" value="@Model.MatKhau" id="passOld"/>
+                                <input type="password" name="password_old" id="password_old" onkeyup="checkPass(); return false;" class="form-control input-lg" placeholder="Mật khẩu mới" tabindex="5">
+                                <span id="mess" class="confirmMessage"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password_new" onkeyup="checkPass(); return false;" id="password_new" class="form-control input-lg" placeholder="Nhập lại mật khẩu" tabindex="6">
+                                <span id="confirmMessage" class="confirmMessage"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6"><button class="btn btn-danger btn-block btn-lg"  type="button">Hủy</button></div>
+                        <div class="col-xs-6 col-md-6"><button class="btn btn-success btn-block btn-lg" id="btncapnhat" type="submit">Cập nhật</button></div>
+                        
+                    </div>
+                    }
+               
+            </div>
+        </div>
+       
+    </div>
+</div>
