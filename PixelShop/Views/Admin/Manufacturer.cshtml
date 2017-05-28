@@ -190,6 +190,43 @@
                                             Hoạt động
                                         </th>
                                     </tr>
+                                    <tr role="row" class="filter">
+                                        @using (Html.BeginForm("TimKiemNSX", "Admin", FormMethod.Post))
+                                        {
+                                            <td>
+                                                <input type="text" class="form-control form-filter input-sm" name="stt" readonly>
+                                            </td>
+                                            
+                                            <td>
+                                                <input type="text" class="form-control form-filter input-sm" name="mansx" placeholder="Mã NSX">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control form-filter input-sm" name="tennsx" placeholder="Tên NSX">
+                                            </td>
+                                           
+                                            <td>
+                                                <div class="margin-bottom-5">
+                                                    <input type="text" class="form-control form-filter input-sm" name="mota" placeholder="Mô tả" readonly />
+                                                </div>
+
+                                            </td>
+                                            
+                                            <td>
+                                                <select name="trangthai" class="form-control form-filter input-sm">
+                                                    <option value="2">Tất cả</option>
+                                                    <option value="0">Hoạt động</option>
+                                                    <option value="1">Tạm ngưng</option>
+                                                   
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="margin-bottom-5" style="display:inline-block;">
+                                                    <button class="btn btn-sm yellow filter-submit margin-bottom" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+                                                </div>
+                                                <button class="btn btn-sm red filter-cancel" type="reset"><i class="fa fa-times"></i> </button>
+                                            </td>
+                                        }
+                                    </tr>
 
                                 </thead>
                                 <tbody>

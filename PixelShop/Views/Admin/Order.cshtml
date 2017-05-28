@@ -182,6 +182,7 @@
                                         </td>
                                         <td>
                                             <select name="trangthai" class="form-control form-filter input-sm">
+                                                <option value="Tất cả">Tất cả</option>
                                                 @foreach (TINHTRANGDONHANG tt in ViewData["lstTT"] as List<TINHTRANGDONHANG>) {
                                                     <option value="@tt.TenTinhTrang">@tt.TenTinhTrang</option>
                                                 }
