@@ -68,3 +68,72 @@ w3ls1.cart.on('w3sb1_checkout', function (evt) {
 
 $('.example1').wmuSlider();
 
+
+function checkPass() {
+
+    var pass1 = document.getElementById('password_old');
+    var pass2 = document.getElementById('password_new');
+    var passwordOld = document.getElementById('passOld');
+    var hoten = document.getElementById("display_name");
+
+    var message = document.getElementById('confirmMessage');
+    var mess = document.getElementById('mess');
+    var tenmess = document.getElementById('tenmess');
+
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+
+    if (hoten == null || hoten.value.length == 0) {
+        hoten.style.backgroundColor = badColor;
+        tenmess.style.color = badColor;
+        tenmess.innerHTML = "Họ tên không được trống!"
+        $(':input[type="submit"]').prop('disabled', true);
+    }
+    else {
+        hoten.style.backgroundColor = goodColor;
+        tenmess.style.color = goodColor;
+        tenmess.innerHTML = "OK!";
+        var btnupdate = document.getElementById('btncapnhat');
+        $(':input[type="submit"]').prop('disabled', false);
+    }
+    
+    if (pass1.value != passwordOld.value) {
+        pass1.style.backgroundColor = badColor;
+        mess.style.color = badColor;
+        mess.innerHTML = "Mật khẩu cũ không chính xác!"
+        $(':input[type="submit"]').prop('disabled', true);
+    }
+    else {
+        pass1.style.backgroundColor = goodColor;
+        mess.style.color = goodColor;
+        mess.innerHTML = "OK!"
+
+
+
+        if (pass2.value.length >= 6) {
+
+            if (pass2.value == pass1.value) {
+                pass2.style.backgroundColor = badColor;
+                message.style.color = badColor;
+                message.innerHTML = "Mật khẩu mới không được giống với mật khẩu cũ"
+                $(':input[type="submit"]').prop('disabled', true);
+
+            } else {
+
+                pass2.style.backgroundColor = goodColor;
+                message.style.color = goodColor;
+                message.innerHTML = "OK!";
+                var btnupdate = document.getElementById('btncapnhat');
+                $(':input[type="submit"]').prop('disabled', false);
+            }
+
+        } else {
+
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Mật khẩu phải có ít nhất 6 kí tự!"
+            $(':input[type="submit"]').prop('disabled', true);
+
+        }
+    }
+}

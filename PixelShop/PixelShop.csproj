@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountPixelShopController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CapNhatThongTinKHController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\FooterComponentController.cs" />
@@ -1823,6 +1824,7 @@
     <Content Include="Views\Payment\ThanhToanThanhCong.cshtml" />
     <Content Include="Views\LishSuMuaHang\Index.cshtml" />
     <Content Include="Views\LishSuMuaHang\ChiTietLichSuMuaHang.cshtml" />
+    <Content Include="Views\CapNhatThongTinKH\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
