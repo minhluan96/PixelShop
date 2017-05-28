@@ -57,6 +57,10 @@ namespace PixelShop.Controllers
                 if(dh != null)
                 {
                     dh.TinhTrang = matinhtrang;
+                    if(matinhtrang == 0)
+                    {
+                        dh.NgayGiao = DateTime.Now;
+                    }
                     db.SaveChanges();
                 }
             }            
@@ -113,24 +117,109 @@ namespace PixelShop.Controllers
             return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
         }
 
-        
+        [OutputCache(NoStore = true, Duration = 1)]
         public ActionResult Category(int? page)
         {
-            List<DANHMUC> lstDM = db.DANHMUCs.OrderBy(c => c.BiXoa).Select(c => c).ToList<DANHMUC>();
             int pageSize = 3;
             int pageNumber = (page ?? 1);
+            List<DANHMUC> lstTimKiemDM = TempData["dsdm"] as List<DANHMUC>;
+            TempData.Remove("dsdm");
+            if (lstTimKiemDM == null)
+            {
+                List<DANHMUC> lstDM = db.DANHMUCs.OrderBy(c => c.BiXoa).Select(c => c).ToList<DANHMUC>();  
+                return View(@"~/Views/Admin/Category.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
+            }
 
-            return View(@"~/Views/Admin/Category.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
+            return View(@"~/Views/Admin/Category.cshtml", lstTimKiemDM.ToPagedList(pageNumber, pageSize));
         }
+
+        [OutputCache(NoStore = true, Duration = 1)]
         public ActionResult Manufacturer(int ?page)
         {
-
-            List<NHASANXUAT> lstNSX = db.NHASANXUATs.OrderBy(n => n.BiXoa).Select(n => n).ToList<NHASANXUAT>();
             int pageSize = 3;
             int pageNumber = (page ?? 1);
 
+           
 
-            return View(@"~/Views/Admin/Manufacturer.cshtml", lstNSX.ToPagedList(pageNumber, pageSize));
+            List<NHASANXUAT> lstTimKiemNSX = TempData["dsnsx"] as List<NHASANXUAT>;
+            TempData.Remove("dsnsx");
+            if (lstTimKiemNSX == null)
+            {
+
+                List<NHASANXUAT> lstNSX = db.NHASANXUATs.OrderBy(n => n.BiXoa).Select(n => n).ToList<NHASANXUAT>();
+                return View(@"~/Views/Admin/Manufacturer.cshtml", lstNSX.ToPagedList(pageNumber, pageSize));
+            }
+            return View(@"~/Views/Admin/Manufacturer.cshtml", lstTimKiemNSX.ToPagedList(pageNumber, pageSize));
+        }
+
+
+        [HttpPost]
+        public ActionResult TimKiemDM(FormCollection fm)
+        {
+            IQueryable<DANHMUC> q = db.DANHMUCs;
+            if (!string.IsNullOrEmpty(fm["madm"].ToString()))
+            {
+                string madm = fm["madm"];
+                q = q.Where(d => d.MaDanhMuc.Equals(madm));
+            }
+
+            if (!string.IsNullOrEmpty(fm["tendm"].ToString()))
+            {
+                string tendm = fm["tendm"].ToLower();
+                q = q.Where(d => d.TenDanhMuc.ToLower().Contains(tendm));
+            }
+            if (!string.IsNullOrEmpty(fm["nhomdm"].ToString()))
+            {
+                int value = Int32.Parse(fm["nhomdm"].ToString());
+                if (value != 0)
+                {
+                    q = q.Where(d => d.NhomDanhMuc == value);
+                }
+            }
+            if (!string.IsNullOrEmpty(fm["trangthai"].ToString()))
+            {
+                int value = Int32.Parse(fm["trangthai"].ToString());
+                if (value != 2)
+                {
+                    q = q.Where(d => d.BiXoa == value);
+                }
+            }
+
+            List<DANHMUC> lstDM = q.ToList();
+            TempData["dsdm"] = lstDM;
+
+            return RedirectToAction("Category", "Admin");
+        }
+
+
+        [HttpPost]
+        public ActionResult TimKiemNSX(FormCollection fm)
+        {
+            IQueryable<NHASANXUAT> q = db.NHASANXUATs;
+            if (!string.IsNullOrEmpty(fm["mansx"].ToString()))
+            {
+                string maNSX = fm["mansx"];
+                q = q.Where(d => d.MaNSX.Equals(maNSX));
+            }
+
+            if (!string.IsNullOrEmpty(fm["tennsx"].ToString()))
+            {
+                string tennsx = fm["tennsx"].ToLower();
+                q = q.Where(d => d.TenNSX.ToLower().Contains(tennsx));
+            }
+            if (!string.IsNullOrEmpty(fm["trangthai"].ToString()))
+            {
+                int value = Int32.Parse(fm["trangthai"].ToString());
+                if(value != 2)
+                {
+                    q = q.Where(d => d.BiXoa == value);
+                }
+            }
+
+            List<NHASANXUAT> lstNSX = q.ToList();
+            TempData["dsnsx"] = lstNSX;
+
+            return RedirectToAction("Manufacturer", "Admin");
         }
 
         [HttpPost]
@@ -178,8 +267,12 @@ namespace PixelShop.Controllers
             if(!String.IsNullOrEmpty(frmC["trangthai"].ToString()))
             {
                 String trangthai = frmC["trangthai"];
-
-                q = q.Where(d => d.TINHTRANGDONHANG.TenTinhTrang.Equals(trangthai));
+                if (!trangthai.Equals("Tất cả"))
+                {
+                    
+                    q = q.Where(d => d.TINHTRANGDONHANG.MaTinhTrang.Equals(trangthai));
+                }
+                
             }
 
             List<DONHANG> dsDH = q.ToList<DONHANG>();

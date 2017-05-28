@@ -62,6 +62,16 @@ namespace PixelShop.Controllers
                     GiaBan = item.Sanpham.GiaBan
                 };
 
+                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(item.Sanpham.MaSP)).SingleOrDefault();
+                if(sp != null)
+                {
+                    if (sp.SoLuongTon >= item.Soluong)
+                    {
+                        sp.SoLuongTon = sp.SoLuongTon - item.Soluong;
+                        sp.SoLuongBan = sp.SoLuongBan + item.Soluong;
+                    }
+                }
+
                 lstCTDH.Add(ct);
             }
 
@@ -76,10 +86,12 @@ namespace PixelShop.Controllers
             if (dh != null)
             {
                 DONHANG d = dh as DONHANG;
+
+
                 Session["cart"] = null;
                 return View(dh);
             }
-            return RedirectToAction("Index", "Homhe");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
