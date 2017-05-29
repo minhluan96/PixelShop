@@ -89,13 +89,20 @@ namespace PixelShop.Controllers
             
             return View(@"~/Views/Admin/EditProduct.cshtml", sp);
         }
+
+        [OutputCache(NoStore = true, Duration = 1)]
         public ActionResult Customer(int ?page)
         {
-            List<TAIKHOAN> lstDM = db.TAIKHOANs.OrderBy(c => c.BiXoa).Select(c => c).ToList<TAIKHOAN>();
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-
-            return View(@"~/Views/Admin/Customer.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
+            List<TAIKHOAN> lstTimKiemTK = TempData["dstk"] as List<TAIKHOAN>;
+            TempData.Remove("dstk");
+            if (lstTimKiemTK == null)
+            {
+                List<TAIKHOAN> lstTK = db.TAIKHOANs.OrderBy(c => c.BiXoa).Select(c => c).ToList<TAIKHOAN>();
+                return View(@"~/Views/Admin/Customer.cshtml", lstTK.ToPagedList(pageNumber, pageSize));
+            }
+            return View(@"~/Views/Admin/Customer.cshtml", lstTimKiemTK.ToPagedList(pageNumber, pageSize)); 
         }
         public ActionResult AddProduct()
         {
@@ -151,7 +158,43 @@ namespace PixelShop.Controllers
             }
             return View(@"~/Views/Admin/Manufacturer.cshtml", lstTimKiemNSX.ToPagedList(pageNumber, pageSize));
         }
+        [HttpPost]
+        public ActionResult TimKiemKH(FormCollection fm)
+        {
+            IQueryable<TAIKHOAN> q = db.TAIKHOANs;
+            if (!string.IsNullOrEmpty(fm["email"].ToString()))
+            {
+                string email = fm["email"].ToLower();
+                q = q.Where(d => d.Email.ToLower().Contains(email));
+            }
 
+            if (!string.IsNullOrEmpty(fm["hoten"].ToString()))
+            {
+                string hoten = fm["hoten"].ToLower();
+                q = q.Where(d => d.HoTen.ToLower().Contains(hoten));
+            }
+            if (!string.IsNullOrEmpty(fm["quyenhan"].ToString()))
+            {
+                int value = Int32.Parse(fm["quyenhan"].ToString());
+                if (value != 2)
+                {
+                    q = q.Where(d => d.QuyenHan == value);
+                }
+            }
+            if (!string.IsNullOrEmpty(fm["trangthai"].ToString()))
+            {
+                int value = Int32.Parse(fm["trangthai"].ToString());
+                if (value != 2)
+                {
+                    q = q.Where(d => d.BiXoa == value);
+                }
+            }
+
+            List<TAIKHOAN> lstTK = q.ToList();
+            TempData["dstk"] = lstTK;
+
+            return RedirectToAction("Customer", "Admin");
+        }
 
         [HttpPost]
         public ActionResult TimKiemDM(FormCollection fm)
@@ -190,7 +233,6 @@ namespace PixelShop.Controllers
 
             return RedirectToAction("Category", "Admin");
         }
-
 
         [HttpPost]
         public ActionResult TimKiemNSX(FormCollection fm)
@@ -280,7 +322,23 @@ namespace PixelShop.Controllers
 
             return RedirectToAction("Order", "Admin");
         }
+        public ActionResult CustomerUpdate(string email,string hoten, int quyenhan)
+        {
+            if (!string.IsNullOrEmpty(hoten))
+            {
+                TAIKHOAN tk = db.TAIKHOANs.Where(n => n.Email.Equals(email)).Single();
+                if (tk != null)
+                {
+                    tk.HoTen = hoten;
+                    tk.QuyenHan = quyenhan;
+                    //update mo ta - db dang thieu
 
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Customer", "Admin");
+        }
         [HttpPost]
         public ActionResult ManufacturerUpdate(string tennsx, string mansx)
         {

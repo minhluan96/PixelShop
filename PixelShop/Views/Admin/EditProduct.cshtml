@@ -109,6 +109,11 @@
                                                     <input type="text" class="form-control" name="tensp" placeholder="" value="@Model.TenSP">
                                                 </div>
                                             </div>
+                                            @{ 
+                                                string[] s = Model.MoTa.Split('&');
+                                                string gioithieu = s[0];
+                                                string tinhnang = s[1];
+                                            }
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">
                                                     Giới thiệu: <span class="required">
@@ -116,7 +121,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <textarea class="form-control" name="gioithieusp"></textarea>
+                                                    <textarea class="form-control" name="gioithieusp">@gioithieu</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -126,7 +131,7 @@
                                                     </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <textarea class="form-control" name="tinhnangsp"></textarea>
+                                                    <textarea class="form-control" name="tinhnangsp">@tinhnang</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">

@@ -20,7 +20,7 @@ namespace PixelShop.Models
             if (searchModel != null)
             {
                 if (!string.IsNullOrEmpty(searchModel.Ten))
-                    result = result.Where(x => x.TenSP.Contains(searchModel.Ten));
+                    result = result.Where(x => x.TenSP.ToLower().Contains(searchModel.Ten.ToLower()));
                 if (!string.IsNullOrEmpty(searchModel.DanhMuc))
                     result = result.Where(x => x.DanhMuc==searchModel.DanhMuc);
                 if (!string.IsNullOrEmpty(searchModel.NhaSanXuat))

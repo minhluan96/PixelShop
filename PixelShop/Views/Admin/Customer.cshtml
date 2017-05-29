@@ -124,7 +124,39 @@
                                             Hoạt động
                                         </th>
                                     </tr>
+                                    <tr role="row" class="filter">
+                                        @using (Html.BeginForm("TimKiemKH", "Admin", FormMethod.Post))
+                                        {
+                                            <td width="20%">
+                                                <input type="text" class="form-control form-filter input-sm" name="email" placeholder="Email">
+                                            </td>
+                                            <td width="15%">
+                                                <input type="text" class="form-control form-filter input-sm" name="hoten" placeholder="Họ tên">
+                                            </td>
+                                            <td width="15%">
+                                                <select name="quyenhan" class="form-control form-filter input-sm">
+                                                    <option value="2">Tất cả</option>
+                                                    <option value="0">Khách hàng</option>
+                                                    <option value="1">Admin</option>
 
+                                                </select>
+                                            </td>
+                                            <td width="15%">
+                                                <select name="trangthai" class="form-control form-filter input-sm">
+                                                    <option value="2">Tất cả</option>
+                                                    <option value="0">Hoạt động</option>
+                                                    <option value="1">Tạm ngưng</option>
+
+                                                </select>
+                                            </td>
+                                            <td width="30%">
+                                                <div class="margin-bottom-5" style="display:inline-block;">
+                                                    <button class="btn btn-sm yellow filter-submit margin-bottom" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+                                                </div>
+                                                <button class="btn btn-sm red filter-cancel" type="reset"><i class="fa fa-times"></i> </button>
+                                            </td>
+                                        }
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (TAIKHOAN tk in Model)
@@ -157,6 +189,74 @@
                                                 }
                                             </td>
                                             <td>
+                                                <a href="javascript:;" class="btn btn-sm btn-circle btn-default" data-toggle="dropdown">
+                                                    <i class="fa fa-pencil"></i>
+                                                    Cập nhật
+                                                </a>
+                                                <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom">
+                                                </div>
+                                                @*Add New Frame *@
+                                                <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom hold-on-click">
+                                                    <div class="row hold-on-click dropdown-menu div-iframeAdmin-content">
+                                                        <div class="col-md-12">
+                                                            <div class="form-horizontal form-row-seperated" action="#">
+                                                                @using (Html.BeginForm("CustomerUpdate", "Admin", FormMethod.Post))
+                                                                {
+                                                                    <div class="portlet light">
+                                                                        <div class="portlet-title">
+                                                                            <div class="caption">
+                                                                                <i class="icon-puzzle font-green-sharp"></i>
+                                                                                <span class="caption-subject font-green-sharp bold uppercase">
+                                                                                    Cập nhật tài khoản
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="actions btn-set">
+                                                                                <button type="submit" class="btn green-haze btn-circle"><i class="fa fa-check"></i> Cập nhật</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="portlet-body">
+                                                                            <div class="tabbable">
+                                                                                <div class="tab-content no-space">
+                                                                                    <div class="tab-pane active" id="tab_general">
+                                                                                        <div class="form-body">
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-md-4 control-label">
+                                                                                                    Họ tên: <span class="required">
+                                                                                                        *
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                                <div class="col-md-8">
+                                                                                                    <input type="text" class="form-control txt-tensx" name="hoten" placeholder="" value="@tk.HoTen">
+                                                                                                    <input type="text" class="form-control txt-mansx" name="email" placeholder="" value="@tk.Email" style="display:none">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-md-4 control-label">
+                                                                                                    Quyền hạn: <span class="required">
+                                                                                                        *
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                                <div class="col-md-8">
+                                                                                                    <select name="quyenhan" class="table-group-action-input form-control input-inline input-small input-sm">
+                                                                                                        <option value="0" @(tk.QuyenHan == 0 ? "selected" : "")>Khách hàng</option>
+                                                                                                        <option value="1" @(tk.QuyenHan == 1 ? "selected" : "")>Admin</option>
+
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- END PAGE CONTENT-->
+                                                </div>
+                                                <div style="display:inline-block">
                                                     @using (Html.BeginForm("CustomerDelete", "Admin", FormMethod.Post))
                                                     {
                                                         <input type="text" class="txt-mansx" name="taikhoan" placeholder="" value="@tk.Email" style="display:none">
@@ -165,6 +265,7 @@
                                                             Xóa
                                                         </button>
                                                     }
+                                                </div>
                                             </td>
                                         </tr>
                                     }

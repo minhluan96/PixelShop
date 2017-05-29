@@ -1,4 +1,10 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
+
+    $("#print").click(function () {
+        window.print();
+    });
     $("#submitnew_img").click(function () {
         $("#imagesfile").click();
     });

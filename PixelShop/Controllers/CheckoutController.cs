@@ -13,7 +13,6 @@ namespace PixelShop.Controllers
         PixelShopEntities db = new PixelShopEntities();
         public ActionResult Index()
         {
-            ViewData["sanpham"] = db.SANPHAMs.ToList();
             return View();
         }
     }
