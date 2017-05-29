@@ -240,6 +240,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\NHASANXUAT.cs">
       <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>

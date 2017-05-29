@@ -16,7 +16,12 @@ namespace PixelShop.Controllers
         public ActionResult Index()
         {
             //check session kh o day
-            string mailkh = "admin@deptrai";
+            
+            if(Session["username"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            string mailkh = Session["username"].ToString();
             TAIKHOAN tk = db.TAIKHOANs.Where(a => a.Email.Equals(mailkh)).SingleOrDefault();
             if(tk == null)
             {
@@ -48,6 +53,7 @@ namespace PixelShop.Controllers
 
             tk.HoTen = hoten;
             tk.MatKhau = password;
+
             db.SaveChanges();
             TempData["capnhat"] = 1;
 

@@ -11,8 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
       @Styles.Render("~/Content/css")
     <script src="@Url.Content("~/assets/global/plugins/jquery.min.js")" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
 </head>
 <body>
+   
     <div class="header-top-w3layouts">
             <div class="row">
 
@@ -37,7 +39,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default" style="background-color: #1e1e1e;">
                                     <li>
-                                        <a href="extra_profile.html" style="margin-top:10px; color:white; font-size: 12px;">
+                                        <a href="@Url.Action("Index", "CapNhatThongTinKH")" style="margin-top:10px; color:white; font-size: 12px;">
                                             <i class="glyphicon glyphicon-pencil" style="margin-right: 5px;"></i> Đổi mật khẩu
                                         </a>
                                     </li>
@@ -60,7 +62,7 @@
                                 <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>  Giỏ hàng
                             </div>
                         </div>
-                         @{ 
+                         @{
                              int count = 0;
                              if (Session["cart"] != null)
                              {
@@ -70,11 +72,11 @@
                                      count += lst[i].Soluong;
                                  }
                              }
-                         }   
+                         }
                         <div class="user-numproduct">@count</div>
 </div>
             </div>
-    
+
             <div class="clearfix"></div>
     </div>
     <div class="header-bottom-w3ls">

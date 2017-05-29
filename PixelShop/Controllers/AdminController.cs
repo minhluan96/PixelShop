@@ -18,10 +18,23 @@ namespace PixelShop.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            List<DONHANG> dsDH = db.DONHANGs.Where(d => d.TinhTrang == 0).ToList();
+            double? tongDT = 0;
+            foreach(DONHANG dh in dsDH)
+            {
+                foreach(CHITIETDONHANG ct in dh.CHITIETDONHANGs)
+                {
+                    tongDT += ct.SoLuongDat * ct.GiaBan * 1.0;
+                }
+            }
+
+            int? tongdh = db.DONHANGs.Where(d => d.TinhTrang != -1).ToList().Count;
+            ViewData["tongdh"] = tongdh;
+            ViewData["doanhthu"] = tongDT;
+
             return View();
         }
 
-        [OutputCache(NoStore = true, Duration = 1)]
         public ActionResult Order(int ?page)
         {
             int pageSize = 3;
@@ -29,17 +42,14 @@ namespace PixelShop.Controllers
 
             List<TINHTRANGDONHANG> lstTT = db.TINHTRANGDONHANGs.ToList();
             ViewData["lstTT"] = lstTT;
-            
-            List<DONHANG> lstTimKiemDH = TempData["dsdh"] as List<DONHANG>;
-            TempData.Remove("dsdh");
-            var temp = lstTimKiemDH;
-           if (lstTimKiemDH == null)
+           if (TempData["dsdh"] == null)
             {
                 List<DONHANG> lstDH = db.DONHANGs.OrderBy(c => c.TinhTrang).Select(c => c).ToList<DONHANG>();
                 return View(@"~/Views/Admin/Order.cshtml", lstDH.ToPagedList(pageNumber, pageSize));
             }
-            
-            
+            List<DONHANG> lstTimKiemDH = TempData["dsdh"] as List<DONHANG>;
+            var temp = lstTimKiemDH;
+            TempData.Keep();
             return View(@"~/Views/Admin/Order.cshtml", lstTimKiemDH.ToPagedList(pageNumber, pageSize));
             
             
@@ -57,6 +67,36 @@ namespace PixelShop.Controllers
                 if(dh != null)
                 {
                     dh.TinhTrang = matinhtrang;
+                    if(matinhtrang == -1)
+                    {
+                        List<CHITIETDONHANG> lstCT = dh.CHITIETDONHANGs.ToList();
+                        for(int i = 0; i < lstCT.Count; i++)
+                        {
+                            CHITIETDONHANG ct = lstCT.ElementAt(i);
+                            SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
+                            if(sp != null)
+                            {
+                                sp.SoLuongTon += lstCT.ElementAt(i).SoLuongDat;
+                                sp.SoLuongBan -= lstCT.ElementAt(i).SoLuongDat;
+                            }
+                        }
+
+                    }
+                    if(matinhtrang == 2)
+                    {
+                        List<CHITIETDONHANG> lstCT = dh.CHITIETDONHANGs.ToList();
+                        for (int i = 0; i < lstCT.Count; i++)
+                        {
+                            CHITIETDONHANG ct = lstCT.ElementAt(i);
+                            SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
+                            if (sp != null)
+                            {
+                                sp.SoLuongTon -= lstCT.ElementAt(i).SoLuongDat;
+                                sp.SoLuongBan += lstCT.ElementAt(i).SoLuongDat;
+                            }
+                        }
+                    }
+
                     if(matinhtrang == 0)
                     {
                         dh.NgayGiao = DateTime.Now;
@@ -89,19 +129,19 @@ namespace PixelShop.Controllers
             
             return View(@"~/Views/Admin/EditProduct.cshtml", sp);
         }
-
-        [OutputCache(NoStore = true, Duration = 1)]
         public ActionResult Customer(int ?page)
         {
+            TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã thực hiện thành công." };
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            List<TAIKHOAN> lstTimKiemTK = TempData["dstk"] as List<TAIKHOAN>;
-            TempData.Remove("dstk");
-            if (lstTimKiemTK == null)
+            if (TempData["dstk"] == null)
             {
                 List<TAIKHOAN> lstTK = db.TAIKHOANs.OrderBy(c => c.BiXoa).Select(c => c).ToList<TAIKHOAN>();
                 return View(@"~/Views/Admin/Customer.cshtml", lstTK.ToPagedList(pageNumber, pageSize));
             }
+
+            List<TAIKHOAN> lstTimKiemTK = TempData["dstk"] as List<TAIKHOAN>;
+            TempData.Keep();
             return View(@"~/Views/Admin/Customer.cshtml", lstTimKiemTK.ToPagedList(pageNumber, pageSize)); 
         }
         public ActionResult AddProduct()
@@ -116,31 +156,39 @@ namespace PixelShop.Controllers
         }
         public ActionResult Product(int ?page)
         {
-            List<SANPHAM> lstSP = db.SANPHAMs.OrderBy(p => p.BiXoa).ThenBy(p => p.DANHMUC1.BiXoa).ThenBy(p => p.NHASANXUAT1.BiXoa).Select(p => p).ToList<SANPHAM>();
+            TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Vui lòng kiểm tra lại." };
+            List<DANHMUC> lstDM = db.DANHMUCs.Where(c => c.BiXoa == 0).Select(c => c).ToList<DANHMUC>();
+            List<NHASANXUAT> lstNSX = db.NHASANXUATs.Where(m => m.BiXoa == 0).Select(m => m).ToList<NHASANXUAT>();
 
+            ViewData["dsNhaSanXuat"] = lstNSX;
+            ViewData["dsDanhMuc"] = lstDM;
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-
-            return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
+            if (TempData["dssp"] == null)
+            {
+                List<SANPHAM> lstSP = db.SANPHAMs.OrderBy(p => p.BiXoa).ThenBy(p => p.DANHMUC1.BiXoa).ThenBy(p => p.NHASANXUAT1.BiXoa).Select(p => p).ToList<SANPHAM>();
+                return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
+            }
+            List<SANPHAM> lstTimKiemSP = TempData["dssp"] as List<SANPHAM>;
+            TempData.Keep();
+            return View(@"~/Views/Admin/Product.cshtml", lstTimKiemSP.ToPagedList(pageNumber, pageSize));
         }
 
-        [OutputCache(NoStore = true, Duration = 1)]
+      
         public ActionResult Category(int? page)
         {
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            List<DANHMUC> lstTimKiemDM = TempData["dsdm"] as List<DANHMUC>;
-            TempData.Remove("dsdm");
-            if (lstTimKiemDM == null)
+            if (TempData["dsdm"] == null)
             {
                 List<DANHMUC> lstDM = db.DANHMUCs.OrderBy(c => c.BiXoa).Select(c => c).ToList<DANHMUC>();  
                 return View(@"~/Views/Admin/Category.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
             }
-
+            List<DANHMUC> lstTimKiemDM = TempData["dsdm"] as List<DANHMUC>;
+            TempData.Keep();
             return View(@"~/Views/Admin/Category.cshtml", lstTimKiemDM.ToPagedList(pageNumber, pageSize));
         }
 
-        [OutputCache(NoStore = true, Duration = 1)]
         public ActionResult Manufacturer(int ?page)
         {
             int pageSize = 3;
@@ -148,16 +196,73 @@ namespace PixelShop.Controllers
 
            
 
-            List<NHASANXUAT> lstTimKiemNSX = TempData["dsnsx"] as List<NHASANXUAT>;
-            TempData.Remove("dsnsx");
-            if (lstTimKiemNSX == null)
+            if (TempData["dsnsx"] == null)
             {
 
                 List<NHASANXUAT> lstNSX = db.NHASANXUATs.OrderBy(n => n.BiXoa).Select(n => n).ToList<NHASANXUAT>();
                 return View(@"~/Views/Admin/Manufacturer.cshtml", lstNSX.ToPagedList(pageNumber, pageSize));
             }
+            List<NHASANXUAT> lstTimKiemNSX = TempData["dsnsx"] as List<NHASANXUAT>;
+            TempData.Keep();
             return View(@"~/Views/Admin/Manufacturer.cshtml", lstTimKiemNSX.ToPagedList(pageNumber, pageSize));
         }
+        [HttpPost]
+        public ActionResult TimKiemSP(FormCollection fm)
+        {
+            IQueryable<SANPHAM> q = db.SANPHAMs;
+            
+            if (!string.IsNullOrEmpty(fm["product_name"].ToString()))
+            {
+                string email = fm["product_name"].ToLower();
+                q = q.Where(d => d.TenSP.ToLower().Contains(email));
+            }
+            int product_price_from;
+            int product_quantity_to;
+            int product_price_to;
+            int product_quantity_from;
+            if (!string.IsNullOrEmpty(fm["product_price_from"].ToString()) && !string.IsNullOrEmpty(fm["product_price_to"].ToString()))
+            {
+                product_price_from = Int32.Parse(fm["product_price_from"].ToString());
+                product_price_to = Int32.Parse(fm["product_price_to"].ToString());
+                q = q.Where(d => d.GiaBan<=product_price_to && d.GiaBan>=product_price_from);
+            }
+            if (!string.IsNullOrEmpty(fm["product_quantity_to"].ToString()) && !string.IsNullOrEmpty(fm["product_quantity_from"].ToString()))
+            {
+                product_quantity_to = Int32.Parse(fm["product_quantity_to"].ToString());
+                product_quantity_from = Int32.Parse(fm["product_quantity_from"].ToString());
+                q = q.Where(d => d.SoLuongTon<= product_quantity_to && d.SoLuongTon>= product_quantity_from);
+            }
+            if (!string.IsNullOrEmpty(fm["product_producer"].ToString()))
+            {
+                string value = fm["product_producer"].ToString();
+                if (!value.Equals("-1") )
+                {
+                    q = q.Where(d => d.NhaSanXuat.Equals(value));
+                }
+            }
+            if (!string.IsNullOrEmpty(fm["product_category"].ToString()))
+            {
+                string value = fm["product_category"].ToString();
+                if (!value.Equals("-1"))
+                {
+                    q = q.Where(d => d.DanhMuc.Equals(value));
+                }
+            }
+            if (!string.IsNullOrEmpty(fm["product_status"].ToString()))
+            {
+                int value = Int32.Parse(fm["product_status"].ToString());
+                if (value != 2)
+                {
+                    q = q.Where(d => d.BiXoa == value);
+                }
+            }
+
+            List<SANPHAM> lstSP = q.ToList();
+            TempData["dssp"] = lstSP;
+
+            return RedirectToAction("Product", "Admin");
+        }
+
         [HttpPost]
         public ActionResult TimKiemKH(FormCollection fm)
         {

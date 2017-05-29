@@ -41,9 +41,10 @@ namespace PixelShop.Models
         {
             get
             {
+                CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
                 int value = Int32.Parse(_gia.ToString());
                 //_giaStr = ((double)value / 100).ToString("C");
-                _giaStr = String.Format("{0:0,0}", _gia) + " VNÐ";
+                _giaStr = String.Format(elGR, "{0:0,0}", _gia) + " VNÐ";
                 return _giaStr;
             }
             set

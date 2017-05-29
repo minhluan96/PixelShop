@@ -144,6 +144,8 @@
                                         </th>
                                     </tr>
                                     <tr role="row" class="filter">
+                                        @using (Html.BeginForm("TimKiemSP", "Admin", FormMethod.Post))
+                                        {
                                         <td>
                                             <input type="text" class="form-control form-filter input-sm" name="product_id" readonly>
                                         </td>
@@ -152,23 +154,25 @@
                                         </td>
                                         <td>
                                             <select name="product_category" class="form-control form-filter input-sm">
-                                                <option value="">Chọn...</option>
-                                                <option value="1">Mens</option>
-                                                <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Footwear</option>
-                                                <option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing</option>
-                                                <option value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accessories</option>
-                                                <option value="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fashion Outlet</option>
-                                                <option value="6">Football Shirts</option>
-                                                <option value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Premier League</option>
-                                                <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Football League</option>
-                                                <option value="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serie A</option>
-                                                <option value="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bundesliga</option>
-                                                <option value="11">Brands</option>
-                                                <option value="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adidas</option>
-                                                <option value="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nike</option>
-                                                <option value="14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Airwalk</option>
-                                                <option value="15">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USA Pro</option>
-                                                <option value="16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kangol</option>
+                                                <option value="-1">Tất cả</option>
+                                                @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                {
+                                                    string loai ="";
+                                                    if (dm.NhomDanhMuc == 1)
+                                                    {
+                                                        loai = "Nam";
+                                                    }
+                                                    if (dm.NhomDanhMuc == 2)
+                                                    {
+                                                        loai = "Nữ";
+                                                    }
+                                                    if (dm.NhomDanhMuc == 3)
+                                                    {
+                                                        loai = "Phụ kiện";
+                                                    }
+                                                    string value = dm.TenDanhMuc + " - " + loai;
+                                                    <option value="@dm.MaDanhMuc">@value </option>
+                                                }
                                             </select>
                                         </td>
                                         <td>
@@ -184,24 +188,12 @@
                                             <input type="text" class="form-control form-filter input-sm" name="product_quantity_to" placeholder="Đến" />
                                         </td>
                                         <td>
-                                            <select name="product_category" class="form-control form-filter input-sm">
-                                                <option value="">Chọn...</option>
-                                                <option value="1">Mens</option>
-                                                <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Footwear</option>
-                                                <option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing</option>
-                                                <option value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accessories</option>
-                                                <option value="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fashion Outlet</option>
-                                                <option value="6">Football Shirts</option>
-                                                <option value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Premier League</option>
-                                                <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Football League</option>
-                                                <option value="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serie A</option>
-                                                <option value="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bundesliga</option>
-                                                <option value="11">Brands</option>
-                                                <option value="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adidas</option>
-                                                <option value="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nike</option>
-                                                <option value="14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Airwalk</option>
-                                                <option value="15">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USA Pro</option>
-                                                <option value="16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kangol</option>
+                                            <select name="product_producer" class="form-control form-filter input-sm">
+                                                <option value="-1">Tất cả</option>
+                                                @foreach (NHASANXUAT nsx in ViewData["dsNhaSanXuat"] as List<NHASANXUAT>)
+                                                {
+                                                    <option value="@nsx.MaNSX">@nsx.TenNSX</option>
+                                                }
                                             </select>
                                         </td>
                                         <td>
@@ -210,16 +202,17 @@
                                         <td>
                                             <select name="product_status" class="form-control form-filter input-sm">
                                                 <option value="2">Tất cả</option>
-                                                <option value="0">Hoạt động</option>
-                                                <option value="1">Đã ngừng</option>
+                                                <option value="0">Kinh doanh</option>
+                                                <option value="1">Không kinh doanh</option>
                                             </select>
                                         </td>
                                         <td>
                                             <div class="margin-bottom-5">
-                                                <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i>Tìm kiếm</button>
+                                                <button class="btn btn-sm yellow filter-submit margin-bottom" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
                                             </div>
-                                            <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i></button>
+                                            <button class="btn btn-sm red filter-cancel" type="reset"><i class="fa fa-times"></i></button>
                                         </td>
+                                        }
                                     </tr>
 
                                 </thead>
