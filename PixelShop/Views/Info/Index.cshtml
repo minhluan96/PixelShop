@@ -77,7 +77,7 @@
                                         string[] gioithieu = mota[0].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
                                         for (int i = 0; i < gioithieu.Count(); i++)
                                         {
-                                            <p>@gioithieu[0].Replace(@"%", "")</p>
+                                            <p>@gioithieu[i].Replace(@"%", "")</p>
                                             <hr />
                                         }
                                     }
@@ -87,7 +87,7 @@
                                         string[] tinhnang = mota[1].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
                                         for (int i = 0; i < tinhnang.Count(); i++)
                                         {
-                                            <p>@tinhnang[0].Replace(@"%", "")</p>
+                                            <p>@tinhnang[i].Replace(@"%", "")</p>
                                             <hr />
                                         }
                                     }

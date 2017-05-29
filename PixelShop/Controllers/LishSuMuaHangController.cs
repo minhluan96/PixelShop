@@ -14,7 +14,12 @@ namespace PixelShop.Controllers
         PixelShopEntities db = new PixelShopEntities();
         public ActionResult Index(int ?page)
         {
-            string maNgDat = "admin@deptrai";
+            
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            string maNgDat = Session["username"].ToString();
             List<DONHANG> dsDH = db.DONHANGs.Where(d => d.EmailDat.Equals(maNgDat)).Select(d => d).ToList();
             int pageSize = 4;
             int pageNumber = (page ?? 1);

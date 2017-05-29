@@ -18,6 +18,20 @@ namespace PixelShop.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            List<DONHANG> dsDH = db.DONHANGs.Where(d => d.TinhTrang == 0).ToList();
+            double? tongDT = 0;
+            foreach(DONHANG dh in dsDH)
+            {
+                foreach(CHITIETDONHANG ct in dh.CHITIETDONHANGs)
+                {
+                    tongDT += ct.SoLuongDat * ct.GiaBan * 1.0;
+                }
+            }
+
+            int? tongdh = db.DONHANGs.Where(d => d.TinhTrang != -1).ToList().Count;
+            ViewData["tongdh"] = tongdh;
+            ViewData["doanhthu"] = tongDT;
+
             return View();
         }
 
@@ -57,6 +71,36 @@ namespace PixelShop.Controllers
                 if(dh != null)
                 {
                     dh.TinhTrang = matinhtrang;
+                    if(matinhtrang == -1)
+                    {
+                        List<CHITIETDONHANG> lstCT = dh.CHITIETDONHANGs.ToList();
+                        for(int i = 0; i < lstCT.Count; i++)
+                        {
+                            CHITIETDONHANG ct = lstCT.ElementAt(i);
+                            SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
+                            if(sp != null)
+                            {
+                                sp.SoLuongTon += lstCT.ElementAt(i).SoLuongDat;
+                                sp.SoLuongBan -= lstCT.ElementAt(i).SoLuongDat;
+                            }
+                        }
+
+                    }
+                    if(matinhtrang == 2)
+                    {
+                        List<CHITIETDONHANG> lstCT = dh.CHITIETDONHANGs.ToList();
+                        for (int i = 0; i < lstCT.Count; i++)
+                        {
+                            CHITIETDONHANG ct = lstCT.ElementAt(i);
+                            SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
+                            if (sp != null)
+                            {
+                                sp.SoLuongTon -= lstCT.ElementAt(i).SoLuongDat;
+                                sp.SoLuongBan += lstCT.ElementAt(i).SoLuongDat;
+                            }
+                        }
+                    }
+
                     if(matinhtrang == 0)
                     {
                         dh.NgayGiao = DateTime.Now;

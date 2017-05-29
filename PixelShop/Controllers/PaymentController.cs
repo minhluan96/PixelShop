@@ -14,11 +14,22 @@ namespace PixelShop.Controllers
         // GET: Payment
         public ActionResult Index()
         {
+            if(Session["username"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
+        [HttpPost]
         public ActionResult GhiNhanDonHang(FormCollection form)
         {
+            if(Session["username"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+
             DateTime dtNow = DateTime.Now;
 
             Random rand = new Random();
@@ -31,7 +42,7 @@ namespace PixelShop.Controllers
                 NgayDate = dtNow,
                 NgayGiao = dtNow.AddDays(3),
                 TinhTrang = 3,
-                EmailDat = "admin@deptrai",
+                EmailDat = Session["username"].ToString(),
                 DiaChiGiao = form["diaChi"],
                 TenNguoiNhan = form["tenngnhan"],
                 SDTNhan = form["sodt"]
@@ -62,15 +73,7 @@ namespace PixelShop.Controllers
                     GiaBan = item.Sanpham.GiaBan
                 };
 
-                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(item.Sanpham.MaSP)).SingleOrDefault();
-                if(sp != null)
-                {
-                    if (sp.SoLuongTon >= item.Soluong)
-                    {
-                        sp.SoLuongTon = sp.SoLuongTon - item.Soluong;
-                        sp.SoLuongBan = sp.SoLuongBan + item.Soluong;
-                    }
-                }
+                
 
                 lstCTDH.Add(ct);
             }

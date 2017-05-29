@@ -97,7 +97,7 @@ function checkPass() {
         $(':input[type="submit"]').prop('disabled', false);
     }
     
-    if (pass1.value != passwordOld.value) {
+    if (CryptoJS.MD5($("#password_old").val()) != passwordOld.value) {
         pass1.style.backgroundColor = badColor;
         mess.style.color = badColor;
         mess.innerHTML = "Mật khẩu cũ không chính xác!"
@@ -112,7 +112,7 @@ function checkPass() {
 
         if (pass2.value.length >= 6) {
 
-            if (pass2.value == pass1.value) {
+            if (CryptoJS.MD5($("#password_new").val()).value == passwordOld.value) {
                 pass2.style.backgroundColor = badColor;
                 message.style.color = badColor;
                 message.innerHTML = "Mật khẩu mới không được giống với mật khẩu cũ"

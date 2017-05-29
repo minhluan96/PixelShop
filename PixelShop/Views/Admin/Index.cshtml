@@ -53,7 +53,10 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-green-sharp">168,492<small class="font-green-sharp"> Triệu</small></h3>
+                                    @{ double? tongDT = double.Parse(ViewData["doanhthu"].ToString());
+                                        string tongDTStr = String.Format("{0:0,0}", tongDT);
+                                        }
+                                    <h3 class="font-green-sharp">@tongDTStr<small class="font-green-sharp"> VNĐ</small></h3>
                                     <small>Tổng doanh thu</small>
                                 </div>
                                 <div class="icon">
@@ -81,8 +84,11 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-red-haze">12127</h3>
-                                    <small>Đặt Hàng</small>
+                                    @{ int? tongDH = int.Parse(ViewData["tongdh"].ToString());
+                                       
+                                    }
+                                    <h3 class="font-red-haze">@tongDH</h3>
+                                    <small>Đơn đặt Hàng</small>
                                 </div>
                                 <div class="icon">
                                     <i class="icon-like"></i>
