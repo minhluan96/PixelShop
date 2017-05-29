@@ -269,6 +269,7 @@
     <Compile Include="Models\TINHTRANGDONHANG.cs">
       <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TopUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

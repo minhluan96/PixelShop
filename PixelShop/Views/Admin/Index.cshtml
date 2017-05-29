@@ -1,4 +1,4 @@
-﻿
+﻿@using PixelShop.Models
 @Styles.Render("~/Content/cssAdminIndex")
 @Scripts.Render("~/bundles/scriptsAdminIndex")
 <script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
@@ -115,7 +115,10 @@
                         <div class="dashboard-stat2">
                             <div class="display">
                                 <div class="number">
-                                    <h3 class="font-blue-sharp">670.54<small class="font-blue-sharp">$</small></h3>
+                                    @{ double? dtTrungBinh =  double.Parse(ViewData["trungbinhdh"].ToString());
+                                        string giaTB = String.Format("{0:0,0}", dtTrungBinh) + " ";
+                                    }
+                                    <h3 class="font-blue-sharp">@giaTB<small class="font-blue-sharp">VNĐ</small></h3>
                                     <small>Trung bình đơn hàng</small>
                                 </div>
                                 <div class="icon">
@@ -148,7 +151,7 @@
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">Thống kê</span>
-                                    <span class="caption-helper">hàng tuần...</span>
+                                    
                                 </div>
                                 <div class="tools">
                                     <a href="javascript:;" class="collapse">
@@ -229,17 +232,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach (SANPHAM sp in ViewData["dsspbanchay"] as List<SANPHAM>)
+                                                        {
                                                         <tr>
                                                             <td>
                                                                 <a href="javascript:;">
-                                                                    Apple iPhone 4s - 16GB - Black
+                                                                    @sp.TenSP
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                $625.50
+                                                                @sp.giaStr
                                                             </td>
                                                             <td>
-                                                                809
+                                                                @sp.SoLuongBan
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
@@ -247,114 +252,8 @@
                                                                 </a>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Samsung Galaxy S III SGH-I747 - 16GB
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $915.50
-                                                            </td>
-                                                            <td>
-                                                                6709
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Motorola Droid 4 XT894 - 16GB - Black
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $878.50
-                                                            </td>
-                                                            <td>
-                                                                784
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Regatta Luca 3 in 1 Jacket
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $25.50
-                                                            </td>
-                                                            <td>
-                                                                1245
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Samsung Galaxy Note 3
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $925.50
-                                                            </td>
-                                                            <td>
-                                                                21245
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Inoval Digital Pen
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $125.50
-                                                            </td>
-                                                            <td>
-                                                                1245
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Metronic - Responsive Admin + Frontend Theme
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $20.00
-                                                            </td>
-                                                            <td>
-                                                                11190
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                        }
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -378,17 +277,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach (SANPHAM sp in ViewData["dsspxemnhieu"] as List<SANPHAM>)
+                                                        {
                                                         <tr>
                                                             <td>
                                                                 <a href="javascript:;">
-                                                                    Metronic - Responsive Admin + Frontend Theme
+                                                                    @sp.TenSP
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                $20.00
+                                                                @sp.giaStr
                                                             </td>
                                                             <td>
-                                                                11190
+                                                                @sp.SoLuotXem
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
@@ -396,114 +297,7 @@
                                                                 </a>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Regatta Luca 3 in 1 Jacket
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $25.50
-                                                            </td>
-                                                            <td>
-                                                                1245
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Apple iPhone 4s - 16GB - Black
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $625.50
-                                                            </td>
-                                                            <td>
-                                                                809
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Samsung Galaxy S III SGH-I747 - 16GB
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $915.50
-                                                            </td>
-                                                            <td>
-                                                                6709
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Motorola Droid 4 XT894 - 16GB - Black
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $878.50
-                                                            </td>
-                                                            <td>
-                                                                784
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Samsung Galaxy Note 3
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $925.50
-                                                            </td>
-                                                            <td>
-                                                                21245
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Inoval Digital Pen
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                $125.50
-                                                            </td>
-                                                            <td>
-                                                                1245
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                        }
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -527,17 +321,18 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @for (int i = 0; i < (ViewData["topkh"] as List<TopUser>).Count; i++) {
                                                         <tr>
                                                             <td>
                                                                 <a href="javascript:;">
-                                                                    David Wilson
+                                                                    @((ViewData["topkh"] as List<TopUser>).ElementAt(i).name)
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                3
+                                                                @((ViewData["topkh"] as List<TopUser>).ElementAt(i).quantity)
                                                             </td>
                                                             <td>
-                                                                $625.50
+                                                                @((ViewData["topkh"] as List<TopUser>).ElementAt(i).sum)
                                                             </td>
                                                             <td>
                                                                 <a href="javascript:;" class="btn default btn-xs green-stripe">
@@ -545,114 +340,7 @@
                                                                 </a>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Amanda Nilson
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                4
-                                                            </td>
-                                                            <td>
-                                                                $12625.50
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Jhon Doe
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                2
-                                                            </td>
-                                                            <td>
-                                                                $125.00
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Bill Chang
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                45
-                                                            </td>
-                                                            <td>
-                                                                $12,125.70
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Jane Hilson
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                1
-                                                            </td>
-                                                            <td>
-                                                                $890.85
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Jane Hilson
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                5
-                                                            </td>
-                                                            <td>
-                                                                $239.85
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Patrick Walker
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                2
-                                                            </td>
-                                                            <td>
-                                                                $1239.85
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                        }
                                                     </tbody>
                                                 </table>
                                             </div>

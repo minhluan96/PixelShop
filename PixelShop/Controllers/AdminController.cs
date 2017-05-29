@@ -32,10 +32,52 @@ namespace PixelShop.Controllers
             ViewData["tongdh"] = tongdh;
             ViewData["doanhthu"] = tongDT;
 
+            double? trungBinh1Don = tongDT / dsDH.Count;
+            ViewData["trungbinhdh"] = trungBinh1Don;
+
+            List<SANPHAM> lstSPBanChay = db.SANPHAMs.Where(p => p.BiXoa == 0).OrderByDescending(p => p.SoLuongBan).Take(6).ToList();
+            List<SANPHAM> lstSPXemNhieu = db.SANPHAMs.Where(p => p.BiXoa == 0).OrderByDescending(p => p.SoLuotXem).Take(6).ToList();
+
+            
+
+            var ds = (from d in db.DONHANGs
+                     join c in db.CHITIETDONHANGs on d.MaDH equals c.MaDH
+                     join a in db.TAIKHOANs on d.EmailDat equals a.Email
+
+                     group new { d, c, a } by new { d.MaDH, a.Email } into groupdb
+                     orderby groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan) descending
+                     select new
+                     {
+                         groupdb.Key.MaDH,
+                         Ten = groupdb.Select(s => s.a.HoTen),
+                         TongSP = groupdb.Sum(s => s.c.SoLuongDat),
+                         TongHD = groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan)
+                     }).Take(6).ToList();
+
+            List<TopUser> dsKhMuaNhieu = new List<TopUser>();
+
+            for(int i = 0; i < ds.Count; i++)
+            {
+                dsKhMuaNhieu.Add(new TopUser
+                {
+                    id = ds.ElementAt(i).MaDH,
+                    name = ds.ElementAt(i).Ten.First(),
+                    quantity = ds.ElementAt(i).TongSP,
+                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                });
+            }
+
+            
+            ViewData["topkh"] = dsKhMuaNhieu;
+                     
+
+            ViewData["dsspbanchay"] = lstSPBanChay;
+            ViewData["dsspxemnhieu"] = lstSPXemNhieu;
+
+
             return View();
         }
-
-        [OutputCache(NoStore = true, Duration = 1)]
+        
         public ActionResult Order(int ?page)
         {
             int pageSize = 3;
@@ -45,15 +87,15 @@ namespace PixelShop.Controllers
             ViewData["lstTT"] = lstTT;
             
             List<DONHANG> lstTimKiemDH = TempData["dsdh"] as List<DONHANG>;
-            TempData.Remove("dsdh");
-            var temp = lstTimKiemDH;
-           if (lstTimKiemDH == null)
+            
+           
+            if (lstTimKiemDH == null)
             {
                 List<DONHANG> lstDH = db.DONHANGs.OrderBy(c => c.TinhTrang).Select(c => c).ToList<DONHANG>();
                 return View(@"~/Views/Admin/Order.cshtml", lstDH.ToPagedList(pageNumber, pageSize));
             }
-            
-            
+
+            TempData.Keep();
             return View(@"~/Views/Admin/Order.cshtml", lstTimKiemDH.ToPagedList(pageNumber, pageSize));
             
             
@@ -161,23 +203,23 @@ namespace PixelShop.Controllers
             return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
         }
 
-        [OutputCache(NoStore = true, Duration = 1)]
+
         public ActionResult Category(int? page)
         {
             int pageSize = 3;
             int pageNumber = (page ?? 1);
             List<DANHMUC> lstTimKiemDM = TempData["dsdm"] as List<DANHMUC>;
-            TempData.Remove("dsdm");
+            
             if (lstTimKiemDM == null)
             {
                 List<DANHMUC> lstDM = db.DANHMUCs.OrderBy(c => c.BiXoa).Select(c => c).ToList<DANHMUC>();  
                 return View(@"~/Views/Admin/Category.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
             }
 
+            TempData.Keep();
             return View(@"~/Views/Admin/Category.cshtml", lstTimKiemDM.ToPagedList(pageNumber, pageSize));
         }
-
-        [OutputCache(NoStore = true, Duration = 1)]
+        
         public ActionResult Manufacturer(int ?page)
         {
             int pageSize = 3;
@@ -186,13 +228,15 @@ namespace PixelShop.Controllers
            
 
             List<NHASANXUAT> lstTimKiemNSX = TempData["dsnsx"] as List<NHASANXUAT>;
-            TempData.Remove("dsnsx");
+            
             if (lstTimKiemNSX == null)
             {
 
                 List<NHASANXUAT> lstNSX = db.NHASANXUATs.OrderBy(n => n.BiXoa).Select(n => n).ToList<NHASANXUAT>();
                 return View(@"~/Views/Admin/Manufacturer.cshtml", lstNSX.ToPagedList(pageNumber, pageSize));
             }
+
+            TempData.Keep();
             return View(@"~/Views/Admin/Manufacturer.cshtml", lstTimKiemNSX.ToPagedList(pageNumber, pageSize));
         }
 
