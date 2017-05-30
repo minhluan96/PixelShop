@@ -20,6 +20,7 @@ namespace PixelShop
                         "~/Scripts/forInfo.js",
                         "~/Scripts/checkout.js",
                         "~/Scripts/about.js",
+                        "~/Scripts/alert.js",
                         "~/Scripts/imagezoom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -31,7 +32,8 @@ namespace PixelShop
                         "~/Content/creditly.css",
                         "~/Content/creditly.css",
                         "~/Content/creditly.css",
-                        "~/Content/flexslider.css"));
+                        "~/Content/flexslider.css",
+                        "~/Content/div-iframeAdmin.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/css-payment").Include(

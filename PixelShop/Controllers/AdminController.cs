@@ -32,6 +32,49 @@ namespace PixelShop.Controllers
             ViewData["tongdh"] = tongdh;
             ViewData["doanhthu"] = tongDT;
 
+            double? trungBinh1Don = tongDT / dsDH.Count;
+            ViewData["trungbinhdh"] = trungBinh1Don;
+
+            List<SANPHAM> lstSPBanChay = db.SANPHAMs.Where(p => p.BiXoa == 0).OrderByDescending(p => p.SoLuongBan).Take(6).ToList();
+            List<SANPHAM> lstSPXemNhieu = db.SANPHAMs.Where(p => p.BiXoa == 0).OrderByDescending(p => p.SoLuotXem).Take(6).ToList();
+
+            
+
+            var ds = (from d in db.DONHANGs
+                     join c in db.CHITIETDONHANGs on d.MaDH equals c.MaDH
+                     join a in db.TAIKHOANs on d.EmailDat equals a.Email
+
+                     group new { d, c, a } by new { d.MaDH, a.Email } into groupdb
+                     orderby groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan) descending
+                     select new
+                     {
+                         groupdb.Key.MaDH,
+                         Ten = groupdb.Select(s => s.a.HoTen),
+                         TongSP = groupdb.Sum(s => s.c.SoLuongDat),
+                         TongHD = groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan)
+                     }).Take(6).ToList();
+
+            List<TopUser> dsKhMuaNhieu = new List<TopUser>();
+
+            for(int i = 0; i < ds.Count; i++)
+            {
+                dsKhMuaNhieu.Add(new TopUser
+                {
+                    id = ds.ElementAt(i).MaDH,
+                    name = ds.ElementAt(i).Ten.First(),
+                    quantity = ds.ElementAt(i).TongSP,
+                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                });
+            }
+
+            
+            ViewData["topkh"] = dsKhMuaNhieu;
+                     
+
+            ViewData["dsspbanchay"] = lstSPBanChay;
+            ViewData["dsspxemnhieu"] = lstSPXemNhieu;
+
+
             return View();
         }
 
@@ -174,7 +217,6 @@ namespace PixelShop.Controllers
             return View(@"~/Views/Admin/Product.cshtml", lstTimKiemSP.ToPagedList(pageNumber, pageSize));
         }
 
-      
         public ActionResult Category(int? page)
         {
             int pageSize = 3;
@@ -189,13 +231,14 @@ namespace PixelShop.Controllers
             return View(@"~/Views/Admin/Category.cshtml", lstTimKiemDM.ToPagedList(pageNumber, pageSize));
         }
 
+
+
         public ActionResult Manufacturer(int ?page)
         {
             int pageSize = 3;
             int pageNumber = (page ?? 1);
 
-           
-
+          
             if (TempData["dsnsx"] == null)
             {
 
