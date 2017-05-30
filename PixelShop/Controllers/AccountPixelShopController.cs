@@ -72,6 +72,7 @@ namespace PixelShop.Controllers
             tk.QuyenHan = 0;
             tk.HoTen = fullname;
             tk.BiXoa = 0;
+            tk.token = "";
             MD5 md5Hash = MD5.Create();
             tk.MatKhau = GetMd5Hash(md5Hash, password);
             db.TAIKHOANs.Add(tk);

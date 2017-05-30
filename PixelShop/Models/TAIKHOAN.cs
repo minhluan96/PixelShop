@@ -25,6 +25,7 @@ namespace PixelShop.Models
         public string HoTen { get; set; }
         public Nullable<int> QuyenHan { get; set; }
         public Nullable<int> BiXoa { get; set; }
+        public string token { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONHANG> DONHANGs { get; set; }
