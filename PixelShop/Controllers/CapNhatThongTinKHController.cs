@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,7 +39,26 @@ namespace PixelShop.Controllers
             }
             return View(tk);
         }
+        static string GetMd5Hash(MD5 md5Hash, string input)
+        {
 
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
         [HttpPost]
         public ActionResult capNhatThongTin(FormCollection frm)
         {
@@ -48,14 +69,24 @@ namespace PixelShop.Controllers
 
             if (tk == null)
             {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tài khoản này không tồn tại." };
                 return RedirectToAction("Index", "Home");
             }
-
+            MD5 md5Hash = MD5.Create();
             tk.HoTen = hoten;
-            tk.MatKhau = password;
+            tk.MatKhau = GetMd5Hash(md5Hash, password);
 
-            db.SaveChanges();
-            TempData["capnhat"] = 1;
+            int n = db.SaveChanges();
+            if (n > 0)
+            {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã cập nhật thông tin cá nhân thành công." };
+                TempData["capnhat"] = 1;
+            }
+            else
+            {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Thông tin không thay đổi. Vui lòng nhập thông tin mới." };
+                TempData["capnhat"] = 0;
+            }
 
             return RedirectToAction("Index", "CapNhatThongTinKH");
         }

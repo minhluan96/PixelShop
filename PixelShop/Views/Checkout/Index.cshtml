@@ -45,7 +45,7 @@
                 }
             </div>
             <div class="col-md-4 cart-total">
-                <a class="continue" href="#">Tiếp tục mua sắm</a>
+                <a class="continue" href="/Home/">Tiếp tục mua sắm</a>
                 <div class="price-details">
                     <h3>Chi tiết hóa đơn</h3>
                     <span>Tổng cộng</span>
@@ -62,8 +62,10 @@
                     <div class="clearfix"> </div>
                 </ul>
                 <div class="clearfix"></div>
-                <a class="order" href="@Url.Action("Index", "Payment")">Thanh toán</a>
-                
+                @if (Session["username"] != null && Session["cart"] != null)
+                {
+                    <a class="order" href="@Url.Action("Index", "Payment")">Thanh toán</a>
+                }
             </div>
             <div class="clearfix"></div>
         </div>

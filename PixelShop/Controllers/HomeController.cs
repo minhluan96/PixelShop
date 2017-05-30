@@ -14,7 +14,6 @@ namespace PixelShop.Controllers
 
         public ActionResult Index()
         {
-            TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã thực hiện thành công." };
             List<SANPHAM> listTop8SanPham = db.SANPHAMs.Where(sp => sp.BiXoa == 0).Select(sp => sp).Take(8).ToList<SANPHAM>();
             List<SANPHAM> lstSanPhamXemNhieu = db.SANPHAMs.Where(sp => sp.BiXoa == 0 && sp.SoLuongTon > 0).OrderBy(sp => sp.SoLuotXem).Take(5).ToList<SANPHAM>();
 

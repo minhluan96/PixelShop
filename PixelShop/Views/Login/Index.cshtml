@@ -30,6 +30,7 @@
                 <label class="rememberme check" style="width: 50%;">
                     <input type="checkbox" name="remember" value="1" />Lưu tài khoản
                 </label>
+                <a href="javascript:;" id="forget-password" class="forget-password">Quên mật khẩu?</a>
             </div>
             <div class="login-options">
                 <h4>Đăng nhập bằng</h4>
@@ -55,6 +56,21 @@
             </div>
         </form>
         <!-- END LOGIN FORM -->
+        <!-- BEGIN FORGOT PASSWORD FORM -->
+        <form class="forget-form" action="index.html" method="post">
+            <h3>Quên mật khẩu ?</h3>
+            <p>
+                Nhập email để đổi mật khẩu
+            </p>
+            <div class="form-group">
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" />
+            </div>
+            <div class="form-actions">
+                <button type="button" id="back-btn" class="btn btn-default">Quay lại</button>
+                <button type="submit" class="btn btn-success uppercase pull-right">Đồng ý</button>
+            </div>
+        </form>
+        <!-- END FORGOT PASSWORD FORM -->
         <!-- BEGIN REGISTRATION FORM -->
         <form class="register-form" action="/AccountPixelShop/Signup" method="post">
             <h3>Đăng kí</h3>

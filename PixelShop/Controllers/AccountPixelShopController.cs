@@ -21,9 +21,12 @@ namespace PixelShop.Controllers
         {
             MD5 md5Hash = MD5.Create();
             string pw = GetMd5Hash(md5Hash, password);
-            TAIKHOAN tk = db.TAIKHOANs.Where(x => x.Email.Equals(email) && x.MatKhau.Equals(pw)).SingleOrDefault();
-            if(tk==null)
+            TAIKHOAN tk = db.TAIKHOANs.Where(x => x.Email.Equals(email) && x.MatKhau.Equals(pw) && x.BiXoa==0).SingleOrDefault();
+            if (tk == null)
+            {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Đăng nhập thất bai. Kiểm tra lại tài khoản và Đăng nhập lại." };
                 return RedirectToAction("Index", "AccountPixelShop");
+            }
             Session["username"] = tk.Email;
             Session["quyenhan"] = tk.QuyenHan;
             if (tk.QuyenHan == 1)
@@ -58,6 +61,12 @@ namespace PixelShop.Controllers
         }
         public ActionResult Signup(string fullname,string email,string password)
         {
+            TAIKHOAN check = db.TAIKHOANs.Where(x => x.Email.Equals(email)).SingleOrDefault();
+            if (check != null)
+            {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Email này đã tồn tại." };
+                return RedirectToAction("Index", "AccountPixelShop");
+            }
             TAIKHOAN tk = new TAIKHOAN();
             tk.Email = email;
             tk.QuyenHan = 0;
@@ -66,7 +75,15 @@ namespace PixelShop.Controllers
             MD5 md5Hash = MD5.Create();
             tk.MatKhau = GetMd5Hash(md5Hash, password);
             db.TAIKHOANs.Add(tk);
-            db.SaveChanges();
+            int n = db.SaveChanges();
+            if (n > 0)
+            {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã đăng kí tài khoản thành công." };
+            }
+            else
+            {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+            }
             return RedirectToAction("Index", "AccountPixelShop");
         }
     }

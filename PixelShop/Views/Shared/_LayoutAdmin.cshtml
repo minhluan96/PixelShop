@@ -32,11 +32,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class="page-header-fixed page-sidebar-closed-hide-logo">
     @if (TempData["UserMessage"] != null)
     {
-        @*Add New Frame *@
-        <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom" style="display:block;">
+        <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom" id="outner" style="display:block;">
         </div>
         @*Add New Frame *@
-        <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom" style="display:block;" id="inner">
+        <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom" id="inner" style="display:block;">
             <div class="row dropdown-menu div-iframeAdmin-content">
                 <div class="col-md-12">
                     <div class="form-horizontal form-row-seperated" style="text-align:center; margin:50px;">
@@ -74,11 +73,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END BODY -->
 </html>
 <script>
-    $(document).ready(function () {
         $("#outner").click(function () {
-            alert("Hello");
             $(this).remove();
             $("#inner").remove();
         });
-    });
 </script>

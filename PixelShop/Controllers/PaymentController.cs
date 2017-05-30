@@ -24,7 +24,7 @@ namespace PixelShop.Controllers
         [HttpPost]
         public ActionResult GhiNhanDonHang(FormCollection form)
         {
-            if(Session["username"] != null)
+            if(Session["username"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -36,6 +36,11 @@ namespace PixelShop.Controllers
             int randNumb = rand.Next(10, 100);
 
             string madhag = dtNow.ToString("yyyyMMddhhss") + randNumb + "";
+            if(String.IsNullOrEmpty(form["diaChi"]) || String.IsNullOrEmpty(form["tenngnhan"]) || String.IsNullOrEmpty(form["sodt"]))
+            {
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Vui lòng nhập đủ thông tin đơn hàng." };
+                return RedirectToAction("Index", "Payment");
+            }
             DONHANG dh = new DONHANG()
             {
                 MaDH = madhag,
