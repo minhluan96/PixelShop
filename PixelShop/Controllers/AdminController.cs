@@ -83,6 +83,7 @@ namespace PixelShop.Controllers
 
             return View();
         }
+
         
         private List<UserOrder> getLatestOrders()
         {
@@ -232,6 +233,7 @@ namespace PixelShop.Controllers
             return dsKh;
         }
 
+
         public ActionResult Order(int ?page)
         {
             int pageSize = 3;
@@ -239,16 +241,13 @@ namespace PixelShop.Controllers
 
             List<TINHTRANGDONHANG> lstTT = db.TINHTRANGDONHANGs.ToList();
             ViewData["lstTT"] = lstTT;
-            
-            List<DONHANG> lstTimKiemDH = TempData["dsdh"] as List<DONHANG>;
-            
-           
-            if (lstTimKiemDH == null)
+           if (TempData["dsdh"] == null)
             {
                 List<DONHANG> lstDH = db.DONHANGs.OrderBy(c => c.TinhTrang).Select(c => c).ToList<DONHANG>();
                 return View(@"~/Views/Admin/Order.cshtml", lstDH.ToPagedList(pageNumber, pageSize));
             }
-
+            List<DONHANG> lstTimKiemDH = TempData["dsdh"] as List<DONHANG>;
+            var temp = lstTimKiemDH;
             TempData.Keep();
             return View(@"~/Views/Admin/Order.cshtml", lstTimKiemDH.ToPagedList(pageNumber, pageSize));
             
@@ -331,11 +330,18 @@ namespace PixelShop.Controllers
         }
         public ActionResult Customer(int ?page)
         {
-            List<TAIKHOAN> lstDM = db.TAIKHOANs.OrderBy(c => c.BiXoa).Select(c => c).ToList<TAIKHOAN>();
+            TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã thực hiện thành công." };
             int pageSize = 3;
             int pageNumber = (page ?? 1);
+            if (TempData["dstk"] == null)
+            {
+                List<TAIKHOAN> lstTK = db.TAIKHOANs.OrderBy(c => c.BiXoa).Select(c => c).ToList<TAIKHOAN>();
+                return View(@"~/Views/Admin/Customer.cshtml", lstTK.ToPagedList(pageNumber, pageSize));
+            }
 
-            return View(@"~/Views/Admin/Customer.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
+            List<TAIKHOAN> lstTimKiemTK = TempData["dstk"] as List<TAIKHOAN>;
+            TempData.Keep();
+            return View(@"~/Views/Admin/Customer.cshtml", lstTimKiemTK.ToPagedList(pageNumber, pageSize)); 
         }
         public ActionResult AddProduct()
         {
@@ -349,51 +355,150 @@ namespace PixelShop.Controllers
         }
         public ActionResult Product(int ?page)
         {
-            List<SANPHAM> lstSP = db.SANPHAMs.OrderBy(p => p.BiXoa).ThenBy(p => p.DANHMUC1.BiXoa).ThenBy(p => p.NHASANXUAT1.BiXoa).Select(p => p).ToList<SANPHAM>();
+            TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Vui lòng kiểm tra lại." };
+            List<DANHMUC> lstDM = db.DANHMUCs.Where(c => c.BiXoa == 0).Select(c => c).ToList<DANHMUC>();
+            List<NHASANXUAT> lstNSX = db.NHASANXUATs.Where(m => m.BiXoa == 0).Select(m => m).ToList<NHASANXUAT>();
 
+            ViewData["dsNhaSanXuat"] = lstNSX;
+            ViewData["dsDanhMuc"] = lstDM;
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-
-            return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
+            if (TempData["dssp"] == null)
+            {
+                List<SANPHAM> lstSP = db.SANPHAMs.OrderBy(p => p.BiXoa).ThenBy(p => p.DANHMUC1.BiXoa).ThenBy(p => p.NHASANXUAT1.BiXoa).Select(p => p).ToList<SANPHAM>();
+                return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
+            }
+            List<SANPHAM> lstTimKiemSP = TempData["dssp"] as List<SANPHAM>;
+            TempData.Keep();
+            return View(@"~/Views/Admin/Product.cshtml", lstTimKiemSP.ToPagedList(pageNumber, pageSize));
         }
-
 
         public ActionResult Category(int? page)
         {
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            List<DANHMUC> lstTimKiemDM = TempData["dsdm"] as List<DANHMUC>;
-            
-            if (lstTimKiemDM == null)
+            if (TempData["dsdm"] == null)
             {
                 List<DANHMUC> lstDM = db.DANHMUCs.OrderBy(c => c.BiXoa).Select(c => c).ToList<DANHMUC>();  
                 return View(@"~/Views/Admin/Category.cshtml", lstDM.ToPagedList(pageNumber, pageSize));
             }
-
+            List<DANHMUC> lstTimKiemDM = TempData["dsdm"] as List<DANHMUC>;
             TempData.Keep();
             return View(@"~/Views/Admin/Category.cshtml", lstTimKiemDM.ToPagedList(pageNumber, pageSize));
         }
-        
+
+
+
         public ActionResult Manufacturer(int ?page)
         {
             int pageSize = 3;
             int pageNumber = (page ?? 1);
 
-           
-
-            List<NHASANXUAT> lstTimKiemNSX = TempData["dsnsx"] as List<NHASANXUAT>;
-            
-            if (lstTimKiemNSX == null)
+          
+            if (TempData["dsnsx"] == null)
             {
 
                 List<NHASANXUAT> lstNSX = db.NHASANXUATs.OrderBy(n => n.BiXoa).Select(n => n).ToList<NHASANXUAT>();
                 return View(@"~/Views/Admin/Manufacturer.cshtml", lstNSX.ToPagedList(pageNumber, pageSize));
             }
-
+            List<NHASANXUAT> lstTimKiemNSX = TempData["dsnsx"] as List<NHASANXUAT>;
             TempData.Keep();
             return View(@"~/Views/Admin/Manufacturer.cshtml", lstTimKiemNSX.ToPagedList(pageNumber, pageSize));
         }
+        [HttpPost]
+        public ActionResult TimKiemSP(FormCollection fm)
+        {
+            IQueryable<SANPHAM> q = db.SANPHAMs;
+            
+            if (!string.IsNullOrEmpty(fm["product_name"].ToString()))
+            {
+                string email = fm["product_name"].ToLower();
+                q = q.Where(d => d.TenSP.ToLower().Contains(email));
+            }
+            int product_price_from;
+            int product_quantity_to;
+            int product_price_to;
+            int product_quantity_from;
+            if (!string.IsNullOrEmpty(fm["product_price_from"].ToString()) && !string.IsNullOrEmpty(fm["product_price_to"].ToString()))
+            {
+                product_price_from = Int32.Parse(fm["product_price_from"].ToString());
+                product_price_to = Int32.Parse(fm["product_price_to"].ToString());
+                q = q.Where(d => d.GiaBan<=product_price_to && d.GiaBan>=product_price_from);
+            }
+            if (!string.IsNullOrEmpty(fm["product_quantity_to"].ToString()) && !string.IsNullOrEmpty(fm["product_quantity_from"].ToString()))
+            {
+                product_quantity_to = Int32.Parse(fm["product_quantity_to"].ToString());
+                product_quantity_from = Int32.Parse(fm["product_quantity_from"].ToString());
+                q = q.Where(d => d.SoLuongTon<= product_quantity_to && d.SoLuongTon>= product_quantity_from);
+            }
+            if (!string.IsNullOrEmpty(fm["product_producer"].ToString()))
+            {
+                string value = fm["product_producer"].ToString();
+                if (!value.Equals("-1") )
+                {
+                    q = q.Where(d => d.NhaSanXuat.Equals(value));
+                }
+            }
+            if (!string.IsNullOrEmpty(fm["product_category"].ToString()))
+            {
+                string value = fm["product_category"].ToString();
+                if (!value.Equals("-1"))
+                {
+                    q = q.Where(d => d.DanhMuc.Equals(value));
+                }
+            }
+            if (!string.IsNullOrEmpty(fm["product_status"].ToString()))
+            {
+                int value = Int32.Parse(fm["product_status"].ToString());
+                if (value != 2)
+                {
+                    q = q.Where(d => d.BiXoa == value);
+                }
+            }
 
+            List<SANPHAM> lstSP = q.ToList();
+            TempData["dssp"] = lstSP;
+
+            return RedirectToAction("Product", "Admin");
+        }
+
+        [HttpPost]
+        public ActionResult TimKiemKH(FormCollection fm)
+        {
+            IQueryable<TAIKHOAN> q = db.TAIKHOANs;
+            if (!string.IsNullOrEmpty(fm["email"].ToString()))
+            {
+                string email = fm["email"].ToLower();
+                q = q.Where(d => d.Email.ToLower().Contains(email));
+            }
+
+            if (!string.IsNullOrEmpty(fm["hoten"].ToString()))
+            {
+                string hoten = fm["hoten"].ToLower();
+                q = q.Where(d => d.HoTen.ToLower().Contains(hoten));
+            }
+            if (!string.IsNullOrEmpty(fm["quyenhan"].ToString()))
+            {
+                int value = Int32.Parse(fm["quyenhan"].ToString());
+                if (value != 2)
+                {
+                    q = q.Where(d => d.QuyenHan == value);
+                }
+            }
+            if (!string.IsNullOrEmpty(fm["trangthai"].ToString()))
+            {
+                int value = Int32.Parse(fm["trangthai"].ToString());
+                if (value != 2)
+                {
+                    q = q.Where(d => d.BiXoa == value);
+                }
+            }
+
+            List<TAIKHOAN> lstTK = q.ToList();
+            TempData["dstk"] = lstTK;
+
+            return RedirectToAction("Customer", "Admin");
+        }
 
         [HttpPost]
         public ActionResult TimKiemDM(FormCollection fm)
@@ -432,7 +537,6 @@ namespace PixelShop.Controllers
 
             return RedirectToAction("Category", "Admin");
         }
-
 
         [HttpPost]
         public ActionResult TimKiemNSX(FormCollection fm)
@@ -522,7 +626,23 @@ namespace PixelShop.Controllers
 
             return RedirectToAction("Order", "Admin");
         }
+        public ActionResult CustomerUpdate(string email,string hoten, int quyenhan)
+        {
+            if (!string.IsNullOrEmpty(hoten))
+            {
+                TAIKHOAN tk = db.TAIKHOANs.Where(n => n.Email.Equals(email)).Single();
+                if (tk != null)
+                {
+                    tk.HoTen = hoten;
+                    tk.QuyenHan = quyenhan;
+                    //update mo ta - db dang thieu
 
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Customer", "Admin");
+        }
         [HttpPost]
         public ActionResult ManufacturerUpdate(string tennsx, string mansx)
         {

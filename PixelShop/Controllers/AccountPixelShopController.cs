@@ -25,8 +25,15 @@ namespace PixelShop.Controllers
             if(tk==null)
                 return RedirectToAction("Index", "AccountPixelShop");
             Session["username"] = tk.Email;
+            Session["quyenhan"] = tk.QuyenHan;
             if (tk.QuyenHan == 1)
-                RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "Admin");
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult Logout()
+        {
+            Session["username"] = null;
+            Session["quyenhan"] = null;
             return RedirectToAction("Index", "Home");
         }
         static string GetMd5Hash(MD5 md5Hash, string input)
@@ -60,7 +67,7 @@ namespace PixelShop.Controllers
             tk.MatKhau = GetMd5Hash(md5Hash, password);
             db.TAIKHOANs.Add(tk);
             db.SaveChanges();
-            return View(@"~/Views/Login/Index.cshtml");
+            return RedirectToAction("Index", "AccountPixelShop");
         }
     }
 }

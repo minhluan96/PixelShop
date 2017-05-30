@@ -180,9 +180,7 @@
                                         <th width="15%">
                                             Tên nhà sản xuất
                                         </th>
-                                        <th width="12%">
-                                            Mô tả
-                                        </th>
+                                       
                                         <th width="10%">
                                             Trạng thái
                                         </th>
@@ -204,12 +202,7 @@
                                                 <input type="text" class="form-control form-filter input-sm" name="tennsx" placeholder="Tên NSX">
                                             </td>
                                            
-                                            <td>
-                                                <div class="margin-bottom-5">
-                                                    <input type="text" class="form-control form-filter input-sm" name="mota" placeholder="Mô tả" readonly />
-                                                </div>
-
-                                            </td>
+                                            
                                             
                                             <td>
                                                 <select name="trangthai" class="form-control form-filter input-sm">
@@ -246,9 +239,7 @@
                                         <td>
                                             @Model.ElementAt(i).TenNSX
                                         </td>
-                                        <td>
-                                            Mô tả
-                                        </td>
+                                       
                                         <td>
                                             @if (Model.ElementAt(i).BiXoa == 0)
                                             {

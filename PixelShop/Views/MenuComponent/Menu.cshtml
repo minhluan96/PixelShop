@@ -120,10 +120,11 @@
     @{        int? total = 0; }
     @if (Session["cart"] == null)
     {
-        <p style="color: red;" id="null-cart">Giỏ hàng đang trống</p>
+        <p style="color: red; font-size: 15px; margin-bottom: 40px;" class="null-cart">Giỏ hàng đang trống</p>
     }
     @if (Session["cart"] != null)
     {
+        <p style="color: red; font-size: 15px; margin-bottom: 40px;" class="null-cart" hidden>Giỏ hàng đang trống</p>
         foreach (Item item in (List<Item>)Session["cart"])
         {
             <div class="cart-header">

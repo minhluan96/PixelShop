@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PixelShop.Models
+<!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.2
 Version: 3.7.0
@@ -28,7 +29,32 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body class="page-header-fixed page-sidebar-closed-hide-logo ">
+<body class="page-header-fixed page-sidebar-closed-hide-logo">
+    @if (TempData["UserMessage"] != null)
+    {
+        @*Add New Frame *@
+        <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom" style="display:block;">
+        </div>
+        @*Add New Frame *@
+        <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom" style="display:block;" id="inner">
+            <div class="row dropdown-menu div-iframeAdmin-content">
+                <div class="col-md-12">
+                    <div class="form-horizontal form-row-seperated" style="text-align:center; margin:50px;">
+                        <span style="color: #ff0000; font-size: 22px;">Thông báo</span>
+                        <hr />
+                        @{
+                            Message ms = TempData["UserMessage"] as Message;
+                        }
+                        <div class="alert @ms.CssClassName">
+                            <strong>@ms.Title</strong>
+                        </div>
+                        <span>@ms.MessageAlert</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+                            }
     <!-- BEGIN HEADER -->
     <!-- BEGIN HEADER -->
     @{Html.RenderAction("Header", "Admin");}
@@ -47,4 +73,12 @@ License: You must have a valid license purchased only from themeforest(the above
 </body>
 <!-- END BODY -->
 </html>
-
+<script>
+    $(document).ready(function () {
+        $("#outner").click(function () {
+            alert("Hello");
+            $(this).remove();
+            $("#inner").remove();
+        });
+    });
+</script>

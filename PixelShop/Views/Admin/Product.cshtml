@@ -115,9 +115,6 @@
                             <table class="table table-striped table-bordered table-hover" id="datatable_products">
                                 <thead>
                                     <tr role="row" class="heading">
-                                        <th width="1%">
-                                            STT
-                                        </th>
                                         <th width="5%">
                                             Mã sản phẩm
                                         </th>
@@ -147,32 +144,35 @@
                                         </th>
                                     </tr>
                                     <tr role="row" class="filter">
-                                        <td></td>
+                                        @using (Html.BeginForm("TimKiemSP", "Admin", FormMethod.Post))
+                                        {
                                         <td>
-                                            <input type="text" class="form-control form-filter input-sm" name="product_id">
+                                            <input type="text" class="form-control form-filter input-sm" name="product_id" readonly>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control form-filter input-sm" name="product_name">
+                                            <input type="text" class="form-control form-filter input-sm" name="product_name" placeholder="Tên sản phẩm">
                                         </td>
                                         <td>
                                             <select name="product_category" class="form-control form-filter input-sm">
-                                                <option value="">Chọn...</option>
-                                                <option value="1">Mens</option>
-                                                <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Footwear</option>
-                                                <option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing</option>
-                                                <option value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accessories</option>
-                                                <option value="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fashion Outlet</option>
-                                                <option value="6">Football Shirts</option>
-                                                <option value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Premier League</option>
-                                                <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Football League</option>
-                                                <option value="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serie A</option>
-                                                <option value="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bundesliga</option>
-                                                <option value="11">Brands</option>
-                                                <option value="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adidas</option>
-                                                <option value="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nike</option>
-                                                <option value="14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Airwalk</option>
-                                                <option value="15">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USA Pro</option>
-                                                <option value="16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kangol</option>
+                                                <option value="-1">Tất cả</option>
+                                                @foreach (DANHMUC dm in ViewData["dsDanhMuc"] as List<DANHMUC>)
+                                                {
+                                                    string loai ="";
+                                                    if (dm.NhomDanhMuc == 1)
+                                                    {
+                                                        loai = "Nam";
+                                                    }
+                                                    if (dm.NhomDanhMuc == 2)
+                                                    {
+                                                        loai = "Nữ";
+                                                    }
+                                                    if (dm.NhomDanhMuc == 3)
+                                                    {
+                                                        loai = "Phụ kiện";
+                                                    }
+                                                    string value = dm.TenDanhMuc + " - " + loai;
+                                                    <option value="@dm.MaDanhMuc">@value </option>
+                                                }
                                             </select>
                                         </td>
                                         <td>
@@ -187,35 +187,32 @@
                                             </div> 
                                             <input type="text" class="form-control form-filter input-sm" name="product_quantity_to" placeholder="Đến" />
                                         </td>
-                                        <td></td>
                                         <td>
-                                            <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
-                                                <input type="text" class="form-control form-filter input-sm" readonly name="product_created_from" placeholder="Từ">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
-                                                </span>
-                                            </div>
-                                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy">
-                                                <input type="text" class="form-control form-filter input-sm" readonly name="product_created_to " placeholder="Đến">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
-                                                </span>
-                                            </div>
+                                            <select name="product_producer" class="form-control form-filter input-sm">
+                                                <option value="-1">Tất cả</option>
+                                                @foreach (NHASANXUAT nsx in ViewData["dsNhaSanXuat"] as List<NHASANXUAT>)
+                                                {
+                                                    <option value="@nsx.MaNSX">@nsx.TenNSX</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>
+                                            
                                         </td>
                                         <td>
                                             <select name="product_status" class="form-control form-filter input-sm">
-                                                <option value="">Chọn...</option>
-                                                <option value="published">Published</option>
-                                                <option value="notpublished">Not Published</option>
-                                                <option value="deleted">Deleted</option>
+                                                <option value="2">Tất cả</option>
+                                                <option value="0">Kinh doanh</option>
+                                                <option value="1">Không kinh doanh</option>
                                             </select>
                                         </td>
                                         <td>
                                             <div class="margin-bottom-5">
-                                                <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i>Tìm kiếm</button>
+                                                <button class="btn btn-sm yellow filter-submit margin-bottom" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
                                             </div>
-                                            <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>Khởi tạo</button>
+                                            <button class="btn btn-sm red filter-cancel" type="reset"><i class="fa fa-times"></i></button>
                                         </td>
+                                        }
                                     </tr>
 
                                 </thead>
@@ -223,12 +220,6 @@
                                     @foreach(SANPHAM sp in Model)
                                     {
                                     <tr role="row">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                @{ int pos = sp.MaSP.IndexOf("SP"); }
-                                                @sp.MaSP.Substring(pos + 2)
-                                            </label>
-                                        </td>
                                         <td class="sorting_1">
                                             @sp.MaSP
                                         </td>

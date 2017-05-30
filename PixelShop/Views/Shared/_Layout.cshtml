@@ -14,6 +14,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
 </head>
 <body>
+    @if (TempData["UserMessage"] != null)
+    {
+        <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom customframe" id="outner">
+        </div>
+        @*Add New Frame *@
+        <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom customframe1" id="inner">
+            <div class="row dropdown-menu div-iframeAdmin-content customframe2" id="inner">
+                <div class="col-md-12">
+                    <div class="form-horizontal form-row-seperated" style="text-align:center; margin:50px;">
+                        <span style="color: #ff0000; font-size: 22px;">Thông báo</span>
+                        <hr />
+                        @{
+                            Message ms = TempData["UserMessage"] as Message;
+                        }
+                        <div class="alert @ms.CssClassName">
+                            <strong>@ms.Title</strong>
+                        </div>
+                        <span>@ms.MessageAlert</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+                            }
+     
     <div class="header-top-w3layouts">
             <div class="row">
 
@@ -48,7 +73,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="login.html" style="margin-top:10px; margin-bottom:10px; color:white; font-size: 12px;">
+                                        <a href="@Url.Action("Logout", "AccountPixelShop")" style="margin-top:10px; margin-bottom:10px; color:white; font-size: 12px;">
                                             <i class="glyphicon glyphicon-log-out" style="margin-right: 5px;"></i> Đăng xuất
                                         </a>
                                     </li>
@@ -91,3 +116,11 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $("#outner").click(function () {
+            $(this).remove();
+            $("#inner").remove();
+        });
+    });
+</script>

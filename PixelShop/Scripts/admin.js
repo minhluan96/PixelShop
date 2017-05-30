@@ -1,4 +1,10 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
+
+    $("#print").click(function () {
+        window.print();
+    });
     $("#submitnew_img").click(function () {
         $("#imagesfile").click();
     });
@@ -21,7 +27,7 @@
                 $.each(data, function (i, d) {
                     var path = "../ImgProduct/" + d;
                     var template = '<tr>                                                    <td>                                                        <a href="" class="fancybox-button" data-rel="fancybox-button">                                                            <input type="hidden" name="imgSP" value="' + path + '"/>                                                            <img type="image"  class="img-responsive" src="' + path + '"  alt="">                                                        </a>                                                    </td>                                                    <td>                                                        <label>                                                            <input type="radio" name="imgKey" value="' + path + '">                                                            Ảnh bìa                                                        </label>                                                    </td>                                                                                                                                                         <td>                                                        <a href="javascript:;" class="btn default btn-sm btnXoa">                                                            <i class="fa fa-times"></i> Xóa                                                        </a>                                                    </td>                                                </tr>';
-                    $("#tableImage tbody").append(template);
+                    $("#tableImage tbody").prepend(template);
                 });
             },
             error: function (error) {
