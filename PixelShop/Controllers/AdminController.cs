@@ -67,16 +67,172 @@ namespace PixelShop.Controllers
                 });
             }
 
-            
-            ViewData["topkh"] = dsKhMuaNhieu;
-                     
 
+            List<UserOrder> dsDHMoiNhat = getLatestOrders();
+
+
+            ViewData["topkh"] = dsKhMuaNhieu;
+
+            ViewData["dhdangcho"] = getPendingOrder();
+            ViewData["dhdagiao"] = getCompletedOrder();
+            ViewData["dhdahuy"] = getRejectedOrder();
+            ViewData["dhmoinhat"] = dsDHMoiNhat; 
             ViewData["dsspbanchay"] = lstSPBanChay;
             ViewData["dsspxemnhieu"] = lstSPXemNhieu;
 
 
             return View();
         }
+
+        
+        private List<UserOrder> getLatestOrders()
+        {
+            var ds = (from d in db.DONHANGs
+                      join c in db.CHITIETDONHANGs on d.MaDH equals c.MaDH
+                      join a in db.TAIKHOANs on d.EmailDat equals a.Email
+                      group new { d, c, a } by new { d.MaDH, a.Email, d.NgayDate } into groupdb
+                      
+                      select new
+                      {
+                          groupdb.Key.MaDH,
+                          Ten = groupdb.Select(s => s.a.HoTen),
+                          groupdb.Key.NgayDate,
+                          IdTinhTrang = groupdb.Select(s => s.d.TinhTrang),
+                          Trangthai = groupdb.Select(s => s.d.TINHTRANGDONHANG.TenTinhTrang),
+                          TongHD = groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan)
+                      }).OrderByDescending(s => s.NgayDate.Value)
+                      .Take(6).ToList();
+
+
+            List<UserOrder> dsKh = new List<UserOrder>();
+
+            for (int i = 0; i < ds.Count; i++)
+            {
+                dsKh.Add(new UserOrder
+                {
+                    id = ds.ElementAt(i).MaDH,
+                    name = ds.ElementAt(i).Ten.First(),
+                    dateOrder = ds.ElementAt(i).NgayDate,
+                    idStatus = ds.ElementAt(i).IdTinhTrang.First(),
+                    status = ds.ElementAt(i).Trangthai.First(),
+                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                });
+            }
+            return dsKh;
+        }
+
+
+
+
+        private List<UserOrder> getPendingOrder()
+        {
+            var ds = (from d in db.DONHANGs
+                      join c in db.CHITIETDONHANGs on d.MaDH equals c.MaDH
+                      join a in db.TAIKHOANs on d.EmailDat equals a.Email
+                      group new { d, c, a } by new { d.MaDH, a.Email, d.NgayDate, d.TinhTrang } into groupdb
+                      where groupdb.Key.TinhTrang == 3
+                      select new
+                      {
+                          groupdb.Key.MaDH,
+                          Ten = groupdb.Select(s => s.a.HoTen),
+                          groupdb.Key.NgayDate,
+                          IdTinhTrang = groupdb.Select(s => s.d.TinhTrang),
+                          Trangthai = groupdb.Select(s => s.d.TINHTRANGDONHANG.TenTinhTrang),
+                          TongHD = groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan)
+                      }).OrderByDescending(s => s.NgayDate.Value)
+                      .Take(6).ToList();
+
+
+            List<UserOrder> dsKh = new List<UserOrder>();
+
+            for (int i = 0; i < ds.Count; i++)
+            {
+                dsKh.Add(new UserOrder
+                {
+                    id = ds.ElementAt(i).MaDH,
+                    name = ds.ElementAt(i).Ten.First(),
+                    dateOrder = ds.ElementAt(i).NgayDate,
+                    idStatus = ds.ElementAt(i).IdTinhTrang.First(),
+                    status = ds.ElementAt(i).Trangthai.First(),
+                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                });
+            }
+            return dsKh;
+        }
+
+
+        private List<UserOrder> getRejectedOrder()
+        {
+            var ds = (from d in db.DONHANGs
+                      join c in db.CHITIETDONHANGs on d.MaDH equals c.MaDH
+                      join a in db.TAIKHOANs on d.EmailDat equals a.Email
+                      group new { d, c, a } by new { d.MaDH, a.Email, d.NgayDate, d.TinhTrang } into groupdb
+                      where groupdb.Key.TinhTrang == -1
+                      select new
+                      {
+                          groupdb.Key.MaDH,
+                          Ten = groupdb.Select(s => s.a.HoTen),
+                          groupdb.Key.NgayDate,
+                          IdTinhTrang = groupdb.Select(s => s.d.TinhTrang),
+                          Trangthai = groupdb.Select(s => s.d.TINHTRANGDONHANG.TenTinhTrang),
+                          TongHD = groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan)
+                      }).OrderByDescending(s => s.NgayDate.Value)
+                      .Take(6).ToList();
+
+
+            List<UserOrder> dsKh = new List<UserOrder>();
+
+            for (int i = 0; i < ds.Count; i++)
+            {
+                dsKh.Add(new UserOrder
+                {
+                    id = ds.ElementAt(i).MaDH,
+                    name = ds.ElementAt(i).Ten.First(),
+                    dateOrder = ds.ElementAt(i).NgayDate,
+                    idStatus = ds.ElementAt(i).IdTinhTrang.First(),
+                    status = ds.ElementAt(i).Trangthai.First(),
+                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                });
+            }
+            return dsKh;
+        }
+
+        private List<UserOrder> getCompletedOrder()
+        {
+            var ds = (from d in db.DONHANGs
+                      join c in db.CHITIETDONHANGs on d.MaDH equals c.MaDH
+                      join a in db.TAIKHOANs on d.EmailDat equals a.Email
+                      group new { d, c, a } by new { d.MaDH, a.Email, d.NgayDate, d.TinhTrang } into groupdb
+                      where groupdb.Key.TinhTrang == 0
+                      select new
+                      {
+                          groupdb.Key.MaDH,
+                          Ten = groupdb.Select(s => s.a.HoTen),
+                          groupdb.Key.NgayDate,
+                          IdTinhTrang = groupdb.Select(s => s.d.TinhTrang),
+                          Trangthai = groupdb.Select(s => s.d.TINHTRANGDONHANG.TenTinhTrang),
+                          TongHD = groupdb.Sum(s => s.c.SoLuongDat * s.c.GiaBan)
+                      }).OrderByDescending(s => s.NgayDate.Value)
+                      .Take(6).ToList();
+
+
+            List<UserOrder> dsKh = new List<UserOrder>();
+
+            for (int i = 0; i < ds.Count; i++)
+            {
+                dsKh.Add(new UserOrder
+                {
+                    id = ds.ElementAt(i).MaDH,
+                    name = ds.ElementAt(i).Ten.First(),
+                    dateOrder = ds.ElementAt(i).NgayDate,
+                    idStatus = ds.ElementAt(i).IdTinhTrang.First(),
+                    status = ds.ElementAt(i).Trangthai.First(),
+                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                });
+            }
+            return dsKh;
+        }
+
 
         public ActionResult Order(int ?page)
         {
