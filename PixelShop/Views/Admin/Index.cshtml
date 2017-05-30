@@ -191,22 +191,22 @@
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
                                                     <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Latest 10 Orders
+                                                        Các đơn hàng gần đây
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Pending Orders
+                                                    <a href="#overview_5" tabindex="-1" data-toggle="tab">
+                                                        Các đơn hàng đang chờ xác nhận
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Completed Orders
+                                                    <a href="#overview_6" tabindex="-1" data-toggle="tab">
+                                                        Các đơn hàng đã giao
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Rejected Orders
+                                                    <a href="#overview_7" tabindex="-1" data-toggle="tab">
+                                                        Các đơn hàng bị hủy
                                                     </a>
                                                 </li>
                                             </ul>
@@ -234,24 +234,24 @@
                                                     <tbody>
                                                         @foreach (SANPHAM sp in ViewData["dsspbanchay"] as List<SANPHAM>)
                                                         {
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    @sp.TenSP
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                @sp.giaStr
-                                                            </td>
-                                                            <td>
-                                                                @sp.SoLuongBan
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="javascript:;">
+                                                                        @sp.TenSP
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    @sp.giaStr
+                                                                </td>
+                                                                <td>
+                                                                    @sp.SoLuongBan
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("EditProduct", "Admin", new { masp = sp.MaSP})" class="btn default btn-xs green-stripe">
+                                                                        Chi tiết
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
                                                         }
 
                                                     </tbody>
@@ -279,24 +279,24 @@
                                                     <tbody>
                                                         @foreach (SANPHAM sp in ViewData["dsspxemnhieu"] as List<SANPHAM>)
                                                         {
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    @sp.TenSP
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                @sp.giaStr
-                                                            </td>
-                                                            <td>
-                                                                @sp.SoLuotXem
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="javascript:;">
+                                                                        @sp.TenSP
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    @sp.giaStr
+                                                                </td>
+                                                                <td>
+                                                                    @sp.SoLuotXem
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("EditProduct", "Admin", new { masp = sp.MaSP})" class="btn default btn-xs green-stripe">
+                                                                        Chi tiết
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
                                                         }
                                                     </tbody>
                                                 </table>
@@ -321,25 +321,26 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for (int i = 0; i < (ViewData["topkh"] as List<TopUser>).Count; i++) {
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    @((ViewData["topkh"] as List<TopUser>).ElementAt(i).name)
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                @((ViewData["topkh"] as List<TopUser>).ElementAt(i).quantity)
-                                                            </td>
-                                                            <td>
-                                                                @((ViewData["topkh"] as List<TopUser>).ElementAt(i).sum)
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                        @for (int i = 0; i < (ViewData["topkh"] as List<TopUser>).Count; i++)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="javascript:;">
+                                                                        @((ViewData["topkh"] as List<TopUser>).ElementAt(i).name)
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    @((ViewData["topkh"] as List<TopUser>).ElementAt(i).quantity)
+                                                                </td>
+                                                                <td>
+                                                                    @((ViewData["topkh"] as List<TopUser>).ElementAt(i).sum)
+                                                                </td>
+                                                                <td>
+                                                                    <a href="#" class="btn default btn-xs green-stripe">
+                                                                        Chi tiết
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
                                                         }
                                                     </tbody>
                                                 </table>
@@ -367,174 +368,316 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    David Wilson
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                3 Jan, 2013
-                                                            </td>
-                                                            <td>
-                                                                $625.50
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-sm label-warning">
-                                                                    Đang xử lý
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Amanda Nilson
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                13 Feb, 2013
-                                                            </td>
-                                                            <td>
-                                                                $12625.50
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-sm label-warning">
-                                                                    Đang xử lý
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Jhon Doe
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                20 Mar, 2013
-                                                            </td>
-                                                            <td>
-                                                                $125.00
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-sm label-success">
-                                                                    Đã giao
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Bill Chang
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                29 May, 2013
-                                                            </td>
-                                                            <td>
-                                                                $12,125.70
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-sm label-danger">
-                                                                   Hủy
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Paul Strong
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                1 Jun, 2013
-                                                            </td>
-                                                            <td>
-                                                                $890.85
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-sm label-success">
-                                                                    Đã giao
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Jane Hilson
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                5 Aug, 2013
-                                                            </td>
-                                                            <td>
-                                                                $239.85
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-sm label-danger">
-                                                                    Đã hủy
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:;">
-                                                                    Patrick Walker
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                6 Aug, 2013
-                                                            </td>
-                                                            <td>
-                                                                $1239.85
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-sm label-success">
-                                                                    Đã giao
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                    Chi tiết
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                        @foreach (UserOrder user in ViewData["dhmoinhat"] as List<UserOrder>)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="javascript:;">
+                                                                        @user.name
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    @user.dateOrder.Value.ToShortDateString()
+                                                                </td>
+                                                                <td>
+                                                                    @user.sum
+                                                                </td>
+                                                                <td>
+                                                                    @switch (user.idStatus)
+                                                                    {
+                                                                        case -1:
+                                                                            <span class="label label-sm label-danger">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+
+                                                                        case 0:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 1:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 2:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 3:
+                                                                            <span class="label label-sm label-warning">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+
+                                                                    }
+
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("ViewOrder", "Admin", new { madh = user.id })" class="btn default btn-xs green-stripe">
+                                                                        Chi tiết
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                                        <div class="tab-pane" id="overview_5">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Khách hàng
+                                                            </th>
+                                                            <th>
+                                                                Ngày đặt
+                                                            </th>
+                                                            <th>
+                                                                Hóa đơn
+                                                            </th>
+                                                            <th>
+                                                                Trạng thái
+                                                            </th>
+                                                            <th>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach (UserOrder user in ViewData["dhdangcho"] as List<UserOrder>)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <a href="javascript:;">
+                                                                    @user.name
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                @user.dateOrder.Value.ToShortDateString()
+                                                            </td>
+                                                            <td>
+                                                                @user.sum
+                                                            </td>
+                                                            <td>
+                                                                @switch (user.idStatus)
+                                                                {
+                                                                    case -1:
+                                                                        <span class="label label-sm label-danger">
+                                                                            @user.status
+                                                                        </span>
+                                                                        break;
+
+                                                                    case 0:
+                                                                        <span class="label label-sm label-success">
+                                                                            @user.status
+                                                                        </span>
+                                                                        break;
+                                                                    case 1:
+                                                                        <span class="label label-sm label-success">
+                                                                            @user.status
+                                                                        </span>
+                                                                        break;
+                                                                    case 2:
+                                                                        <span class="label label-sm label-success">
+                                                                            @user.status
+                                                                        </span>
+                                                                        break;
+                                                                    case 3:
+                                                                        <span class="label label-sm label-warning">
+                                                                            @user.status
+                                                                        </span>
+                                                                        break;
+
+                                                                }
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="@Url.Action("ViewOrder", "Admin", new { madh = user.id })" class="btn default btn-xs green-stripe">
+                                                                    Chi tiết
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+                                                    </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                        <div class="tab-pane" id="overview_6">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Khách hàng
+                                                            </th>
+                                                            <th>
+                                                                Ngày đặt
+                                                            </th>
+                                                            <th>
+                                                                Hóa đơn
+                                                            </th>
+                                                            <th>
+                                                                Trạng thái
+                                                            </th>
+                                                            <th>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (UserOrder user in ViewData["dhdagiao"] as List<UserOrder>)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="javascript:;">
+                                                                        @user.name
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    @user.dateOrder.Value.ToShortDateString()
+                                                                </td>
+                                                                <td>
+                                                                    @user.sum
+                                                                </td>
+                                                                <td>
+                                                                    @switch (user.idStatus)
+                                                                    {
+                                                                        case -1:
+                                                                            <span class="label label-sm label-danger">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+
+                                                                        case 0:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 1:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 2:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 3:
+                                                                            <span class="label label-sm label-warning">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+
+                                                                    }
+
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("ViewOrder", "Admin", new { madh = user.id })" class="btn default btn-xs green-stripe">
+                                                                        Chi tiết
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane" id="overview_7">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Khách hàng
+                                                            </th>
+                                                            <th>
+                                                                Ngày đặt
+                                                            </th>
+                                                            <th>
+                                                                Hóa đơn
+                                                            </th>
+                                                            <th>
+                                                                Trạng thái
+                                                            </th>
+                                                            <th>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (UserOrder user in ViewData["dhdahuy"] as List<UserOrder>)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="javascript:;">
+                                                                        @user.name
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    @user.dateOrder.Value.ToShortDateString()
+                                                                </td>
+                                                                <td>
+                                                                    @user.sum
+                                                                </td>
+                                                                <td>
+                                                                    @switch (user.idStatus)
+                                                                    {
+                                                                        case -1:
+                                                                            <span class="label label-sm label-danger">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+
+                                                                        case 0:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 1:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 2:
+                                                                            <span class="label label-sm label-success">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+                                                                        case 3:
+                                                                            <span class="label label-sm label-warning">
+                                                                                @user.status
+                                                                            </span>
+                                                                            break;
+
+                                                                    }
+
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@Url.Action("ViewOrder", "Admin", new { madh = user.id })" class="btn default btn-xs green-stripe">
+                                                                        Chi tiết
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                            </div>
+                                        </div>
+                                  </div>
                         </div>
                         <!-- End: life time stats -->
                     </div>

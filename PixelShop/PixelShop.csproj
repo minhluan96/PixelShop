@@ -270,6 +270,7 @@
       <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TopUser.cs" />
+    <Compile Include="Models\UserOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1678,6 +1679,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\AccountPixelShop\" />
     <Folder Include="Views\SanPham\" />
+    <Folder Include="Views\UserOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
