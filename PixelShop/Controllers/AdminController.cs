@@ -159,7 +159,19 @@ namespace PixelShop.Controllers
             }
             return dsKh;
         }
-
+        public ActionResult ReportProduct(int? page)
+        {
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            if (TempData["dssp"] == null)
+            {
+                List<SANPHAM> lstSP = db.SANPHAMs.OrderBy(p => p.BiXoa).ThenBy(p => p.DANHMUC1.BiXoa).ThenBy(p => p.NHASANXUAT1.BiXoa).Select(p => p).ToList<SANPHAM>();
+                return View(@"~/Views/Admin/ReportProduct.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
+            }
+            List<SANPHAM> lstTimKiemSP = TempData["dssp"] as List<SANPHAM>;
+            TempData.Keep();
+            return View(@"~/Views/Admin/ReportProduct.cshtml", lstTimKiemSP.ToPagedList(pageNumber, pageSize));
+        }
 
         private List<UserOrder> getRejectedOrder()
         {
@@ -410,6 +422,38 @@ namespace PixelShop.Controllers
             List<NHASANXUAT> lstTimKiemNSX = TempData["dsnsx"] as List<NHASANXUAT>;
             TempData.Keep();
             return View(@"~/Views/Admin/Manufacturer.cshtml", lstTimKiemNSX.ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult TimKiemBaoCaoSP(FormCollection fm)
+        {
+            IQueryable<SANPHAM> q = db.SANPHAMs;
+            if (!string.IsNullOrEmpty(fm["product_status"].ToString()))
+            {
+                int value = Int32.Parse(fm["product_status"].ToString());
+                if (value != 4)
+                {
+                    if (value == 0)
+                    {
+                        q = q.Where(d => d.BiXoa == 1);
+                    }
+                    if(value == 1)
+                    {
+                        q = q.Where(d => d.BiXoa == 0 && d.SoLuongTon == 0);
+                    }
+                    if (value == 2)
+                    {
+                        q = q.Where(d => d.BiXoa == 0 && d.SoLuongTon <= 50 &&  d.SoLuongTon > 0);
+                    }
+                    if (value == 3)
+                    {
+                        q = q.Where(d => d.BiXoa == 0 && d.SoLuongTon >50);
+                    }
+                }
+            }
+
+            List<SANPHAM> lstSP = q.ToList();
+            TempData["dssp"] = lstSP;
+            return RedirectToAction("ReportProduct", "Admin");
         }
         [HttpPost]
         public ActionResult TimKiemSP(FormCollection fm)

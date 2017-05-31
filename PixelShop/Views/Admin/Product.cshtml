@@ -62,7 +62,10 @@
 
                         </div>
                         <div class="actions">
-
+                            <a href="@Url.Action("ReportProduct","Admin")" class="btn btn-sm btn-circle btn-default">
+                                <i class="fa fa-file-text-o"></i>
+                                Báo cáo
+                            </a>
                             <a href="@Url.Action("AddProduct","Admin")" class="btn btn-sm btn-circle btn-success">
                                 <i class="fa fa-plus"></i>
                                Tạo mới
@@ -239,7 +242,7 @@
                                             @sp.NHASANXUAT1.TenNSX
                                         </td>
                                         <td>
-                                            <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " class="img-responsive" />
+                                            <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt="" class="img-responsive" />
                                         </td>
                                         <td>
                                      

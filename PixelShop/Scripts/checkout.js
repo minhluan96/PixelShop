@@ -25,6 +25,10 @@ $(document).ready(function () {
         var t = $(this).parent().find('#total');
         var str = ".close-checkout." + productId;
         var elementminicart = $('.minicart').find(str).parent();
+        var qtyold = parseInt(elementminicart.find('#qty').text().replace("Số lượng: ",""));
+        var count = parseInt($(".user-numproduct").text());
+        count = parseInt(count) - parseInt(qtyold) + parseInt(qty);
+        $(".user-numproduct").text(count);
         elementminicart.find('#qty').text("Số lượng: " + qty);
         elementminicart.find('.total').text("Tổng tiền: " + qty * price);
         t.text("Tổng tiền: " + qty * price);
@@ -33,6 +37,8 @@ $(document).ready(function () {
             sum += parseInt($(this).text().replace('Tổng tiền: ', ''));
         });
         $('.minicart').find('#totalorder').text("Tổng tiền hóa đơn: " + sum);
+        $("#checkout_total").text(sum);
+        $("#checkout_total1").text(sum);
         $.ajax({
             type: "GET",
             url: "ShoppingCart/Update",
@@ -162,7 +168,6 @@ $(document).ready(function () {
                     $(".minicart").prepend(template);
                 },
                 error: function(){
-                    alert("Thêm giỏ hàng thất bại");
                 }
             });
             
