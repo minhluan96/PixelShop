@@ -120,10 +120,10 @@ namespace PixelShop.Controllers
             string ToEmail = email;
             TAIKHOAN tk = db.TAIKHOANs.Where(a => a.Email.Equals(email)).SingleOrDefault();
             if (tk != null) {
-                var body = "<h4>From: PixelShop Admin</h4><p>Mã xác thực của bạn là:</p><p>" + tk.token + "</p>";
+                var body = "<h4>PixelShop Admin</h4><p>Mã xác thực của bạn là:</p><p>" + tk.token + "</p>";
                 var message = new MailMessage();
                 message.To.Add(new MailAddress(ToEmail));
-                message.From = new MailAddress("donguyenminhluan96@gmail.com");
+                message.From = new MailAddress("pixelshop03@gmail.com");
                 message.Subject = "Thay đổi mật khẩu mới";
                 message.Body = body;
                 message.IsBodyHtml = true;
