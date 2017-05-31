@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace PixelShop.Controllers
 {
-    public class LishSuMuaHangController : Controller
+    public class PurchaseHistoryController : Controller
     {
         // GET: LishSuMuaHang
         PixelShopEntities db = new PixelShopEntities();
@@ -27,7 +27,7 @@ namespace PixelShop.Controllers
             return View(dsDH.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult ChiTietLichSuMuaHang(string maDH, int? page)
+        public ActionResult DetailPurchaseHistory(string maDH, int? page)
         {
             List<CHITIETDONHANG> dsCT = db.CHITIETDONHANGs.Where(c => c.MaDH.Equals(maDH)).Select(c => c).ToList();
             int pageSize = 3;

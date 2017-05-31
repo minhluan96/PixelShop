@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace PixelShop.Controllers
 {
-    public class TimKiemController : Controller
+    public class SearchController : Controller
     {
 
         PixelShopEntities db = new PixelShopEntities();

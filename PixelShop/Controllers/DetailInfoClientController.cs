@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace PixelShop.Controllers
 {
-    public class CapNhatThongTinKHController : Controller
+    public class DetailInfoClientController : Controller
     {
         // GET: CapNhatThongTinKH
         PixelShopEntities db = new PixelShopEntities();
@@ -60,7 +60,7 @@ namespace PixelShop.Controllers
             return sBuilder.ToString();
         }
         [HttpPost]
-        public ActionResult capNhatThongTin(FormCollection frm)
+        public ActionResult updateInfo(FormCollection frm)
         {
             string hoten = frm["hoten"];
             string email = frm["email"];
@@ -88,7 +88,7 @@ namespace PixelShop.Controllers
                 TempData["capnhat"] = 0;
             }
 
-            return RedirectToAction("Index", "CapNhatThongTinKH");
+            return RedirectToAction("Index", "DetailInfoClient");
         }
     }
 }

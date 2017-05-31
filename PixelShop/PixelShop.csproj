@@ -209,15 +209,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountPixelShopController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CapNhatThongTinKHController.cs" />
+    <Compile Include="Controllers\DetailInfoClientController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\FooterComponentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
-    <Compile Include="Controllers\LishSuMuaHangController.cs" />
+    <Compile Include="Controllers\PurchaseHistoryController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
-    <Compile Include="Controllers\TimKiemController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuComponentController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -1678,7 +1678,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AccountPixelShop\" />
+    <Folder Include="Views\Login\" />
     <Folder Include="Views\SanPham\" />
     <Folder Include="Views\UserOrder\" />
   </ItemGroup>
@@ -1803,8 +1803,8 @@
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\FooterComponent\Footer.cshtml" />
-    <Content Include="Views\TimKiem\Index.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\AccountPixelShop\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Admin\Header.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -1825,10 +1825,12 @@
     <Content Include="Views\Accounts\Details.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
-    <Content Include="Views\Payment\ThanhToanThanhCong.cshtml" />
-    <Content Include="Views\LishSuMuaHang\Index.cshtml" />
-    <Content Include="Views\LishSuMuaHang\ChiTietLichSuMuaHang.cshtml" />
-    <Content Include="Views\CapNhatThongTinKH\Index.cshtml" />
+    <Content Include="Views\Payment\PaymentSuccess.cshtml" />
+    <Content Include="Views\PurchaseHistory\Index.cshtml" />
+    <Content Include="Views\PurchaseHistory\DetailPurchaseHistory.cshtml" />
+    <Content Include="Views\DetailInfoClient\Index.cshtml" />
+    <Content Include="Views\AccountPixelShop\ReactivePassword.cshtml" />
+    <Content Include="Views\AccountPixelShop\UpdateNewPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
