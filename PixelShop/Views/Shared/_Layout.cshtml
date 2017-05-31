@@ -16,11 +16,12 @@
 <body>
     @if (TempData["UserMessage"] != null)
     {
-        <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom customframe" id="outner">
+
+         <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom" id="outner" style="display:block; width: 100%;background-color: black;opacity: 0.6;position: fixed; top: 0;height: 100%; margin: 0 auto;">
         </div>
         @*Add New Frame *@
-        <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom customframe1" id="inner">
-            <div class="row dropdown-menu div-iframeAdmin-content customframe2">
+        <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom " id="inner" style="display:block; opacity: 0.99;position: fixed;top: 0;padding: 0;width: 50%;margin-left: 25%; margin-top: 15%;">
+            <div class="row dropdown-menu div-iframeAdmin-content" style="display: block;position: relative;top: 0; width: 100%; margin: 0;">
                 <div class="col-md-12">
                     <div class="form-horizontal form-row-seperated" style="text-align:center; margin:50px;">
                         <span style="color: #ff0000; font-size: 22px;">Thông báo</span>
@@ -37,7 +38,7 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
-                            }
+     }
      
     <div class="header-top-w3layouts">
             <div class="row">
@@ -63,12 +64,12 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default" style="background-color: #1e1e1e;">
                                     <li>
-                                        <a href="@Url.Action("Index", "CapNhatThongTinKH")" style="margin-top:10px; color:white; font-size: 12px;">
+                                        <a href="@Url.Action("Index", "DetailInfoClient")" style="margin-top:10px; color:white; font-size: 12px;">
                                             <i class="glyphicon glyphicon-pencil" style="margin-right: 5px;"></i> Đổi mật khẩu
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="login.html" style="margin-top:10px; color:white; font-size: 12px;">
+                                        <a href="@Url.Action("Index", "PurchaseHistory")" style="margin-top:10px; color:white; font-size: 12px;">
                                             <i class="glyphicon glyphicon-list-alt" style="margin-right: 5px;"></i> Lịch sử mua hàng
                                         </a>
                                     </li>

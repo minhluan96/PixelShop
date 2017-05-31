@@ -19,23 +19,7 @@ namespace PixelShop.Controllers
         // GET: AccountPixelShop
         public ActionResult Index()
         {
-            TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Có lỗi xảy ra. Vui lòng thử lại sau" };
-            if (TempData["isSuccess"] != null)
-            {
-                bool isSuccess = bool.Parse(TempData["isSuccess"].ToString());
-                //if (isSuccess)
-                //{
-                //    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Mật khẩu đã được cập nhật. Vui lòng đăng nhập lại" };
-                //    TempData.Remove("isSuccess");
-                //}
-                //else
-                //{
-                //    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Có lỗi xảy ra. Vui lòng thử lại sau" };
-                //    TempData.Remove("isSuccess");
-                //}
-
-            }
-            return View(@"~/Views/AccountPixelShop/Index.cshtml");
+            return View();
         }
 
         public ActionResult Login(string email,string password)
@@ -193,7 +177,7 @@ namespace PixelShop.Controllers
                         
                         TempData.Remove("email");
                         Session["username"] = null;
-                        TempData["isSuccess"] = true;
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Mật khẩu đã được cập nhật. Vui lòng đăng nhập lại" };
                         return RedirectToAction("Index", "AccountPixelShop");
                     }
                     else
@@ -201,7 +185,7 @@ namespace PixelShop.Controllers
                         
                         TempData.Remove("email");
                         Session["username"] = null;
-                        TempData["isSuccess"] = false;
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Có lỗi xảy ra. Vui lòng thử lại sau" };
                     }
                     
                 } 
