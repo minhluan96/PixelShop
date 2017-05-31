@@ -133,8 +133,8 @@ namespace PixelShop.Controllers
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "donguyenminhluan96@gmail.com",
-                        Password = "Minhlu@n12211212"
+                        UserName = "pixelshop03@gmail.com",
+                        Password = "minhluan"
                     };
                     smtp.Credentials = credential;
                     smtp.Host = "smtp.gmail.com";
