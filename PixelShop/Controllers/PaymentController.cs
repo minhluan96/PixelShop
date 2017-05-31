@@ -22,7 +22,7 @@ namespace PixelShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult GhiNhanDonHang(FormCollection form)
+        public ActionResult RecordOrders(FormCollection form)
         {
             if(Session["username"] == null)
             {
@@ -58,13 +58,13 @@ namespace PixelShop.Controllers
                 db.DONHANGs.Add(dh);
 
                 db.SaveChanges();
-                themChiTietDH(madhag);
+                addDetailOrder(madhag);
             }
 
-            return RedirectToAction("ThanhToanThanhCong", "Payment", new { madh = madhag });
+            return RedirectToAction("PaymentSuccess", "Payment", new { madh = madhag });
         }
 
-        private void themChiTietDH(string madh)
+        private void addDetailOrder(string madh)
         {
             List<CHITIETDONHANG> lstCTDH = new List<CHITIETDONHANG>();
             List<Item> lstItem = (List<Item>)Session["cart"];
@@ -87,7 +87,7 @@ namespace PixelShop.Controllers
             db.SaveChanges();
         }
 
-        public ActionResult ThanhToanThanhCong(string madh)
+        public ActionResult PaymentSuccess(string madh)
         {
             var dh = db.DONHANGs.Where(p => p.MaDH.Equals(madh)).SingleOrDefault();
             

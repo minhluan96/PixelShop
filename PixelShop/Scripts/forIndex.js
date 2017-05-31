@@ -1,4 +1,48 @@
-﻿
+﻿$(document).ready(function () {
+    $("#password").keyup(function () {
+
+        var value = $("#password").val();
+        var strength = value.length;
+        if (strength > 0) {
+            $(".process").show();
+            $("#bar").addClass("progress-bar-danger").html("poor");
+            $("#eye").show();
+
+            if (strength > 3) {
+                $("#bar").removeClass("progress-bar-danger").removeClass("progress-bar-success").addClass("progress-bar-warning").css("width", "30%").html("Weak ");
+            } if (strength > 6) {
+                $("#bar").css("width", "60%").html("Medium").removeClass("progress-bar-success").addClass("progress-bar-warning");
+            }
+            if (strength > 12) {
+                $("#bar").removeClass("progress-bar-warning").addClass("progress-bar-success").css("width", "100%").html("Strong ");
+            }
+
+        } else {
+            $("#bar").removeClass("progress-bar-warning").removeClass("progress-bar-success").addClass("progress-bar-danger").css("width", "10%").html("poor ");
+            $("#eye").hide();
+            $(".process").hide();
+        }
+
+    });
+
+    $("#eye").click(function () {
+
+        if ($(this).attr('data-click-state') == 1) {
+            $(this).attr('data-click-state', 0).removeClass("glyphicon-eye-open").addClass("glyphicon-eye-close");
+            $("#password").attr('type', 'text');
+
+        } else {
+            $(this).attr('data-click-state', 1).removeClass("glyphicon-eye-close").addClass("glyphicon-eye-open");
+            $("#password").attr('type', 'password');
+
+        }
+
+
+    });
+
+});
+
+
 $(window).load(function () {
     $("#flexiselDemo1").flexisel({
         visibleItems: 4,
@@ -24,6 +68,8 @@ $(window).load(function () {
     });
 
 });
+
+
 
 
 
@@ -137,3 +183,7 @@ function checkPass() {
         }
     }
 }
+
+
+
+
