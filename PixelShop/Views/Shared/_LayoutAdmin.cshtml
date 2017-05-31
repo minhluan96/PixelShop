@@ -30,6 +30,17 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body class="page-header-fixed page-sidebar-closed-hide-logo">
+    @if (Session["quyenhan"]==null)
+    {
+        Response.Redirect("~/Home");
+    }
+    else
+    {
+        if ((int)Session["quyenhan"] == 0)
+        {
+            Response.Redirect("~/Home");
+        }
+    }
     @if (TempData["UserMessage"] != null)
     {
         <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom" id="outner" style="display:block;">

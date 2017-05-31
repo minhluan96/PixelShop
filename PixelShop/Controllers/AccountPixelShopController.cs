@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace PixelShop.Controllers
 {
@@ -17,6 +18,7 @@ namespace PixelShop.Controllers
         {
             return View(@"~/Views/Login/Index.cshtml");
         }
+
         public ActionResult Login(string email,string password)
         {
             MD5 md5Hash = MD5.Create();

@@ -228,6 +228,7 @@
     <Compile Include="Models\CHITIETDONHANG.cs">
       <DependentUpon>PixelShopEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomAuthorize.cs" />
     <Compile Include="Models\DANHMUC.cs">
       <DependentUpon>PixelShopEntities.tt</DependentUpon>
     </Compile>
@@ -239,6 +240,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\NHASANXUAT.cs">
@@ -1829,6 +1831,7 @@
     <Content Include="Views\LishSuMuaHang\Index.cshtml" />
     <Content Include="Views\LishSuMuaHang\ChiTietLichSuMuaHang.cshtml" />
     <Content Include="Views\CapNhatThongTinKH\Index.cshtml" />
+    <Content Include="Views\Admin\ReportProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
