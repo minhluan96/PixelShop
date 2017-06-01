@@ -132,7 +132,7 @@
                             <div class="col-md-4 women-grids wp1 animated wow slideInUp" data-wow-delay=".5s">
                                 <div class="product-img">
                                     <a href="@Url.Action("Index", "Info", new { id = Model.ElementAt(i).MaSP })">
-                                        <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" alt="" />
+                                        <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" style="height:160px;" alt="" />
                                     </a>
                                     @if (Session["username"] != null)
                                     {
