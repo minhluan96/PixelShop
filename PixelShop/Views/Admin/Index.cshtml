@@ -3,6 +3,61 @@
 @Scripts.Render("~/bundles/scriptsAdminIndex")
 <script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/assets/global/plugins/jquery-migrate.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+          var data1 = google.visualization.arrayToDataTable([
+            ['Year', 'Sales'],
+            ['2013', 100],
+            ['2014', 1170],
+            ['2015', 660],
+            ['2016', 1030],
+            ['2016', 230],
+            ['2017', 630],
+            ['2018', 130],
+            ['2019', 230],
+            ['2020', 830]
+         ]);
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {
+                       'width':$("#chart").width(),
+                       'height': $("#chart").height()
+        };
+        // Instantiate and draw our chart, passing in some options.
+        var chart_category = new google.visualization.PieChart(document.getElementById('chart_category'));
+        var chart_producer = new google.visualization.PieChart(document.getElementById('chart_producer'));
+        chart_category.draw(data, options);
+        chart_producer.draw(data, options);
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart'));
+        chart.draw(data1, options);
+
+        var chart1 = new google.visualization.AreaChart(document.getElementById('chart1'));
+        chart1.draw(data1, options);
+      }
+</script>
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -691,14 +746,24 @@
                                     <span class="caption-helper">hàng tuần...</span>
                                 </div>
                                 <ul class="nav nav-tabs">
-                                    <li>
-                                        <a href="#portlet_tab2" data-toggle="tab" id="statistics_amounts_tab">
-                                            Tổng tiền
+                                    <li class="active">
+                                        <a href="#portlet_tab1" data-toggle="tab" id="statistics_amounts_tab">
+                                            Doanh thu
                                         </a>
                                     </li>
-                                    <li class="active">
-                                        <a href="#portlet_tab1" data-toggle="tab">
-                                            Đặt hàng
+                                    <li>
+                                        <a href="#portlet_tab2" data-toggle="tab">
+                                            Thống kê theo hãng
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#portlet_tab3" data-toggle="tab" id="statistics_amounts_tab">
+                                            Thống kê theo danh mục
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#portlet_tab4" data-toggle="tab" id="statistics_amounts_tab">
+                                            Đơn hàng
                                         </a>
                                     </li>
                                 </ul>
@@ -706,11 +771,19 @@
                             <div class="portlet-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="portlet_tab1">
-                                        <div id="statistics_1" class="chart">
+                                        <div id="chart" class="chart">
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="portlet_tab2">
-                                        <div id="statistics_2" class="chart">
+                                        <div id="chart_category" class="chart">
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="portlet_tab3">
+                                        <div id="chart_producer" class="chart">
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="portlet_tab4">
+                                        <div id="chart1" class="chart">
                                         </div>
                                     </div>
                                 </div>

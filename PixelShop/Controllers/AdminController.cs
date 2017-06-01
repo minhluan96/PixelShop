@@ -769,7 +769,7 @@ namespace PixelShop.Controllers
 
                         var file = Request.Files[i];
                         Random rand = new Random();
-                        int randNumb = rand.Next(10, 100);
+                        int randNumb = rand.Next(10, 10000);
                         var code = DateTime.Now.ToString("ddMMyyyyhhmmss") + randNumb;
                         var fileName = code + "." + Request.Files[i].FileName.Split('.')[1];
                         imgpaths.Add(fileName);
