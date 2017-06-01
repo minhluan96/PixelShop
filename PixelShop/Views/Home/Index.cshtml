@@ -17,9 +17,10 @@
                     @foreach (var sp in ViewData["xemNhieu"] as List<SANPHAM>)
                     {
                         <li>
-                                <a href="@Url.Action("Index", "Info", new { id = sp.MaSP })">
-                                    <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt="" class="img-responsive" />
-                                    <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
+
+                            <a href="@Url.Action("Index", "Info", new { id = sp.MaSP })">
+                                <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " style="width: auto; height: 250px; margin:0 auto;" class="img-responsive" />
+                                <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
 
                                     <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
                                 </a>
@@ -86,7 +87,7 @@
                                    
                                         <div class="product-img">
                                             <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
-                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt="" />
+                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" style="height: 180px; margin:auto 0;" alt="" />
                                             </a>
                                             @if (Session["username"] != null)
                                             {
@@ -138,8 +139,8 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="resp-tabs-list">
-                        <li class="resp-tab-item"><span>Xem nhiều hơn</span></li>
+                    <ul class="resp-tabs-list" style="margin-top:80px;">
+                        <li class="resp-tab-item"><a href="@Url.Action("Index", "Search")" style="text-decoration:none; color:black;"><span>Xem nhiều hơn</span></a></li>
                     </ul>
                 </div>
             </div>
