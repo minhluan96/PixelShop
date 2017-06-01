@@ -85,6 +85,10 @@ namespace PixelShop
                         "~/assets/admin/pages/scripts/ecommerce-index.js",
                         "~/assets/global/plugins/forAdmin.js"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/scriptForFacebook").Include(
+                        "~/Scripts/jsForFacebook.js" ));
+
             bundles.Add(new StyleBundle("~/Content/cssAdminIndex").Include(
                         "~/assets/global/plugins/font-awesome/css/font-awesome.min.css",
                         "~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css",

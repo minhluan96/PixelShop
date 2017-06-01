@@ -1644,6 +1644,7 @@
     <Content Include="Scripts\jquery.flexisel.js" />
     <Content Include="Scripts\jquery.flexslider.js" />
     <Content Include="Scripts\jquery.wmuSlider.js" />
+    <Content Include="Scripts\jsForFacebook.js" />
     <Content Include="Scripts\minicart.js" />
     <Content Include="Scripts\quantity.js" />
     <Content Include="Web.config" />
