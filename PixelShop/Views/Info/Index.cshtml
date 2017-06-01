@@ -9,7 +9,7 @@
                         <ul class="slides">
                             @foreach (var ha in ViewData["hinhanh"] as List<HINHANH>)
                             {
-                                <li data-thumb="@Html.DisplayFor(a => ha.PathHinhAnh)">
+                                <li data-thumb="@("../" + Html.DisplayFor(a => ha.PathHinhAnh))">
                                     <div class="thumb-image detail_images"> <img src="@("../" + Html.DisplayFor(a => ha.PathHinhAnh))" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
                                 </li>
                             }
@@ -22,6 +22,8 @@
                     <p>Mã sản phẩm: @Model.MaSP</p>
                     <br />
                     <p>Tình trạng: Còn hàng</p>
+                    <br />
+                    <p>Lượt xem: @Model.SoLuotXem</p>
                     <div class="single-rating">
                         <ul>
                             <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
@@ -54,8 +56,8 @@
         </div>
 
         <!-- collapse-tabs -->
-        <div class="collpse tabs">
-            <h3 class="w3ls-title">THÔNG TIN SẢN PHẨM</h3>
+        <div class="collpse tabs" >
+            <h3 class="w3ls-title" style="font-size: 24px;">THÔNG TIN SẢN PHẨM</h3>
             <div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -72,23 +74,23 @@
                                     @{
                                         String[] mota = Model.MoTa.Split(new string[] { "&" }, StringSplitOptions.None);
                                     }
-                                    <h4 style="text-align: left; font-weight:bold;">Giới thiệu</h4>
+                                    <h4 style="text-align: left; font-weight:bold; color:black; margin-bottom: 20px;">Giới thiệu</h4>
                                     @{
                                         string[] gioithieu = mota[0].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
                                         for (int i = 0; i < gioithieu.Count(); i++)
                                         {
-                                            <p>@gioithieu[i].Replace(@"%", "")</p>
-                                            <hr />
+                                            <p style="font-size: 13px; color:black;">@gioithieu[i].Replace(@"%", "")</p>
+                                            <hr style="width:20%; margin-top: 10px; margin-left:0; border-color:black;"/>
                                         }
                                     }
 
-                                    <h4 style="text-align: left; font-weight:bold;">Tính năng</h4>
+                                    <h4 style="text-align: left; font-weight:bold; color:black; margin-bottom: 20px;">Tính năng</h4>
                                     @{
                                         string[] tinhnang = mota[1].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
                                         for (int i = 0; i < tinhnang.Count(); i++)
                                         {
-                                            <p>@tinhnang[i].Replace(@"%", "")</p>
-                                            <hr />
+                                            <p style="font-size: 13px; color:black;">@tinhnang[i].Replace(@"%", "")</p>
+                                            <hr style="width:20%; margin-top: 10px; margin-left:0; color: black;"/>
                                         }
                                     }
                                 </div>
@@ -131,8 +133,9 @@
         </div>
         <!-- //collapse -->
     </div>
+    <hr style="width: 90%; border-color: #1e1e1e; margin-top: 50px;"/>
     <div class="container" style="margin-top: 40px;">
-        <h2>Sản phẩm xem tương tự </h2><br /><br />
+        <h2 style="font-size: 24px;">Sản phẩm xem tương tự </h2><br /><br />
         <div class="sliderfig">
             <ul id="flexiselDemo1">
                 @foreach (var sp in ViewData["sanphamtuongtu"] as List<SANPHAM>)

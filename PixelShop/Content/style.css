@@ -5,6 +5,9 @@
 	License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 /*-- Reset Code --*/
+.products{
+    font-size: 12px;
+}
 body {
 	padding: 0;
 	margin: 0;
@@ -1761,7 +1764,7 @@ p.single-price-text {
 	position:relative;
 }
 .collpse.tabs .panel-default {
-    border-color: #37a1f3;
+    border-color: #1E1E1E;
 }
 .collpse.tabs .panel-body {
 	padding: 15px;
@@ -1771,7 +1774,7 @@ p.single-price-text {
 }
 .collpse.tabs .panel-default > .panel-heading {
     padding: 0;
-    background: #37a1f3;
+    background: #1E1E1E;
 } 
 .pa_italic span.fa-arrow{
     display: none;
