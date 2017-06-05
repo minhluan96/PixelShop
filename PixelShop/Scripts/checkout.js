@@ -45,6 +45,7 @@ $(document).ready(function () {
             data: { quantity: qty, id: productId },
             dataType: "html"
         });
+        $(document).load(url + '.minicart');
     });
 });
 $(document).on('click', ".close-checkout", function () {
@@ -83,14 +84,17 @@ $(document).on('click', ".close-checkout", function () {
                 $("#checkout_total1").text(totalcart);
             },
             error: function () {
-                alert("Thêm giỏ hàng thất bại");
+                
             }
         });
         $.ajax({
             type: "GET",
-            url: "ShoppingCart/Delete",
+            url: "/ShoppingCart/Delete",
             data: { id: productId },
-            dataType: "html"
+            dataType: "html",
+            success: function (data) {
+                
+            }
         });      
     });
 function flyToElement(flyer, flyingTo) {
@@ -154,7 +158,7 @@ $(document).ready(function () {
             id = productId;
             $.ajax({
                 method: "POST",
-                url: "MenuComponent/GetProduct",
+                url: "/MenuComponent/GetProduct",
                 dataType: "json",
                 data: { id: productId },
                 success: function (data) {
@@ -180,6 +184,6 @@ $(document).ready(function () {
             dataType: "html"
 
         });
-       
     });
 });
+

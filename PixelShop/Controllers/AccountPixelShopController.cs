@@ -42,6 +42,7 @@ namespace PixelShop.Controllers
         {
             Session["username"] = null;
             Session["quyenhan"] = null;
+            Session["cart"] = null;
             return RedirectToAction("Index", "Home");
         }
         static string GetMd5Hash(MD5 md5Hash, string input)
@@ -201,6 +202,10 @@ namespace PixelShop.Controllers
                 return RedirectToAction("ReactivePassword", "AccountPixelShop");
             }
             string token = fm["token"].ToString();
+            if (String.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("ReactivePassword", "AccountPixelShop");
+            }
             TAIKHOAN tk = db.TAIKHOANs.Where(a => a.token.Equals(token)).SingleOrDefault();
             if(tk != null)
             {

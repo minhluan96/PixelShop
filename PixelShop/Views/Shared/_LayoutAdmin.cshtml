@@ -64,6 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <!-- END PAGE CONTENT-->
         </div>
+          TempData["UserMessage"] = null;
                             }
     <!-- BEGIN HEADER -->
     <!-- BEGIN HEADER -->
@@ -87,5 +88,11 @@ License: You must have a valid license purchased only from themeforest(the above
         $("#outner").click(function () {
             $(this).remove();
             $("#inner").remove();
+            window.location.reload();
+        });
+        $(document).ready(function () {
+            if (!!window.performance && window.performance.navigation.type == 2) {
+                window.location.reload();
+            }
         });
 </script>

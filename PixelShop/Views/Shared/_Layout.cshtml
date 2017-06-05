@@ -38,6 +38,7 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
+         TempData["UserMessage"] = null;
      }
      
     <div class="header-top-w3layouts">
@@ -122,6 +123,12 @@
         $("#outner").click(function () {
             $(this).remove();
             $("#inner").remove();
+            window.location.reload();
         });
+    });
+    $(document).ready(function () {
+        if (!!window.performance && window.performance.navigation.type == 2) {
+            window.location.reload();
+        }
     });
 </script>

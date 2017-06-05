@@ -9,6 +9,7 @@ using System.IO;
 
 namespace PixelShop.Controllers
 {
+  
     public class AdminController : Controller
     {
 
@@ -662,11 +663,11 @@ namespace PixelShop.Controllers
             }
             if(!String.IsNullOrEmpty(frmC["trangthai"].ToString()))
             {
-                String trangthai = frmC["trangthai"];
-                if (!trangthai.Equals("Tất cả"))
+                int trangthai = Int32.Parse(frmC["trangthai"].ToString());
+                if (trangthai!=99)
                 {
                     
-                    q = q.Where(d => d.TINHTRANGDONHANG.MaTinhTrang.Equals(trangthai));
+                    q = q.Where(d => d.TinhTrang == trangthai);
                 }
                 
             }

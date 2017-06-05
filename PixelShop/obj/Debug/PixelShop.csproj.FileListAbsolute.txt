@@ -1,0 +1,5 @@
+D:\Học tập\Web\Đồ án 1\PixelShop\bin\roslyn\csc.exe
+D:\Học tập\Web\Đồ án 1\PixelShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Học tập\Web\Đồ án 1\PixelShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Học tập\Web\Đồ án 1\PixelShop\bin\roslyn\System.Reflection.Metadata.dll
+D:\Học tập\Web\Đồ án 1\PixelShop\bin\roslyn\VBCSCompiler.exe

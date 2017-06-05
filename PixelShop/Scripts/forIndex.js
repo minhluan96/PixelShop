@@ -1,4 +1,7 @@
-﻿$(document).ready(function () {
+﻿
+
+
+$(document).ready(function () {
     $("#password").keyup(function () {
 
         var value = $("#password").val();
