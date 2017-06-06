@@ -1,5 +1,8 @@
 ﻿@using PixelShop.Models
-
+@using System.Globalization
+@{
+    CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
+}
 <div class="container" style="width:100%; position:relative;">
     <div class="col-md-2 logo-w3">
         <a href="@Url.Action("Index", "Home")"><img src="~/images/logo.png" alt="logo pixel" /></a>
@@ -139,7 +142,11 @@
                         <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>
                         <p id="qty">Số lượng: @item.Soluong</p>
                         <div class="delivery" style="margin-top:10px;">
-                            <p class="total">Tổng tiền: @(item.Sanpham.GiaBan * item.Soluong)</p>
+                            @{ 
+                                int? totalPro = item.Sanpham.GiaBan * item.Soluong;
+                                string totalProStr = String.Format(elGR, "{0:0,0}", totalPro) + " VNÐ";
+                            }
+                            <p class="total">Tổng tiền: @(totalProStr)</p>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -150,7 +157,10 @@
         }    
     }
     <div class="sbmincart-footer" id="totalcart">
-        <p style="font-size: 15px;" id="totalorder">Tổng tiền hóa đơn: @total</p>
+        @{ 
+           string _totalStr = String.Format(elGR, "{0:0,0}", total) + " VNÐ";
+        }
+        <p style="font-size: 15px;" id="totalorder">Tổng tiền hóa đơn: @_totalStr</p>
         <a href="/Checkout">
             <div class="viewcart">
                 <p style="color: white;">Chi tiết giỏ hàng</p>

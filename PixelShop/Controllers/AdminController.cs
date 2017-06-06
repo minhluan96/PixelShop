@@ -209,7 +209,71 @@ namespace PixelShop.Controllers
             }
             return dsKh;
         }
+        public ActionResult AnalyseRevenueMonth()
+        {
+                var trendData =(from d in db.DONHANGs
+                                where d.TinhTrang == 0
 
+                                 group d by new
+                                 {
+                                     Year = (d.NgayGiao??DateTime.Now).Year,
+                                     Month = (d.NgayGiao ?? DateTime.Now).Month
+                                 } into g
+                                 select new
+                                 {
+                                     Year = g.Key.Year,
+                                     Month = g.Key.Month,
+                                     Total = g.Sum(x => x.CHITIETDONHANGs.Sum(q => q.GiaBan * q.SoLuongDat)),
+                                 }
+                               ).AsEnumerable()
+                                .Select(g => new {
+                                    Period = g.Month + "-" + g.Year,
+                                    Total = g.Total,
+                                });
+            return Json(trendData, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult AnalyseCategory()
+        {
+            var trendData = (from d in db.CHITIETDONHANGs
+                             where d.DONHANG.TinhTrang == 0
+
+                             group d by new
+                             {
+                                 Category = d.SANPHAM.DanhMuc
+                             } into g
+                             select new
+                             {
+                                 Category = db.DANHMUCs.Where(u => u.MaDanhMuc.Equals(g.Key.Category)).Select(i => i.TenDanhMuc + i.NhomDanhMuc),
+                                 Total = g.Sum(x => x.GiaBan * x.SoLuongDat),
+                             }
+                           ).AsEnumerable()
+                            .Select(g => new {
+                                Category = g.Category,
+                                Total = g.Total
+                            });
+            return Json(trendData, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult AnalyseManufacturer()
+        {
+            var trendData = (from d in db.CHITIETDONHANGs
+                             where d.DONHANG.TinhTrang == 0
+
+                             group d by new
+                             {
+                                 Manufacturer = d.SANPHAM.NhaSanXuat
+                             } into g
+                             select new
+                             {
+                                 Manufacturer = db.NHASANXUATs.Where(u => u.MaNSX.Equals(g.Key.Manufacturer)).Select(i => i.TenNSX),
+                                 Total = g.Sum(x => x.GiaBan * x.SoLuongDat),
+                             }
+                           ).AsEnumerable()
+                            .Select(g => new {
+                                Manufacturer = g.Manufacturer,
+                                Total = g.Total
+                            });
+            return Json(trendData, JsonRequestBehavior.AllowGet);
+        }
         private List<UserOrder> getCompletedOrder()
         {
             var ds = (from d in db.DONHANGs

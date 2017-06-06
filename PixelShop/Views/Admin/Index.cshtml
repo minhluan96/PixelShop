@@ -1,4 +1,5 @@
 ﻿@using PixelShop.Models
+@using System.Globalization
 @Styles.Render("~/Content/cssAdminIndex")
 @Scripts.Render("~/bundles/scriptsAdminIndex")
 <script src="@Url.Content("~/assets/global/plugins/jquery-ui/jquery-ui.min.js")" type="text/javascript"></script>
@@ -6,58 +7,130 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+        $.ajax({
+            method: "POST",
+            url: "/Admin/AnalyseRevenueMonth",
+            dataType: "json",
+            success: function (result) {
+                google.charts.load('current', { 'packages': ['corechart'] });
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(function(){
+                    drawChartAnalyseRevenueMonth(result);
+                });
+            },
+            error: function () {
+            }
+        });
+        $.ajax({
+            method: "POST",
+            url: "/Admin/AnalyseCategory",
+            dataType: "json",
+            success: function (result) {
+                google.charts.load('current', { 'packages': ['corechart'] });
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(function () {
+                    drawChartAnalyseCategory(result);
+                });
+            },
+            error: function () {
+            }
+        });
+        $.ajax({
+            method: "POST",
+            url: "/Admin/AnalyseManufacturer",
+            dataType: "json",
+            success: function (result) {
+                google.charts.load('current', { 'packages': ['corechart'] });
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(function () {
+                    drawChartAnalyseManufacturer(result);
+                });
+            },
+            error: function () {
+            }
+        });
+        
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
-          var data1 = google.visualization.arrayToDataTable([
-            ['Year', 'Sales'],
-            ['2013', 100],
-            ['2014', 1170],
-            ['2015', 660],
-            ['2016', 1030],
-            ['2016', 230],
-            ['2017', 630],
-            ['2018', 130],
-            ['2019', 230],
-            ['2020', 830]
-         ]);
+        function drawChartAnalyseRevenueMonth(result) {
+          var data1 = new google.visualization.DataTable();
+          data1.addColumn('string', 'Thời gian');
+          data1.addColumn('number', 'Doanh thu');
+          var dataArray = [];
+          $.each(result, function (i, obj) {
+              dataArray.push([obj.Period + "", obj.Total]);
+          });
         // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
-
+          data1.addRows(dataArray);
         // Set chart options
         var options = {
                        'width':$("#chart").width(),
                        'height': $("#chart").height()
         };
         // Instantiate and draw our chart, passing in some options.
-        var chart_category = new google.visualization.PieChart(document.getElementById('chart_category'));
-        var chart_producer = new google.visualization.PieChart(document.getElementById('chart_producer'));
-        chart_category.draw(data, options);
-        chart_producer.draw(data, options);
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart'));
         chart.draw(data1, options);
+      }
+      function drawChartAnalyseCategory(result) {
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Danh mục');
+          data.addColumn('number', 'Doanh thu');
+          var dataArray = [];
+          $.each(result, function (i, obj) {
+              var temp = obj.Category + "";
+              var nhom;
+              if (temp[temp.length - 1] == "1")
+                  nhom = " - Nam";
+              if (temp[temp.length - 1] == "2")
+                  nhom = " - Nữ";
+              if (temp[temp.length - 1] == "3")
+                  nhom = " - Phụ kiện";
+              var name = temp.substring(0, temp.length - 1) + nhom;
+              dataArray.push([name , obj.Total]);
+          });
+          data.addRows(dataArray);
 
-        var chart1 = new google.visualization.AreaChart(document.getElementById('chart1'));
-        chart1.draw(data1, options);
+          // Set chart options
+          var options = {
+              'width': $("#chart").width(),
+              'height': $("#chart").height()
+          };
+          // Instantiate and draw our chart, passing in some options.
+          var chart_category = new google.visualization.PieChart(document.getElementById('chart_category'));
+          chart_category.draw(data, options);
+      }
+      function drawChartAnalyseManufacturer(result) {
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Nhà sản xuất');
+          data.addColumn('number', 'Doanh thu');
+          var dataArray = [];
+          $.each(result, function (i, obj) {
+              dataArray.push([obj.Manufacturer + "" , obj.Total]);
+          });
+          data.addRows(dataArray);
+
+          // Set chart options
+          var options = {
+              'width': $("#chart").width(),
+              'height': $("#chart").height()
+          };
+          // Instantiate and draw our chart, passing in some options.
+          var chart_producer = new google.visualization.PieChart(document.getElementById('chart_producer'));
+          chart_producer.draw(data, options);
       }
 </script>
+        @{ 
+            CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
+        }
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -109,7 +182,7 @@
                             <div class="display">
                                 <div class="number">
                                     @{ double? tongDT = double.Parse(ViewData["doanhthu"].ToString());
-                                        string tongDTStr = String.Format("{0:0,0}", tongDT);
+                                        string tongDTStr = String.Format(elGR, "{0:0,0}", tongDT);
                                         }
                                     <h3 class="font-green-sharp">@tongDTStr<small class="font-green-sharp"> VNĐ</small></h3>
                                     <small>Tổng doanh thu</small>
@@ -171,7 +244,7 @@
                             <div class="display">
                                 <div class="number">
                                     @{ double? dtTrungBinh =  double.Parse(ViewData["trungbinhdh"].ToString());
-                                        string giaTB = String.Format("{0:0,0}", dtTrungBinh) + " ";
+                                        string giaTB = String.Format(elGR, "{0:0,0}", dtTrungBinh) + " ";
                                     }
                                     <h3 class="font-blue-sharp">@giaTB<small class="font-blue-sharp">VNĐ</small></h3>
                                     <small>Trung bình đơn hàng</small>
@@ -748,17 +821,12 @@
                                     </li>
                                     <li>
                                         <a href="#portlet_tab2" data-toggle="tab">
-                                            Thống kê theo hãng
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#portlet_tab3" data-toggle="tab" id="statistics_amounts_tab">
                                             Thống kê theo danh mục
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#portlet_tab4" data-toggle="tab" id="statistics_amounts_tab">
-                                            Đơn hàng
+                                        <a href="#portlet_tab3" data-toggle="tab" id="statistics_amounts_tab">
+                                            Thống kê theo hãng
                                         </a>
                                     </li>
                                 </ul>
@@ -775,10 +843,6 @@
                                     </div>
                                     <div class="tab-pane" id="portlet_tab3">
                                         <div id="chart_producer" class="chart">
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="portlet_tab4">
-                                        <div id="chart1" class="chart">
                                         </div>
                                     </div>
                                 </div>

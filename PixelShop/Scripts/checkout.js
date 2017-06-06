@@ -17,6 +17,9 @@ $(document).ready(function () {
     $('.minicart').hide();
 });
 });
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 $(document).ready(function () {
     $(".qtycart").change(function () {
         var qty = $(this).val();
@@ -30,29 +33,44 @@ $(document).ready(function () {
         count = parseInt(count) - parseInt(qtyold) + parseInt(qty);
         $(".user-numproduct").text(count);
         elementminicart.find('#qty').text("Số lượng: " + qty);
-        elementminicart.find('.total').text("Tổng tiền: " + qty * price);
-        t.text("Tổng tiền: " + qty * price);
+        var tt = qty * price;
+        elementminicart.find('.total').text("Tổng tiền: " + numberWithCommas(tt) + " VNĐ");
+        t.text("Tổng tiền: " + numberWithCommas(tt) + " VNĐ");
         var sum = 0;
         $('.minicart').find('.total').each(function (index, value) {
-            sum += parseInt($(this).text().replace('Tổng tiền: ', ''));
+            var replace1 = $(this).text().replace('Tổng tiền: ', '');
+            var replace2 = replace1.substring(0, replace1.length - 4);
+            var lsStr = replace2.split(".");
+            var tstr = "";
+            for (var i = 0 ; i < lsStr.length; i++) {
+                tstr = tstr + lsStr[i];
+            }
+            var sumitem = parseInt(tstr);
+            sum += sumitem;
         });
-        $('.minicart').find('#totalorder').text("Tổng tiền hóa đơn: " + sum);
-        $("#checkout_total").text(sum);
-        $("#checkout_total1").text(sum);
+        $('.minicart').find('#totalorder').text("Tổng tiền hóa đơn: " + numberWithCommas(sum) + " VNĐ");
+        $("#checkout_total").text(numberWithCommas(sum) + " VNĐ");
+        $("#checkout_total1").text(numberWithCommas(sum) + " VNĐ");
         $.ajax({
             type: "GET",
             url: "ShoppingCart/Update",
             data: { quantity: qty, id: productId },
             dataType: "html"
         });
-        $(document).load(url + '.minicart');
     });
 });
 $(document).on('click', ".close-checkout", function () {
         $(this).parent().fadeOut('slow', function (c) {
             $(this).remove();
         });
-        var totalcart = parseInt($("#totalorder").text().replace("Tổng tiền hóa đơn: ", ""));
+        var replace1 = $("#totalorder").text().replace("Tổng tiền hóa đơn: ", "");
+        var replace2 = replace1.substring(0, replace1.length - 4);
+        var lsStr = replace2.split(".");
+        var tstr = "";
+        for (var i = 0 ; i < lsStr.length; i++) {
+            tstr = tstr + lsStr[i];
+        }
+        var totalcart = parseInt(tstr);
         var productId = $(this).attr('class').replace('close-checkout ', '');
         var elementqty = $(document).find("#qty").first();
         var qty = parseInt(elementqty.text().replace("Số lượng: ", ""));
@@ -71,6 +89,9 @@ $(document).on('click', ".close-checkout", function () {
                     $(this).show();
                 });
             });
+            $("#btnpayment").fadeOut(1000, function (c) {
+                $(this).hide();
+            });
         }
         $.ajax({
             method: "POST",
@@ -79,9 +100,9 @@ $(document).on('click', ".close-checkout", function () {
             data: { id: productId },
             success: function (data) {
                 totalcart = totalcart - (data.GiaBan * qty);
-                $("#totalorder").text("Tổng tiền hóa đơn: " + totalcart);
-                $("#checkout_total").text(totalcart);
-                $("#checkout_total1").text(totalcart);
+                $("#totalorder").text("Tổng tiền hóa đơn: " + numberWithCommas(totalcart) + " VNĐ");
+                $("#checkout_total").text(numberWithCommas(totalcart) + " VNĐ");
+                $("#checkout_total1").text(numberWithCommas(totalcart) + " VNĐ");
             },
             error: function () {
                 
@@ -123,7 +144,6 @@ function flyToElement(flyer, flyingTo) {
         });
     });
 }
-
 $(document).ready(function () {
     $(".btnaddcart").click(function () {
         $('html, body').animate({
@@ -132,7 +152,14 @@ $(document).ready(function () {
         $('.null-cart').each(function (i, obj) {
             $(this).hide();
         });
-        var totalcart = parseInt($("#totalorder").text().replace("Tổng tiền hóa đơn: ", ""));
+        var replace1 = $("#totalorder").text().replace("Tổng tiền hóa đơn: ", "");
+        var replace2 = replace1.substring(0, replace1.length - 4);
+        var lsStr = replace2.split(".");
+        var tstr = "";
+        for (var i = 0 ; i < lsStr.length; i++) {
+            tstr = tstr + lsStr[i];
+        }
+        var totalcart = parseInt(tstr);
         //Select item image and pass to the function
         var itemImg = $(this).parent().parent().find('img').eq(0);
         var count = parseInt($(".user-numproduct").text());
@@ -145,16 +172,16 @@ $(document).ready(function () {
             var elementqty = element.parent().find("#qty").first();
             var qty = parseInt(elementqty.text().replace("Số lượng: ", ""));
             var price = parseInt(element.parent().find("#price").first().text());
+            qty = qty + 1;
             var total = qty * price;
             totalcart = totalcart + price;
-            $("#totalorder").text("Tổng tiền hóa đơn: " + totalcart);
-            qty = qty + 1;
-            element.parent().find(".total").first().text("Tổng tiền: " + total);
+            $("#totalorder").text("Tổng tiền hóa đơn: " + numberWithCommas(totalcart) + " VNĐ");
+            element.parent().find(".total").first().text("Tổng tiền: " + numberWithCommas(total) + " VNĐ");
             elementqty.text("Số lượng: " + qty);
         }
         else {
             var name, id, img;
-            var gia;
+            var gia, totaltemp;
             id = productId;
             $.ajax({
                 method: "POST",
@@ -166,9 +193,10 @@ $(document).ready(function () {
                     name = data.TenSP;
                     img = data.HinhHienThi;
                     gia = data.GiaBan;
-                    totalcart = totalcart + data.GiaBan;
+                    totaltemp = totalcart + data.GiaBan;
+                    totalcart = numberWithCommas(totaltemp) + " VNĐ";
                     $("#totalorder").text("Tổng tiền hóa đơn: " + totalcart);
-                    var template = '<div class="cart-header"><div class="close-checkout ' + productId + '"> </div><div class="cart-sec simpleCart_shelfItem" style="margin-right:40px;"><div class="cart-item cyc"><img src="' + img + '" class="sbmincart-img" alt="" /></div><div class="cart-item-info">                        <p class="sbmincart-name">' + name + '</p>                        <p id="price" style="display:none;">' + gia + '</p>                        <p id="qty">Số lượng: 1</p>                        <div class="delivery" style="margin-top:10px;">                            <p class="total">Tổng tiền: ' + gia + '</p>                            <div class="clearfix"></div>                        </div>                    </div>                    <div class="clearfix"></div>                </div>                <hr />            </div>';
+                    var template = '<div class="cart-header"><div class="close-checkout ' + productId + '"> </div><div class="cart-sec simpleCart_shelfItem" style="margin-right:40px;"><div class="cart-item cyc"><img src="' + img + '" class="sbmincart-img" alt="" /></div><div class="cart-item-info">                        <p class="sbmincart-name">' + name + '</p>                        <p id="price" style="display:none;">' + gia + '</p>                        <p id="qty">Số lượng: 1</p>                        <div class="delivery" style="margin-top:10px;">                            <p class="total">Tổng tiền: ' + numberWithCommas(gia) + " VNĐ" + '</p>                            <div class="clearfix"></div>                        </div>                    </div>                    <div class="clearfix"></div>                </div>                <hr />            </div>';
                     $(".minicart").prepend(template);
                 },
                 error: function(){

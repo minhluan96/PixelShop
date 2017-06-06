@@ -1,6 +1,9 @@
 ﻿@using PixelShop.Models
+@using System.Globalization
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+@{
+    CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
+}
 <div class="account-in">
     <div class="container">
         <div class="check_box">
@@ -32,8 +35,12 @@
                                         @{
                                             sum += item.Sanpham.GiaBan * item.Soluong;
                                         }
+                                        @{
+                                            int? totalPro = item.Sanpham.GiaBan * item.Soluong;
+                                            string totalProStr = String.Format(elGR, "{0:0,0}", totalPro) + " VNÐ";
+                                        }
                                         <div class="delivery">
-                                            <p id="total">Tổng tiền: @(item.Sanpham.GiaBan * item.Soluong)</p>
+                                            <p id="total">Tổng tiền: @(totalProStr)</p>
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
@@ -44,12 +51,15 @@
                     }
                 }
             </div>
+            @{
+                string _totalStr = String.Format(elGR, "{0:0,0}", sum) + " VNÐ";
+            }
             <div class="col-md-4 cart-total">
                 <a class="continue" href="/Home/">Tiếp tục mua sắm</a>
                 <div class="price-details">
                     <h3>Chi tiết hóa đơn</h3>
                     <span>Tổng cộng</span>
-                    <span class="total1" id="checkout_total">@sum</span>
+                    <span class="total1" id="checkout_total">@_totalStr</span>
                     <span>Discount</span>
                     <span class="total1">---</span>
                     <span>Phí dịch vụ giao hàng</span>
@@ -58,13 +68,13 @@
                 </div>
                 <ul class="total_price">
                     <li class="last_price"> <h4>Tổng cộng</h4></li>
-                    <li class="last_price"><span id="checkout_total1">@sum</span></li>
+                    <li class="last_price"><span id="checkout_total1">@_totalStr</span></li>
                     <div class="clearfix"> </div>
                 </ul>
                 <div class="clearfix"></div>
                 @if (Session["username"] != null && Session["cart"] != null)
                 {
-                    <a class="order" href="@Url.Action("Index", "Payment")">Thanh toán</a>
+                    <a class="order" id="btnpayment" href="@Url.Action("Index", "Payment")">Thanh toán</a>
                 }
             </div>
             <div class="clearfix"></div>
