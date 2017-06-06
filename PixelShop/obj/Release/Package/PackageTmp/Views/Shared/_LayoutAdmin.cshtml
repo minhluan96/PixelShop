@@ -1,0 +1,98 @@
+﻿@using PixelShop.Models
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.2
+Version: 3.7.0
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>PixelShop | Admin - Trang chủ</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo">
+    @if (Session["quyenhan"]==null)
+    {
+        Response.Redirect("~/Home");
+    }
+    else
+    {
+        if ((int)Session["quyenhan"] == 0)
+        {
+            Response.Redirect("~/Home");
+        }
+    }
+    @if (TempData["UserMessage"] != null)
+    {
+        <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom" id="outner" style="display:block;">
+        </div>
+        @*Add New Frame *@
+        <div class="dropdown-menu theme-panel div-iframeAdmin1 dropdown-custom" id="inner" style="display:block;">
+            <div class="row dropdown-menu div-iframeAdmin-content">
+                <div class="col-md-12">
+                    <div class="form-horizontal form-row-seperated" style="text-align:center; margin:50px;">
+                        <span style="color: #ff0000; font-size: 22px;">Thông báo</span>
+                        <hr />
+                        @{
+                            Message ms = TempData["UserMessage"] as Message;
+                        }
+                        <div class="alert @ms.CssClassName">
+                            <strong>@ms.Title</strong>
+                        </div>
+                        <span>@ms.MessageAlert</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+          TempData["UserMessage"] = null;
+                            }
+    <!-- BEGIN HEADER -->
+    <!-- BEGIN HEADER -->
+    @{Html.RenderAction("Header", "Admin");}
+    <div class="clearfix">
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        @{Html.RenderAction("Sidebar", "Admin");}
+        <!-- BEGIN CONTENT -->
+        @RenderBody()
+     </div>
+     <!-- END CONTAINER -->
+     <!-- BEGIN FOOTER -->
+     @{Html.RenderAction("Footer", "Admin");}
+</body>
+<!-- END BODY -->
+</html>
+<script>
+        $("#outner").click(function () {
+            $(this).remove();
+            $("#inner").remove();
+            window.location.reload();
+        });
+        $(document).ready(function () {
+            if (!!window.performance && window.performance.navigation.type == 2) {
+                window.location.reload();
+            }
+        });
+</script>

@@ -36,7 +36,10 @@ namespace PixelShop.Controllers
             int randNumb = rand.Next(10, 100);
 
             string madhag = dtNow.ToString("yyyyMMddhhss") + randNumb + "";
-            if(String.IsNullOrEmpty(form["diaChi"]) || String.IsNullOrEmpty(form["tenngnhan"]) || String.IsNullOrEmpty(form["sodt"]))
+            if(String.IsNullOrEmpty(form["diaChi"]) || 
+                String.IsNullOrEmpty(form["tenngnhan"]) || 
+                String.IsNullOrEmpty(form["sodt"])
+                || String.IsNullOrWhiteSpace(form["diaChi"]) || String.IsNullOrWhiteSpace(form["tenngnhan"]) || String.IsNullOrWhiteSpace(form["sodt"]))
             {
                 TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Vui lòng nhập đủ thông tin đơn hàng." };
                 return RedirectToAction("Index", "Payment");

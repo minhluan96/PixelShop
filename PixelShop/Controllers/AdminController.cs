@@ -1016,9 +1016,25 @@ namespace PixelShop.Controllers
             if(n  > 0)
             {
                 SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
+
+                List<CHITIETDONHANG> lstCT = db.CHITIETDONHANGs.Where(c => c.MaSP.Equals(masp)).ToList();
+                var lst = (from d in db.DONHANGs
+                           join c in db.CHITIETDONHANGs on d.MaDH equals c.MaDH
+                           group new { d, c } by new { d.MaDH, c.MaSP, d.TinhTrang } into groupdb
+                           where groupdb.Key.TinhTrang != 0 && groupdb.Key.TinhTrang != 1 && groupdb.Key.MaSP.Equals(masp)
+                           select new
+                           {
+                               groupdb.Key.MaSP,
+                               groupdb.Key.MaDH,
+                               groupdb.Key.TinhTrang
+                           }).ToList();
+
+                
+
+
                 sp.BiXoa = 1;
                 int m = db.SaveChanges();
-                if (m > 0)
+                if (m > 0 && lst == null)
                 {
                     TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa sản phẩm thành công." };
                 }

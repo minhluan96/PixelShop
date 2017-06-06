@@ -237,7 +237,18 @@
                                             }
                                         </td>
                                     </tr>
+
+                                    
                                     }
+
+                                    <tr>
+                                        <td colspan="9">
+                                            <div class="col-lg-12" style="text-align:center">
+                                                @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount*@
+                                                @Html.PagedListPager(Model, page => Url.Action("Order", new { page }))
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

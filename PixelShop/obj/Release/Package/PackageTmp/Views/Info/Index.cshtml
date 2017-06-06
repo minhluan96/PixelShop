@@ -1,0 +1,160 @@
+﻿@using PixelShop.Models
+@model PixelShop.Models.SANPHAM
+
+@Scripts.Render("~/bundles/scriptForFacebook")
+<div id="fb-root"></div>
+<script>
+</script>
+
+<div class="products">
+    <div class="container">
+        <div class="single-page">
+            <div class="single-page-row" id="detail-21">
+                <div class="col-md-6 single-top-left">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            @foreach (var ha in ViewData["hinhanh"] as List<HINHANH>)
+                            {
+                                <li data-thumb="@("../" + Html.DisplayFor(a => ha.PathHinhAnh))">
+                                    <div class="thumb-image detail_images"> <img src="@("../" + Html.DisplayFor(a => ha.PathHinhAnh))" data-imagezoom="true" class="img-responsive image-main" alt=""> </div>
+                                </li>
+                            }
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 single-top-right">
+                    <h3 class="item_name">@Model.TenSP</h3>
+                    <p>Mã sản phẩm: @Model.MaSP</p>
+                    <br />
+                    <p>Tình trạng: Còn hàng</p>
+                    <br />
+                    <p>Lượt xem: @Model.SoLuotXem</p>
+                    <div class="single-rating">
+                        <ul>
+                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                            <li class="rating">5 Đánh giá</li>
+                            <li><a href="#">Viết đánh giá của bạn</a></li>
+                        </ul>
+                    </div>
+                    <div class="single-price">
+                        <ul>
+                            <li>@Model.giaStr</li>
+                        </ul>
+                    </div>
+                    <br />
+                    @if (Session["username"] != null)
+                    {
+                    <span class="btnaddcart @Model.MaSP">
+                        <button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> &ensp; Đặt hàng</button>
+                    </span>
+
+                        <button class="w3ls-cart w3ls-cart-like">
+                            <div class="fb-share-button" data-href="@Request.Url.AbsoluteUri" data-layout="button" data-size="small" data-mobile-iframe="true">
+                                <a class="fb-xfbml-parse-ignore" target="_blank"
+                                   href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A50315%2F&amp;src=sdkpreparse">Share</a>
+                            </div>
+                        </button>
+                      }
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+        <!-- collapse-tabs -->
+        <div class="collpse tabs" >
+            <h3 class="w3ls-title" style="font-size: 24px;">THÔNG TIN SẢN PHẨM</h3>
+            <div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa fa-file-text-o fa-icon" aria-hidden="true"></i> Mô tả <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @{
+                                        String[] mota = Model.MoTa.Split(new string[] { "&" }, StringSplitOptions.None);
+                                    }
+                                    <h4 style="text-align: left; font-weight:bold; color:black; margin-bottom: 20px;">Giới thiệu</h4>
+                                    @{
+                                        string[] gioithieu = mota[0].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
+                                        for (int i = 0; i < gioithieu.Count(); i++)
+                                        {
+                                            <p style="font-size: 13px; color:black;">@gioithieu[i].Replace(@"%", "")</p>
+                                            <hr style="width:20%; margin-top: 10px; margin-left:0; border-color:black;"/>
+                                        }
+                                    }
+
+                                    <h4 style="text-align: left; font-weight:bold; color:black; margin-bottom: 20px;">Tính năng</h4>
+                                    @{
+                                        string[] tinhnang = mota[1].Replace(@"&", "").Split(new string[] { "%" }, StringSplitOptions.None);
+                                        for (int i = 0; i < tinhnang.Count(); i++)
+                                        {
+                                            <p style="font-size: 13px; color:black;">@tinhnang[i].Replace(@"%", "")</p>
+                                            <hr style="width:20%; margin-top: 10px; margin-left:0; color: black;"/>
+                                        }
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="@( "../" + Model.HinhHienThi)" class="img-responsive image-main" alt="">
+                                </div>
+                            </div> 
+                          </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <i class="fa fa-question-circle fa-icon" aria-hidden="true"></i> Câu hỏi thường gặp <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //collapse -->
+    </div>
+    <hr style="width: 90%; border-color: #1e1e1e; margin-top: 50px;"/>
+
+    <div class="col-lg-12" style="margin-top:80px; margin-bottom: 80px; text-align:center;">
+        <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-numposts="3"></div>
+    </div>
+    
+    <div class="container" style="margin-top: 40px;">
+        <h2 style="font-size: 24px;">Sản phẩm xem tương tự </h2><br /><br />
+        <div class="sliderfig">
+            <ul id="flexiselDemo1">
+                @foreach (var sp in ViewData["sanphamtuongtu"] as List<SANPHAM>)
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "Info", new { id = sp.MaSP })">
+                            <img src="@("../" + Html.DisplayFor(a => sp.HinhHienThi))" alt="" class="img-responsive" />
+                            <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
+                            <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- cart-js -->
+<!-- //cart-js -->  
+

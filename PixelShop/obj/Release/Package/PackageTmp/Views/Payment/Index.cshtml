@@ -1,0 +1,100 @@
+﻿@using PixelShop.Models
+
+@Styles.Render("~/Content/css-payment")
+<div class="main">
+    <h1>Thanh toán</h1>
+    <div class="w3_agile_main_grids">
+        <div class="w3layouts_main_grid_left">
+            <div class="agileinfo_main_grid_left_grid">
+                <h3>Tóm tắt giỏ hàng</h3>
+                
+                @if (Session["cart"] != null && ((List<Item>)Session["cart"]).Count() > 0)
+                {
+                    for (int i = 0; i < ((List<Item>)Session["cart"]).Count(); i++)
+                    {
+                        if(i == 4)
+                        {
+                            break;
+                        }
+
+                        Item item = ((List<Item>)Session["cart"]).ElementAt(i);
+                        long giaSP = (long)(item.Sanpham.GiaBan * item.Soluong);
+                        string giaFormat = String.Format("{0:0,0}", giaSP) + " VNĐ";
+                        <ul>
+                            <li>@item.Sanpham.TenSP<span>Giá: @giaFormat</span></li>
+                            <li>@item.Soluong</li>
+                        </ul>
+                      }
+                }
+
+                @if(((List<Item>)Session["cart"]).Count() >= 4)
+                {
+                    int solgCon = ((List<Item>)Session["cart"]).Count() - 4;
+
+                    <a href="@Url.Action("Index", "Checkout")"><h3>Còn @solgCon trong giỏ hàng</h3></a>
+                }
+
+
+            </div>
+            <div class="agile_amount">
+                <h3>Tổng cộng</h3>
+                @{ long tongtien = 0;
+                    foreach(Item item in (List<Item>)Session["cart"])
+                    {
+                        tongtien += (long)(item.Sanpham.GiaBan * item.Soluong);
+                    }
+
+                    string giaTongCong = String.Format("{0:0,0}", tongtien) + "VNĐ";
+                }
+
+
+                <h4>@giaTongCong</h4>
+                <p>Giá đã bao gồm các loại thuế</p>
+            </div>
+        </div>
+        <div class="agileits_main_grid_right">
+            <div class="wthree_payment_grid">
+                
+                <div id="horizontalTab">
+                    
+          
+                        <div class="agileits_w3layouts_tab2">
+                           @using (Html.BeginForm("RecordOrders", "Payment", FormMethod.Post))
+                           {
+                                <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                                    <div class="credit-card-wrapper">
+                                        <div class="first-row form-group">
+                                            <div class="controls">
+                                                <label class="control-label">Thông tin người nhận</label>
+                                                <input class="billing-address-name form-control" required type="text" name="tenngnhan" placeholder="Người nhận">
+                                            </div>
+                                            <div class="w3_agileits_card_number_grids">
+                                                <div class="w3_agileits_card_number_grid_left">
+                                                    <div class="controls">
+                                                        <label class="control-label">Số điện thoại người nhận</label>
+                                                        <input class="input-medium bfh-phone form-control" required type="tel" name="sodt" maxlength="11" placeholder="Số điện thoại"
+                                                               inputmode="numeric">
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="clear"> </div>
+                                            </div>
+                                            <div class="controls">
+                                                <label class="control-label">Địa chỉ giao hàng</label>
+                                                <input class="expiration-month-and-year form-control" required type="text" name="diaChi" placeholder="Địa chỉ nhà">
+                                            </div>
+                                        </div>
+                                        <input type="submit" value="Xác nhận">
+                                    </div>
+                                </section>
+                           }
+                        </div>
+                       
+                </div>
+            </div>
+        </div>
+        <div class="clear"> </div>
+    </div>
+    
+</div>
+

@@ -1,4 +1,6 @@
-﻿<!-- newsletter -->
+﻿@using PixelShop.Models
+
+<!-- newsletter -->
 <div class="newsletter">
     <div class="container">
         <div class="col-md-6 w3agile_newsletter_left">
@@ -23,7 +25,7 @@
             <ul>
                 <li>12 Nguyễn Văn Cừ, Q5</li>
                 <li>Thành phố Hồ Chí Minh</li>
-                <li><a href="mailto:info@pixelshop.com">info@pixelshop.com</a></li>
+                <li><a href="mailto:pixelshop03@gmail.com">pixelshop03@gmail.com</a></li>
                 <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -34,20 +36,21 @@
             <h4>Thông tin</h4>
             <hr />
             <ul>
-                <li><a href="contact.html">Liên hệ</a></li>
-                <li><a href="icons.html">Chế độ bảo hành</a></li>
-                <li><a href="typography.html">Hình thức thanh toán</a></li>
-                <li><a href="faq.html">FAQ's</a></li>
+                <li><a href="#">Liên hệ</a></li>
+                <li><a href="#">Chế độ bảo hành</a></li>
+                <li><a href="#">Hình thức thanh toán</a></li>
+                <li><a href="#">FAQ's</a></li>
             </ul>
         </div>
         <div class="col-md-3 footer-grids fgd3">
             <h4>Cửa hàng</h4>
             <hr />
             <ul>
-                <li><a href="jewellery.html">Apple</a></li>
-                <li><a href="cosmetics.html">Pebble</a></li>
-                <li><a href="Shoes.html">Samsung</a></li>
-                <li><a href="deos.html">Garmin</a></li>
+                @{ ProductSearchModel psm = new ProductSearchModel();}
+                <li><a href="@Url.Action("Index", "Search")">Apple</a></li>
+                <li><a href="@Url.Action("Index", "Search")">Pebble</a></li>
+                <li><a href="@Url.Action("Index", "Search")">Samsung</a></li>
+                <li><a href="@Url.Action("Index", "Search")">Garmin</a></li>
             </ul>
         </div>
         <div class="col-md-3 footer-grids fgd4">
@@ -55,10 +58,10 @@
             <hr />
             <ul>
 
-                <li><a href="login.html">Đăng nhập</a></li>
-                <li><a href="register.html">Đăng ký</a></li>
-                <li><a href="recommended.html">Gợi ý </a></li>
-                <li><a href="payment.html">Thanh toán</a></li>
+                <li><a href="@Url.Action("Index", "AccountPixelShop")">Đăng nhập</a></li>
+                <li><a href="@Url.Action("Index", "AccountPixelShop")">Đăng ký</a></li>
+                <li><a href="#">Gợi ý </a></li>
+                <li><a href="@Url.Action("Index", "Checkout")">Thanh toán</a></li>
             </ul>
         </div>
         <div class="clearfix"></div>

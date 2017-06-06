@@ -149,7 +149,8 @@
                                                             {
                                                                 sum += ct.SANPHAM.GiaBan * ct.SoLuongDat;
                                                             }
-                                                            @sum
+                                                            @{ string sumStr = String.Format("{0:0,0}", sum) + " VNĐ";}
+                                                            @sumStr
                                                         </div>
                                                     </div> 
                                                 </div>
@@ -269,8 +270,10 @@
                                                                         @ct.SoLuongDat
                                                                     </td>
                                                                     <td>
-                                                                        @{int? sumct = ct.SoLuongDat * ct.GiaBan;}
-                                                                        @sumct
+                                                                        @{int? sumct = ct.SoLuongDat * ct.GiaBan;
+                                                                          sumStr = String.Format("{0:0,0}", sumct) + " VNĐ";
+                                                                        }
+                                                                        @sumStr
                                                                     </td>
                                                                 </tr>
                                                                 }
@@ -292,7 +295,8 @@
                                                         Tổng tiền:
                                                     </div>
                                                     <div class="col-md-3 value">
-                                                        @sum
+                                                        @{ sumStr = String.Format("{0:0,0}", sum) + " VNĐ";}
+                                                        @sumStr
                                                     </div>
                                                 </div>
                                             </div>
