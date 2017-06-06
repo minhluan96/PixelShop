@@ -10,46 +10,122 @@
         <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-        <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-            <li class="start active ">
-                <a href="@Url.Action("Index", "Admin")">
-                    <i class="icon-home"></i>
-                    <span class="title">Trang chủ</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="@Url.Action("Order", "Admin")">
-                    <i class="icon-basket"></i>
-                    <span class="badge badge-roundless badge-danger">19</span>
-                    <span class="title">Đơn hàng</span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("Product", "Admin")">
-                    <i class="icon-handbag"></i>
-                    <span class="title">Sản phẩm</span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("Customer", "Admin")">
-                    <i class="icon-user"></i>
-                    <span class="badge badge-roundless badge-warning">19</span>
-                    <span class="title">Tài khoản</span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("Manufacturer", "Admin")">
-                    <i class="icon-diamond"></i>
-                    <span class="title">Nhà sản xuất</span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("Category", "Admin")">
-                    <i class="icon-puzzle"></i>
-                    <span class="title">Danh mục</span>
-                </a>
-            </li>
+        @{
+            string path = HttpContext.Current.Request.Url.AbsolutePath;
+         }
+        <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+            @if (path == "/Admin")
+            {
+                    <li class="start active">
+                        <a href="@Url.Action("Index", "Admin")">
+                            <i class="icon-home"></i>
+                            <span class="title">Trang chủ</span>
+                        </a>
+                    </li>
+            }
+            else
+            {
+                <li class="start">
+                    <a href="@Url.Action("Index", "Admin")">
+                        <i class="icon-home"></i>
+                        <span class="title">Trang chủ</span>
+                    </a>
+                </li>
+            }
+            @if (path == "/Admin/Order" || path == "/Admin/ViewOrder")
+            {
+                <li class="active">
+                    <a href="@Url.Action("Order", "Admin")">
+                        <i class="icon-basket"></i>
+                        <span class="badge badge-roundless badge-danger">19</span>
+                        <span class="title">Đơn hàng</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("Order", "Admin")">
+                        <i class="icon-basket"></i>
+                        <span class="badge badge-roundless badge-danger">19</span>
+                        <span class="title">Đơn hàng</span>
+                    </a>
+                </li>
+            }
+            @if (path == "/Admin/Product" || path == "/Admin/ReportProduct" || path.Contains("/Admin/EditProduct") || path.Contains("/Admin/AddProduct"))
+            {
+                <li class="active">
+                    <a href="@Url.Action("Product", "Admin")">
+                        <i class="icon-handbag"></i>
+                        <span class="title">Sản phẩm</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("Product", "Admin")">
+                        <i class="icon-handbag"></i>
+                        <span class="title">Sản phẩm</span>
+                    </a>
+                </li>
+            }
+            @if (path == "/Admin/Customer")
+            {
+                <li class="active">
+                    <a href="@Url.Action("Customer", "Admin")">
+                        <i class="icon-user"></i>
+                        <span class="badge badge-roundless badge-warning">19</span>
+                        <span class="title">Tài khoản</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("Customer", "Admin")">
+                        <i class="icon-user"></i>
+                        <span class="badge badge-roundless badge-warning">19</span>
+                        <span class="title">Tài khoản</span>
+                    </a>
+                </li>
+            }
+            @if (path == "/Admin/Manufacturer")
+            {
+                <li class="active">
+                    <a href="@Url.Action("Manufacturer", "Admin")">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Nhà sản xuất</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("Manufacturer", "Admin")">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Nhà sản xuất</span>
+                    </a>
+                </li>
+            }
+            @if (path == "/Admin")
+            {
+                <li>
+                    <a href="@Url.Action("Category", "Admin")">
+                        <i class="icon-puzzle"></i>
+                        <span class="title">Danh mục</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("Category", "Admin")">
+                        <i class="icon-puzzle"></i>
+                        <span class="title">Danh mục</span>
+                    </a>
+                </li>
+            }
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

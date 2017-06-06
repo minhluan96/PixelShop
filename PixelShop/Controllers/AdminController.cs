@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.IO;
+using System.Globalization;
 
 namespace PixelShop.Controllers
 {
@@ -106,7 +107,7 @@ namespace PixelShop.Controllers
 
 
             List<UserOrder> dsKh = new List<UserOrder>();
-
+            CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
             for (int i = 0; i < ds.Count; i++)
             {
                 dsKh.Add(new UserOrder
@@ -116,7 +117,7 @@ namespace PixelShop.Controllers
                     dateOrder = ds.ElementAt(i).NgayDate,
                     idStatus = ds.ElementAt(i).IdTinhTrang.First(),
                     status = ds.ElementAt(i).Trangthai.First(),
-                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                    sum = String.Format(elGR,"{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
                 });
             }
             return dsKh;
@@ -145,7 +146,7 @@ namespace PixelShop.Controllers
 
 
             List<UserOrder> dsKh = new List<UserOrder>();
-
+            CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
             for (int i = 0; i < ds.Count; i++)
             {
                 dsKh.Add(new UserOrder
@@ -155,7 +156,8 @@ namespace PixelShop.Controllers
                     dateOrder = ds.ElementAt(i).NgayDate,
                     idStatus = ds.ElementAt(i).IdTinhTrang.First(),
                     status = ds.ElementAt(i).Trangthai.First(),
-                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+
+                    sum = String.Format(elGR,"{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
                 });
             }
             return dsKh;
@@ -194,7 +196,7 @@ namespace PixelShop.Controllers
 
 
             List<UserOrder> dsKh = new List<UserOrder>();
-
+            CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
             for (int i = 0; i < ds.Count; i++)
             {
                 dsKh.Add(new UserOrder
@@ -204,7 +206,7 @@ namespace PixelShop.Controllers
                     dateOrder = ds.ElementAt(i).NgayDate,
                     idStatus = ds.ElementAt(i).IdTinhTrang.First(),
                     status = ds.ElementAt(i).Trangthai.First(),
-                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                    sum = String.Format(elGR,"{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
                 });
             }
             return dsKh;
@@ -294,7 +296,7 @@ namespace PixelShop.Controllers
 
 
             List<UserOrder> dsKh = new List<UserOrder>();
-
+            CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
             for (int i = 0; i < ds.Count; i++)
             {
                 dsKh.Add(new UserOrder
@@ -304,7 +306,7 @@ namespace PixelShop.Controllers
                     dateOrder = ds.ElementAt(i).NgayDate,
                     idStatus = ds.ElementAt(i).IdTinhTrang.First(),
                     status = ds.ElementAt(i).Trangthai.First(),
-                    sum = String.Format("{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
+                    sum = String.Format(elGR,"{0:0,0}", ds.ElementAt(i).TongHD) + " VNĐ"
                 });
             }
             return dsKh;

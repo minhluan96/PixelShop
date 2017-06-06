@@ -60,39 +60,7 @@
                             <span class="caption-helper">quản lý đơn hàng...</span>
                         </div>
                         <div class="actions">
-                            <div class="btn-group">
-                                <a class="btn btn-default btn-circle" href="javascript:;" data-toggle="dropdown">
-                                    <i class="fa fa-share"></i>
-                                    <span class="hidden-480">
-                                        Tools
-                                    </span>
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li>
-                                        <a href="javascript:;">
-                                            Export to Excel
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            Export to CSV
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            Export to XML
-                                        </a>
-                                    </li>
-                                    <li class="divider">
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            Print Invoices
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -206,7 +174,15 @@
                                             @dh.MaDH
                                         </td>
                                         <td>
-                                            @dh.NgayDate
+                                            @{ 
+
+                                                string ngayDat = "";
+                                                if(dh.NgayDate != null)
+                                                {
+                                                    ngayDat = (dh.NgayDate ?? DateTime.Now).ToString("dd/MM/yyyy");
+                                                }
+                                            }
+                                            @ngayDat
                                         </td>
                                         <td>
                                             @dh.EmailDat
@@ -218,7 +194,15 @@
                                             @dh.TenNguoiNhan
                                         </td>
                                         <td>
-                                            @dh.NgayGiao
+
+                                            @{ 
+                                                string ngayGiao = "";
+                                                if (dh.NgayGiao != null)
+                                                {
+                                                    ngayGiao = (dh.NgayGiao ?? DateTime.Now).ToString("dd/MM/yyyy");
+                                                }
+                                                }
+                                            @ngayGiao
                                         </td>
                                         <td>
                                             @dh.SDTNhan

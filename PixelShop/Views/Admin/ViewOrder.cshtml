@@ -61,9 +61,8 @@
                         <div class="caption">
                             <i class="icon-basket font-green-sharp"></i>
                             <span class="caption-subject font-green-sharp bold uppercase">
-                                Order #1
+                                Order #: @Model.MaDH
                             </span>
-                            <span class="caption-helper">21/10/2013</span>
                         </div>
                         <div class="actions" id="print">
                                 <span class="btn btn-default btn-circle" data-toggle="dropdown">
@@ -108,7 +107,15 @@
                                                             Thời gian đặt hàng:
                                                         </div>
                                                         <div class="col-md-7 value">
-                                                            @Model.NgayDate
+                                                            @{
+
+                                                                string ngayDat = "";
+                                                                if (Model.NgayDate != null)
+                                                                {
+                                                                    ngayDat = (Model.NgayDate ?? DateTime.Now).ToString("dd/MM/yyyy");
+                                                                }
+                                                            }
+                                                            @ngayDat
                                                         </div>
                                                     </div>
                                                     <div class="row static-info">
@@ -116,7 +123,14 @@
                                                             Thời gian giao:
                                                         </div>
                                                         <div class="col-md-7 value">
-                                                            @Model.NgayGiao
+                                                            @{
+                                                                string ngayGiao = "";
+                                                                if (Model.NgayGiao != null)
+                                                                {
+                                                                    ngayGiao = (Model.NgayGiao ?? DateTime.Now).ToString("dd/MM/yyyy");
+                                                                }
+                                                            }
+                                                            @ngayGiao
                                                         </div>
                                                     </div>
                                                     <div class="row static-info">
