@@ -235,17 +235,17 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CHITIETDONHANG.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomAuthorize.cs" />
     <Compile Include="Models\DANHMUC.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONHANG.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HINHANH.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
@@ -253,33 +253,33 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\NHASANXUAT.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PixelShopEntities.Context.cs">
+    <Compile Include="Models\PixelShop.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PixelShopEntities.Context.tt</DependentUpon>
+      <DependentUpon>PixelShop.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PixelShopEntities.cs">
+    <Compile Include="Models\PixelShop.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PixelShopEntities.Designer.cs">
+    <Compile Include="Models\PixelShop.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PixelShopEntities.edmx</DependentUpon>
+      <DependentUpon>PixelShop.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductBusinessLogic.cs" />
     <Compile Include="Models\ProductSearchModel.cs" />
     <Compile Include="Models\SANPHAM.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TAIKHOAN.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TINHTRANGDONHANG.cs">
-      <DependentUpon>PixelShopEntities.tt</DependentUpon>
+      <DependentUpon>PixelShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TopUser.cs" />
     <Compile Include="Models\UserOrder.cs" />
@@ -1633,15 +1633,15 @@
     <Content Include="ImgProduct\product2.jpg" />
     <Content Include="ImgProduct\product3.jpg" />
     <Content Include="images\updown.PNG" />
-    <Content Include="Models\PixelShopEntities.Context.tt">
+    <Content Include="Models\PixelShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PixelShopEntities.edmx</DependentUpon>
-      <LastGenOutput>PixelShopEntities.Context.cs</LastGenOutput>
+      <DependentUpon>PixelShop.edmx</DependentUpon>
+      <LastGenOutput>PixelShop.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\PixelShopEntities.tt">
+    <Content Include="Models\PixelShop.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PixelShopEntities.edmx</DependentUpon>
-      <LastGenOutput>PixelShopEntities.cs</LastGenOutput>
+      <DependentUpon>PixelShop.edmx</DependentUpon>
+      <LastGenOutput>PixelShop.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\about.js" />
     <Content Include="Scripts\admin.js" />
@@ -1805,12 +1805,12 @@
     <Content Include="assets\global\plugins\uniform\css\uniform.default.scss" />
     <Content Include="assets\global\plugins\uniform\README.md" />
     <Content Include="assets\global\plugins\jquery-validation\README.md" />
-    <EntityDeploy Include="Models\PixelShopEntities.edmx">
+    <EntityDeploy Include="Models\PixelShop.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PixelShopEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>PixelShop.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\PixelShopEntities.edmx.diagram">
-      <DependentUpon>PixelShopEntities.edmx</DependentUpon>
+    <Content Include="Models\PixelShop.edmx.diagram">
+      <DependentUpon>PixelShop.edmx</DependentUpon>
     </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Views\MenuComponent\Menu.cshtml" />

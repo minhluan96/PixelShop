@@ -21,9 +21,7 @@ namespace PixelShop.Models
             this.CHITIETDONHANGs = new HashSet<CHITIETDONHANG>();
             this.HINHANHs = new HashSet<HINHANH>();
         }
-
-        
-
+    
         public string MaSP { get; set; }
         public string TenSP { get; set; }
         private Nullable<int> _gia;
