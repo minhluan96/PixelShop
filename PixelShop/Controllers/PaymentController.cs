@@ -48,7 +48,7 @@ namespace PixelShop.Controllers
             {
                 MaDH = madhag,
                 NgayDate = dtNow,
-                NgayGiao = dtNow.AddDays(3),
+                NgayGiao = null,
                 TinhTrang = 3,
                 EmailDat = Session["username"].ToString(),
                 DiaChiGiao = form["diaChi"],
