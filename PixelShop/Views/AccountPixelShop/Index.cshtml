@@ -5,8 +5,13 @@
 <script src="@Url.Content("~/assets/global/plugins/forLogin.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/assets/admin/pages/scripts/login.js")" type="text/javascript"></script>
 <!-- BEGIN LOGIN -->
+
+    @if (Session["username"] != null)
+    {
+        Response.Redirect("~/Home");
+    }
 <div class="login">
-    <div class="content">
+    <div class="content" style="padding-top: 40px;">
         <!-- BEGIN LOGIN FORM -->
         <form class="login-form" action="/AccountPixelShop/Login" method="post">
             <h3 class="form-title">Đăng nhập</h3>

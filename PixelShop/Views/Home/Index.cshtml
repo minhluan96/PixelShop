@@ -6,7 +6,7 @@
         <h2>Chào mừng đến với</h2>
         <h3>PIXEL <span>SHOP</span></h3>
         <p>PixelShop - trung tâm đồng hồ nổi tiếng uy tín. Chúng tôi cung cấp nhiều loại đồng hồ nổi tiếng trên thế giới. </p>
-        <a href="about.html">Read More</a>
+        <a href="@Url.Action("Index", "Search")">Nhiều hơn</a>
     </div>
 </div>
 <div class="top-brands">
@@ -18,8 +18,8 @@
                     {
                         <li>
 
-                            <a href="@Url.Action("Index","Info", new { id = sp.MaSP })">
-                                <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " style="width: auto; height: auto; margin:0 auto;" class="img-responsive" />
+                            <a href="@Url.Action("Index","Info", new { code = sp.MaSP })">
+                                <img src="@Html.DisplayFor(a => sp.HinhHienThi)" alt=" " style="width: auto; height: 250px; overflow:hidden; margin:0 auto;" class="img-responsive" />
                                 <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
 
                                     <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
@@ -86,8 +86,8 @@
                                 <div class="col-md-3 top-product-grids tp4">
                                    
                                         <div class="product-img">
-                                            <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
-                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" style="height: auto; margin:auto 0;" alt="" />
+                                            <a href="@Url.Action("Index", "Info", new { code = lst.ElementAt(i).MaSP })">
+                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" style="height: 180px; overflow:hidden; margin:auto 0;" alt="" />
                                             </a>
                                             @if (Session["username"] != null)
                                             {
@@ -114,8 +114,8 @@
                                     <div class="col-md-3 top-product-grids tp4">
 
                                         <div class="product-img">
-                                            <a href="@Url.Action("Index", "Info", new { id = lst.ElementAt(i).MaSP })">
-                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" alt=""/>
+                                            <a href="@Url.Action("Index", "Info", new { code = lst.ElementAt(i).MaSP })">
+                                                <img src="@Html.DisplayFor(sp => lst.ElementAt(i).HinhHienThi)" style="height: 180px; overflow:hidden; margin:auto 0;" alt=""/>
                                             </a>
                                             @if (Session["username"] != null)
                                             {

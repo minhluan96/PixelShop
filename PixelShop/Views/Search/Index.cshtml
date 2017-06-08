@@ -110,7 +110,7 @@
             </div>
             <div class="w3ls_dresses_grid_left_grid">
                 <div class="dresses_img_hover">
-                    <img src="~/images/offer2.jpg" alt=" " class="img-responsive" />
+                    <img src="~/images/backg1.jpg" style="height: 300px;" alt=" " class="img-responsive" />
                     <div class="dresses_img_hover_pos">
                         <h4>Giảm giá<span>50%</span><i>trong hôm nay</i></h4>
                     </div>
@@ -131,8 +131,8 @@
                        
                             <div class="col-md-4 women-grids wp1 animated wow slideInUp" data-wow-delay=".5s">
                                 <div class="product-img">
-                                    <a href="@Url.Action("Index", "Info", new { id = Model.ElementAt(i).MaSP })">
-                                        <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" style="height:auto;" alt="" />
+                                    <a href="@Url.Action("Index", "Info", new { code = Model.ElementAt(i).MaSP })">
+                                        <img src="@Html.DisplayFor(sp => Model.ElementAt(i).HinhHienThi)" style="height:160px; overflow:hidden;" alt="" />
                                     </a>
                                     @if (Session["username"] != null)
                                     {

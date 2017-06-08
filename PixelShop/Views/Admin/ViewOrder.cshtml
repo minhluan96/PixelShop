@@ -167,10 +167,12 @@
                                                             {
                                                                 sum += ct.SANPHAM.GiaBan * ct.SoLuongDat;
                                                             }
+
                                                             @{ 
                                                                 string _sumStr1 = String.Format(elGR, "{0:0,0}", sum) + " VNÐ";
                                                             }
                                                             @_sumStr1
+
                                                         </div>
                                                     </div> 
                                                 </div>
@@ -290,11 +292,13 @@
                                                                         @ct.SoLuongDat
                                                                     </td>
                                                                     <td>
+
                                                                         @{
                                                                             int? sumct = ct.SoLuongDat * ct.GiaBan;
                                                                             string _sumctStr = String.Format(elGR, "{0:0,0}", sumct) + " VNÐ";
                                                                          }
                                                                         @_sumctStr
+
                                                                     </td>
                                                                 </tr>
                                                                 }
@@ -316,9 +320,13 @@
                                                         Tổng tiền:
                                                     </div>
                                                     <div class="col-md-3 value">
+<<<<<<< HEAD
+                                                        @{ sumStr = String.Format("{0:0,0}", sum) + " VNĐ";}
+=======
                                                         @{
                                                             string sumStr = String.Format(elGR, "{0:0,0}", sum) + " VNÐ";
                                                         }
+>>>>>>> 2cc84628edfba9b65721b49a64fe45488bbb7e3e
                                                         @sumStr
                                                     </div>
                                                 </div>

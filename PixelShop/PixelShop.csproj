@@ -1599,6 +1599,9 @@
     <Content Include="images\back5.jpg" />
     <Content Include="images\back6.jpg" />
     <Content Include="images\back7.PNG" />
+    <Content Include="images\backg1.jpg" />
+    <Content Include="images\backg2.jpg" />
+    <Content Include="images\backg3.jpg" />
     <Content Include="images\Back_32px.png" />
     <Content Include="images\banner.jpg" />
     <Content Include="images\Forward_32px.png" />
@@ -1835,6 +1838,7 @@
     <Content Include="Views\DetailInfoClient\Index.cshtml" />
     <Content Include="Views\AccountPixelShop\ReactivePassword.cshtml" />
     <Content Include="Views\AccountPixelShop\UpdateNewPassword.cshtml" />
+    <None Include="Properties\PublishProfiles\03pixel - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
