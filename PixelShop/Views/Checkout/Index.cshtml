@@ -31,7 +31,7 @@
                                         <br />       
                                         <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>
                                              
-                                        <input type="number" class="qtycart @item.Sanpham.MaSP" min="1" max="@item.Sanpham.SoLuongTon" value="@item.Soluong">
+                                        <input type="number" onfocus="this.oldvalue = this.value;" class="qtycart @item.Sanpham.MaSP" min="1" max="@item.Sanpham.SoLuongTon" value="@item.Soluong">
                                         @{
                                             sum += item.Sanpham.GiaBan * item.Soluong;
                                         }

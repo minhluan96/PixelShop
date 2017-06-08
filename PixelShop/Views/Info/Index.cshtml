@@ -104,7 +104,7 @@
                                     }
                                 </div>
                                 <div class="col-md-6">
-                                    <img src="@( "../" + Model.HinhHienThi)" class="img-responsive image-main" alt="">
+                                    <img src="@(Model.HinhHienThi)" class="img-responsive image-main" alt="">
                                 </div>
                             </div> 
                           </div>
@@ -142,7 +142,7 @@
                 {
                     <li>
                         <a href="@Url.Action("Index", "Info", new { code = sp.MaSP })">
-                            <img src="@(Html.DisplayFor(a => sp.HinhHienThi))" alt="" class="img-responsive"  style="width:auto; height:auto;" />
+                            <img src="@(Html.DisplayFor(a => sp.HinhHienThi))" alt="" class="img-responsive"  style="width:auto; height: 250px;" />
                             <h4>@Html.DisplayFor(a => sp.TenSP)<span></span></h4>
                             <h5>@Html.DisplayFor(a => sp.giaStr)</h5>
                         </a>

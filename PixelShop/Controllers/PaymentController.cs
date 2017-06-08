@@ -14,7 +14,7 @@ namespace PixelShop.Controllers
         // GET: Payment
         public ActionResult Index()
         {
-            if(Session["username"] == null)
+            if (Session["username"] == null || Session["cart"] == null || ((List<Item>)Session["cart"]).Count == 0)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -93,7 +93,11 @@ namespace PixelShop.Controllers
         public ActionResult PaymentSuccess(string madh)
         {
             var dh = db.DONHANGs.Where(p => p.MaDH.Equals(madh)).SingleOrDefault();
-            
+
+            if (Session["username"].Equals(dh.EmailDat) == false || Session["username"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (dh != null)
             {
                 DONHANG d = dh as DONHANG;
