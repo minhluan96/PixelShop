@@ -21,6 +21,12 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 $(document).ready(function () {
+    $(".qtycart").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
     $('.qtycart').on('focusin', function () {
         $(this).data('val', $(this).val());
     });
@@ -41,6 +47,10 @@ $(document).ready(function () {
                 if (current > count) {
                     elementqtycart.val(prev);
                     alert("Sản phẩm có tại cửa hàng không đủ cung cấp cho khách hàng!!!");
+                }
+                else if(current < 1){
+                    elementqtycart.val(prev);
+                    alert("Số lượng nhập không hợp lệ. Vui lòng nhập lại!!!");
                 }
                 else {
                     var qty = elementqtycart.val();
@@ -97,7 +107,8 @@ $(document).on('click', ".close-checkout", function () {
         }
         var totalcart = parseInt(tstr);
         var productId = $(this).attr('class').replace('close-checkout ', '');
-        var elementqty = $(document).find("#qty").first();
+
+        var elementqty = $(".minicart").find('.close-checkout.' + productId).parent().find("#qty").first();
         var qty = parseInt(elementqty.text().replace("Số lượng: ", ""));
         var count = parseInt($(".user-numproduct").text());
         count = count - qty;
@@ -221,7 +232,7 @@ $(document).ready(function () {
                     totaltemp = totalcart + data.GiaBan;
                     totalcart = numberWithCommas(totaltemp) + " VNĐ";
                     $("#totalorder").text("Tổng tiền hóa đơn: " + totalcart);
-                    var template = '<div class="cart-header"><div class="close-checkout ' + productId + '"> </div><div class="cart-sec simpleCart_shelfItem" style="margin-right:40px;"><div class="cart-item cyc"><img src="' + img + '" class="sbmincart-img" alt="" /></div><div class="cart-item-info">                        <p class="sbmincart-name">' + name + '</p>                        <p id="price" style="display:none;">' + gia + '</p>                        <p id="qty">Số lượng: 1</p>                        <div class="delivery" style="margin-top:10px;">                            <p class="total">Tổng tiền: ' + numberWithCommas(gia) + " VNĐ" + '</p>                            <div class="clearfix"></div>                        </div>                    </div>                    <div class="clearfix"></div>                </div>                <hr />            </div>';
+                    var template = '<div class="cart-header"><div class="close-checkout ' + productId + '"> </div><div class="cart-sec simpleCart_shelfItem" style="margin-right:40px;"><div class="cart-item cyc"><img src="' + img + '" class="sbmincart-img" alt="" /></div><div class="cart-item-info">                        <p class="sbmincart-name" style="font-weight: bold; font-size: 13px;">' + name + '</p>                        <p id="price" style="display:none;">' + gia + '</p>                        <p id="qty">Số lượng: 1</p>                        <div class="delivery" style="margin-top:10px;">                            <p class="total" style="font-weight: bold; font-size:12px;">Tổng tiền: ' + numberWithCommas(gia) + " VNĐ" + '</p>                            <div class="clearfix"></div>                        </div>                    </div>                    <div class="clearfix"></div>                </div>                <hr />            </div>';
                     $(".minicart").prepend(template);
                 },
                 error: function(){

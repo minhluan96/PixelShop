@@ -1,13 +1,80 @@
 ﻿@using PixelShop.Models
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .carousel-inner > .item > img, .carousel-inner > .item > a > img{
+        width: 100%;
+        margin: auto;
+        background-size:cover;
+	    max-height:610px;
+    }
+    .carousel-inner > .item{
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    .customdivcaption{
+        text-align: left;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: black;
+        opacity: 0.55;
+    }
+</style>
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3500">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/images/backg4.jpg" alt="">
+            <div class="carousel-caption customdivcaption">
+                <div class="banner-agile">
+                    <div class="container">
+                        <h2>Chào mừng đến với</h2>
+                        <h3>PIXEL <span>SHOP</span></h3>
+                        <p>PixelShop - trung tâm đồng hồ nổi tiếng uy tín. Chúng tôi cung cấp nhiều loại đồng hồ nổi tiếng trên thế giới. </p>
+                        <a href="@Url.Action("Index", "Search")" style="border: 1px solid #ffffff;">Nhiều hơn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="banner-agile">
-    <div class="container">
-        <h2>Chào mừng đến với</h2>
-        <h3>PIXEL <span>SHOP</span></h3>
-        <p>PixelShop - trung tâm đồng hồ nổi tiếng uy tín. Chúng tôi cung cấp nhiều loại đồng hồ nổi tiếng trên thế giới. </p>
-        <a href="@Url.Action("Index", "Search")">Nhiều hơn</a>
+        <div class="item">
+            <img src="~/images/backg3.jpg" alt="">
+            <div class="carousel-caption customdivcaption">
+                <div class="banner-agile">
+                    <div class="container">
+                        <h2>Sản phẩm</h2>
+                        <h3>ĐA <span>DẠNG</span></h3>
+                        <p>PixelShop - Đa dạng các loại đồng hồ phù hợp với phong cách của tín đồ đồng hồ. </p>
+                        <a href="@Url.Action("Index", "Search")" style="border: 1px solid #ffffff;">Nhiều hơn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/images/back1.jpg" alt="">
+            <div class="carousel-caption customdivcaption">
+                <div class="banner-agile">
+                    <div class="container">
+                        <h2>Đồng hồ</h2>
+                        <h3>THỜI <span>TRANG</span></h3>
+                        <p>PixelShop - Đồng hồ đi theo xu hướng thời trang thế giới. </p>
+                        <a href="@Url.Action("Index", "Search")" style="border: 1px solid #ffffff;">Nhiều hơn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Left and right controls -->
 </div>
 <div class="top-brands">
         <div class="container">

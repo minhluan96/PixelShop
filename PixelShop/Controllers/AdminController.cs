@@ -342,42 +342,83 @@ namespace PixelShop.Controllers
                 int matinhtrang = Int32.Parse(frm["tinhtrang"]);
                 string madh = frm["madh"];
                 DONHANG dh = db.DONHANGs.Where(d => d.MaDH.Equals(madh)).SingleOrDefault();
-                if(dh != null)
+                if (dh != null)
                 {
-                    dh.TinhTrang = matinhtrang;
-                    if(matinhtrang == -1)
+                    if (matinhtrang == -1 || matinhtrang == 3)
                     {
-                        List<CHITIETDONHANG> lstCT = dh.CHITIETDONHANGs.ToList();
-                        for(int i = 0; i < lstCT.Count; i++)
-                        {
-                            CHITIETDONHANG ct = lstCT.ElementAt(i);
-                            SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
-                            if(sp != null)
-                            {
-                                sp.SoLuongTon += lstCT.ElementAt(i).SoLuongDat;
-                                sp.SoLuongBan -= lstCT.ElementAt(i).SoLuongDat;
-                            }
-                        }
-
+                        dh.TinhTrang = matinhtrang;
                     }
-                    if(matinhtrang == 2)
+                    else if (matinhtrang == 1 || matinhtrang == 2)
                     {
                         List<CHITIETDONHANG> lstCT = dh.CHITIETDONHANGs.ToList();
+                        dh.NgayGiao = DateTime.Now;
+                        bool check = true;
+                        string MaSP = "";
                         for (int i = 0; i < lstCT.Count; i++)
                         {
                             CHITIETDONHANG ct = lstCT.ElementAt(i);
                             SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
                             if (sp != null)
                             {
-                                sp.SoLuongTon -= lstCT.ElementAt(i).SoLuongDat;
-                                sp.SoLuongBan += lstCT.ElementAt(i).SoLuongDat;
+                                if (lstCT.ElementAt(i).SoLuongDat > sp.SoLuongTon)
+                                {
+                                    check = false;
+                                    MaSP += sp.TenSP + "/";
+                                }
                             }
                         }
+                        if (check == false)
+                        {
+                            MaSP = MaSP.Substring(0, MaSP.Count() - 1);
+                            string Alert = "Các sản phẩm " + MaSP + " không đủ số lượng tồn để giao cho đơn hàng này. Vui lòng kiểm tra lại!!!";
+                            TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = Alert };
+                            return RedirectToAction("Order", "Admin");
+                        }
+                        else
+                        {
+                            dh.TinhTrang = matinhtrang;
+                        }
                     }
-
-                    if(matinhtrang == 0)
+                    else if (matinhtrang == 0)
                     {
+                        List<CHITIETDONHANG> lstCT = dh.CHITIETDONHANGs.ToList();
                         dh.NgayGiao = DateTime.Now;
+                        bool check = true;
+                        string MaSP = "";
+                        for (int i = 0; i < lstCT.Count; i++)
+                        {
+                            CHITIETDONHANG ct = lstCT.ElementAt(i);
+                            SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
+                            if (sp != null)
+                            {
+                                if(lstCT.ElementAt(i).SoLuongDat> sp.SoLuongTon)
+                                {
+                                    check = false;
+                                    MaSP += sp.TenSP + "/";
+                                }
+                            }
+                        }
+                        if (check == false)
+                        {
+                            MaSP = MaSP.Substring(0, MaSP.Count() - 1);
+                            string Alert = "Các sản phẩm " + MaSP + " không đủ số lượng tồn để giao cho đơn hàng này.Vui lòng kiểm tra lại!!!";
+                            TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = Alert };
+                            return RedirectToAction("Order", "Admin");
+                        }
+                        else
+                        {
+                            dh.TinhTrang = matinhtrang;
+                            for (int i = 0; i < lstCT.Count; i++)
+                            {
+                                CHITIETDONHANG ct = lstCT.ElementAt(i);
+                                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(ct.MaSP)).SingleOrDefault();
+                                if (sp != null)
+                                {
+                                    sp.SoLuongTon -= lstCT.ElementAt(i).SoLuongDat;
+                                    sp.SoLuongBan += lstCT.ElementAt(i).SoLuongDat;
+                                }
+                            }
+                        }
                     }
                     int n = db.SaveChanges();
                     if (n > 0)
