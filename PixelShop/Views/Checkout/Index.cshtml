@@ -26,12 +26,12 @@
                                         <img src="@item.Sanpham.HinhHienThi" class="img-responsive" alt="" />
                                     </div>
                                     <div class="cart-item-info">
-                                        <h3>@item.Sanpham.TenSP</h3>
+                                        <h3 style="font-size: 17px;">@item.Sanpham.TenSP</h3>
                                         <span>Mã sản phẩm: <span  class="idProduct">@item.Sanpham.MaSP</span></span>
                                         <br />       
                                         <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>
                                              
-                                        <input type="number" onfocus="this.oldvalue = this.value;" class="qtycart @item.Sanpham.MaSP" min="1" max="@item.Sanpham.SoLuongTon" value="@item.Soluong">
+                                        <input type="number" onfocus="this.oldvalue = this.value;" class="qtycart @item.Sanpham.MaSP" min="1" max="@item.Sanpham.SoLuongTon" id="qty" value="@item.Soluong">
                                         @{
                                             sum += item.Sanpham.GiaBan * item.Soluong;
                                         }
@@ -40,7 +40,7 @@
                                             string totalProStr = String.Format(elGR, "{0:0,0}", totalPro) + " VNÐ";
                                         }
                                         <div class="delivery">
-                                            <p id="total">Tổng tiền: @(totalProStr)</p>
+                                            <p id="total" style="font-weight:bold;">Tổng tiền: @(totalProStr)</p>
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>

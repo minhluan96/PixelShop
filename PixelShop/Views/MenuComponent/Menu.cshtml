@@ -109,7 +109,7 @@
        
             @using (Html.BeginForm("Index", "Search"))
             {
-            <input type="search" name="Ten" placeholder="Tìm kiếm" required=""/>
+            <input type="search" name="Ten" placeholder="Tìm kiếm" required="" style="border: 2px solid #000000; color: #000000;"/>
             <button type="submit" class="btn btn-default search" aria-label="Left Align">
                 <i class="fa fa-search" aria-hidden="true"> </i>
             </button>
@@ -138,7 +138,7 @@
                         <img src="@item.Sanpham.HinhHienThi" class="sbmincart-img" alt="" />
                     </div>
                     <div class="cart-item-info">
-                        <p class="sbmincart-name">@item.Sanpham.TenSP</p>
+                        <p class="sbmincart-name" style="font-weight: bold; font-size: 13px;">@item.Sanpham.TenSP</p>
                         <p id="price" style="display:none;">@item.Sanpham.GiaBan</p>
                         <p id="qty">Số lượng: @item.Soluong</p>
                         <div class="delivery" style="margin-top:10px;">
@@ -146,7 +146,7 @@
                                 int? totalPro = item.Sanpham.GiaBan * item.Soluong;
                                 string totalProStr = String.Format(elGR, "{0:0,0}", totalPro) + " VNÐ";
                             }
-                            <p class="total">Tổng tiền: @(totalProStr)</p>
+                            <p class="total" style="font-weight: bold; font-size:12px;">Tổng tiền: @(totalProStr)</p>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
         @{ 
            string _totalStr = String.Format(elGR, "{0:0,0}", total) + " VNÐ";
         }
-        <p style="font-size: 15px;" id="totalorder">Tổng tiền hóa đơn: @_totalStr</p>
+        <p style="font-size: 15px; font-weight: bold;" id="totalorder">Tổng tiền hóa đơn: @_totalStr</p>
         <a href="/Checkout">
             <div class="viewcart">
                 <p style="color: white;">Chi tiết giỏ hàng</p>

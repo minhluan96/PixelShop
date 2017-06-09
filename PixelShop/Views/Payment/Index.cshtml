@@ -1,5 +1,8 @@
 ﻿@using PixelShop.Models
-
+@using System.Globalization
+@{
+    CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
+}
 @Styles.Render("~/Content/css-payment")
 <div class="main">
     <h1>Thanh toán</h1>
@@ -19,7 +22,7 @@
 
                         Item item = ((List<Item>)Session["cart"]).ElementAt(i);
                         long giaSP = (long)(item.Sanpham.GiaBan * item.Soluong);
-                        string giaFormat = String.Format("{0:0,0}", giaSP) + " VNĐ";
+                        string giaFormat = String.Format(elGR,"{0:0,0}", giaSP) + " VNĐ";
                         <ul>
                             <li>@item.Sanpham.TenSP<span>Giá: @giaFormat</span></li>
                             <li>@item.Soluong</li>
@@ -44,7 +47,7 @@
                         tongtien += (long)(item.Sanpham.GiaBan * item.Soluong);
                     }
 
-                    string giaTongCong = String.Format("{0:0,0}", tongtien) + "VNĐ";
+                    string giaTongCong = String.Format(elGR,"{0:0,0}", tongtien) + "VNĐ";
                 }
 
 
