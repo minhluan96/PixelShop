@@ -182,40 +182,83 @@ function flyToElement(flyer, flyingTo) {
 }
 $(document).ready(function () {
     $(".btnaddcart").click(function () {
-        $('html, body').animate({
-            'scrollTop': $(".user-cart").position().top
-        });
-        $('.null-cart').each(function (i, obj) {
-            $(this).hide();
-        });
-        var replace1 = $("#totalorder").text().replace("Tổng tiền hóa đơn: ", "");
-        var replace2 = replace1.substring(0, replace1.length - 4);
-        var lsStr = replace2.split(".");
-        var tstr = "";
-        for (var i = 0 ; i < lsStr.length; i++) {
-            tstr = tstr + lsStr[i];
-        }
-        var totalcart = parseInt(tstr);
-        //Select item image and pass to the function
-        var itemImg = $(this).parent().parent().find('img').eq(0);
-        var count = parseInt($(".user-numproduct").text());
-        count = count + 1;
-        $(".user-numproduct").text(count);
-        flyToElement($(itemImg), $('.user-cart'));
+        var thiselement = $(this);
         var productId = $(this).attr('class').replace('btnaddcart ', '');
         if ($(".minicart").find("." + productId).length > 0) {
             var element = $(".minicart").find("." + productId).first();
             var elementqty = element.parent().find("#qty").first();
             var qty = parseInt(elementqty.text().replace("Số lượng: ", ""));
             var price = parseInt(element.parent().find("#price").first().text());
-            qty = qty + 1;
-            var total = qty * price;
-            totalcart = totalcart + price;
-            $("#totalorder").text("Tổng tiền hóa đơn: " + numberWithCommas(totalcart) + " VNĐ");
-            element.parent().find(".total").first().text("Tổng tiền: " + numberWithCommas(total) + " VNĐ");
-            elementqty.text("Số lượng: " + qty);
+            var count;
+            $.ajax({
+                method: "POST",
+                url: "/MenuComponent/GetProduct",
+                dataType: "json",
+                data: { id: productId },
+                success: function (data) {
+                    count = data.SoLuongTon;
+                    if (qty >= count) {
+                        alert("Sản phẩm có tại cửa hàng không đủ cung cấp cho khách hàng!!!");
+                    }
+                    else {
+                        $('html, body').animate({
+                            'scrollTop': $(".user-cart").position().top
+                        });
+                        $('.null-cart').each(function (i, obj) {
+                            $(this).hide();
+                        });
+                        var replace1 = $("#totalorder").text().replace("Tổng tiền hóa đơn: ", "");
+                        var replace2 = replace1.substring(0, replace1.length - 4);
+                        var lsStr = replace2.split(".");
+                        var tstr = "";
+                        for (var i = 0 ; i < lsStr.length; i++) {
+                            tstr = tstr + lsStr[i];
+                        }
+                        var totalcart = parseInt(tstr);
+                        //Select item image and pass to the function
+                        var itemImg = thiselement.parent().parent().find('img').eq(0);
+                        var count = parseInt($(".user-numproduct").text());
+                        count = count + 1;
+                        $(".user-numproduct").text(count);
+                        flyToElement($(itemImg), $('.user-cart'));
+                        qty = qty + 1;
+                        var total = qty * price;
+                        totalcart = totalcart + price;
+                        $("#totalorder").text("Tổng tiền hóa đơn: " + numberWithCommas(totalcart) + " VNĐ");
+                        element.parent().find(".total").first().text("Tổng tiền: " + numberWithCommas(total) + " VNĐ");
+                        elementqty.text("Số lượng: " + qty);
+                        $.ajax({
+                            type: "GET",
+                            url: "../../ShoppingCart/OrderNow",
+                            data: { id: productId },
+                            dataType: "html"
+
+                        });
+                    }
+                }
+            });
         }
         else {
+            $('html, body').animate({
+                'scrollTop': $(".user-cart").position().top
+            });
+            $('.null-cart').each(function (i, obj) {
+                $(this).hide();
+            });
+            var replace1 = $("#totalorder").text().replace("Tổng tiền hóa đơn: ", "");
+            var replace2 = replace1.substring(0, replace1.length - 4);
+            var lsStr = replace2.split(".");
+            var tstr = "";
+            for (var i = 0 ; i < lsStr.length; i++) {
+                tstr = tstr + lsStr[i];
+            }
+            var totalcart = parseInt(tstr);
+            //Select item image and pass to the function
+            var itemImg = thiselement.parent().parent().find('img').eq(0);
+            var count = parseInt($(".user-numproduct").text());
+            count = count + 1;
+            $(".user-numproduct").text(count);
+            flyToElement($(itemImg), $('.user-cart'));
             var name, id, img;
             var gia, totaltemp;
             id = productId;
@@ -239,15 +282,14 @@ $(document).ready(function () {
                 }
             });
             
-            
-        }
-        $.ajax({
-            type: "GET",
-            url: "../../ShoppingCart/OrderNow",
-            data: { id: productId },
-            dataType: "html"
+            $.ajax({
+                type: "GET",
+                url: "../../ShoppingCart/OrderNow",
+                data: { id: productId },
+                dataType: "html"
 
-        });
+            });
+        }
     });
 });
 
