@@ -1629,6 +1629,7 @@
     <Content Include="images\cap1.jpg" />
     <Content Include="images\close_1.png" />
     <Content Include="images\clothsbanner.jpg" />
+    <Content Include="images\favicon-32x32.png" />
     <Content Include="images\Forward_32px.png" />
     <Content Include="images\icon.png" />
     <Content Include="images\img-sprite.png" />
