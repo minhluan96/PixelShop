@@ -204,8 +204,8 @@ i.fa.fa-angle-right {
 }
 button.search {
     border: none;
-    right:67px;
-    margin-top: 40px;
+    position: absolute;
+    top: 5px;
     width: 35px;
     height: 35px;
     outline: none;

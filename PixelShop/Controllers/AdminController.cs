@@ -1136,18 +1136,23 @@ namespace PixelShop.Controllers
                                groupdb.Key.TinhTrang
                            }).ToList();
 
-                
 
-
-                sp.BiXoa = 1;
-                int m = db.SaveChanges();
-                if (m > 0 && lst == null)
+                if (lst != null)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa sản phẩm thành công." };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể xóa sản phẩm của đơn hàng trong trạng thái chưa giao!." };
                 }
-                else
-                {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                else {
+
+                    sp.BiXoa = 1;
+                    int m = db.SaveChanges();
+                    if (m > 0)
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa sản phẩm thành công." };
+                    }
+                    else
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                    }
                 }
             }
             else
