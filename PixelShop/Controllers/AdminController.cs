@@ -1169,10 +1169,12 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).Single();
+
                 SANPHAM sp = dm.SANPHAMs.Where(x => x.BiXoa == 0).First();
                 if(sp != null)
                 {
                     TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tạm thời không thể xóa danh mục này. Còn sản phẩm đang kinh doanh thuộc danh mục này" };
+
                 }
                 else
                 {
@@ -1186,7 +1188,9 @@ namespace PixelShop.Controllers
                     {
                         TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
                     }
+
                 } 
+
             }
             else
             {
@@ -1224,6 +1228,7 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).Single();
+
                 SANPHAM sp = nsx.SANPHAMs.Where(x => x.BiXoa == 0).First();
                 if(sp != null)
                 {
@@ -1231,6 +1236,7 @@ namespace PixelShop.Controllers
                 }
                 else
                 {
+
                     nsx.BiXoa = 1;
                     int s = db.SaveChanges();
                     if (s > 0)
@@ -1241,7 +1247,9 @@ namespace PixelShop.Controllers
                     {
                         TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
                     }
+
                 }              
+
             }
             else
             {

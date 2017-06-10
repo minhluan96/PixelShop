@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
       @Styles.Render("~/Content/css")
     <script src="@Url.Content("~/assets/global/plugins/jquery.min.js")" type="text/javascript"></script>
+    <script src="jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
 </head>
 <body>
@@ -43,11 +44,7 @@
      
     <div class="header-top-w3layouts">
             <div class="row">
-
-                <div class="col-md-6 phone-w3l pull-left" style="padding-left: 0px;">
-                    <div class="phone-shop">097562352</div>
-                </div>
-                <div class="col-md-6 phone-w3l pull-right" style="padding-right: 0px;">
+                <div class="col-md-12 phone-w3l pull-right" style="padding-right: 0px;">
                         @if (Session["username"] == null)
                         {
                             <a href="@Url.Action("Index", "AccountPixelShop")">
