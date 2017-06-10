@@ -23,7 +23,7 @@
                     <li class="active"><a href="/Home" class="hyper"><span>TRANG CHỦ</span></a></li>
                     <li class="dropdown ">
                         <a href="@Url.Action("DanhMuc", "Search")" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>DANH MỤC<b class="caret"></b></span></a>
-                        <ul class="dropdown-menu multi" style="width: 1200px;">
+                        <ul class="dropdown-menu multi" style="width: 1000px;">
                             <div class="row"> 
                                 @{ List<DANHMUC> lstDMNu = ViewData["danhmucnu"] as List<DANHMUC>; }
                                 <div class="col-sm-3">
@@ -70,7 +70,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="@Url.Action("NhaSanXuat", "Search")" class="dropdown-toggle hyper" data-toggle="dropdown"><span> HÃNG SẢN XUẤT <b class="caret"></b></span></a>
-                        <ul class="dropdown-menu multi">
+                        <ul class="dropdown-menu multi" style="width: 700px;">
                             <div class="row">
                                 @{ List<NHASANXUAT> lstNSX = ViewData["nhasanxuat"] as List<NHASANXUAT>; }
                                 <div class="col-sm-4">
