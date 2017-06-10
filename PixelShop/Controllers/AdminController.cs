@@ -1164,9 +1164,12 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).Single();
-                if (dm.SANPHAMs.Count() > 0)
+
+                SANPHAM sp = dm.SANPHAMs.Where(x => x.BiXoa == 0).First();
+                if(sp != null)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể xóa danh mục nếu còn ." };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tạm thời không thể xóa danh mục này. Còn sản phẩm đang kinh doanh thuộc danh mục này" };
+
                 }
                 else
                 {
@@ -1180,7 +1183,9 @@ namespace PixelShop.Controllers
                     {
                         TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
                     }
-                }
+
+                } 
+
             }
             else
             {
@@ -1218,9 +1223,11 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).Single();
-                if (nsx.SANPHAMs.Count() > 0)
+
+                SANPHAM sp = nsx.SANPHAMs.Where(x => x.BiXoa == 0).First();
+                if(sp != null)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể xóa nhà sản xuất nếu còn hàng!" };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tạm thời không thể xóa nhà sản xuất này. Còn sản phẩm đang kinh doanh thuộc nhà sản xuất này" };
                 }
                 else
                 {
@@ -1235,7 +1242,9 @@ namespace PixelShop.Controllers
                     {
                         TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
                     }
-                }
+
+                }              
+
             }
             else
             {

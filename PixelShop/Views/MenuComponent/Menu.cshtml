@@ -23,10 +23,10 @@
                     <li class="active"><a href="/Home" class="hyper"><span>TRANG CHỦ</span></a></li>
                     <li class="dropdown ">
                         <a href="@Url.Action("DanhMuc", "Search")" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>DANH MỤC<b class="caret"></b></span></a>
-                        <ul class="dropdown-menu multi" style="width: 900px;">
+                        <ul class="dropdown-menu multi" style="width: 1200px;">
                             <div class="row"> 
                                 @{ List<DANHMUC> lstDMNu = ViewData["danhmucnu"] as List<DANHMUC>; }
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <p>ĐỒNG HỒ NỮ</p>
                                     <hr />
                                     <ul class="multi-column-dropdown">
@@ -38,7 +38,7 @@
 
                                 </div> 
                                 @{ List<DANHMUC> lstDMNam = ViewData["danhmucnam"] as List<DANHMUC>; }
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <p>ĐỒNG HỒ NAM</p>
                                     <hr />
                                     <ul class="multi-column-dropdown">
@@ -50,7 +50,7 @@
 
                                 </div>
                                 @{ List<DANHMUC> lstDMPhuKien = ViewData["danhmucphukien"] as List<DANHMUC>; }
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <p>PHỤ KIỆN</p>
                                     <hr />
                                     <ul class="multi-column-dropdown">
@@ -60,6 +60,9 @@
                                         }
                                     </ul>
 
+                                </div>
+                                <div class="col-sm-3">
+                                    <a href="#"><img src="/images/backg5.jpg" class="img-responsive" alt=""></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -93,7 +96,7 @@
 
                                 </div>
                                 <div class="col-sm-4 w3l">
-                                    <a href="jewellery.html"><img src="/images/back6.jpg" class="img-responsive" alt=""></a>
+                                    <a href="#"><img src="~/images/backg6.jpg" class="img-responsive" alt=""></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
