@@ -202,6 +202,22 @@ i.fa.fa-angle-right {
 .cart-item-info{
     padding-right: 30px;
 }
+button.search1{
+    border: none;
+    position: relative;
+    margin-top: 25px;
+    width: 35px;
+    height: 35px;
+    outline: none;
+    box-shadow: none;
+    background-color: #1E1E1E;
+    padding: 0;
+    border-radius: inherit;
+    -webkit-appearance: none;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    transition: .5s all;
+}
 button.search {
     border: none;
     position: absolute;
