@@ -1611,6 +1611,8 @@
     <Content Include="images\backg2.jpg" />
     <Content Include="images\backg3.jpg" />
     <Content Include="images\backg4.jpg" />
+    <Content Include="images\backg5.jpg" />
+    <Content Include="images\backg6.jpg" />
     <Content Include="images\Back_32px.png" />
     <Content Include="images\banner.jpg" />
     <Content Include="images\Forward_32px.png" />
