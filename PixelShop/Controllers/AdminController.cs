@@ -1164,15 +1164,22 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).Single();
-                dm.BiXoa = 1;
-                int m = db.SaveChanges();
-                if (m > 0)
+                if (dm.SANPHAMs.Count() > 0)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa danh mục thành công." };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể xóa danh mục nếu còn ." };
                 }
                 else
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                    dm.BiXoa = 1;
+                    int m = db.SaveChanges();
+                    if (m > 0)
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa danh mục thành công." };
+                    }
+                    else
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                    }
                 }
             }
             else
@@ -1211,15 +1218,23 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).Single();
-                nsx.BiXoa = 1;
-                int s = db.SaveChanges();
-                if (s > 0)
+                if (nsx.SANPHAMs.Count() > 0)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa nhà sản xuất thành công." };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể xóa nhà sản xuất nếu còn hàng!" };
                 }
                 else
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+
+                    nsx.BiXoa = 1;
+                    int s = db.SaveChanges();
+                    if (s > 0)
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa nhà sản xuất thành công." };
+                    }
+                    else
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                    }
                 }
             }
             else

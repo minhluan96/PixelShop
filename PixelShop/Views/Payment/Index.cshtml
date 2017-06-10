@@ -1,5 +1,6 @@
 ﻿@using PixelShop.Models
 @using System.Globalization
+@Scripts.Render("~/bundles/scriptForPayment")
 @{
     CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
 }
@@ -69,14 +70,22 @@
                                         <div class="first-row form-group">
                                             <div class="controls">
                                                 <label class="control-label">Thông tin người nhận</label>
-                                                <input class="billing-address-name form-control" required type="text" name="tenngnhan" placeholder="Người nhận">
+                                                <input class="billing-address-name form-control" style="margin-bottom: 15px;" required type="text" onkeyup="checkValid(); return false;" id="tenngnhan" name="tenngnhan" placeholder="Người nhận">
+                                                <div class="contain-mess" style="margin-bottom: 15px;">
+                                                    <span id="messtenng" class="confirmMessage" ></span>
+                                                </div>
+                                                
                                             </div>
                                             <div class="w3_agileits_card_number_grids">
                                                 <div class="w3_agileits_card_number_grid_left">
                                                     <div class="controls">
                                                         <label class="control-label">Số điện thoại người nhận</label>
-                                                        <input class="input-medium bfh-phone form-control" required type="tel" name="sodt" maxlength="11" placeholder="Số điện thoại"
+                                                        <input class="input-medium bfh-phone form-control" style="margin-bottom: 15px;" required type="tel" onkeyup="checkValid(); return false;" id="sodt" name="sodt" maxlength="11" placeholder="Số điện thoại"
                                                                inputmode="numeric">
+                                                        <div class="contain-mess" style="margin-bottom: 15px;">
+                                                            <span id="messsdt" class="confirmMessage"></span>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                                
@@ -84,10 +93,14 @@
                                             </div>
                                             <div class="controls">
                                                 <label class="control-label">Địa chỉ giao hàng</label>
-                                                <input class="expiration-month-and-year form-control" required type="text" name="diaChi" placeholder="Địa chỉ nhà">
+                                                <input class="expiration-month-and-year form-control" style="margin-bottom: 15px;" required type="text" onkeyup="checkValid(); return false;" id="diaChi" name="diaChi" placeholder="Địa chỉ nhà">
+                                               
+                                                <div class="contain-mess" style="margin-bottom: 15px;">
+                                                    <span id="messdiachi" class="confirmMessage"></span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <input type="submit" value="Xác nhận">
+                                        <input id="btnXacNhan" type="submit" value="Xác nhận">
                                     </div>
                                 </section>
                            }

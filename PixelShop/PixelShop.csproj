@@ -1784,6 +1784,7 @@
     <Content Include="Scripts\jsForFacebook.js" />
     <Content Include="Scripts\minicart.js" />
     <Content Include="Scripts\quantity.js" />
+    <Content Include="Scripts\scriptPayment.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
