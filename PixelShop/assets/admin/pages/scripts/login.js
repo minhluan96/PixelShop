@@ -1,4 +1,4 @@
-var Login = function() {
+﻿var Login = function() {
 
     var handleLogin = function() {
 
@@ -75,7 +75,7 @@ var Login = function() {
 
             messages: {
                 email: {
-                    required: "Email is required."
+                    required: "Email không được bỏ trống."
                 }
             },
 
@@ -188,7 +188,7 @@ var Login = function() {
 
             messages: { // custom messages for radio buttons and checkboxes
                 tnc: {
-                    required: "Please accept TNC first."
+                    required: "Vui lòng chấp nhận các điều khoản."
                 }
             },
 

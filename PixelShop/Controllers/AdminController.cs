@@ -790,7 +790,7 @@ namespace PixelShop.Controllers
             {
                 if (!string.IsNullOrEmpty(hoten))
                 {
-                    TAIKHOAN tk = db.TAIKHOANs.Where(n => n.Email.Equals(email)).Single();
+                    TAIKHOAN tk = db.TAIKHOANs.Where(n => n.Email.Equals(email)).SingleOrDefault();
                     if (tk != null)
                     {
                         tk.HoTen = hoten;
@@ -831,7 +831,7 @@ namespace PixelShop.Controllers
             {
                 if (!string.IsNullOrEmpty(tennsx))
                 {
-                    NHASANXUAT nsx = db.NHASANXUATs.Where(n => n.MaNSX.Equals(mansx)).Single();
+                    NHASANXUAT nsx = db.NHASANXUATs.Where(n => n.MaNSX.Equals(mansx)).SingleOrDefault();
                     if (nsx != null)
                     {
                         nsx.TenNSX = tennsx;
@@ -898,9 +898,14 @@ namespace PixelShop.Controllers
         {
             try
             {
+                if (slg == 0 || giaban == 0)
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Giá bán và số lượng tồn.Vui lòng kiểm tra thông tin nhập." };
+                    return RedirectToAction("Product", "Admin");
+                }
                 if (!string.IsNullOrEmpty(tensp) && !string.IsNullOrEmpty(gioithieusp) && !string.IsNullOrEmpty(tinhnangsp) && !string.IsNullOrEmpty(tendm) && !string.IsNullOrEmpty(maNSX))
                 {
-                    SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
+                    SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).SingleOrDefault();
                     if (sp != null)
                     {
                         sp.TenSP = tensp;
@@ -952,7 +957,7 @@ namespace PixelShop.Controllers
             {
                 if (!string.IsNullOrEmpty(tendm))
                 {
-                    DANHMUC dm = db.DANHMUCs.Where(n => n.MaDanhMuc.Equals(madm) && n.BiXoa == 0).Single();
+                    DANHMUC dm = db.DANHMUCs.Where(n => n.MaDanhMuc.Equals(madm) && n.BiXoa == 0).SingleOrDefault();
                     if (dm != null)
                     {
                         dm.TenDanhMuc = tendm;
@@ -989,8 +994,13 @@ namespace PixelShop.Controllers
         public ActionResult ProductCreate(string masp, string tensp, string gioithieusp, string tinhnangsp, string tendm, int slg, int giaban,
                                     string[] imgSP, string imgKey, string maNSX)
         {
-                try
-                {
+            try
+            {
+                    if (slg == 0 || giaban == 0)
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Giá bán và số lượng tồn.Vui lòng kiểm tra thông tin nhập." };
+                        return RedirectToAction("Product", "Admin");
+                    }
                     if (!string.IsNullOrEmpty(tensp) && !string.IsNullOrEmpty(gioithieusp) && !string.IsNullOrEmpty(tinhnangsp) && !string.IsNullOrEmpty(tendm) && !string.IsNullOrEmpty(maNSX))
                     {
                         string maSP = "SP" + DateTime.Now.ToString("ddMMyyyyhhmmss");
@@ -1122,7 +1132,7 @@ namespace PixelShop.Controllers
             int n = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Count();
             if(n  > 0)
             {
-                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Single();
+                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).SingleOrDefault();
 
                 List<CHITIETDONHANG> lstCT = db.CHITIETDONHANGs.Where(c => c.MaSP.Equals(masp)).ToList();
                 var lst = (from d in db.DONHANGs
@@ -1168,7 +1178,7 @@ namespace PixelShop.Controllers
             int n = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).Count();
             if(n > 0)
             {
-                DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).Single();
+                DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).SingleOrDefault();
 
                 SANPHAM sp = dm.SANPHAMs.Where(x => x.BiXoa == 0).First();
                 if(sp != null)
@@ -1203,7 +1213,7 @@ namespace PixelShop.Controllers
             int n = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).Count();
             if (n > 0)
             {
-                TAIKHOAN tk = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).Single();
+                TAIKHOAN tk = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).SingleOrDefault();
                 tk.BiXoa = 1;
                 int m = db.SaveChanges();
                 if (m > 0)
@@ -1227,7 +1237,7 @@ namespace PixelShop.Controllers
             int n = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).Count();
             if(n > 0)
             {
-                NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).Single();
+                NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).SingleOrDefault();
 
                 SANPHAM sp = nsx.SANPHAMs.Where(x => x.BiXoa == 0).First();
                 if(sp != null)
