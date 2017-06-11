@@ -40,6 +40,10 @@ namespace PixelShop.Controllers
             int index = isExisting(id);
             List<Item> cart = (List<Item>)Session["cart"];
             Item i = cart[index];
+            if(quantity > i.Sanpham.SoLuongTon)
+            {
+                return;
+            }
             i.Soluong = quantity; 
         }
         public void OrderNow(string id) {

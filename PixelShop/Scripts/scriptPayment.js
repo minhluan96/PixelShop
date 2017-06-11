@@ -38,7 +38,7 @@
     }
     else {
 
-        if (isNaN(messsdt.value)) {
+        if ($('#sodt').val().match('[0-9]{10}')) {
             sdt.style.backgroundColor = goodColor;
             messsdt.style.color = goodColor;
             messsdt.innerHTML = "OK!";
