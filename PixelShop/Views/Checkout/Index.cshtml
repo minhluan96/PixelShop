@@ -9,7 +9,7 @@
         <div class="check_box">
             <div class="col-md-9 cart-items">
                 <h1 class="label-shopping-bag">GIỎ HÀNG</h1>
-                @{ int? sum = 0; }
+                @{ long? sum = 0; }
                 @if(Session["cart"]==null)
                 {
                     <p class="null-cart" style="color: red;">Giỏ hàng đang trống</p>
@@ -36,7 +36,7 @@
                                             sum += item.Sanpham.GiaBan * item.Soluong;
                                         }
                                         @{
-                                            int? totalPro = item.Sanpham.GiaBan * item.Soluong;
+                                            long? totalPro = item.Sanpham.GiaBan * item.Soluong;
                                             string totalProStr = String.Format(elGR, "{0:0,0}", totalPro) + " VNÐ";
                                         }
                                         <div class="delivery">

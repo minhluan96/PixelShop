@@ -35,12 +35,13 @@ namespace PixelShop.Controllers
             if (cart.Count() == 0)
                 Session["cart"] = null;
         }
+        
         public void Update(string id,int quantity)
         {
             int index = isExisting(id);
             List<Item> cart = (List<Item>)Session["cart"];
             Item i = cart[index];
-            if(quantity > i.Sanpham.SoLuongTon)
+            if(quantity > i.Sanpham.SoLuongTon && quantity > 0)
             {
                 return;
             }
