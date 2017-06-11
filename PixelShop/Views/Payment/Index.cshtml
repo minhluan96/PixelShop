@@ -22,7 +22,7 @@
                         }
 
                         Item item = ((List<Item>)Session["cart"]).ElementAt(i);
-                        long giaSP = (long)(item.Sanpham.GiaBan * item.Soluong);
+                        long? giaSP = (long?)item.Sanpham.GiaBan * item.Soluong;
                         string giaFormat = String.Format(elGR,"{0:0,0}", giaSP) + " VNĐ";
                         <ul>
                             <li>@item.Sanpham.TenSP<span>Giá: @giaFormat</span></li>
@@ -42,10 +42,10 @@
             </div>
             <div class="agile_amount">
                 <h3>Tổng cộng</h3>
-                @{ long tongtien = 0;
+                @{ long? tongtien = 0;
                     foreach(Item item in (List<Item>)Session["cart"])
                     {
-                        tongtien += (long)(item.Sanpham.GiaBan * item.Soluong);
+                        tongtien += (long?)item.Sanpham.GiaBan * item.Soluong;
                     }
 
                     string giaTongCong = String.Format(elGR,"{0:0,0}", tongtien) + "VNĐ";

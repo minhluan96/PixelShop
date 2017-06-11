@@ -41,7 +41,7 @@ namespace PixelShop.Controllers
             int index = isExisting(id);
             List<Item> cart = (List<Item>)Session["cart"];
             Item i = cart[index];
-            if(quantity > i.Sanpham.SoLuongTon && quantity > 0)
+            if(quantity > i.Sanpham.SoLuongTon && quantity <= 0)
             {
                 return;
             }
@@ -51,17 +51,26 @@ namespace PixelShop.Controllers
             if (Session["cart"] == null)
             {
                 List<Item> cart = new List<Item>();
-                cart.Add(new Item(db.SANPHAMs.Find(id),1));
+                cart.Add(new Item(db.SANPHAMs.Find(id), 1));
                 Session["cart"] = cart;
             }
             else
             {
                 List<Item> cart = (List<Item>)Session["cart"];
                 int index = isExisting(id);
-                if(index==-1)
+                if (index == -1)
                     cart.Add(new Item(db.SANPHAMs.Find(id), 1));
                 else
-                    cart[index].Soluong++;
+                {
+                    if(cart[index].Soluong == cart[index].Sanpham.SoLuongTon)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        cart[index].Soluong++;
+                    }
+                }
                 Session["cart"] = cart;
             }
         }
