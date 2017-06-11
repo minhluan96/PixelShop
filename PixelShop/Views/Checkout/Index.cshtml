@@ -9,7 +9,7 @@
         <div class="check_box">
             <div class="col-md-9 cart-items">
                 <h1 class="label-shopping-bag">GIỎ HÀNG</h1>
-                @{ int? sum = 0; }
+                @{ long? sum = 0; }
                 @if(Session["cart"]==null)
                 {
                     <p class="null-cart" style="color: red;">Giỏ hàng đang trống</p>
@@ -33,10 +33,10 @@
                                              
                                         <input type="number" onfocus="this.oldvalue = this.value;" class="qtycart @item.Sanpham.MaSP" min="1" max="@item.Sanpham.SoLuongTon" id="qty" value="@item.Soluong">
                                         @{
-                                            sum += item.Sanpham.GiaBan * item.Soluong;
+                                            sum += (long?)item.Sanpham.GiaBan * item.Soluong;
                                         }
                                         @{
-                                            int? totalPro = item.Sanpham.GiaBan * item.Soluong;
+                                            long? totalPro = (long?)item.Sanpham.GiaBan * item.Soluong;
                                             string totalProStr = String.Format(elGR, "{0:0,0}", totalPro) + " VNÐ";
                                         }
                                         <div class="delivery">
@@ -60,7 +60,7 @@
                     <h3>Chi tiết hóa đơn</h3>
                     <span>Tổng cộng</span>
                     <span class="total1" id="checkout_total">@_totalStr</span>
-                    <span>Discount</span>
+                    <span>Giảm giá</span>
                     <span class="total1">---</span>
                     <span>Phí dịch vụ giao hàng</span>
                     <span class="total1">00.00 VNĐ</span>

@@ -164,7 +164,7 @@ namespace PixelShop.Controllers
         }
         public ActionResult ReportProduct(int? page)
         {
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             if (TempData["dssp"] == null)
             {
@@ -315,7 +315,7 @@ namespace PixelShop.Controllers
 
         public ActionResult Order(int ?page)
         {
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
 
             List<TINHTRANGDONHANG> lstTT = db.TINHTRANGDONHANGs.ToList();
@@ -458,7 +458,7 @@ namespace PixelShop.Controllers
         }
         public ActionResult Customer(int ?page)
         {
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             if (TempData["dstk"] == null)
             {
@@ -487,7 +487,7 @@ namespace PixelShop.Controllers
 
             ViewData["dsNhaSanXuat"] = lstNSX;
             ViewData["dsDanhMuc"] = lstDM;
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             if (TempData["dssp"] == null)
             {
@@ -501,7 +501,7 @@ namespace PixelShop.Controllers
 
         public ActionResult Category(int? page)
         {
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             if (TempData["dsdm"] == null)
             {
@@ -517,7 +517,7 @@ namespace PixelShop.Controllers
 
         public ActionResult Manufacturer(int ?page)
         {
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
 
           
@@ -1277,6 +1277,8 @@ namespace PixelShop.Controllers
         }
         public PartialViewResult Sidebar()
         {
+            int? dhchoxacnhan = db.DONHANGs.Where(d => d.TinhTrang == 3).ToList().Count;
+            ViewData["dhchoxacnhan"] = dhchoxacnhan;
             return PartialView(@"~/Views/Admin/Sidebar.cshtml");
         }
         public PartialViewResult Footer()

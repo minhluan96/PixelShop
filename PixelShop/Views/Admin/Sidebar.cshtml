@@ -1,4 +1,5 @@
 ﻿<!-- BEGIN SIDEBAR -->
+@using PixelShop.Models
 <div class="page-sidebar-wrapper">
     <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
     <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
@@ -12,6 +13,8 @@
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
         @{
             string path = HttpContext.Current.Request.Url.AbsolutePath;
+            int dhchoxacnhan = int.Parse(ViewData["dhchoxacnhan"].ToString());
+
          }
         <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
             @if (path == "/Admin")
@@ -37,7 +40,7 @@
                 <li class="active">
                     <a href="@Url.Action("Order", "Admin")">
                         <i class="icon-basket"></i>
-                        <span class="badge badge-roundless badge-danger">19</span>
+                        <span class="badge badge-roundless badge-danger">@dhchoxacnhan</span>
                         <span class="title">Đơn hàng</span>
                     </a>
                 </li>
@@ -47,7 +50,7 @@
                 <li>
                     <a href="@Url.Action("Order", "Admin")">
                         <i class="icon-basket"></i>
-                        <span class="badge badge-roundless badge-danger">19</span>
+                        <span class="badge badge-roundless badge-danger">@dhchoxacnhan</span>
                         <span class="title">Đơn hàng</span>
                     </a>
                 </li>
@@ -75,7 +78,6 @@
                 <li class="active">
                     <a href="@Url.Action("Customer", "Admin")">
                         <i class="icon-user"></i>
-                        <span class="badge badge-roundless badge-warning">19</span>
                         <span class="title">Tài khoản</span>
                     </a>
                 </li>
@@ -85,7 +87,6 @@
                 <li>
                     <a href="@Url.Action("Customer", "Admin")">
                         <i class="icon-user"></i>
-                        <span class="badge badge-roundless badge-warning">19</span>
                         <span class="title">Tài khoản</span>
                     </a>
                 </li>
