@@ -27,7 +27,14 @@
                     <h3 class="item_name">@Model.TenSP</h3>
                     <p>Mã sản phẩm: @Model.MaSP</p>
                     <br />
-                    <p>Tình trạng: Còn hàng</p>
+                    @if (Model.SoLuongTon > 0)
+                    {
+                        <p>Tình trạng: Còn hàng</p>
+                    }
+                    else
+                    {
+                        <p>Tình trạng: Hết hàng</p>
+                    }
                     <br />
                     <p>Lượt xem: @Model.SoLuotXem</p>
                     <div class="single-rating">
@@ -42,14 +49,21 @@
                     </div>
                     <div class="single-price">
                         <ul>
-                            <li>@Model.giaStr</li>
+                            @if (Model.SoLuongTon > 0)
+                            {
+                                <li>@Model.giaStr</li>
+                            }
+                            else
+                            {
+                                <li>LIÊN HỆ</li>
+                            }
                         </ul>
                     </div>
                     <br />
                     @if (Session["username"] != null)
                     {
                     <span class="btnaddcart @Model.MaSP">
-                        <button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> &ensp; Đặt hàng</button>
+                        <button type="submit" @(Model.SoLuongTon <= 0 ? "disabled" : "") class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> &ensp; @(Model.SoLuongTon <= 0 ? "LIÊN HỆ" : "ĐẶT HÀNG")</button>
                     </span>
 
                         <button class="w3ls-cart w3ls-cart-like">

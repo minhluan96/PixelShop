@@ -1976,7 +1976,11 @@
     <Content Include="Views\DetailInfoClient\Index.cshtml" />
     <Content Include="Views\AccountPixelShop\ReactivePassword.cshtml" />
     <Content Include="Views\AccountPixelShop\UpdateNewPassword.cshtml" />
+    <None Include="Properties\PublishProfiles\03pixel - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\03pixel - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\03pixel - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\03pixel - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\03pixel - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\03pixel - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
