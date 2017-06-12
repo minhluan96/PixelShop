@@ -24,7 +24,7 @@ namespace PixelShop.Controllers
         [HttpPost]
         public ActionResult RecordOrders(FormCollection form)
         {
-            if(Session["username"] == null)
+            if(Session["username"] == null || ((List<Item>)Session["cart"]).Count == 0 || Session["cart"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -81,6 +81,8 @@ namespace PixelShop.Controllers
                     GiaBan = item.Sanpham.GiaBan
                 };
 
+
+
                 
 
                 lstCTDH.Add(ct);
@@ -89,6 +91,8 @@ namespace PixelShop.Controllers
             db.CHITIETDONHANGs.AddRange(lstCTDH);
             db.SaveChanges();
         }
+
+        
 
         public ActionResult PaymentSuccess(string madh)
         {
