@@ -15,7 +15,12 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
 </head>
-<body>
+<body onload="hideloader()">
+    <div class="dropdown-menu theme-panel div-iframeAdmin dropdown-custom" id="divloading" style="z-index:9999; display:block; width: 100%;background-color: black;opacity: 0.8;position: fixed; top: 0;height: 100%; margin: 0 auto;">
+        <div id="loading">
+        </div>
+        <p id="textloading">VUI LÒNG ĐỢI ...</p>
+    </div>
     @if (TempData["UserMessage"] != null)
     {
 
@@ -129,4 +134,7 @@
             window.location.reload();
         }
     });
+    function hideloader() {
+        $("#divloading").remove();
+    }
 </script>

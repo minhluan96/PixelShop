@@ -1214,15 +1214,23 @@ namespace PixelShop.Controllers
             if (n > 0)
             {
                 TAIKHOAN tk = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).SingleOrDefault();
-                tk.BiXoa = 1;
-                int m = db.SaveChanges();
-                if (m > 0)
+                DONHANG dhcheck = tk.DONHANGs.Where(x => x.TinhTrang > 0).SingleOrDefault();
+                if(dhcheck == null)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa tài khoản thành công." };
+                    tk.BiXoa = 1;
+                    int m = db.SaveChanges();
+                    if (m > 0)
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa tài khoản thành công." };
+                    }
+                    else
+                    {
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                    }
                 }
                 else
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tài khoản đang còn đơn hàng chưa giao.Vui lòng kiểm tra trước khi xóa" };
                 }
             }
             else
