@@ -1127,6 +1127,25 @@ namespace PixelShop.Controllers
             return RedirectToAction("Manufacturer", "Admin");
         }
 
+        public ActionResult ProductUnDelete(string masp)
+        {
+            int n = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 1).Count();
+            if (n > 0)
+            {
+                SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 1).SingleOrDefault();
+                sp.BiXoa = 0;
+                int m = db.SaveChanges();
+                if (m > 0)
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã mở khóa sản phẩm thành công." };
+                }
+                else
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                }
+            }
+            return RedirectToAction("Product", "Admin");
+        }
         public ActionResult ProductDelete(string masp)
         {
             int n = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Count();
@@ -1149,7 +1168,7 @@ namespace PixelShop.Controllers
 
                 if (lst != null)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể xóa sản phẩm của đơn hàng trong trạng thái chưa giao!." };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể khóa sản phẩm của đơn hàng trong trạng thái chưa giao!." };
                 }
                 else {
 
@@ -1157,7 +1176,7 @@ namespace PixelShop.Controllers
                     int m = db.SaveChanges();
                     if (m > 0)
                     {
-                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa sản phẩm thành công." };
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã khóa sản phẩm thành công." };
                     }
                     else
                     {
@@ -1167,11 +1186,30 @@ namespace PixelShop.Controllers
             }
             else
             {
-                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Sản phẩm đã bị xóa trước đó." };
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Sản phẩm đã bị khóa trước đó." };
             }
             return RedirectToAction("Product", "Admin");
         }
-
+        [HttpPost]
+        public ActionResult CategoryUnDelete(string madm)
+        {
+            int n = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 1).Count();
+            if (n > 0)
+            {
+                DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 1).SingleOrDefault();
+                dm.BiXoa = 0;
+                int m = db.SaveChanges();
+                if (m > 0)
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã mở khóa danh mục thành công." };
+                }
+                else
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                }
+            }
+            return RedirectToAction("Category", "Admin");
+        }
         [HttpPost]
         public ActionResult CategoryDelete(string madm)
         {
@@ -1183,7 +1221,7 @@ namespace PixelShop.Controllers
                 SANPHAM sp = dm.SANPHAMs.Where(x => x.BiXoa == 0).FirstOrDefault();
                 if(sp != null)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tạm thời không thể xóa danh mục này. Còn sản phẩm đang kinh doanh thuộc danh mục này" };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tạm thời không thể khóa danh mục này. Còn sản phẩm đang kinh doanh thuộc danh mục này" };
 
                 }
                 else
@@ -1192,7 +1230,7 @@ namespace PixelShop.Controllers
                     int m = db.SaveChanges();
                     if (m > 0)
                     {
-                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa danh mục thành công." };
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã khóa danh mục thành công." };
                     }
                     else
                     {
@@ -1204,9 +1242,29 @@ namespace PixelShop.Controllers
             }
             else
             {
-                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Danh mục đã bị xóa trước đó." };
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Danh mục đã bị khóa trước đó." };
             }
             return RedirectToAction("Category", "Admin");
+        }
+
+        public ActionResult CustomerUnDelete(string taikhoan)
+        {
+            int n = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 1).Count();
+            if (n > 0)
+            {
+                TAIKHOAN tk = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 1).SingleOrDefault();
+                tk.BiXoa = 0;
+                int m = db.SaveChanges();
+                if (m > 0)
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã khóa tài khoản thành công." };
+                }
+                else
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                }
+            }
+            return RedirectToAction("Customer", "Admin");
         }
         public ActionResult CustomerDelete(string taikhoan)
         {
@@ -1221,7 +1279,7 @@ namespace PixelShop.Controllers
                     int m = db.SaveChanges();
                     if (m > 0)
                     {
-                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa tài khoản thành công." };
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã khóa tài khoản thành công." };
                     }
                     else
                     {
@@ -1230,14 +1288,34 @@ namespace PixelShop.Controllers
                 }
                 else
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tài khoản đang còn đơn hàng chưa giao.Vui lòng kiểm tra trước khi xóa" };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tài khoản đang còn đơn hàng chưa giao.Vui lòng kiểm tra trước khi khóa" };
                 }
             }
             else
             {
-                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tài khoản đã bị xóa trước đó." };
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tài khoản đã bị khóa trước đó." };
             }
             return RedirectToAction("Customer", "Admin");
+        }
+        [HttpPost]
+        public ActionResult ManufacturerUnDelete(string mansx)
+        {
+            int n = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 1).Count();
+            if (n > 0)
+            {
+                NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 1).SingleOrDefault();
+                nsx.BiXoa = 0;
+                int s = db.SaveChanges();
+                if (s > 0)
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã mở khóa nhà sản xuất thành công." };
+                }
+                else
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Xảy ra lỗi." };
+                }
+            }
+            return RedirectToAction("Manufacturer", "Admin");
         }
         [HttpPost]
         public ActionResult ManufacturerDelete(string mansx)
@@ -1250,7 +1328,7 @@ namespace PixelShop.Controllers
                 SANPHAM sp = nsx.SANPHAMs.Where(x => x.BiXoa == 0).FirstOrDefault();
                 if(sp != null)
                 {
-                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tạm thời không thể xóa nhà sản xuất này. Còn sản phẩm đang kinh doanh thuộc nhà sản xuất này" };
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Tạm thời không thể khóa nhà sản xuất này. Còn sản phẩm đang kinh doanh thuộc nhà sản xuất này" };
                 }
                 else
                 {
@@ -1259,7 +1337,7 @@ namespace PixelShop.Controllers
                     int s = db.SaveChanges();
                     if (s > 0)
                     {
-                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã xóa nhà sản xuất thành công." };
+                        TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã khóa nhà sản xuất thành công." };
                     }
                     else
                     {
@@ -1271,7 +1349,7 @@ namespace PixelShop.Controllers
             }
             else
             {
-                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Nhà sản xuất đã bị xóa trước đó." };
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Nhà sản xuất đã bị khóa trước đó." };
             }
             return RedirectToAction("Manufacturer", "Admin");
         }
@@ -1281,6 +1359,9 @@ namespace PixelShop.Controllers
 
         public PartialViewResult Header()
         {
+            int? dhchoxacnhan = db.DONHANGs.Where(d => d.TinhTrang == 3).ToList().Count;
+            ViewData["dhchoxacnhan"] = dhchoxacnhan;
+            ViewData["listdhchoxacnhan"] = db.DONHANGs.Where(d => d.TinhTrang == 3).Take(5).OrderByDescending(x => x.NgayDate).ToList();
             return PartialView(@"~/Views/Admin/Header.cshtml");
         }
         public PartialViewResult Sidebar()

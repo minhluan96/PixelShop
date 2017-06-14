@@ -329,13 +329,27 @@
                                                 <!-- END PAGE CONTENT-->
                                             </div>
                                             <div style="display:inline-block">
-                                                @using (Html.BeginForm("CategoryDelete", "Admin", FormMethod.Post))
+                                                @if (dm.BiXoa == 0)
                                                 {
-                                                    <input type="text" class="txt-mansx" name="madm" placeholder="" value="@dm.MaDanhMuc" style="display:none">
-                                                    <button type="submit" href="javascript:;" class="btn btn-sm btn-circle btn-danger">
-                                                        <i class="fa fa-trash-o"></i>
-                                                        Xóa
-                                                    </button>
+                                                    using (Html.BeginForm("CategoryDelete", "Admin", FormMethod.Post))
+                                                    {
+                                                        <input type="text" class="txt-mansx" name="madm" placeholder="" value="@dm.MaDanhMuc" style="display:none">
+                                                        <button type="submit" href="javascript:;" class="btn btn-sm btn-circle btn-danger">
+                                                            <i class="fa fa-trash-o"></i>
+                                                            Khóa
+                                                        </button>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    using (Html.BeginForm("CategoryUnDelete", "Admin", FormMethod.Post))
+                                                    {
+                                                        <input type="text" class="txt-mansx" name="madm" placeholder="" value="@dm.MaDanhMuc" style="display:none">
+                                                        <button type="submit" href="javascript:;" class="btn btn-sm btn-circle btn-primary">
+                                                            <i class="fa fa-trash-o"></i>
+                                                            Mở khóa
+                                                        </button>
+                                                    }
                                                 }
                                             </div>
                                         </td>

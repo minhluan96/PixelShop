@@ -1,4 +1,8 @@
-﻿
+﻿@using PixelShop.Models
+@{ 
+    int dhchoxacnhan = int.Parse(ViewData["dhchoxacnhan"].ToString());
+    List<DONHANG> listdh = (List<DONHANG>)(ViewData["listdhchoxacnhan"]);
+}
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNER -->
@@ -23,7 +27,7 @@
             <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
             <form class="search-form" action="#" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control input-sm" placeholder="Search..." name="query" >
+                    <input type="text" class="form-control input-sm" placeholder="Tìm kiếm..." name="query" >
                     <span class="input-group-btn">
                         <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
                     </span>
@@ -34,6 +38,38 @@
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">
                     <li class="separator hide">
+                    </li>
+                    <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <i class="icon-bell"></i>
+                            <span class="badge badge-success">
+                                @dhchoxacnhan
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external">
+                                <h3><span class="bold">5 Đơn hàng</span> gần nhất</h3>
+                                <a href="@Url.Action("Order", "Admin")">Xem tất cả</a>
+                            </li>
+                            <li>
+                                <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+                                    @for (int i = 0; i < listdh.Count; i++)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("ViewOrder", "Admin", new { madh = listdh[i].MaDH })">
+                                                <span class="time">@listdh[i].NgayDate.Value.ToString("dd/MM/yyyy")</span>
+                                                <span class="details">
+                                                   Đơn hàng: @listdh[i].MaDH
+                                                </span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="separator hide">
+                    </li>
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
@@ -55,6 +91,8 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="separator hide">
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
                 </ul>
