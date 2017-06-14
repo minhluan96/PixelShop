@@ -1823,8 +1823,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SanPham\" />
-    <Folder Include="Views\UserOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

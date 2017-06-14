@@ -15,7 +15,7 @@ namespace PixelShop.Controllers
     {
 
         PixelShopEntities db = new PixelShopEntities();
-
+        
 
         // GET: Admin
         public ActionResult Index()
@@ -489,9 +489,10 @@ namespace PixelShop.Controllers
             ViewData["dsDanhMuc"] = lstDM;
             int pageSize = 5;
             int pageNumber = (page ?? 1);
-            if (TempData["dssp"] == null)
+            if (TempData["dssp"] == null )
             {
                 List<SANPHAM> lstSP = db.SANPHAMs.OrderBy(p => p.BiXoa).ThenBy(p => p.DANHMUC1.BiXoa).ThenBy(p => p.NHASANXUAT1.BiXoa).Select(p => p).ToList<SANPHAM>();
+
                 return View(@"~/Views/Admin/Product.cshtml", lstSP.ToPagedList(pageNumber, pageSize));
             }
             List<SANPHAM> lstTimKiemSP = TempData["dssp"] as List<SANPHAM>;
@@ -1134,6 +1135,7 @@ namespace PixelShop.Controllers
             {
                 SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 1).SingleOrDefault();
                 sp.BiXoa = 0;
+                TempData.Clear();
                 int m = db.SaveChanges();
                 if (m > 0)
                 {
@@ -1149,7 +1151,8 @@ namespace PixelShop.Controllers
         public ActionResult ProductDelete(string masp)
         {
             int n = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).Count();
-            if(n  > 0)
+           
+            if (n  > 0)
             {
                 SANPHAM sp = db.SANPHAMs.Where(p => p.MaSP.Equals(masp) && p.BiXoa == 0).SingleOrDefault();
 
@@ -1166,7 +1169,7 @@ namespace PixelShop.Controllers
                            }).ToList();
 
 
-                if (lst != null)
+                if (lst != null && lst.Count > 0)
                 {
                     TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Không thể khóa sản phẩm của đơn hàng trong trạng thái chưa giao!." };
                 }
@@ -1174,9 +1177,11 @@ namespace PixelShop.Controllers
 
                     sp.BiXoa = 1;
                     int m = db.SaveChanges();
+                    TempData.Clear();
                     if (m > 0)
                     {
                         TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã khóa sản phẩm thành công." };
+                        
                     }
                     else
                     {
@@ -1198,6 +1203,7 @@ namespace PixelShop.Controllers
             {
                 DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 1).SingleOrDefault();
                 dm.BiXoa = 0;
+                TempData.Clear();
                 int m = db.SaveChanges();
                 if (m > 0)
                 {
@@ -1217,7 +1223,7 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 DANHMUC dm = db.DANHMUCs.Where(c => c.MaDanhMuc.Equals(madm) && c.BiXoa == 0).SingleOrDefault();
-
+                TempData.Clear();
                 SANPHAM sp = dm.SANPHAMs.Where(x => x.BiXoa == 0).FirstOrDefault();
                 if(sp != null)
                 {
@@ -1254,6 +1260,7 @@ namespace PixelShop.Controllers
             {
                 TAIKHOAN tk = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 1).SingleOrDefault();
                 tk.BiXoa = 0;
+                TempData.Clear();
                 int m = db.SaveChanges();
                 if (m > 0)
                 {
@@ -1271,6 +1278,7 @@ namespace PixelShop.Controllers
             int n = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).Count();
             if (n > 0)
             {
+                TempData.Clear();
                 TAIKHOAN tk = db.TAIKHOANs.Where(c => c.Email.Equals(taikhoan) && c.BiXoa == 0).SingleOrDefault();
                 DONHANG dhcheck = tk.DONHANGs.Where(x => x.TinhTrang > 0).SingleOrDefault();
                 if(dhcheck == null)
@@ -1305,6 +1313,7 @@ namespace PixelShop.Controllers
             {
                 NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 1).SingleOrDefault();
                 nsx.BiXoa = 0;
+                TempData.Clear();
                 int s = db.SaveChanges();
                 if (s > 0)
                 {
@@ -1324,7 +1333,7 @@ namespace PixelShop.Controllers
             if(n > 0)
             {
                 NHASANXUAT nsx = db.NHASANXUATs.Where(m => m.MaNSX.Equals(mansx) && m.BiXoa == 0).SingleOrDefault();
-
+                TempData.Clear();
                 SANPHAM sp = nsx.SANPHAMs.Where(x => x.BiXoa == 0).FirstOrDefault();
                 if(sp != null)
                 {
