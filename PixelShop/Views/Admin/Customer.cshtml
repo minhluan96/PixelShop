@@ -229,13 +229,27 @@
                                                     <!-- END PAGE CONTENT-->
                                                 </div>
                                                 <div style="display:inline-block">
-                                                    @using (Html.BeginForm("CustomerDelete", "Admin", FormMethod.Post))
+                                                    @if (tk.BiXoa == 0)
                                                     {
-                                                        <input type="text" class="txt-mansx" name="taikhoan" placeholder="" value="@tk.Email" style="display:none">
-                                                        <button type="submit" href="javascript:;" class="btn btn-sm btn-circle btn-danger">
-                                                            <i class="fa fa-trash-o"></i>
-                                                            Xóa
-                                                        </button>
+                                                        using (Html.BeginForm("CustomerDelete", "Admin", FormMethod.Post))
+                                                        {
+                                                            <input type="text" class="txt-mansx" name="taikhoan" placeholder="" value="@tk.Email" style="display:none">
+                                                            <button type="submit" href="javascript:;" class="btn btn-sm btn-circle btn-danger">
+                                                                <i class="fa fa-trash-o"></i>
+                                                                Khóa
+                                                            </button>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        using (Html.BeginForm("CustomerUnDelete", "Admin", FormMethod.Post))
+                                                        {
+                                                            <input type="text" class="txt-mansx" name="taikhoan" placeholder="" value="@tk.Email" style="display:none">
+                                                            <button type="submit" href="javascript:;" class="btn btn-sm btn-circle btn-primary">
+                                                                <i class="fa fa-trash-o"></i>
+                                                                Mở khóa
+                                                            </button>
+                                                        }
                                                     }
                                                 </div>
                                             </td>

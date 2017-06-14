@@ -249,11 +249,20 @@
                                                 <i class="fa fa-pencil"></i>
                                                 Cập nhật
                                             </a>
-                                           
+                                           @if (sp.BiXoa == 0)
+                                           {
                                             <button href="javascript:;" onclick="location.href='@Url.Action("ProductDelete", "Admin", new { masp = sp.MaSP })'" class="btn btn-sm btn-circle btn-danger">
                                                 <i class="fa fa-trash-o"></i>
-                                                Xóa
+                                                Khóa
                                             </button>
+                                           }
+                                           else
+                                           {
+                                            <button href="javascript:;" onclick="location.href='@Url.Action("ProductUnDelete", "Admin", new { masp = sp.MaSP })'" class="btn btn-sm btn-circle btn-primary">
+                                                <i class="fa fa-trash-o"></i>
+                                                Mở khóa
+                                            </button>
+                                           }
                                         </td>
                                     </tr>
                                     }

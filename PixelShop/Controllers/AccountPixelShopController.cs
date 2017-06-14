@@ -71,7 +71,7 @@ namespace PixelShop.Controllers
         {
             if(fm["email"] == null)
             {
-                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Email không tồn tại" };
+                TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Vui lòng nhập Email!!!" };
                 return RedirectToAction("Index", "AccountPixelShop");
 
             }
@@ -95,6 +95,10 @@ namespace PixelShop.Controllers
                     {
                         TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Có lỗi xảy ra vui lòng thử lại" };
                     }
+                }
+                else
+                {
+                    TempData["UserMessage"] = new Message { CssClassName = "alert-danger", Title = "Thất bại!", MessageAlert = "Email không tồn tại. Vui lòng kiểm tra lại!!!" };
                 }
             }
 
