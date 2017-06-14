@@ -344,6 +344,7 @@ namespace PixelShop.Controllers
                 DONHANG dh = db.DONHANGs.Where(d => d.MaDH.Equals(madh)).SingleOrDefault();
                 if (dh != null)
                 {
+                    TempData.Clear();
                     if (matinhtrang == -1 || matinhtrang == 3)
                     {
                         dh.TinhTrang = matinhtrang;
@@ -837,6 +838,7 @@ namespace PixelShop.Controllers
                     {
                         nsx.TenNSX = tennsx;
                         //update mo ta - db dang thieu
+                        TempData.Clear();
 
                         int n = db.SaveChanges();
                         if (n > 0)
@@ -925,6 +927,7 @@ namespace PixelShop.Controllers
                             }
                         }
                         int n = db.SaveChanges();
+                        TempData.Clear();
                         if (n > 0)
                         {
                             TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã cập nhật thông tin sản phẩm thành công." };
@@ -966,6 +969,7 @@ namespace PixelShop.Controllers
                         //update mo ta - db dang thieu
 
                         int n = db.SaveChanges();
+                        TempData.Clear();
                         if (n > 0)
                         {
                             TempData["UserMessage"] = new Message { CssClassName = "alert-success", Title = "Thành công!", MessageAlert = "Đã cập nhật thông tin nhà sản xuất thành công." };
