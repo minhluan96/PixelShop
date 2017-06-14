@@ -110,12 +110,12 @@
     </div>
     <div class="col-md-3 search-agileinfo pull-right">
        
-            @using (Html.BeginForm("Index", "Search"))
+            @using (Html.BeginForm("Index", "Search", new { }, FormMethod.Get))
             {
-            <input type="search" name="Ten" placeholder="Tìm kiếm" required="" style="border: 2px solid #000000; color: #000000;"/>
-            <button type="submit" class="btn btn-default search" aria-label="Left Align">
-                <i class="fa fa-search" aria-hidden="true"> </i>
-            </button>
+                <input type="search" name="Ten" placeholder="Tìm kiếm" required="" style="border: 2px solid #000000; color: #000000;"/>
+                <button type="submit" class="btn btn-default search" aria-label="Left Align">
+                    <i class="fa fa-search" aria-hidden="true"> </i>
+                </button>
             }
         
     </div>
